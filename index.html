@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miqdad Badjuber | Portfolio</title>
+    <meta name="description" content="I build SaaS products, automation systems, and machine learning solutions to solve real business problems.">
+    <meta name="author" content="Miqdad Badjuber">
+    <meta name="theme-color" content="#020202">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Miqdad Badjuber | Portfolio">
+    <meta property="og:description" content="I build SaaS products, automation systems, and machine learning solutions to solve real business problems.">
+    <meta property="og:site_name" content="Miqdad Badjuber Portfolio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Miqdad Badjuber | Portfolio">
+    <meta name="twitter:description" content="I build SaaS products, automation systems, and machine learning solutions to solve real business problems.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23020202'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='56' font-weight='bold' fill='%2300f0ff' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        void: '#020202',
+                        cyanGlow: '#00f0ff',
+                        purpleGlow: '#8a2be2',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP, Lenis Smooth Scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Miqdad Badjuber",
+        "jobTitle": "AI Developer & SaaS Engineer",
+        "url": "https://miqdadbadjuber.github.io/",
+        "sameAs": [
+            "https://github.com/miqdadbadjuber",
+            "https://www.linkedin.com/in/miqdad-badjuber"
+        ],
+        "knowsAbout": ["SaaS Development", "Machine Learning", "Google Workspace Automation", "AI Workflow", "Discord Bot", "Telegram Bot"]
+    }
+    </script>
+
+    <style>
+        /* ======================== */
+        /* Design Tokens            */
+        /* ======================== */
+        :root {
+            --color-void: #020202;
+            --color-cyan: #00f0ff;
+            --color-purple: #8a2be2;
+            --transition-fast: 200ms;
+            --transition-base: 300ms;
+            --transition-slow: 500ms;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ======================== */
+        /* Base                     */
+        /* ======================== */
+        @media (min-width: 1024px) {
+            html {
+                font-size: 80%; /* Scales down REM-based layout for users with 125% OS scale, keeping it centered */
+            }
+        }
+        
+        body {
+            background-color: var(--color-void);
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ======================== */
+        /* Mobile Perf Hints        */
+        /* ======================== */
+        @media (max-width: 1024px) {
+            /* Promote fixed/animated layers to GPU compositing */
+            #navbar { will-change: transform; }
+            #webgl-canvas { will-change: transform; }
+            /* NOTE: 'contain' removed - it clips the fixed WebGL canvas on mobile */
+            /* Reduce backdrop-filter cost on mobile */
+            .backdrop-blur-2xl { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+            .backdrop-blur-xl { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+            .backdrop-blur-sm { -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+        }
+
+        /* GSAP handles performance automatically */
+        .gsap-fade, .gsap-hero > * {
+            /* will-change removed for mobile memory optimization */
+        }
+
+        /* FOUC prevention - content fades in after fonts/scripts load */
+        .js-loading * {
+            animation-play-state: paused !important;
+        }
+
+        /* ======================== */
+        /* Accessibility            */
+        /* ======================== */
+        .skip-to-content {
+            position: fixed;
+            top: -4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-cyan);
+            color: var(--color-void);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 0 0 0.5rem 0.5rem;
+            transition: top var(--transition-base) var(--ease-out);
+        }
+        .skip-to-content:focus {
+            top: 0;
+            outline: none;
+        }
+
+        /* Focus-visible for keyboard navigation */
+        :focus-visible {
+            outline: 2px solid rgba(0, 240, 255, 0.6);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+        /* Remove outline for mouse/touch users */
+        :focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ======================== */
+        /* Circle/Ring Cursor       */
+        /* ======================== */
+        .cursor-ring {
+            position: fixed;
+            top: 0; left: 0;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 240, 255, 0.5);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.2);
+            transition: width var(--transition-base) ease-out, height var(--transition-base) ease-out, border-color var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
+            will-change: transform;
+        }
+        .cursor-ring.hovering {
+            width: 60px; height: 60px;
+            border-color: var(--color-purple);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), inset 0 0 15px rgba(138, 43, 226, 0.4);
+            background-color: rgba(138, 43, 226, 0.1);
+        }
+        /* Hide cursor ring on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor-ring { display: none !important; }
+        }
+
+        /* ======================== */
+        /* ======================== */
+        /* 3D Canvas / Iframe       */
+        /* ======================== */
+        #bg-iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            border: none;
+            will-change: transform;
+        }
+        
+        @media (min-width: 769px) {
+            #bg-iframe {
+                width: 250vw;
+                height: 125vh;
+                transform-origin: top left;
+                transform: translateX(-25vw) scale(0.8) translateZ(0);
+            }
+        }
+        /* ======================== */
+        /* Typography               */
+        /* ======================== */
+        .text-mega {
+            font-size: clamp(2.3rem, 6vw, 6rem);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, var(--color-cyan), var(--color-purple), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% auto;
+            animation: textShine 6s linear infinite;
+        }
+        @keyframes textShine { to { background-position: 300% center; } }
+
+        /* ======================== */
+        /* Sci-Fi Button            */
+        /* ======================== */
+        .btn-scifi {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.5);
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+            cursor: pointer;
+            transition: background var(--transition-base) ease, border-color var(--transition-base) ease, box-shadow var(--transition-base) ease;
+        }
+        .btn-scifi::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform var(--transition-slow) ease;
+        }
+        .btn-scifi:hover {
+            background: rgba(0, 240, 255, 0.2);
+            border-color: var(--color-cyan);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+        .btn-scifi:hover::before { transform: translateX(100%); }
+
+        /* Secondary outline button - consistent styling */
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: border-color var(--transition-base) ease, color var(--transition-base) ease;
+        }
+        .btn-outline:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+
+        /* ======================== */
+        /* Background Elements      */
+        /* ======================== */
+        .bg-grid {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        .noise {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            opacity: 0.04; mix-blend-mode: overlay;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+        @media (max-width: 1024px) {
+            .noise { display: none; }
+        }
+
+        /* HUD Lines */
+        .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
+
+        /* Section divider */
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
+        }
+
+        /* ======================== */
+        /* Tech Stack Badges        */
+        /* ======================== */
+        .tag-tech {
+            display: inline-block;
+            padding: 0.25rem 0.625rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            cursor: default;
+            user-select: none;
+            line-height: 1.6;
+        }
+        .tag-tech-cyan {
+            color: rgba(0, 240, 255, 0.5);
+            background: rgba(0, 240, 255, 0.03);
+            border-color: rgba(0, 240, 255, 0.08);
+        }
+
+        /* ======================== */
+        /* Project Card Hover       */
+        /* ======================== */
+        .project-card {
+            transition: border-color var(--transition-slow) ease,
+                        transform var(--transition-slow) var(--ease-out),
+                        box-shadow var(--transition-slow) var(--ease-out);
+        }
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        /* ======================== */
+        /* Reduced Motion           */
+        /* ======================== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .cursor-ring { display: none !important; }
+        }
+
+        /* ======================== */
+        /* Mobile Overrides         */
+        /* ======================== */
+
+        /* Hide mobile-only elements on desktop */
+        .mobile-only { display: none; }
+        .mobile-project-carousel { display: none; }
+        .mobile-about-text { display: none; }
+
+        @media (max-width: 1023px) {
+            /* Show mobile-only elements */
+            .mobile-only { display: block; }
+            .mobile-project-carousel { display: block !important; }
+
+            /* 1. Hero: name sized correctly & centered */
+            #home h1 {
+                font-size: clamp(2.8rem, 13vw, 4.5rem);
+                text-align: center;
+                line-height: 0.9;
+            }
+            #home .gsap-hero {
+                width: 100%;
+                text-align: center;
+                translate: none !important;
+                transform: none !important;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+            #home .gsap-hero > div {
+                justify-content: center;
+            }
+            /* Reposition WebGL quantum core to center on mobile */
+            #webgl-canvas {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100% !important;
+                height: 100% !important;
+                pointer-events: none;
+            }
+
+            /* 2. About: hide desktop text, show mobile condensed version */
+            #about .desktop-about-text { display: none !important; }
+            #about .mobile-about-text { display: block !important; }
+
+            /* Keep current focus bullet point titles, hide sub-descriptions */
+            #about .space-y-4 p { display: none; }
+            /* Keep the left border line on current focus */
+
+            /* 3. Projects: hide original structure, show carousel */
+            #projects .space-y-6 { display: none !important; }
+
+            /* 4. Credentials: compact */
+            #credentials .border.rounded-xl {
+                padding: 0.6rem !important;
+            }
+            #credentials .border.rounded-2xl {
+                padding: 0.875rem !important;
+            }
+            #credentials .p-5 {
+                padding: 0.6rem !important;
+            }
+
+            /* 5. Google credentials: compact row - profile bigger */
+            #google-developer .grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            #google-developer a.flex {
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 1rem !important;
+                padding: 1rem !important;
+            }
+            #google-developer div[class*="w-16"],
+            #google-developer div[class*="w-20"] {
+                width: 5rem !important;
+                height: 5rem !important;
+                min-width: 5rem;
+                flex-shrink: 0;
+            }
+            #google-developer h3 {
+                font-size: 1rem;
+            }
+            /* Hide verbose description and badge grid in google cards */
+            #google-developer .flex.flex-col.gap-2\.5,
+            #google-developer .grid.grid-cols-3 {
+                display: none;
+            }
+
+            /* 6. Contact: smaller mono font */
+            #contact .font-mono {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+
+    <!-- Import Maps for Three.js & Post-Processing -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.136.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.136.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body class="js-loading">
+
+    <!-- Skip to Content - Accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Circle/Ring Cursor -->
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+    <!-- Backgrounds -->
+    <iframe src="assets/bumi.html" id="bg-iframe" aria-hidden="true" frameborder="0" data-lenis-prevent></iframe>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- ================================ -->
+    <!-- Navigation                       -->
+    <!-- ================================ -->
+    <nav class="fixed top-0 w-full z-[100] transition-transform duration-500 bg-[#020202]/80 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.1)]" id="navbar" aria-label="Main navigation">
+        <div class="max-w-[1400px] mx-auto px-6 py-4 md:py-3 flex justify-between items-center relative z-20">
+            <div class="flex items-center">
+                <a href="#home" class="font-display font-bold text-base tracking-wide uppercase text-white" aria-label="Go to homepage">DEV.</a>
+            </div>
+            <div class="hidden md:flex gap-10 font-display text-[10px] tracking-[0.2em] font-medium uppercase text-gray-400" role="list">
+                <a href="#home" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover role="listitem">Home</a>
+                <a href="#about" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover role="listitem">About</a>
+                <a href="#projects" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover role="listitem">Projects</a>
+                <a href="#credentials" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover role="listitem">Credentials</a>
+                <a href="#contact" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover role="listitem">Contact</a>
+            </div>
+            <!-- Mobile hamburger -->
+            <button class="md:hidden text-gray-400 hover:text-white p-2 transition-colors relative" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" data-cursor-hover>
+                <svg id="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="transition-all duration-300" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="md:hidden absolute top-full left-0 w-full bg-[#020202]/95 backdrop-blur-xl border-b border-white/[0.08] origin-top transform scale-y-0 opacity-0 transition-all duration-300 ease-out overflow-hidden z-10" id="mobile-menu" role="menu" aria-hidden="true">
+            <div class="flex flex-col px-6 py-6 gap-6">
+                <a href="#home" class="font-display text-xs font-bold tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">Home</a>
+                <a href="#about" class="font-display text-xs font-bold tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">About</a>
+                <a href="#projects" class="font-display text-xs font-bold tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">Projects</a>
+                <a href="#credentials" class="font-display text-xs font-bold tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">Credentials</a>
+                <a href="#contact" class="font-display text-xs font-bold tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- UI Overlay Lines -->
+    <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block" aria-hidden="true"></div>
+    <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block" aria-hidden="true"></div>
+
+    <main class="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-20" id="main-content">
+        
+        <!-- ================================ -->
+        <!-- HERO SECTION                     -->
+        <!-- ================================ -->
+        
+        <section id="home" class="flex flex-col justify-center relative min-h-[100vh]" aria-label="Introduction">
+            <div class="gsap-hero relative z-10 w-full lg:w-3/5 text-left pt-12 md:pt-0 md:translate-x-[48px]">
+                <!-- Main Headline -->
+                <h1 class="font-display font-black text-mega uppercase text-white mb-6 break-words leading-[0.9] tracking-tighter">
+                    Miqdad<br>Badjuber
+                </h1>
+                
+                <!-- Subtitle (Animated Typewriter) -->
+                <div class="h-8 font-display text-sm md:text-base tracking-[0.2em] md:tracking-[0.25em] text-cyanGlow/80 uppercase font-semibold flex items-center" aria-live="polite" aria-atomic="true">
+                    <span id="typewriter-text"></span>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- ================================ -->
+        <!-- ABOUT SECTION                    -->
+        <!-- ================================ -->
+        <section id="about" class="py-16 md:py-24" aria-label="About me">
+            <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter mb-12 md:mb-16">
+                About<br><span class="text-gray-600">Me.</span>
+            </h2>
+
+            <div class="gsap-fade grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+                <!-- Left - Personal intro -->
+                <div>
+                    <!-- Desktop: two paragraphs -->
+                    <div class="desktop-about-text">
+                        <p class="text-gray-300 text-base md:text-lg leading-loose mb-6">
+                            I'm an AI &amp; Machine Learning Engineer based in Indonesia. I specialize in building full-stack SaaS applications, training ML models, and developing AI agent CLI tools.
+                        </p>
+                        <p class="text-gray-400 text-base leading-loose">
+                            I engineer complete digital ecosystems. To connect these systems, I orchestrate n8n data pipelines, build custom Google Workspace automations, and develop interactive Discord and Telegram bots.
+                        </p>
+                    </div>
+                    <!-- Mobile: single condensed paragraph -->
+                    <p class="mobile-about-text text-gray-300 text-sm leading-relaxed">
+                        AI &amp; ML Engineer from Indonesia building full-stack SaaS, training models, orchestrating n8n, and developing AI agents &amp; bots.
+                    </p>
+                </div>
+                
+                <!-- Right - What I Focus On -->
+                <div class="border-l border-white/[0.06] pl-8 lg:pl-12">
+                    <h3 class="font-display text-[13px] font-bold text-white mb-6 tracking-wide uppercase">Current Focus</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center gap-3 mb-1">
+                                <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                                <span class="font-display text-sm font-medium text-white">Full-Stack SaaS Development</span>
+                            </div>
+                            <p class="text-gray-500 text-sm pl-[18px]">Building scalable web applications from database to deployment.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-1">
+                                <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                                <span class="font-display text-sm font-medium text-white">Applied ML &amp; AI Engineering</span>
+                            </div>
+                            <p class="text-gray-500 text-sm pl-[18px]">Training predictive models and building AI agent CLI tools.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-1">
+                                <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                                <span class="font-display text-sm font-medium text-white">Workflow Automation &amp; Bots</span>
+                            </div>
+                            <p class="text-gray-500 text-sm pl-[18px]">Orchestrating n8n pipelines, Workspace scripts, and community bots.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider" role="separator"></div>
+
+
+        <!-- ================================ -->
+        <!-- PROJECTS SECTION                 -->
+        <!-- ================================ -->
+        
+        <section id="projects" class="py-16 md:py-24" aria-label="Selected projects">
+            <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter mb-5">
+                Selected<br><span class="text-gray-600">Projects.</span>
+            </h2>
+            <p class="gsap-fade text-gray-500 max-w-lg text-sm leading-relaxed mb-12 md:mb-16">
+                A selection of systems I've designed and built. Each one started with a real problem that needed solving.
+            </p>
+
+            <!-- MOBILE PROJECTS CAROUSEL (hidden on desktop via CSS) -->
+            <div class="mobile-project-carousel" style="display:none">
+                <div id="mobile-carousel-track" style="display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:0;padding:0 9vw 1rem 9vw;scrollbar-width:none;width:100vw;margin-left:-1.5rem;">
+                    <style>#mobile-carousel-track::-webkit-scrollbar{display:none}</style>
+                    <!-- Slide 1: Anti AI Slop -->
+                    <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" style="flex:0 0 82vw;scroll-snap-align:center;display:block;text-decoration:none;padding:0 0.5rem;">
+                        <div class="border border-white/[0.06] rounded-2xl overflow-hidden bg-white/[0.02]">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img src="assets/images/antislop.webp" alt="Anti AI Slop" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-display text-base font-bold text-white mb-1">Anti AI Slop</h3>
+                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">Rules & filter system to stop generic AI UI.</p>
+                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">GitHub &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Slide 2: ContextForge -->
+                    <a href="https://miqdadbadjuber.github.io/contextforge/" target="_blank" rel="noopener noreferrer" style="flex:0 0 82vw;scroll-snap-align:center;display:block;text-decoration:none;padding:0 0.5rem;">
+                        <div class="border border-white/[0.06] rounded-2xl overflow-hidden bg-white/[0.02]">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img src="assets/images/contextforge.webp" alt="ContextForge" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-display text-base font-bold text-white mb-1">ContextForge</h3>
+                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">CLI tool injecting optimal context for AI coding.</p>
+                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">Roadmap &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Slide 3: DiagramPilot -->
+                    <a href="https://diagrampilot.my.id/" target="_blank" rel="noopener noreferrer" style="flex:0 0 82vw;scroll-snap-align:center;display:block;text-decoration:none;padding:0 0.5rem;">
+                        <div class="border border-white/[0.06] rounded-2xl overflow-hidden bg-white/[0.02]">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-display text-base font-bold text-white mb-1">DiagramPilot AI</h3>
+                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">AI agent for generating infrastructure diagrams.</p>
+                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">Live URL &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Slide 4: OpenFolio -->
+                    <a href="https://openfolio.my.id/" target="_blank" rel="noopener noreferrer" style="flex:0 0 82vw;scroll-snap-align:center;display:block;text-decoration:none;padding:0 0.5rem;">
+                        <div class="border border-white/[0.06] rounded-2xl overflow-hidden bg-white/[0.02]">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-display text-base font-bold text-white mb-1">OpenFolio AI</h3>
+                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">Intelligent portfolio generator using LLMs.</p>
+                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">Live URL &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Slide 5: Automation Workflow -->
+                    <a href="#" style="flex:0 0 82vw;scroll-snap-align:center;display:block;text-decoration:none;padding:0 0.5rem;">
+                        <div class="border border-white/[0.06] rounded-2xl overflow-hidden bg-white/[0.02]">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-display text-base font-bold text-white mb-1">Automation Workflow</h3>
+                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">Automated data pipelines using n8n and webhooks.</p>
+                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">View Details &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Slide 6: Machine Learning -->
+                    <a href="https://github.com/miqdadbadjuber/Workflow-CI" target="_blank" rel="noopener noreferrer" style="flex:0 0 82vw;scroll-snap-align:center;display:block;text-decoration:none;padding:0 0.5rem;">
+                        <div class="border border-white/[0.06] rounded-2xl overflow-hidden bg-white/[0.02]">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img src="assets/images/machine_learning.webp" alt="Machine Learning" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-display text-base font-bold text-white mb-1">Machine Learning</h3>
+                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">Trained predictive models for workflow automation.</p>
+                                <span class="text-[10px] uppercase tracking-widest font-bold text-gray-500">GitHub &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Dots indicator -->
+                <div id="carousel-dots" class="flex justify-center gap-1.5 mt-3">
+                    <span class="carousel-dot" style="height:3px;border-radius:9999px;background:rgba(255,255,255,0.5);transition:all 0.3s;width:16px;"></span>
+                    <span class="carousel-dot" style="height:3px;border-radius:9999px;background:rgba(255,255,255,0.2);transition:all 0.3s;width:6px;"></span>
+                    <span class="carousel-dot" style="height:3px;border-radius:9999px;background:rgba(255,255,255,0.2);transition:all 0.3s;width:6px;"></span>
+                    <span class="carousel-dot" style="height:3px;border-radius:9999px;background:rgba(255,255,255,0.2);transition:all 0.3s;width:6px;"></span>
+                    <span class="carousel-dot" style="height:3px;border-radius:9999px;background:rgba(255,255,255,0.2);transition:all 0.3s;width:6px;"></span>
+                    <span class="carousel-dot" style="height:3px;border-radius:9999px;background:rgba(255,255,255,0.2);transition:all 0.3s;width:6px;"></span>
+                </div>
+                <script>
+                    (function(){
+                        var track = document.getElementById('mobile-carousel-track');
+                        var dots = document.querySelectorAll('#carousel-dots .carousel-dot');
+                        if(!track || !dots.length) return;
+
+                        var origSlides = Array.from(track.querySelectorAll('a'));
+                        var total = origSlides.length;
+                        if(total < 2) return;
+
+                        // Clone first and last slides → prepend/append for seamless loop
+                        var firstClone = origSlides[0].cloneNode(true);
+                        var lastClone = origSlides[total - 1].cloneNode(true);
+                        track.insertBefore(lastClone, origSlides[0]);
+                        track.appendChild(firstClone);
+
+                        // Now: [cloneLast, slide0, slide1, ..., slide5, cloneFirst]
+                        var allSlides = Array.from(track.querySelectorAll('a'));
+
+                        var isJumping = false;
+                        var scrollTimer = null;
+
+                        // Get exact snap-center position for a slide
+                        function getSnapPos(idx) {
+                            var s = allSlides[idx];
+                            return s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
+                        }
+
+                        // Init: scroll to first REAL slide (index 1 in allSlides)
+                        track.style.scrollSnapType = 'none';
+                        requestAnimationFrame(function(){
+                            track.scrollLeft = getSnapPos(1);
+                            requestAnimationFrame(function(){
+                                track.style.scrollSnapType = 'x mandatory';
+                            });
+                        });
+
+                        // Map allSlides index → real dot index (0 to total-1)
+                        function toDotIdx(allIdx) {
+                            if(allIdx <= 0) return total - 1;
+                            if(allIdx >= total + 1) return 0;
+                            return allIdx - 1;
+                        }
+
+                        function updateDots(dotIdx) {
+                            for(var i = 0; i < dots.length; i++){
+                                dots[i].style.width = i === dotIdx ? '16px' : '6px';
+                                dots[i].style.background = i === dotIdx ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.2)';
+                            }
+                        }
+
+                        // Instant teleport (no animation — user shouldn't see it)
+                        function teleport(allIdx) {
+                            isJumping = true;
+                            track.style.scrollSnapType = 'none';
+                            track.scrollLeft = getSnapPos(allIdx);
+                            void track.offsetHeight; // force reflow
+                            requestAnimationFrame(function(){
+                                track.style.scrollSnapType = 'x mandatory';
+                                // Keep isJumping true briefly to absorb any snap-triggered scroll events
+                                setTimeout(function(){ isJumping = false; }, 300);
+                            });
+                        }
+
+                        track.addEventListener('scroll', function(){
+                            if(isJumping) return;
+
+                            var sw = allSlides[0].offsetWidth;
+                            var allIdx = Math.round(track.scrollLeft / sw);
+                            updateDots(toDotIdx(allIdx));
+
+                            // After scroll settles, check if user landed on a clone
+                            clearTimeout(scrollTimer);
+                            scrollTimer = setTimeout(function(){
+                                if(isJumping) return;
+                                var curSw = allSlides[0].offsetWidth;
+                                var curIdx = Math.round(track.scrollLeft / curSw);
+
+                                // SYNC: Update autoIdx to final resting position after drag
+                                autoIdx = curIdx;
+
+                                if(curIdx <= 0){
+                                    // Landed on prepended clone (looks like last slide)
+                                    // → teleport to the REAL last slide
+                                    teleport(total);
+                                    autoIdx = total;
+                                } else if(curIdx >= total + 1){
+                                    // Landed on appended clone (looks like first slide)
+                                    // → teleport to the REAL first slide
+                                    teleport(1);
+                                    autoIdx = 1;
+                                }
+                            }, 100);
+                        }, {passive: true});
+
+                        window.addEventListener('resize', function(){
+                            if(isJumping) return;
+                            var sw = allSlides[0].offsetWidth;
+                            var curIdx = Math.round(track.scrollLeft / sw);
+                            track.style.scrollSnapType = 'none';
+                            track.scrollLeft = getSnapPos(curIdx);
+                            void track.offsetHeight;
+                            track.style.scrollSnapType = 'x mandatory';
+                        });
+
+                        // ===== AUTO-SCROLL (1.5s interval) =====
+                        var autoTimer = null;
+                        var autoIdx = 1; // current allSlides index
+
+                        function smoothAuto(target, cb) {
+                            isJumping = true;
+                            track.style.scrollSnapType = 'none';
+                            var start = track.scrollLeft;
+                            var change = target - start;
+                            var startTime = performance.now();
+                            function step(now) {
+                                var elapsed = now - startTime;
+                                var progress = Math.min(elapsed / 500, 1);
+                                var ease = progress * (2 - progress);
+                                track.scrollLeft = start + change * ease;
+                                if (progress < 1) {
+                                    requestAnimationFrame(step);
+                                } else {
+                                    track.style.scrollSnapType = 'x mandatory';
+                                    isJumping = false;
+                                    updateDots(toDotIdx(autoIdx));
+                                    if(cb) cb();
+                                }
+                            }
+                            requestAnimationFrame(step);
+                        }
+
+                        function autoNext() {
+                            if(isJumping) return;
+                            autoIdx++;
+                            smoothAuto(getSnapPos(autoIdx), function(){
+                                // If landed on clone, teleport and reset index
+                                if(autoIdx >= total + 1){
+                                    teleport(1);
+                                    autoIdx = 1;
+                                }
+                            });
+                        }
+
+                        function startAuto() {
+                            stopAuto();
+                            autoTimer = setInterval(autoNext, 3000);
+                        }
+
+                        function stopAuto() {
+                            if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+                        }
+
+                        // Start auto-scroll after init
+                        setTimeout(startAuto, 2000);
+
+                        // Pause on touch/mouse, resume after release
+                        var resumeTimer = null;
+                        var isDragging = false;
+                        var startX = 0;
+
+                        function handleStart(e) {
+                            stopAuto();
+                            if(resumeTimer) clearTimeout(resumeTimer);
+                            if(e.touches) startX = e.touches[0].clientX;
+                            isDragging = false;
+                        }
+
+                        function handleMove(e) {
+                            if(e.touches && Math.abs(e.touches[0].clientX - startX) > 10) {
+                                isDragging = true;
+                            }
+                        }
+
+                        function handleEnd() {
+                            resumeTimer = setTimeout(startAuto, 3000);
+                        }
+
+                        track.addEventListener('touchstart', handleStart, {passive: true});
+                        track.addEventListener('touchmove', handleMove, {passive: true});
+                        track.addEventListener('touchend', handleEnd, {passive: true});
+                        track.addEventListener('mousedown', handleStart);
+                        track.addEventListener('mouseup', handleEnd);
+                        track.addEventListener('mouseleave', handleEnd);
+
+                        // Prevent accidental click when swiping
+                        track.addEventListener('click', function(e){
+                            if(isDragging){
+                                e.preventDefault();
+                                isDragging = false;
+                            }
+                        }, true);
+                    })();
+                </script>
+            </div>
+
+            <div class="space-y-6">
+                
+                <!-- PROJECT 1 - Anti Slop (NEW) -->
+                <article class="gsap-fade" data-cursor-hover>
+                    <div class="project-card border border-white/[0.06] rounded-2xl p-6 md:p-12 lg:p-16 hover:border-cyanGlow/15 group">
+                        <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
+                            <div class="flex-1 flex flex-col justify-center">
+                                <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Anti AI Slop</h3>
+                                <p class="text-gray-400 text-base leading-relaxed mb-6 max-w-xl">A specialist rules document and filter system designed to stop AI coding agents from generating generic UI ("AI slop"). Implements a 3-file system to maintain aesthetic liveliness and high craftsmanship without limiting visual preferences.</p>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="btn-scifi px-6 py-2.5 text-white font-display font-bold text-[10px] uppercase tracking-widest">GitHub</a>
+                                </div>
+                            </div>
+                            <!-- Project Image -->
+                            <div class="flex-1 w-full aspect-video my-auto rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02]">
+                                <img src="assets/images/antislop.webp" alt="Anti AI Slop banner" loading="lazy" decoding="async" fetchpriority="low" width="1280" height="720" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 group-hover:brightness-110 transition-all duration-700 ease-out">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 2 - ContextForge -->
+                <article class="gsap-fade" data-cursor-hover>
+                    <div class="project-card border border-white/[0.06] rounded-2xl p-6 md:p-12 lg:p-16 hover:border-cyanGlow/15 group relative overflow-hidden">
+                        <div class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-16">
+                            <div class="flex-1 flex flex-col justify-center">
+                                <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">ContextForge</h3>
+                                <p class="text-gray-400 text-base leading-relaxed mb-6 max-w-xl">CLI tool that intelligently builds, compresses, and injects optimal context windows for AI coding assistants. Understands file relevance to produce lean, token-efficient context bundles.</p>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <a href="https://miqdadbadjuber.github.io/contextforge/" target="_blank" rel="noopener noreferrer" class="btn-scifi px-6 py-2.5 text-white font-display font-bold text-[10px] uppercase tracking-widest">Roadmap</a>
+                                </div>
+                            </div>
+                            <!-- Project Image -->
+                            <div class="flex-1 w-full aspect-video my-auto rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02]">
+                                <img src="assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" fetchpriority="low" width="1280" height="720" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 group-hover:brightness-110 transition-all duration-700 ease-out">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Grid for Remaining Projects -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 gsap-fade">
+                    <!-- Project 3: DiagramPilot AI -->
+                    <a href="https://diagrampilot.my.id/" target="_blank" rel="noopener noreferrer" class="project-card border border-white/[0.06] rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
+                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                            <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full group-hover:scale-105 group-hover:brightness-110 transition-all duration-700 ease-out">
+                        </div>
+                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">DiagramPilot AI</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">A production-ready, AI-native assistant that helps developers automatically generate architecture diagrams from natural language conversations.</p>
+                        <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 group-hover:text-cyanGlow transition-colors">Live URL →</span>
+                        </div>
+                    </a>
+
+                    <!-- Project 4: OpenFolio AI -->
+                    <a href="https://openfolio.my.id/" target="_blank" rel="noopener noreferrer" class="project-card border border-white/[0.06] rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
+                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                            <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full group-hover:scale-105 group-hover:brightness-110 transition-all duration-700 ease-out">
+                        </div>
+                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">OpenFolio AI</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">An AI-powered portfolio generator that creates personalized portfolio websites from user data. Handles content generation, template selection, and deployment.</p>
+                        <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 group-hover:text-cyanGlow transition-colors">Live URL →</span>
+                        </div>
+                    </a>
+
+                    <!-- Project 5: Automation Workflow Engine -->
+                    <a href="#" class="project-card border border-white/[0.06] rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
+                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                            <img src="assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="object-cover object-center w-full h-full group-hover:scale-105 group-hover:brightness-110 transition-all duration-700 ease-out">
+                        </div>
+                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Automation Workflow Engine</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Self-hosted n8n instance with custom workflows for data processing, notifications, and third-party API orchestration.</p>
+                        <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 group-hover:text-cyanGlow transition-colors">View Details →</span>
+                        </div>
+                    </a>
+
+                    <!-- Project 6: Machine Learning -->
+                    <a href="https://github.com/miqdadbadjuber/Workflow-CI" target="_blank" rel="noopener noreferrer" class="project-card border border-white/[0.06] rounded-2xl p-6 flex flex-col hover:border-white/[0.12] transition-colors group cursor-pointer" data-cursor-hover>
+                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                            <img src="assets/images/machine_learning.webp" alt="Machine Learning Portfolio" loading="lazy" decoding="async" class="object-cover object-center w-full h-full group-hover:scale-105 group-hover:brightness-110 transition-all duration-700 ease-out">
+                        </div>
+                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">Machine Learning</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Collection of ML projects covering image classification, sentiment analysis, clustering, and predictive modeling.</p>
+                        <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-gray-500 group-hover:text-white transition-colors">GitHub →</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- OTHER PROJECTS - Two Column Grid -->
+                <div class="gsap-fade grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Google Workspace Automation -->
+                    <article class="project-card border border-white/[0.06] rounded-2xl p-8 md:p-10 hover:border-white/[0.12]" data-cursor-hover>
+                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">Google Workspace Automation</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Custom automation scripts that connect Google Sheets, Drive, and Forms into unified workflows. Eliminates manual data entry and file management across the workspace.</p>
+                    </article>
+                    <!-- Discord & Telegram Automation -->
+                    <article class="project-card border border-white/[0.06] rounded-2xl p-8 md:p-10 hover:border-cyanGlow/30 transition-colors duration-500" data-cursor-hover>
+                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">Discord &amp; Telegram Automation</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Bot systems for community management across Discord and Telegram. Handles role assignment, notifications, user verification, and moderation workflows.</p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider" role="separator"></div>
+
+        <!-- ================================ -->
+        <!-- CREDENTIALS & CODE SECTION       -->
+        <!-- ================================ -->
+        <section id="credentials" class="py-16 md:py-24" aria-label="Credentials and open source">
+            <div class="flex flex-col lg:flex-row justify-between lg:items-end mb-12 md:mb-16 gap-6">
+                <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter">
+                    Credentials<br><span class="text-gray-600">&amp; Code.</span>
+                </h2>
+                
+                <!-- Tab Controls (ARIA Tabs) -->
+                <div class="gsap-fade flex bg-white/[0.03] p-1.5 rounded-xl border border-white/[0.08] w-full sm:w-fit" role="tablist" aria-label="Credentials tabs">
+                    <button id="tab-btn-github" role="tab" aria-selected="true" aria-controls="content-github" class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-display text-[10px] md:text-xs tracking-widest uppercase font-bold text-white bg-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all">Open Source</button>
+                    <button id="tab-btn-certs" role="tab" aria-selected="false" aria-controls="content-certs" class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-display text-[10px] md:text-xs tracking-widest uppercase font-bold text-gray-500 hover:text-white transition-all">Certifications</button>
+                </div>
+            </div>
+
+            <!-- OPEN SOURCE GRID -->
+            <div id="content-github" role="tabpanel" aria-labelledby="tab-btn-github" class="block gsap-fade">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                <!-- Repo 1: Anti Slop -->
+                <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl p-6 hover:border-white/[0.12] transition-colors duration-300 group" data-cursor-hover>
+                    <div class="flex items-start justify-between mb-4">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700 group-hover:text-cyanGlow/60 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </div>
+                    <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">anti-slop</h4>
+                    <p class="text-gray-600 text-xs leading-relaxed">AI agent designed to detect and filter low-quality generative AI content.</p>
+                </a>
+
+                <!-- Repo 2: ContextForge (Coming Soon) -->
+                <a href="https://github.com/miqdadbadjuber/contextforge" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl p-6 hover:border-white/[0.12] transition-colors duration-300 group" data-cursor-hover>
+                    <div class="flex items-start justify-between mb-4">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <span class="text-[8px] uppercase tracking-widest font-bold px-2 py-0.5 bg-cyanGlow/10 text-cyanGlow rounded border border-cyanGlow/20 whitespace-nowrap">Coming Soon</span>
+                    </div>
+                    <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">contextforge</h4>
+                    <p class="text-gray-600 text-xs leading-relaxed">CLI tool for injecting repository context into LLM system prompts.</p>
+                </a>
+
+                <!-- Repo 3: DiagramPilot -->
+                <a href="https://github.com/miqdadbadjuber/DiagramPilot-AI" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl p-6 hover:border-white/[0.12] transition-colors duration-300 group" data-cursor-hover>
+                    <div class="flex items-start justify-between mb-4">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700 group-hover:text-cyanGlow/60 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </div>
+                    <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">DiagramPilot-AI</h4>
+                    <p class="text-gray-600 text-xs leading-relaxed">Generates beautiful architectural diagrams directly from natural language prompts.</p>
+                </a>
+
+                <!-- Repo 4: OpenFolio -->
+                <a href="https://github.com/miqdadbadjuber/OpenFolio-AI" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl p-6 hover:border-white/[0.12] transition-colors duration-300 group" data-cursor-hover>
+                    <div class="flex items-start justify-between mb-4">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700 group-hover:text-cyanGlow/60 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </div>
+                    <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">OpenFolio-AI</h4>
+                    <p class="text-gray-600 text-xs leading-relaxed">AI-powered portfolio generator with content creation and deployment capabilities.</p>
+                </a>
+            </div>
+            <div class="flex justify-center mt-6">
+                <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-scifi px-8 py-3 text-white font-display font-bold text-[11px] uppercase tracking-widest" data-cursor-hover>
+                    View Full GitHub Profile
+                </a>
+            </div>
+        </div>
+
+        <!-- CERTIFICATIONS GRID -->
+        <div id="content-certs" role="tabpanel" aria-labelledby="tab-btn-certs" class="hidden gsap-fade">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Certificate 12 -->
+                <a href="https://www.dicoding.com/certificates/QLZ99J629Z5D" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_12.webp" alt="Certificate Build Gen AI" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Build Gen AI</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 0a -->
+                <a href="https://developers.google.com/profile/badges/recognitions/learnings?u=miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_9.webp" alt="Certificate Agent Engineering" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Agent Engineering</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 0b -->
+                <a href="https://developers.google.com/profile/badges/recognitions/learnings?u=miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_10.webp" alt="Certificate AI Code Quality" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">AI Code Quality</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 1 -->
+                <a href="https://www.dicoding.com/certificates/53XE1R6L0ZRN" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_1.webp" alt="Certificate Fundamental Deep Learning from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Fundamental Deep Learning</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+                
+                <!-- Certificate 2 -->
+                <a href="https://www.dicoding.com/certificates/JMZVOR54QXN9" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_2.webp" alt="Certificate Membangun Sistem Machine Learning from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Membangun Machine Learning</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 3 -->
+                <a href="https://www.dicoding.com/certificates/2VX309V14XYQ" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_3.webp" alt="Certificate Belajar Machine Learning from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Belajar Machine Learning</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 4 -->
+                <a href="https://www.dicoding.com/certificates/0LZ0Y71M0X65" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_4.webp" alt="Certificate Pemrograman Python from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Pemrograman Python</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 5 -->
+                <a href="https://www.dicoding.com/certificates/RVZK0JJMQZD5" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_5.webp" alt="Certificate AI Engineer from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">AI Engineer</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 6 -->
+                <a href="https://certificate-verifier-1023611269119.asia-southeast1.run.app/" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_6.webp" alt="Certificate Juara Vibe Coding competition" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Juara Vibe Coding</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 7 -->
+                <a href="https://www.linkedin.com/in/miqdadbadjuber/details/certifications/" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_7.webp" alt="Certificate Azure AI Fundamentals from Microsoft" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Azure AI Fundamentals</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 8 -->
+                <a href="https://www.linkedin.com/in/miqdadbadjuber/details/certifications/" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_8.webp" alt="Certificate Fullstack Web Development" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Fullstack Web Development</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+
+                <!-- Certificate 11 -->
+                <a href="https://www.dicoding.com/certificates/1RXYWKQO3ZVM" target="_blank" rel="noopener noreferrer" class="border border-white/[0.06] rounded-xl overflow-hidden hover:border-cyanGlow/30 transition-all duration-300 group relative block bg-white/[0.02]" data-cursor-hover>
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.06]">
+                        <img src="assets/certs/cert_11.webp" alt="Certificate Data Science" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Data Science</h4>
+                        <p class="text-gray-500 text-xs font-display tracking-widest uppercase mt-3 flex items-center gap-2">View Credentials <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tab Switching Script -->
+        <script>
+            function switchTab(tabId) {
+                const btnGithub = document.getElementById('tab-btn-github');
+                const btnCerts = document.getElementById('tab-btn-certs');
+                const contentGithub = document.getElementById('content-github');
+                const contentCerts = document.getElementById('content-certs');
+                
+                if (tabId === 'github') {
+                    btnGithub.className = 'flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-display text-[10px] md:text-xs tracking-widest uppercase font-bold text-white bg-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all';
+                    btnGithub.setAttribute('aria-selected', 'true');
+                    btnCerts.className = 'flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-display text-[10px] md:text-xs tracking-widest uppercase font-bold text-gray-500 hover:text-white transition-all';
+                    btnCerts.setAttribute('aria-selected', 'false');
+                    contentGithub.classList.remove('hidden');
+                    contentGithub.classList.add('block');
+                    contentCerts.classList.remove('block');
+                    contentCerts.classList.add('hidden');
+                } else {
+                    btnCerts.className = 'flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-display text-[10px] md:text-xs tracking-widest uppercase font-bold text-white bg-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all';
+                    btnCerts.setAttribute('aria-selected', 'true');
+                    btnGithub.className = 'flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-display text-[10px] md:text-xs tracking-widest uppercase font-bold text-gray-500 hover:text-white transition-all';
+                    btnGithub.setAttribute('aria-selected', 'false');
+                    contentCerts.classList.remove('hidden');
+                    contentCerts.classList.add('block');
+                    contentGithub.classList.remove('block');
+                    contentGithub.classList.add('hidden');
+                }
+            }
+
+            // Tab click handlers with keyboard support
+            document.getElementById('tab-btn-github').addEventListener('click', () => switchTab('github'));
+            document.getElementById('tab-btn-certs').addEventListener('click', () => switchTab('certs'));
+            
+            // Arrow key navigation between tabs
+            document.querySelectorAll('[role="tab"]').forEach(tab => {
+                tab.addEventListener('keydown', (e) => {
+                    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+                    const index = tabs.indexOf(e.target);
+                    let newIndex;
+                    
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        newIndex = (index + 1) % tabs.length;
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        newIndex = (index - 1 + tabs.length) % tabs.length;
+                    }
+                    
+                    if (newIndex !== undefined) {
+                        tabs[newIndex].focus();
+                        tabs[newIndex].click();
+                    }
+                });
+            });
+        </script>
+    </section>
+
+        <div class="section-divider" role="separator"></div>
+
+        <!-- ================================ -->
+        <!-- GOOGLE DEVELOPER PROFILE SECTION -->
+        <!-- ================================ -->
+        <section id="google-developer" class="py-16 md:py-24" aria-label="Google Developer Profiles">
+            
+            <div class="mb-12 md:mb-16">
+                <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter">
+                    Google<br><span class="text-gray-600">Credentials.</span>
+                </h2>
+            </div>
+
+            <!-- Grid 2 Kolom -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 gsap-fade">
+                
+                <!-- Card 1: Google Developer -->
+                <a href="https://g.dev/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center sm:flex-row sm:items-start gap-4 sm:gap-6 lg:gap-8 border border-white/[0.06] rounded-2xl p-6 lg:p-8 hover:border-cyanGlow/20 hover:bg-white/[0.02] transition-all duration-300 group" data-cursor-hover>
+                    <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-full border border-white/[0.06] p-[2px] group-hover:border-cyanGlow/40 transition-colors duration-500">
+                        <img src="assets/images/profile.webp" alt="Google Developer" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    
+                    <div class="flex-1 text-center sm:text-left flex flex-col items-center sm:items-start w-full h-full justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1 justify-center sm:justify-start">
+                                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors">Miqdad Badjuber</h3>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-600 group-hover:text-cyanGlow/80 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </div>
+                            <span class="font-display text-[9px] tracking-[0.25em] text-cyanGlow/70 uppercase block font-bold mb-4">Google Developer Member</span>
+                            
+                            <!-- Badges/Stats: 2 Poin -->
+                            <div class="flex flex-col gap-2.5 mb-5 w-full items-center sm:items-start">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                                    <span class="font-display text-xs text-gray-400 font-medium">8 Badges Earned</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                                    <span class="font-display text-xs text-gray-400 font-medium">Verified Developer Profile</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span class="text-gray-500 text-[11px] font-medium bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.05]">g.dev/miqdadbadjuber</span>
+                    </div>
+                </a>
+
+                <!-- Card 2: Google Skill Boost -->
+                <a href="https://www.skills.google/public_profiles/fe940841-9fbf-40f7-bdd5-a56317d5579c" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center sm:flex-row sm:items-start gap-6 lg:gap-8 border border-white/[0.06] rounded-2xl p-6 lg:p-8 hover:border-cyanGlow/20 hover:bg-white/[0.02] transition-all duration-300 group" data-cursor-hover>
+                    <div class="w-20 h-20 flex-shrink-0 rounded-full border border-white/[0.06] p-[2px] group-hover:border-cyanGlow/40 transition-colors duration-500">
+                        <img src="assets/images/profile.webp" alt="Google Cloud Skill" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    
+                    <div class="flex-1 text-center sm:text-left flex flex-col items-center sm:items-start w-full h-full justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1 justify-center sm:justify-start">
+                                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors">Miqdad Badjuber</h3>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-600 group-hover:text-cyanGlow/80 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </div>
+                            <span class="font-display text-[9px] tracking-[0.25em] text-cyanGlow/70 uppercase block font-bold mb-4">Google Cloud Skill Member</span>
+                            
+                            <!-- Badges/Stats: 2 Poin -->
+                            <div class="flex flex-col gap-2.5 mb-5 w-full items-center sm:items-start">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                                    <span class="font-display text-xs text-gray-400 font-medium">15 Badges Earned</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                                    <span class="font-display text-xs text-gray-400 font-medium">Verified with Credly</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span class="text-gray-500 text-[11px] font-medium bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.05]">skills.google/profile</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <div class="section-divider" role="separator"></div>
+
+        <!-- ================================ -->
+        <!-- CONTACT SECTION                  -->
+        <!-- ================================ -->
+        <section id="contact" class="py-16 md:py-24" aria-label="Contact information">
+            <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter mb-12 text-white text-center">
+                Contact<span class="text-gray-600">.</span>
+            </h2>
+            
+            <div class="gsap-fade border border-white/[0.06] rounded-2xl bg-transparent overflow-hidden shadow-2xl relative w-full max-w-5xl mx-auto hover:border-cyanGlow/20 transition-colors duration-300" data-cursor-hover>
+                <!-- Terminal Header -->
+                <div class="bg-white/[0.02] border-b border-white/[0.06] px-4 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    </div>
+                    <span class="text-gray-500 text-xs font-mono tracking-widest uppercase">contact.exe</span>
+                    <div class="w-10"></div>
+                </div>
+                
+                <!-- Terminal Body: 2 Kolom -->
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    
+                    <!-- Kiri: CLI Log -->
+                    <div class="p-6 md:p-10 font-mono text-sm md:text-base text-gray-400 space-y-4 border-b lg:border-b-0 lg:border-r border-white/[0.06]">
+                        <p><span class="text-cyanGlow">miqdad@server</span>:<span class="text-purpleGlow">~</span>$ ./check-availability</p>
+                        <p class="text-green-400">[OK] Available for freelance and collaborations.</p>
+                        
+                        <p class="mt-8"><span class="text-cyanGlow">miqdad@server</span>:<span class="text-purpleGlow">~</span>$ initiate-contact --method all</p>
+                        <div class="pl-4 space-y-4 mt-2">
+                            <a href="mailto:miqdadbadzubair@gmail.com" class="flex items-center gap-4 hover:text-white transition-colors group w-fit">
+                                <span class="text-gray-500 w-24">Email   -></span> 
+                                <span class="group-hover:underline text-white">miqdadbadzubair@gmail.com</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 hover:text-white transition-colors group w-fit">
+                                <span class="text-gray-500 w-24">LinkedIn-></span> 
+                                <span class="group-hover:underline text-white">in/miqdad-badjuber</span>
+                            </a>
+                            <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 hover:text-white transition-colors group w-fit">
+                                <span class="text-gray-500 w-24">GitHub  -></span> 
+                                <span class="group-hover:underline text-white">github.com/miqdadbadjuber</span>
+                            </a>
+                        </div>
+                        <p class="mt-8 flex items-center gap-2">
+                            <span class="text-cyanGlow">miqdad@server</span>:<span class="text-purpleGlow">~</span>$ <span class="w-2.5 h-5 bg-white animate-pulse inline-block"></span>
+                        </p>
+                    </div>
+
+                    <!-- Kanan: Contact Form -->
+                    <div class="p-8 md:p-10 bg-transparent">
+                        <form class="flex flex-col gap-5 h-full font-display">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="space-y-2">
+                                    <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Name</label>
+                                    <input type="text" class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-cyanGlow/50 transition-colors" placeholder="John Doe">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Email</label>
+                                    <input type="email" class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-cyanGlow/50 transition-colors" placeholder="john@example.com">
+                                </div>
+                            </div>
+                            <div class="space-y-2 flex-1 flex flex-col">
+                                <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Message</label>
+                                <textarea class="w-full flex-1 min-h-[120px] bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-cyanGlow/50 transition-colors resize-none" placeholder="Let's build something..."></textarea>
+                            </div>
+                            <button type="button" onclick="window.location.href='mailto:miqdadbadzubair@gmail.com'" class="w-full bg-white/10 hover:bg-white text-white hover:text-void border border-white/20 py-4 rounded-lg font-bold uppercase tracking-widest text-xs transition-all duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================================ -->
+    <!-- FOOTER                           -->
+    <!-- ================================ -->
+    <footer class="relative bg-[#020202]/90 backdrop-blur-md py-6 border-t border-white/[0.06] mt-0" role="contentinfo">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+            <!-- Desktop View -->
+            <div class="hidden md:flex flex-row justify-between items-center gap-4">
+                <div class="flex flex-col items-start gap-1">
+                    <h2 class="font-sans font-bold text-white text-base tracking-tight">Miqdad Badjuber</h2>
+                    <div class="text-gray-600 font-sans text-[10px]">&copy; 2026 All Rights Reserved.</div>
+                </div>
+                <div class="flex flex-row items-center gap-5 font-sans text-xs text-gray-400">
+                    <div class="flex flex-row gap-5 items-center">
+                        <a href="#home" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>Home</a>
+                        <a href="#about" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>About</a>
+                        <a href="#projects" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>Projects</a>
+                    </div>
+                    <div class="w-px h-3 bg-white/[0.1] mx-1"></div>
+                    <div class="flex flex-row gap-5 items-center">
+                        <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>GitHub</a>
+                        <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>LinkedIn</a>
+                        <a href="mailto:miqdadbadzubair@gmail.com" class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>Email</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile View -->
+            <div class="flex md:hidden flex-row justify-between items-center w-full">
+                <div class="text-gray-600 font-sans text-[10px]">
+                    &copy; 2026 All Rights Reserved.
+                </div>
+                <div class="flex gap-4 font-sans text-[10px] text-gray-400">
+                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="hover:text-cyanGlow transition-colors" data-cursor-hover>GitHub</a>
+                    <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer" class="hover:text-cyanGlow transition-colors" data-cursor-hover>LinkedIn</a>
+                    <a href="mailto:miqdadbadzubair@gmail.com" class="hover:text-cyanGlow transition-colors" data-cursor-hover>Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================ -->
+    <!-- SCRIPTS                          -->
+    <!-- ================================ -->
+
+    <!-- FOUC Prevention - Remove loading class -->
+    <script>document.body.classList.remove('js-loading');</script>
+
+    <!-- Dynamic Copyright Year -->
+    <script>
+        const yearEl = document.getElementById('footer-year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Circle/Ring Cursor -->
+    <script>
+        (function() {
+            const cursorRing = document.getElementById('cursor-ring');
+            
+            // Skip cursor logic entirely on touch devices - no rAF loop on mobile
+            const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+            if (isTouchDevice || !cursorRing) {
+                if (cursorRing) cursorRing.style.display = 'none';
+                return;
+            }
+
+            let mouseX = 0, mouseY = 0;
+            let ringX = 0, ringY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }, { passive: true });
+
+            document.querySelectorAll('[data-cursor-hover], a, button, .btn-scifi').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'), { passive: true });
+                el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'), { passive: true });
+            });
+
+            function animateCursor() {
+                ringX += (mouseX - ringX) * 0.15;
+                ringY += (mouseY - ringY) * 0.15;
+                cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+        })();
+    </script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        (function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+            function openMenu() {
+                mobileMenu.classList.remove('scale-y-0', 'opacity-0');
+                mobileMenu.classList.add('scale-y-100', 'opacity-100');
+                mobileMenu.setAttribute('aria-hidden', 'false');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                menuToggle.setAttribute('aria-label', 'Close navigation menu');
+                hamburgerIcon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+                // Make menu links focusable
+                menuLinks.forEach(link => link.setAttribute('tabindex', '0'));
+                // Focus first link
+                if (menuLinks.length > 0) menuLinks[0].focus();
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open navigation menu');
+                hamburgerIcon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+                // Remove focusability from menu links
+                menuLinks.forEach(link => link.setAttribute('tabindex', '-1'));
+            }
+
+            function toggleMenu() {
+                const isOpen = mobileMenu.classList.contains('scale-y-100');
+                isOpen ? closeMenu() : openMenu();
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+
+            // Close menu when a link is clicked
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('scale-y-100')) closeMenu();
+                });
+            });
+
+            // Close menu on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('scale-y-100')) {
+                    closeMenu();
+                    menuToggle.focus();
+                }
+            });
+        })();
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script>
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const lenis = new Lenis({
+            duration: prefersReducedMotion ? 0 : 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: !prefersReducedMotion,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        // Single rAF driver via gsap.ticker - avoids duplicate rAF loop
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    lenis.scrollTo(targetElement, {
+                        offset: -80,
+                        duration: prefersReducedMotion ? 0 : 1.2
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- UI Animations -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Consistent animation config
+        const ANIM = {
+            duration: 1.2,
+            stagger: 0.12,
+            ease: 'power3.out',
+        };
+
+        // Hero entrance
+        if (!prefersReducedMotion) {
+            gsap.fromTo(".gsap-hero > *", 
+                { x: -40, opacity: 0 }, 
+                { x: 0, opacity: 1, duration: ANIM.duration, stagger: ANIM.stagger, ease: "expo.out", delay: 0.2 }
+            );
+        } else {
+            gsap.set(".gsap-hero > *", { opacity: 1 });
+        }
+
+        // Scroll-triggered fades
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            const elements = section.querySelectorAll('.gsap-fade');
+            if (elements.length > 0) {
+                if (!prefersReducedMotion) {
+                    gsap.fromTo(elements,
+                        { y: 40, opacity: 0 },
+                        { 
+                            y: 0, opacity: 1, 
+                            duration: ANIM.duration, 
+                            stagger: ANIM.stagger,
+                            ease: ANIM.ease,
+                            scrollTrigger: { 
+                                trigger: section, 
+                                start: "top 78%",
+                                toggleActions: "play none none reverse" 
+                            }
+                        }
+                    );
+                } else {
+                    gsap.set(elements, { opacity: 1 });
+                }
+            }
+        });
+
+        // Navbar hide/show on scroll - throttled via rAF to avoid layout thrashing
+        let lastScroll = 0;
+        let navTicking = false;
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (!navTicking) {
+                navTicking = true;
+                requestAnimationFrame(() => {
+                    let currentScroll = window.scrollY; // DOM read inside rAF
+                    if (currentScroll <= 0) {
+                        navbar.style.transform = 'translateY(0)';
+                    } else if (currentScroll > lastScroll && currentScroll > 50) {
+                        navbar.style.transform = 'translateY(-100%)';
+                    } else {
+                        navbar.style.transform = 'translateY(0)';
+                    }
+                    lastScroll = currentScroll;
+                    navTicking = false;
+                });
+            }
+        }, { passive: true });
+
+        // Typewriter Effect
+        const roles = [
+            "AI Engineer",
+            "Machine Learning Engineer",
+            "SaaS Development",
+            "Google Workspace Automation",
+            "Automation & AI Workflow",
+            "Discord & Telegram Bot"
+        ];
+        
+        let roleIndex = 0;
+        const typewriterEl = document.getElementById('typewriter-text');
+        
+        function playRoleAnimation() {
+            if (!typewriterEl) return;
+            const text = roles[roleIndex];
+            typewriterEl.innerHTML = '';
+            
+            if (prefersReducedMotion) {
+                typewriterEl.textContent = text;
+                setTimeout(() => {
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    playRoleAnimation();
+                }, 3000);
+                return;
+            }
+            
+            const chars = text.split('').map(char => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.opacity = '0';
+                span.style.willChange = 'opacity';
+                typewriterEl.appendChild(span);
+                return span;
+            });
+            
+            gsap.to(chars, {
+                opacity: 1,
+                duration: 0.1,
+                stagger: 0.03,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    gsap.to(chars, {
+                        opacity: 0,
+                        duration: 0.5,
+                        delay: 2.5,
+                        stagger: 0.01,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            roleIndex = (roleIndex + 1) % roles.length;
+                            playRoleAnimation();
+                        }
+                    });
+                }
+            });
+        }
+        
+        setTimeout(playRoleAnimation, 800);
+    </script>
+
+    <!-- ================================ -->
+    <!-- THREE.JS 3D SCENE                -->
+    <!-- ================================ -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        // Skip heavy 3D on reduced motion preference
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+        // Scene setup
+        const canvas = document.getElementById('webgl-canvas');
+        if (!canvas) return;
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020202, 0.02); 
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 25;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: "high-performance" });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        renderer.toneMapping = THREE.ReinhardToneMapping;
+        renderer.toneMappingExposure = 1.2; 
+
+        const renderScene = new RenderPass(scene, camera);
+        
+        const composer = new EffectComposer(renderer);
+        composer.addPass(renderScene);
+        if (window.innerWidth > 1024) {
+            const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.8, 0.8, 0.1);
+            composer.addPass(bloomPass);
+        }
+
+        // "The Quantum Core" - 3D object group
+        const coreGroup = new THREE.Group();
+        coreGroup.position.x = isTouchDevice ? 0 : 9.5;
+        scene.add(coreGroup);
+
+        // Center glowing nucleus
+        const geoInner = new THREE.IcosahedronGeometry(1.8, 1); 
+        const matInner = new THREE.MeshStandardMaterial({ 
+            color: 0x000000, 
+            emissive: 0x00f0ff, 
+            emissiveIntensity: 3, 
+            wireframe: true 
+        });
+        const nucleus = new THREE.Mesh(geoInner, matInner);
+        coreGroup.add(nucleus);
+
+        // Metallic rings
+        const ringMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff, 
+            metalness: 1.0,
+            roughness: 0.05, 
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.05,
+            side: THREE.DoubleSide
+        });
+
+        const ringGeo1 = new THREE.TorusGeometry(4.0, 0.12, 16, 64);
+        const ring1 = new THREE.Mesh(ringGeo1, ringMaterial);
+        ring1.rotation.x = Math.PI / 2;
+        coreGroup.add(ring1);
+
+        const ringGeo2 = new THREE.TorusGeometry(5.5, 0.06, 16, 64);
+        const ring2 = new THREE.Mesh(ringGeo2, ringMaterial);
+        ring2.rotation.y = Math.PI / 3;
+        coreGroup.add(ring2);
+
+        const ringGeo3 = new THREE.TorusGeometry(7.0, 0.20, 16, 64); 
+        const ring3 = new THREE.Mesh(ringGeo3, ringMaterial);
+        ring3.rotation.z = Math.PI / 4;
+        coreGroup.add(ring3);
+
+        // Data particles 
+        const particlesCount = 800;
+        const posArray = new Float32Array(particlesCount * 3);
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 80; 
+        }
+        const particlesGeo = new THREE.BufferGeometry();
+        particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMat = new THREE.PointsMaterial({
+            size: 0.06, 
+            color: 0x8a2be2,
+            transparent: true,
+            opacity: 0.7, 
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+        const particleSystem = new THREE.Points(particlesGeo, particlesMat);
+        scene.add(particleSystem);
+
+        // Lighting 
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3); 
+        scene.add(ambientLight);
+
+        const lightCyan = new THREE.PointLight(0x00f0ff, 8, 40);
+        scene.add(lightCyan);
+
+        const lightPurple = new THREE.PointLight(0x8a2be2, 8, 40);
+        scene.add(lightPurple);
+
+        const lightWhite = new THREE.PointLight(0xffffff, 3, 20); 
+        coreGroup.add(lightWhite);
+
+        // Mouse interaction - skip listener on touch devices (no mouse present)
+        let isDesktop = window.innerWidth > 1024;
+        let mouseX = 0, mouseY = 0;
+        let halfX = window.innerWidth / 2;
+        let halfY = window.innerHeight / 2;
+
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - halfX);
+                mouseY = (e.clientY - halfY);
+            }, { passive: true });
+        }
+
+        // Animation loop with visibility optimization
+        const clock = new THREE.Clock();
+        let totalElapsedTime = 0;
+        let isHeroVisible = true;
+        let animationFrameId;
+
+        const observer = new IntersectionObserver((entries) => {
+            isHeroVisible = entries[0].isIntersecting;
+            // Pause/resume rendering when out of view
+            if (!isHeroVisible) {
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            } else {
+                clock.getDelta(); // Clear accumulated time during pause
+                animate();
+            }
+        }, { threshold: 0, rootMargin: "-20% 0px" });
+        observer.observe(document.getElementById('home'));
+
+        function animate() {
+            // Pause rendering completely when hero is off-screen
+            if (!isHeroVisible) return;
+            animationFrameId = requestAnimationFrame(animate);
+            
+            // Static render for reduced motion
+            if (reducedMotion) {
+                composer.render();
+                return;
+            }
+
+            totalElapsedTime += clock.getDelta();
+            const time = totalElapsedTime;
+
+            const targetBaseX = isDesktop ? 9.5 : 0; 
+            coreGroup.position.x += (targetBaseX - coreGroup.position.x) * 0.05;
+
+            const targetX = mouseX * 0.002;
+            const targetY = mouseY * 0.002;
+            
+            coreGroup.rotation.y += 0.05 * (targetX - coreGroup.rotation.y) + 0.005;
+            coreGroup.rotation.x += 0.05 * (targetY - coreGroup.rotation.x);
+            
+            coreGroup.position.y = Math.sin(time * 1.5) * 0.4 + 1.0;
+            
+            nucleus.rotation.y = time * 0.4;
+            nucleus.rotation.x = time * 0.6;
+            ring1.rotation.y = time * 0.8;
+            ring2.rotation.x = time * 0.5;
+            ring3.rotation.z = time * 0.3;
+            
+            lightCyan.position.x = coreGroup.position.x + Math.sin(time * 1.2) * 8;
+            lightCyan.position.y = coreGroup.position.y + Math.cos(time * 0.9) * 8;
+            lightCyan.position.z = Math.sin(time * 0.6) * 8;
+
+            lightPurple.position.x = coreGroup.position.x + Math.sin(time * 1.0 + Math.PI) * 10;
+            lightPurple.position.y = coreGroup.position.y + Math.cos(time * 0.8 + Math.PI) * 10;
+            lightPurple.position.z = Math.sin(time * 1.4 + Math.PI) * 10;
+
+            particleSystem.rotation.y = time * 0.02;
+
+            composer.render();
+        }
+        animate();
+
+        // Resize handler (debounced)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                isDesktop = window.innerWidth > 1024;
+                halfX = window.innerWidth / 2;
+                halfY = window.innerHeight / 2;
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                composer.setSize(window.innerWidth, window.innerHeight);
+            }, 100);
+        });
+    </script>
+
+
+    <!-- GPU Performance Optimization: Pause WebGL iframe when out of view -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const heroSection = document.getElementById("home");
+            const bgIframe = document.getElementById("bg-iframe");
+            
+            if (heroSection && bgIframe) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            bgIframe.style.display = "block";
+                        } else {
+                            // Hides the iframe entirely to stop WebGL GPU usage
+                            bgIframe.style.display = "none";
+                        }
+                    });
+                }, { 
+                    rootMargin: "200px 0px 0px 0px", // Keep it loaded slightly before scrolling back
+                    threshold: 0 
+                });
+                
+                observer.observe(heroSection);
+            }
+        });
+    </script>
+</body>
+</html>
