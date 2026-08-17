@@ -17,11 +17,16 @@
     <meta property="og:title" content="Miqdad Badjuber | Portfolio">
     <meta property="og:description" content="I build SaaS products, automation systems, and machine learning solutions to solve real business problems.">
     <meta property="og:site_name" content="Miqdad Badjuber Portfolio">
+    <meta property="og:image" content="https://miqdadbadjuber.id/assets/images/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://miqdadbadjuber.id/">
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Miqdad Badjuber | Portfolio">
     <meta name="twitter:description" content="I build SaaS products, automation systems, and machine learning solutions to solve real business problems.">
+    <meta name="twitter:image" content="https://miqdadbadjuber.id/assets/images/og-cover.jpg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/logo-web-favicon.png">
@@ -31,25 +36,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        void: '#020202',
-                        cyanGlow: '#00f0ff',
-                        purpleGlow: '#8a2be2',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind CSS (precompiled static build, not CDN runtime) -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">
 
     <!-- GSAP, Lenis Smooth Scroll -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
