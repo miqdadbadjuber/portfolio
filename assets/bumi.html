@@ -82,7 +82,7 @@
             const glCanvas = document.createElement('canvas');
             const renderer = new THREE.WebGLRenderer({
                 canvas: glCanvas,
-                antialias: true,
+                antialias: false,
                 preserveDrawingBuffer: true
             });
             renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -235,7 +235,8 @@
             }
 
             let lastRender = performance.now();
-            const FRAME_MS = 1000 / 30; /* cap heavy render at ~30fps; spin speed stays correct via dt */
+            const FRAME_MS = 1000 / 20; /* cap heavy render at ~20fps; spin speed stays correct via dt */
+            let renderTick = 0; /* render+readback tiap 2 frame utk potong biaya sync GPU->CPU */
             function frame(now) {
                 if (document.hidden) {
                     lastRender = now;
@@ -256,6 +257,11 @@
                 camera.fov = FOV_FAR + (FOV_END - FOV_FAR) * e;
                 camera.updateProjectionMatrix();
                 camera.lookAt(0, LOOK_Y * e, 0);
+                renderTick++;
+                if (renderTick % 2 !== 0) {
+                    requestAnimationFrame(frame);
+                    return;
+                }
                 renderer.render(scene, camera);
 
                 sctx.drawImage(glCanvas, 0, 0, cols, rows);

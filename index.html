@@ -390,15 +390,6 @@
             #home .gsap-hero > div {
                 justify-content: center;
             }
-            /* Reposition WebGL quantum core to center on mobile */
-            #webgl-canvas {
-                position: fixed;
-                top: 0; left: 0;
-                width: 100% !important;
-                height: 100% !important;
-                pointer-events: none;
-            }
-
             /* 2. About: hide desktop text, show mobile condensed version */
             #about .desktop-about-text { display: none !important; }
             #about .mobile-about-text { display: block !important; }
@@ -455,15 +446,7 @@
         }
     </style>
 
-    <!-- Import Maps for Three.js & Post-Processing -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.136.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.136.0/examples/jsm/"
-            }
-        }
-    </script>
+
 </head>
 <body class="js-loading">
 
@@ -474,7 +457,7 @@
     <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 
     <!-- Backgrounds -->
-    <iframe src="assets/bumi?v=2" id="bg-iframe" aria-hidden="true" frameborder="0" data-lenis-prevent></iframe>
+    <iframe src="assets/bumi.html?v=2" id="bg-iframe" aria-hidden="true" frameborder="0" data-lenis-prevent></iframe>
     <div class="bg-grid" aria-hidden="true"></div>
     <div class="noise" aria-hidden="true"></div>
 
@@ -1770,207 +1753,7 @@
         setTimeout(playRoleAnimation, 800);
     </script>
 
-    <!-- ================================ -->
-    <!-- THREE.JS 3D SCENE                -->
-    <!-- ================================ -->
-    <script type="module">
-        import * as THREE from 'three';
-        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
-        // Skip heavy 3D on reduced motion preference
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-        // Scene setup
-        const canvas = document.getElementById('webgl-canvas');
-        if (!canvas) return;
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x020202, 0.02); 
-
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.z = 25;
-
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: "high-performance" });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-        renderer.toneMapping = THREE.ReinhardToneMapping;
-        renderer.toneMappingExposure = 1.2; 
-
-        const renderScene = new RenderPass(scene, camera);
-        
-        const composer = new EffectComposer(renderer);
-        composer.addPass(renderScene);
-        if (window.innerWidth > 1024) {
-            const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.8, 0.8, 0.1);
-            composer.addPass(bloomPass);
-        }
-
-        // "The Quantum Core" - 3D object group
-        const coreGroup = new THREE.Group();
-        coreGroup.position.x = isTouchDevice ? 0 : 9.5;
-        scene.add(coreGroup);
-
-        // Center glowing nucleus
-        const geoInner = new THREE.IcosahedronGeometry(1.8, 1); 
-        const matInner = new THREE.MeshStandardMaterial({ 
-            color: 0x000000, 
-            emissive: 0x00f0ff, 
-            emissiveIntensity: 3, 
-            wireframe: true 
-        });
-        const nucleus = new THREE.Mesh(geoInner, matInner);
-        coreGroup.add(nucleus);
-
-        // Metallic rings
-        const ringMaterial = new THREE.MeshPhysicalMaterial({
-            color: 0xffffff, 
-            metalness: 1.0,
-            roughness: 0.05, 
-            clearcoat: 1.0,
-            clearcoatRoughness: 0.05,
-            side: THREE.DoubleSide
-        });
-
-        const ringGeo1 = new THREE.TorusGeometry(4.0, 0.12, 16, 64);
-        const ring1 = new THREE.Mesh(ringGeo1, ringMaterial);
-        ring1.rotation.x = Math.PI / 2;
-        coreGroup.add(ring1);
-
-        const ringGeo2 = new THREE.TorusGeometry(5.5, 0.06, 16, 64);
-        const ring2 = new THREE.Mesh(ringGeo2, ringMaterial);
-        ring2.rotation.y = Math.PI / 3;
-        coreGroup.add(ring2);
-
-        const ringGeo3 = new THREE.TorusGeometry(7.0, 0.20, 16, 64); 
-        const ring3 = new THREE.Mesh(ringGeo3, ringMaterial);
-        ring3.rotation.z = Math.PI / 4;
-        coreGroup.add(ring3);
-
-        // Data particles 
-        const particlesCount = 800;
-        const posArray = new Float32Array(particlesCount * 3);
-        for (let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 80; 
-        }
-        const particlesGeo = new THREE.BufferGeometry();
-        particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMat = new THREE.PointsMaterial({
-            size: 0.06, 
-            color: 0x8a2be2,
-            transparent: true,
-            opacity: 0.7, 
-            blending: THREE.AdditiveBlending,
-            depthWrite: false
-        });
-        const particleSystem = new THREE.Points(particlesGeo, particlesMat);
-        scene.add(particleSystem);
-
-        // Lighting 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3); 
-        scene.add(ambientLight);
-
-        const lightCyan = new THREE.PointLight(0x00f0ff, 8, 40);
-        scene.add(lightCyan);
-
-        const lightPurple = new THREE.PointLight(0x8a2be2, 8, 40);
-        scene.add(lightPurple);
-
-        const lightWhite = new THREE.PointLight(0xffffff, 3, 20); 
-        coreGroup.add(lightWhite);
-
-        // Mouse interaction - skip listener on touch devices (no mouse present)
-        let isDesktop = window.innerWidth > 1024;
-        let mouseX = 0, mouseY = 0;
-        let halfX = window.innerWidth / 2;
-        let halfY = window.innerHeight / 2;
-
-        if (!isTouchDevice) {
-            document.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX - halfX);
-                mouseY = (e.clientY - halfY);
-            }, { passive: true });
-        }
-
-        // Animation loop with visibility optimization
-        const clock = new THREE.Clock();
-        let totalElapsedTime = 0;
-        let isHeroVisible = true;
-        let animationFrameId;
-
-        const observer = new IntersectionObserver((entries) => {
-            isHeroVisible = entries[0].isIntersecting;
-            // Pause/resume rendering when out of view
-            if (!isHeroVisible) {
-                if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            } else {
-                clock.getDelta(); // Clear accumulated time during pause
-                animate();
-            }
-        }, { threshold: 0, rootMargin: "-20% 0px" });
-        observer.observe(document.getElementById('home'));
-
-        function animate() {
-            // Pause rendering completely when hero is off-screen
-            if (!isHeroVisible) return;
-            animationFrameId = requestAnimationFrame(animate);
-            
-            // Static render for reduced motion
-            if (reducedMotion) {
-                composer.render();
-                return;
-            }
-
-            totalElapsedTime += clock.getDelta();
-            const time = totalElapsedTime;
-
-            const targetBaseX = isDesktop ? 9.5 : 0; 
-            coreGroup.position.x += (targetBaseX - coreGroup.position.x) * 0.05;
-
-            const targetX = mouseX * 0.002;
-            const targetY = mouseY * 0.002;
-            
-            coreGroup.rotation.y += 0.05 * (targetX - coreGroup.rotation.y) + 0.005;
-            coreGroup.rotation.x += 0.05 * (targetY - coreGroup.rotation.x);
-            
-            coreGroup.position.y = Math.sin(time * 1.5) * 0.4 + 1.0;
-            
-            nucleus.rotation.y = time * 0.4;
-            nucleus.rotation.x = time * 0.6;
-            ring1.rotation.y = time * 0.8;
-            ring2.rotation.x = time * 0.5;
-            ring3.rotation.z = time * 0.3;
-            
-            lightCyan.position.x = coreGroup.position.x + Math.sin(time * 1.2) * 8;
-            lightCyan.position.y = coreGroup.position.y + Math.cos(time * 0.9) * 8;
-            lightCyan.position.z = Math.sin(time * 0.6) * 8;
-
-            lightPurple.position.x = coreGroup.position.x + Math.sin(time * 1.0 + Math.PI) * 10;
-            lightPurple.position.y = coreGroup.position.y + Math.cos(time * 0.8 + Math.PI) * 10;
-            lightPurple.position.z = Math.sin(time * 1.4 + Math.PI) * 10;
-
-            particleSystem.rotation.y = time * 0.02;
-
-            composer.render();
-        }
-        animate();
-
-        // Resize handler (debounced)
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                isDesktop = window.innerWidth > 1024;
-                halfX = window.innerWidth / 2;
-                halfY = window.innerHeight / 2;
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                composer.setSize(window.innerWidth, window.innerHeight);
-            }, 100);
-        });
-    </script>
 
 
     <!-- GPU Performance Optimization: Pause WebGL iframe when out of view -->
