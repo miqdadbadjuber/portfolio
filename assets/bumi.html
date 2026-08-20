@@ -219,31 +219,29 @@
                     targetP = Math.min(1, Math.max(0, d.miqdadScroll));
             });
 
-            function vOf(px, j) {
-                return (0.34 * px[j] + 0.46 * px[j + 1] + 0.20 * px[j + 2]) / 255;
+            // Precomputed Level LUT (Lookup Table) for 60fps zero-overhead luminance mapping
+            const LVL_LUT = new Int8Array(256);
+            function buildLvlLUT() {
+                for (let k = 0; k < 256; k++) {
+                    const v = k / 255;
+                    if (v < S.thr) {
+                        LVL_LUT[k] = -1;
+                        continue;
+                    }
+                    let t = (v - S.thr) / (1 - S.thr);
+                    t = (t - PIVOT) * S.contrast + PIVOT;
+                    t = t < 0 ? 0 : t > 1 ? 1 : t;
+                    if (S.invert) t = 1 - t;
+                    let i = Math.round(t * (NLEV - 1));
+                    LVL_LUT[k] = i < 0 ? 0 : i > NLEV - 1 ? NLEV - 1 : i;
+                }
             }
-            function lvl(v) {
-                if (v < S.thr)
-                    return -1;
-                let t = (v - S.thr) / (1 - S.thr);
-                t = (t - PIVOT) * S.contrast + PIVOT;
-                t = t < 0 ? 0 : t > 1 ? 1 : t;
-                if (S.invert)
-                    t = 1 - t;
-                let i = Math.round(t * (NLEV - 1));
-                return i < 0 ? 0 : i > NLEV - 1 ? NLEV - 1 : i;
-            }
+            buildLvlLUT();
 
             let lastRender = performance.now();
-            const FRAME_MS = 1000 / 20; /* cap heavy render at ~20fps; spin speed stays correct via dt */
-            let renderTick = 0; /* render+readback tiap 2 frame utk potong biaya sync GPU->CPU */
             function frame(now) {
                 if (document.hidden) {
                     lastRender = now;
-                    requestAnimationFrame(frame);
-                    return;
-                }
-                if (now - lastRender < FRAME_MS) {
                     requestAnimationFrame(frame);
                     return;
                 }
@@ -257,11 +255,7 @@
                 camera.fov = FOV_FAR + (FOV_END - FOV_FAR) * e;
                 camera.updateProjectionMatrix();
                 camera.lookAt(0, LOOK_Y * e, 0);
-                renderTick++;
-                if (renderTick % 2 !== 0) {
-                    requestAnimationFrame(frame);
-                    return;
-                }
+
                 renderer.render(scene, camera);
 
                 sctx.drawImage(glCanvas, 0, 0, cols, rows);
@@ -272,38 +266,48 @@
                     requestAnimationFrame(frame);
                     return;
                 }
+
                 ctx.fillStyle = "#020202";
                 ctx.fillRect(0, 0, W, H);
-                const txt = S.text || " "
-                  , tl = txt.length;
+                const txt = S.text || " ";
+                const tl = txt.length;
+
                 for (let row = 0; row < rows; row++) {
                     const py = row * cell + cell * 0.5;
-                    let runStr = ""
-                      , runStart = 0
-                      , runL = -999;
-                    const flush = () => {
-                        if (runStr) {
-                            ctx.fillStyle = PAL[runL];
-                            ctx.fillText(runStr, runStart * cell + (cell - adv) / 2, py);
-                            runStr = "";
-                        }
-                    }
-                    ;
+                    const rowOffset = row * cols;
+                    let runStr = "";
+                    let runStart = 0;
+                    let runL = -999;
+
                     for (let col = 0; col < cols; col++) {
-                        const g = lvl(vOf(px, (row * cols + col) * 4));
+                        const pIdx = (rowOffset + col) * 4;
+                        const lum = (87 * px[pIdx] + 118 * px[pIdx + 1] + 51 * px[pIdx + 2]) >> 8;
+                        const g = LVL_LUT[lum];
+
                         if (g < 0) {
-                            flush();
+                            if (runStr) {
+                                ctx.fillStyle = PAL[runL];
+                                ctx.fillText(runStr, runStart * cell + (cell - adv) / 2, py);
+                                runStr = "";
+                            }
                             runL = -999;
                             continue;
                         }
                         if (g !== runL) {
-                            flush();
+                            if (runStr) {
+                                ctx.fillStyle = PAL[runL];
+                                ctx.fillText(runStr, runStart * cell + (cell - adv) / 2, py);
+                                runStr = "";
+                            }
                             runL = g;
                             runStart = col;
                         }
-                        runStr += txt[(row * cols + col) % tl];
+                        runStr += txt[(rowOffset + col) % tl];
                     }
-                    flush();
+                    if (runStr) {
+                        ctx.fillStyle = PAL[runL];
+                        ctx.fillText(runStr, runStart * cell + (cell - adv) / 2, py);
+                    }
                 }
                 requestAnimationFrame(frame);
             }
