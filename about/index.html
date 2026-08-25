@@ -206,7 +206,7 @@
 
     <!-- Header -->
     <header class="w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-8 md:pt-12 flex justify-between items-center relative z-20">
-        <a href="../" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
+        <a href="/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
             <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M13 8H3M7 12L3 8l4-4"/>
             </svg>
@@ -361,7 +361,7 @@
 
         <!-- BOTTOM NAVIGATION: Back to Home Button -->
         <div class="mt-14 pt-8 border-t border-white/[0.08] flex items-center">
-            <a href="../" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
+            <a href="/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
                 <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13 8H3M7 12L3 8l4-4"/>
                 </svg>
@@ -385,5 +385,21 @@
         </div>
     </footer>
 
+<script>
+if (window.location.protocol === 'file:') {
+    document.querySelectorAll('a[href^="/"]').forEach(function(el) {
+        var h = el.getAttribute('href');
+        var isSub = window.location.pathname.includes('/projects/') || window.location.pathname.includes('/blog/') || window.location.pathname.includes('/about/') || window.location.pathname.includes('/credentials/');
+        var prefix = isSub ? '../' : '';
+        if (h === '/' || h === '/index.html' || h === '/#home') {
+            el.setAttribute('href', prefix + 'index.html');
+        } else if (h.startsWith('/#')) {
+            el.setAttribute('href', prefix + 'index.html' + h.substring(1));
+        } else {
+            el.setAttribute('href', prefix + h.substring(1));
+        }
+    });
+}
+</script>
 </body>
 </html>
