@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Miqdad Badjuber</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logo-web-favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/logo-web-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;700;900&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#020202',
+                        cyanGlow: '#00f0ff',
+                        purpleGlow: '#8a2be2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        sora: ['Sora', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --color-void: #020202;
+            --color-cyan: #00f0ff;
+            --color-purple: #8a2be2;
+            --transition-fast: 200ms;
+            --transition-base: 300ms;
+            --transition-slow: 500ms;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scrollbar-gutter: stable;
+        }
+
+        @media (min-width: 1024px) {
+            html {
+                font-size: 80% !important; 
+            }
+        }
+
+        body {
+            background-color: var(--color-void);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-sora { font-family: 'Sora', sans-serif; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+                .bg-grid {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+
+                .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
+
+                .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            line-height: 1;
+            height: 1.5rem;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back:hover {
+            color: #ffffff;
+        }
+        .btn-back-text {
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .btn-back-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 1.5px;
+            background: linear-gradient(to right, #00f0ff, #ffffff);
+            border-radius: 9999px;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: none !important;
+        }
+        .btn-back:hover .btn-back-text::after {
+            width: 100%;
+        }
+        .btn-back-arrow {
+            width: 0.875rem;
+            height: 0.875rem;
+            flex-shrink: 0;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back:hover .btn-back-arrow {
+            transform: translateX(-3px);
+        }
+
+        /* Project Card (Exact styling from index.html) */
+        .project-card {
+            background-color: rgba(255, 255, 255, 0.008);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: border-color var(--transition-slow) ease,
+                        box-shadow var(--transition-slow) var(--ease-out);
+        }
+        .project-card:hover {
+            border-color: rgba(255, 255, 255, 0.16);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Project CTA Link */
+        .project-cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #9ca3af;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 2px;
+            transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-cta-link:hover,
+        .group:hover .project-cta-link,
+        .project-card:hover .project-cta-link {
+            color: #ffffff;
+        }
+        .project-cta-text {
+            position: relative;
+        }
+        .project-cta-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 1.5px;
+            background: linear-gradient(to right, #00f0ff, #ffffff);
+            border-radius: 9999px;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: none !important;
+        }
+        .project-cta-link:hover .project-cta-text::after,
+        .group:hover .project-cta-link .project-cta-text::after,
+        .project-card:hover .project-cta-link .project-cta-text::after {
+            width: 100%;
+        }
+
+        /* Circular Arrow Button (Hidden by default, emerges on card hover, ZERO GLOW) */
+        .project-arrow-circle {
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #020202 !important;
+            opacity: 0;
+            transform: scale(0.6) translateX(-6px);
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            flex-shrink: 0;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+        .project-arrow-circle svg {
+            width: 0.85rem;
+            height: 0.85rem;
+            color: inherit;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .project-arrow-circle,
+        .project-card:hover .project-arrow-circle,
+        .project-cta-link:hover .project-arrow-circle {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+        }
+        .group:hover .project-arrow-circle svg,
+        .project-card:hover .project-arrow-circle svg,
+        .project-cta-link:hover .project-arrow-circle svg {
+            transform: translateX(1.5px);
+        }
+
+        /* Filter Track & Sliding Underline */
+        .filter-track {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            padding-bottom: 0.35rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        .filter-sliding-line {
+            position: absolute;
+            bottom: -1px;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 9999px;
+            transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+        .filter-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #71717a;
+            padding: 0.45rem 0.95rem;
+            border-radius: 0.5rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+        .filter-btn:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+        .filter-btn.active {
+            color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        /* Mobile Filters */
+        @media (max-width: 1023px) {
+            h1 {
+                font-size: clamp(2rem, 8vw, 2.5rem) !important;
+                line-height: 1.1 !important;
+            }
+            .page-header-block {
+                margin-bottom: 1.5rem !important;
+            }
+            .page-header-desc {
+                font-size: 0.8125rem !important; /* 13px */
+                line-height: 1.65 !important;
+                color: #e4e4e7 !important;
+                margin-top: 0.5rem !important;
+            }
+            header.w-full,
+            body > header {
+                padding-left: 1.25rem !important;
+                padding-right: 1.25rem !important;
+                padding-top: 1.25rem !important;
+                padding-bottom: 0 !important;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            main {
+                padding-left: 1.25rem !important;
+                padding-right: 1.25rem !important;
+                padding-top: 1.75rem !important;
+                padding-bottom: 3rem !important;
+            }
+            .filter-track {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+                gap: 0.25rem !important;
+                padding-bottom: 0.45rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            .filter-track::-webkit-scrollbar {
+                display: none !important;
+            }
+            .filter-btn {
+                font-size: 0.75rem !important;
+                padding: 0.4rem 0.75rem !important;
+            }
+
+            /* Project Card Mobile (Model 1: Full-Bleed 16:9 Banner Glass Card) */
+            .project-card {
+                background-color: rgba(6, 6, 6, 0.7) !important;
+                backdrop-filter: blur(12px) !important;
+                -webkit-backdrop-filter: blur(12px) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                border-radius: 1.25rem !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .project-card > div.flex {
+                flex-direction: column !important;
+                gap: 0 !important;
+                width: 100% !important;
+            }
+            .project-card .aspect-video {
+                order: -1 !important;
+                width: 100% !important;
+                border-radius: 0 !important;
+                border-top: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+                margin-bottom: 0 !important;
+                flex-shrink: 0 !important;
+            }
+            .project-card .flex-1.flex-col,
+            .project-card-body {
+                padding: 1.15rem 1.15rem 1.25rem 1.15rem !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                flex: 1 1 0% !important;
+            }
+            /* Hide badge pill metadata */
+            .project-card .text-xs.font-sans.text-gray-400.font-medium,
+            .project-card .flex.items-center.gap-2.mb-3.text-xs,
+            .project-card .flex.items-center.gap-2.mb-2.text-xs {
+                display: none !important;
+            }
+            .project-card h2,
+            .project-card h3 {
+                font-size: 1rem !important;
+                line-height: 1.35 !important;
+                margin-bottom: 0.35rem !important;
+                font-weight: 700 !important;
+            }
+            .project-card p {
+                font-size: 0.75rem !important;
+                line-height: 1.55 !important;
+                margin-bottom: 1rem !important;
+                color: #9ca3af !important;
+            }
+            .project-action-row,
+            .project-card .mt-auto {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                padding-top: 0.75rem !important;
+                margin-top: auto !important;
+                border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+                gap: 0.5rem !important;
+            }
+            .project-arrow-circle {
+                opacity: 1 !important;
+                transform: scale(1) translateX(0) !important;
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+                background: #ffffff !important;
+                color: #020202 !important;
+                border-radius: 9999px !important;
+                flex-shrink: 0 !important;
+            }
+            .project-cta-link {
+                color: #ffffff !important;
+                font-size: 0.75rem !important;
+                white-space: nowrap !important;
+            }
+            .btn-github-source {
+                padding: 0.35rem 0.65rem !important;
+                font-size: 0.7rem !important;
+                background-color: rgba(255, 255, 255, 0.08) !important;
+                color: #e4e4e7 !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+                transform: none !important;
+                transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease !important;
+            }
+            .btn-github-source svg {
+                width: 12px !important;
+                height: 12px !important;
+                flex-shrink: 0 !important;
+            }
+            .btn-github-source:hover,
+            .btn-github-source:active,
+            .btn-github-source:focus {
+                background-color: #ffffff !important;
+                color: #09090b !important;
+                border-color: #ffffff !important;
+                transform: none !important;
+            }
+        }
+
+        /* Button GitHub Source Code */
+        .btn-github-source {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: #ffffff;
+            color: #09090b;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .btn-github-source:hover {
+            background-color: #e4e4e7;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- HUD Overlay -->
+    <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
+    <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
+
+    <!-- Header -->
+    <header class="w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-8 md:pt-12 flex justify-between items-center relative z-20">
+        <a href="../index.html" class="btn-back">
+            <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 8H3M7 12L3 8l4-4"/>
+            </svg>
+            <span class="btn-back-text">Back to Home</span>
+        </a>
+
+        <div class="flex items-center gap-4 h-6">
+            <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors flex items-center justify-center w-5 h-5" aria-label="GitHub Profile">
+                <svg class="w-5 h-5 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors flex items-center justify-center w-5 h-5" aria-label="LinkedIn Profile">
+                <svg class="w-5 h-5 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-10 pb-16 md:pt-14 md:pb-24">
+        
+        <!-- Page Header -->
+        <div class="mb-10 page-header-block">
+            <h1 class="font-display text-4xl md:text-6xl font-black tracking-tighter text-white">
+                Projects<span class="text-gray-600">.</span>
+            </h1>
+            <p class="page-header-desc text-gray-400 text-base md:text-lg max-w-2xl leading-relaxed font-sans mt-3">
+                Complete catalog of software systems, AI agent developer tools, machine learning pipelines, and full-stack applications built with clean architecture.
+            </p>
+        </div>
+
+        <!-- Filter Bar with Sliding Underline -->
+        <div class="filter-track" id="filter-track">
+            <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+            <button class="filter-btn" onclick="filterProjects('agent', this)">AI Agent Tools</button>
+            <button class="filter-btn" onclick="filterProjects('ml', this)">Machine Learning</button>
+            <button class="filter-btn" onclick="filterProjects('fullstack', this)">Full-Stack Apps</button>
+            <button class="filter-btn" onclick="filterProjects('automation', this)">Automations</button>
+            <div id="filter-sliding-line" class="filter-sliding-line"></div>
+        </div>
+
+        <!-- Projects List (Matching exact index.html styling) -->
+        <div id="projects-container" class="space-y-6">
+            
+            <!-- FEATURED PROJECT 1: AntiSlop -->
+            <article class="project-item" data-category="agent">
+                <div class="project-card rounded-2xl p-6 md:p-10 lg:p-12 hover:border-cyanGlow/20 group">
+                    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+                        <div class="flex-1 flex flex-col justify-center">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-sans text-gray-400 font-medium">
+                                <span>Agent Skills Package</span>
+                                <span class="text-gray-600">•</span>
+                                <span class="text-gray-400">v3.1.3</span>
+                            </div>
+                            <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">AntiSlop</h2>
+                            <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 font-sans">
+                                38 mandatory deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop and robotic copy without restricting genuine design creativity.
+                            </p>
+                            <div class="project-action-row flex items-center justify-between">
+                                <a href="anti-ai-slop.html" class="project-cta-link">
+                                    <span class="project-cta-text">View Details</span>
+                                    <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                                </a>
+                                <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Project Image Banner -->
+                        <div class="w-full lg:w-5/12 aspect-video rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02] shrink-0">
+                            <img src="../assets/images/antislop.webp" alt="AntiSlop banner" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center">
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- FEATURED PROJECT 2: ContextForge -->
+            <article class="project-item" data-category="agent">
+                <div class="project-card rounded-2xl p-6 md:p-10 lg:p-12 hover:border-cyanGlow/20 group">
+                    <div class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12 items-center">
+                        <div class="flex-1 flex flex-col justify-center">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-sans text-gray-400 font-medium">
+                                <span>Context Optimization CLI</span>
+                                <span class="text-gray-600">•</span>
+                                <span class="text-gray-400">Open Source</span>
+                            </div>
+                            <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">ContextForge</h2>
+                            <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 font-sans">
+                                CLI tool that indexes codebases, scores file relevance, and uses AST symbol pruning to build token-efficient context bundles, cutting token consumption by up to 83%.
+                            </p>
+                            <div class="project-action-row flex items-center justify-between">
+                                <a href="contextforge.html" class="project-cta-link">
+                                    <span class="project-cta-text">View Details</span>
+                                    <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                                </a>
+                                <a href="https://github.com/MiqdadBadjuber/contextforge" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Project Image Banner -->
+                        <div class="w-full lg:w-5/12 aspect-video rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02] shrink-0">
+                            <img src="../assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center">
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2-COLUMN GRID FOR REMAINING PROJECTS -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                
+                <!-- Project 3: DiagramPilot AI -->
+                <article class="project-item" data-category="fullstack">
+                    <div class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group h-full">
+                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                            <img src="../assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
+                        </div>
+                        <div class="project-card-body flex flex-col flex-1">
+                            <div class="flex items-center gap-2 mb-2 text-xs font-sans text-gray-400 font-medium">
+                                <span>Architecture Blueprint Generator</span>
+                            </div>
+                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">DiagramPilot AI</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                                Full-stack Next.js and Mermaid.js system converting natural language conversations into interactive architecture diagrams with zoom, pan, and SVG export.
+                            </p>
+                            <div class="project-action-row flex items-center justify-between pt-4 mt-auto border-t border-white/[0.04] w-full">
+                                <a href="diagrampilot.html" class="project-cta-link">
+                                    <span class="project-cta-text">View Details</span>
+                                    <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                                </a>
+                                <a href="https://github.com/miqdadbadjuber/DiagramPilot-AI" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4: OpenFolio AI -->
+                <article class="project-item" data-category="fullstack">
+                    <div class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group h-full">
+                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                            <img src="../assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
+                        </div>
+                        <div class="project-card-body flex flex-col flex-1">
+                            <div class="flex items-center gap-2 mb-2 text-xs font-sans text-gray-400 font-medium">
+                                <span>AI Portfolio Studio</span>
+                            </div>
+                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">OpenFolio AI</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                                React 19 SPA and Express serverless studio that conducts guest-only interviews to build, revise, and deploy custom developer portfolios to live URLs.
+                            </p>
+                            <div class="project-action-row flex items-center justify-between pt-4 mt-auto border-t border-white/[0.04] w-full">
+                                <a href="openfolio.html" class="project-cta-link">
+                                    <span class="project-cta-text">View Details</span>
+                                    <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                                </a>
+                                <a href="https://github.com/miqdadbadjuber/OpenFolio-AI" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 5: Machine Learning Systems & Experiments -->
+                <article class="project-item" data-category="ml">
+                    <div class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group h-full">
+                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                            <img src="../assets/images/machine_learning.webp" alt="Machine Learning Systems" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
+                        </div>
+                        <div class="project-card-body flex flex-col flex-1">
+                            <div class="flex items-center gap-2 mb-2 text-xs font-sans text-gray-400 font-medium">
+                                <span>Deep Learning &amp; Unsupervised ML</span>
+                            </div>
+                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Machine Learning Experiments</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                                End-to-end model training suites covering CNN image classification (88% acc), Gojek review BiLSTM sentiment analysis (88.69% acc), and K-Means fraud transaction clustering with 6 GitHub repositories.
+                            </p>
+                            <div class="project-action-row flex items-center justify-between pt-4 mt-auto border-t border-white/[0.04] w-full">
+                                <a href="machine-learning.html" class="project-cta-link">
+                                    <span class="project-cta-text">View Details</span>
+                                    <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                                </a>
+                                <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 6: Automation Workflow Engine -->
+                <article class="project-item" data-category="automation">
+                    <div class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group h-full">
+                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                            <img src="../assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
+                        </div>
+                        <div class="project-card-body flex flex-col flex-1">
+                            <div class="flex items-center gap-2 mb-2 text-xs font-sans text-gray-400 font-medium">
+                                <span>Event Orchestration Pipeline</span>
+                            </div>
+                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Automation Workflow Engine</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                                Event-driven workflow architectures connecting Discord and Telegram chat triggers with self-hosted n8n orchestrators, Google Apps Script backends, and automated PDF reporting.
+                            </p>
+                            <div class="project-action-row flex items-center justify-between pt-4 mt-auto border-t border-white/[0.04] w-full">
+                                <a href="automation-workflow.html" class="project-cta-link">
+                                    <span class="project-cta-text">View Details</span>
+                                    <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                                </a>
+                                <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+
+        <!-- BOTTOM NAVIGATION: Back to Home Button -->
+        <div class="mt-14 pt-8 border-t border-white/[0.08] flex items-center">
+            <a href="../index.html" class="btn-back">
+                <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 8H3M7 12L3 8l4-4"/>
+                </svg>
+                <span class="btn-back-text">Back to Home</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-[1000px] mx-auto px-6 md:px-12 py-10 border-t border-white/[0.06] flex justify-between items-center text-xs text-gray-500 font-sans relative z-20">
+        <div>&copy; 2026 Miqdad Badjuber</div>
+        
+        <div class="flex items-center gap-4">
+            <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub Profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn Profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Filter Script with Sliding Underline Animation -->
+    <script>
+        function updateFilterLine(activeBtn) {
+            const line = document.getElementById('filter-sliding-line');
+            const track = document.getElementById('filter-track');
+            if (!line || !track || !activeBtn) return;
+            const trackRect = track.getBoundingClientRect();
+            const btnRect = activeBtn.getBoundingClientRect();
+            line.style.left = (btnRect.left - trackRect.left + track.scrollLeft) + 'px';
+            line.style.width = btnRect.width + 'px';
+        }
+
+        function filterProjects(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateFilterLine(btn);
+            if (btn.scrollIntoView) {
+                btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+
+            let visibleGridCount = 0;
+            const items = document.querySelectorAll('.project-item');
+            items.forEach(item => {
+                const itemCategory = item.dataset.category || '';
+                const matches = (category === 'all' || itemCategory === category);
+                if (matches) {
+                    item.classList.remove('hidden');
+                    item.style.setProperty('display', 'block', 'important');
+                    if (item.parentElement && item.parentElement.id === 'projects-grid') {
+                        visibleGridCount++;
+                    }
+                } else {
+                    item.classList.add('hidden');
+                    item.style.setProperty('display', 'none', 'important');
+                }
+            });
+
+            const gridContainer = document.getElementById('projects-grid');
+            if (gridContainer) {
+                if (visibleGridCount === 0 && category !== 'all') {
+                    gridContainer.style.setProperty('display', 'none', 'important');
+                } else {
+                    gridContainer.style.removeProperty('display');
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const activeBtn = document.querySelector('#filter-track .filter-btn.active');
+            if (activeBtn) updateFilterLine(activeBtn);
+            const track = document.getElementById('filter-track');
+            if (track) {
+                track.addEventListener('scroll', () => {
+                    const currentActive = document.querySelector('#filter-track .filter-btn.active');
+                    if (currentActive) updateFilterLine(currentActive);
+                }, { passive: true });
+            }
+        });
+        window.addEventListener('resize', () => {
+            const activeBtn = document.querySelector('#filter-track .filter-btn.active');
+            if (activeBtn) updateFilterLine(activeBtn);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Experiments | Projects | Miqdad Badjuber</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logo-web-favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/logo-web-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;700;900&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#020202',
+                        cyanGlow: '#00f0ff',
+                        purpleGlow: '#8a2be2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        sora: ['Sora', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --color-void: #020202;
+            --color-cyan: #00f0ff;
+            --color-purple: #8a2be2;
+            --transition-fast: 200ms;
+            --transition-base: 300ms;
+            --transition-slow: 500ms;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scrollbar-gutter: stable;
+            scroll-behavior: smooth;
+        }
+
+        @media (min-width: 1024px) {
+            html {
+                font-size: 80% !important;
+            }
+        }
+
+        body {
+            background-color: var(--color-void);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-sora { font-family: 'Sora', sans-serif; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+                .bg-grid {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+
+                .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
+
+                .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            line-height: 1;
+            height: 1.5rem;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back:hover {
+            color: #ffffff;
+        }
+        .btn-back-text {
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .btn-back-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 1.5px;
+            background: linear-gradient(to right, #00f0ff, #ffffff);
+            border-radius: 9999px;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+        }
+        .btn-back:hover .btn-back-text::after {
+            width: 100%;
+        }
+        .btn-back-arrow {
+            width: 0.875rem;
+            height: 0.875rem;
+            flex-shrink: 0;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back:hover .btn-back-arrow {
+            transform: translateX(-3px);
+        }
+
+        /* Code Box */
+        .code-box {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+        }
+        .code-line { display: flex; line-height: 1.7; }
+        .code-num { width: 2.2rem; shrink-0; color: #52525b; user-select: none; }
+
+        /* Action Buttons */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.25s var(--ease-out);
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #020202;
+            border: 1px solid #ffffff;
+        }
+        .btn-primary:hover {
+            background: #e4e4e7;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 240, 255, 0.4);
+        }
+
+        /* Repo Card */
+        .repo-card {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 8px;
+            transition: all 0.25s var(--ease-out);
+        }
+        .repo-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Arrow Circle */
+        .repo-arrow-circle {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            background: transparent;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+        .repo-arrow-circle svg {
+            width: 13px;
+            height: 13px;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .repo-card:hover .repo-arrow-circle,
+        .group:hover .repo-arrow-circle {
+            background: #ffffff !important;
+            color: #020202 !important;
+            transform: scale(1.05);
+        }
+        .repo-card:hover .repo-arrow-circle svg,
+        .group:hover .repo-arrow-circle svg {
+            transform: translate(0.5px, -0.5px);
+        }
+
+        /* Code Box */
+        .code-box {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+        }
+        .code-box div[class*="overflow-x-auto"],
+        .code-box .overflow-x-auto {
+            overflow-x: auto !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .code-box div[class*="overflow-x-auto"]::-webkit-scrollbar,
+        .code-box .overflow-x-auto::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .code-line { display: flex; line-height: 1.7; align-items: baseline; }
+        .code-num { width: 2.2rem; flex-shrink: 0; color: #52525b; user-select: none; }
+
+        /* Action Buttons */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.25s var(--ease-out);
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #020202;
+            border: 1px solid #ffffff;
+        }
+        .btn-primary:hover {
+            background: #e4e4e7;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 240, 255, 0.4);
+        }
+
+        /* Mobile */
+        @media (max-width: 1023px) {
+            header.w-full,
+            body > header {
+                padding-left: 1.25rem !important;
+                padding-right: 1.25rem !important;
+                padding-top: 1.25rem !important;
+                padding-bottom: 0 !important;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            main {
+                padding-left: 1.25rem !important;
+                padding-right: 1.25rem !important;
+                padding-top: 1.75rem !important;
+                padding-bottom: 3.5rem !important;
+            }
+            article.space-y-12 {
+                gap: 2.25rem !important;
+            }
+            article.space-y-12 > * + * {
+                margin-top: 2.25rem !important;
+            }
+            article > header {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                padding-bottom: 1.75rem !important;
+                gap: 0.85rem !important;
+            }
+            article > header > * + * {
+                margin-top: 0.85rem !important;
+            }
+            h1 {
+                font-size: 1.5rem !important; /* 24px */
+                line-height: 1.25 !important;
+                font-weight: 800 !important;
+            }
+            article > header p,
+            header p {
+                font-size: 0.8125rem !important; /* 13px */
+                line-height: 1.65 !important;
+                color: #d4d4d8 !important;
+            }
+            /* Action buttons: single row horizontal flex */
+            article > header .flex.flex-wrap {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                gap: 0.45rem !important;
+                padding-top: 0.4rem !important;
+                scrollbar-width: none !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            article > header .flex.flex-wrap::-webkit-scrollbar {
+                display: none !important;
+            }
+            .btn-action {
+                font-size: 0.72rem !important; /* 11.5px */
+                padding: 0.35rem 0.65rem !important;
+                width: auto !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 0.35rem !important;
+                border-radius: 0.4rem !important;
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+            }
+            .btn-action svg {
+                width: 12px !important;
+                height: 12px !important;
+            }
+            /* Section Hierarchy & Breathing Room */
+            .space-y-10,
+            .space-y-12 {
+                gap: 2.25rem !important;
+            }
+            .space-y-10 > * + *,
+            .space-y-12 > * + * {
+                margin-top: 2.25rem !important;
+            }
+            h2 {
+                font-size: 1.2rem !important; /* ~19px, bold and distinct */
+                line-height: 1.3 !important;
+                margin-bottom: 0.65rem !important;
+                font-weight: 700 !important;
+                color: #ffffff !important;
+                letter-spacing: -0.015em !important;
+            }
+            .space-y-10 p,
+            .space-y-12 p,
+            article p {
+                font-size: 0.8125rem !important; /* 13px */
+                line-height: 1.65 !important;
+                color: #d4d4d8 !important;
+            }
+            ul {
+                padding-left: 1.25rem !important;
+                gap: 0.5rem !important;
+                margin-top: 0.65rem !important;
+                margin-bottom: 0.65rem !important;
+            }
+            ul li {
+                font-size: 0.8125rem !important;
+                line-height: 1.6 !important;
+                color: #d4d4d8 !important;
+            }
+            /* Clean, Non-colliding Code Box without ugly scrollbars */
+            .code-box {
+                padding: 0.85rem 1rem !important;
+                margin-top: 1rem !important;
+                margin-bottom: 1.25rem !important;
+                border-radius: 0.625rem !important;
+                background: rgba(10, 10, 10, 0.95) !important;
+            }
+            .code-line {
+                font-size: 0.7rem !important;
+                line-height: 1.65 !important;
+                white-space: nowrap !important;
+                display: flex !important;
+                align-items: baseline !important;
+            }
+            .code-num {
+                width: 1.75rem !important;
+                flex-shrink: 0 !important;
+                color: #52525b !important;
+                user-select: none !important;
+                display: inline-block !important;
+            }
+            .space-y-10 .grid > div,
+            .space-y-12 .grid > div,
+            article .grid > div,
+            .repo-card {
+                padding: 0.85rem 1rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- HUD Overlay -->
+    <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
+    <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
+
+    <!-- Header -->
+    <header class="w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-8 md:pt-12 flex justify-between items-center relative z-20">
+        <a href="index.html" class="btn-back">
+            <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 8H3M7 12L3 8l4-4"/>
+            </svg>
+            <span class="btn-back-text">Back to all projects</span>
+        </a>
+
+        <div class="flex items-center gap-4 h-6">
+            <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors flex items-center justify-center w-5 h-5" aria-label="GitHub Profile">
+                <svg class="w-5 h-5 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors flex items-center justify-center w-5 h-5" aria-label="LinkedIn Profile">
+                <svg class="w-5 h-5 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-10 pb-16 md:pt-14 md:pb-24">
+        
+        <article class="space-y-12">
+            
+            <!-- Project Header -->
+            <header class="space-y-6 pb-8 border-b border-white/[0.06]">
+                <h1 class="font-display text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
+                    Machine Learning Experiments<span class="text-gray-600">.</span>
+                </h1>
+
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed font-sans max-w-3xl">
+                    Comprehensive suite of practical machine learning implementations covering Deep Learning Computer Vision (CNNs), Natural Language Processing (BiLSTM Sentiment Analysis), and Unsupervised Anomaly Clustering (PCA &amp; K-Means).
+                </p>
+
+                <!-- Action Links: Jump to Open Source Repositories (Desktop & Mobile) -->
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <a href="#repositories" class="btn-action btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        <span class="sm:hidden">GitHub Repos</span>
+                        <span class="hidden sm:inline">Browse GitHub Repos (6)</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Project Details Body -->
+            <div class="space-y-12 text-gray-300 text-base md:text-lg leading-loose font-sans max-w-3xl">
+                
+                <!-- Section 1: Computer Vision -->
+                <div class="space-y-4">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight">
+                        Computer Vision <span class="hidden sm:inline">(Natural Scene Classification)</span>
+                    </h2>
+                    <p class="text-gray-400">
+                        An end-to-end Deep Learning pipeline for natural scene image classification across 6 categories (Buildings, Forest, Glacier, Mountain, Sea, Street) trained on the Intel Image Dataset.
+                    </p>
+                    
+                    <!-- Clean Stat Cards Row: 2x2 on mobile, 4 columns on desktop -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 text-center font-sans my-3">
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-base sm:text-xl font-bold text-white">88.00%</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Test Acc</div>
+                        </div>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-base sm:text-xl font-bold text-white">0.3406</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Test Loss</div>
+                        </div>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-base sm:text-xl font-bold text-white">4 Layers</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">CNN Block</div>
+                        </div>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-base sm:text-xl font-bold text-white">3 Exports</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">TF/Lite/JS</div>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-300 leading-relaxed font-sans">
+                        <strong class="text-white">Architecture &amp; Deployment:</strong> 4 Convolutional blocks, ReLU activations, MaxPooling, Flatten, Dense layer (512 neurons), 0.3 Dropout regularization, and Softmax classification. Exported to TensorFlow SavedModel for production servers, TensorFlow Lite for mobile edge, and TensorFlow.js for in-browser client inference.
+                    </p>
+                </div>
+
+                <!-- Section 2: Natural Language Processing -->
+                <div class="space-y-4">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight">
+                        Natural Language Processing <span class="hidden sm:inline">(Gojek Review Sentiment)</span>
+                    </h2>
+                    <p class="text-gray-400">
+                        Complete NLP workflow analyzing user sentiment on the Gojek application from Google Play Store reviews, classifying feedback into Positive, Neutral, and Negative categories.
+                    </p>
+
+                    <!-- Clean Stat Cards Row -->
+                    <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center font-sans my-3">
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">88.69%</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Test Accuracy</div>
+                        </div>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">BiLSTM</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Sequence Model</div>
+                        </div>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">EarlyStop</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Overfit Guard</div>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-300 leading-relaxed font-sans">
+                        <strong class="text-white">Pipeline:</strong> Custom review scraping, Indonesian text cleaning, tokenization, word embeddings, Bidirectional LSTM layers, Dense ReLU layers, and Softmax classification. Monitored with confusion matrices and classification reports.
+                    </p>
+                </div>
+
+                <!-- Section 3: Unsupervised Machine Learning -->
+                <div class="space-y-4">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight">
+                        Unsupervised Anomaly Detection <span class="hidden sm:inline">(Fraud Transaction Clustering)</span>
+                    </h2>
+                    <p class="text-gray-400">
+                        Unsupervised customer transaction anomaly detection grouping financial behaviors to isolate suspicious activities and potential fraudulent patterns without labeled training data.
+                    </p>
+
+                    <!-- Clean Stat Cards Row -->
+                    <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center font-sans my-3">
+                        <div class="p-2 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">0.572</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Silhouette</div>
+                        </div>
+                        <div class="p-2 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">2 Clusters</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Separation</div>
+                        </div>
+                        <div class="p-2 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">PCA</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Dim Reduction</div>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-300 leading-relaxed font-sans">
+                        <strong class="text-white">Methodology:</strong> Multi-feature scaling (Transaction Amount, Age, Duration, Login Attempts, Balance), correlation matrix analysis, Principal Component Analysis for dimensionality reduction, and K-Means clustering.
+                    </p>
+                </div>
+
+                <!-- Open Source Repositories Section -->
+                <div id="repositories" class="pt-6 scroll-mt-8">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-4">
+                        Open Source Training Repositories
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans">
+                        
+                        <!-- Repo 1 -->
+                        <a href="https://github.com/miqdadbadjuber/image-classification-tensorflow" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">image-classification-tensorflow</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                CNN natural scene classifier with 88% accuracy, SavedModel, TFLite, and TF.js exports.
+                            </p>
+                        </a>
+
+                        <!-- Repo 2 -->
+                        <a href="https://github.com/miqdadbadjuber/sentiment-analysis-gojek" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">sentiment-analysis-gojek</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Indonesian review sentiment classifier with Bidirectional LSTM and 88.69% accuracy.
+                            </p>
+                        </a>
+
+                        <!-- Repo 3 -->
+                        <a href="https://github.com/miqdadbadjuber/fraud_detection_clustering" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">fraud_detection_clustering</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Unsupervised customer transaction clustering with K-Means and PCA visualization.
+                            </p>
+                        </a>
+
+                        <!-- Repo 4 -->
+                        <a href="https://github.com/miqdadbadjuber/fraud-detection-classification" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">fraud-detection-classification</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Supervised classification models for predicting high-risk transaction patterns.
+                            </p>
+                        </a>
+
+                        <!-- Repo 5 -->
+                        <a href="https://github.com/miqdadbadjuber/Eksperimen_SML_Miqdad" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">Eksperimen_SML_Miqdad</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Supervised machine learning benchmarking suite across tabular prediction datasets.
+                            </p>
+                        </a>
+
+                        <!-- Repo 6 -->
+                        <a href="https://github.com/miqdadbadjuber/Workflow-CI" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">Workflow-CI</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Continuous integration pipeline automating model training checks and deployment tests.
+                            </p>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- Bottom Back Navigation -->
+                <div class="pt-8 border-t border-white/[0.06] flex items-center">
+                    <a href="index.html" class="btn-back">
+                        <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 8H3M7 12L3 8l4-4"/>
+                        </svg>
+                        <span class="btn-back-text">Back to all projects</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-[1000px] mx-auto px-6 md:px-12 py-10 border-t border-white/[0.06] flex justify-between items-center text-xs text-gray-500 font-sans relative z-20">
+        <div>&copy; 2026 Miqdad Badjuber</div>
+        
+        <div class="flex items-center gap-4">
+            <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub Profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn Profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

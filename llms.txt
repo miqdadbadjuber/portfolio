@@ -1,0 +1,50 @@
+# Miqdad Badjuber
+
+> Indonesian AI & Machine Learning Engineer focused on machine learning model training, agentic AI skill development, and applied web systems. Actively developing open-source developer tooling and practical AI software including AntiSlop and ContextForge.
+
+## Overview
+
+- **Name:** Miqdad Badjuber
+- **Role:** AI & Machine Learning Engineer
+- **Location:** Indonesia
+- **Website:** https://miqdadbadjuber.id/
+- **Google Developer Profile:** https://g.dev/miqdadbadjuber
+- **GitHub:** https://github.com/miqdadbadjuber
+- **LinkedIn:** https://www.linkedin.com/in/miqdadbadjuber/
+
+## Background & Philosophy
+
+Miqdad started his programming journey in early 2024, inspired by Mustafa Suleyman's book "The Coming Wave". Guided by a strong curiosity for how artificial intelligence works under the hood, he advanced into deep exploration of machine learning algorithms, model training architectures, and agentic workflows. 
+
+His engineering philosophy centers on continuous learning, consistency, and building practical solutions that solve real software challenges through clean code and deterministic systems.
+
+## Core Technical Skills
+
+- **Machine Learning & Deep Learning:** Model training, convolutional neural networks, transfer learning, computer vision, natural language processing, data pipeline engineering (TensorFlow, PyTorch, Scikit-learn).
+- **Agentic AI & Skills Development:** Custom agent skill authoring, tool integrations, deterministic rule engines, context pruning, CLI coding agent workflows.
+- **Context Engineering:** AST symbol pruning, dynamic memory injection, token overhead optimization for LLM developer environments.
+- **Full-Stack Web Development:** Modern responsive web applications, Tailwind CSS, JavaScript, interactive canvas rendering, clean architecture.
+- **Workflow Automation:** Orchestrating enterprise automation using n8n, webhook pipelines, Discord integrations, and Google Workspace endpoints.
+
+## Featured Projects
+
+- [AntiSlop](https://miqdadbadjuber.id/projects/anti-ai-slop.html): An open-source deterministic rule and skill package designed to prevent AI coding agents from generating generic, over-styled UI slop.
+- [ContextForge](https://miqdadbadjuber.id/projects/contextforge.html): High-precision context engine for LLM coding agents, reducing token payload overhead through intelligent symbol indexing.
+- [DiagramPilot](https://miqdadbadjuber.id/projects/diagrampilot.html): Interactive AI diagram generation engine converting natural language requirements into architectural diagrams.
+- [OpenFolio](https://miqdadbadjuber.id/projects/openfolio.html): Minimalist, zero-slop developer portfolio framework built for high performance.
+- [Machine Learning Experiments](https://miqdadbadjuber.id/projects/machine-learning.html): Production-grade ML pipelines including Natural Scene Classification (92.4% accuracy), Sentiment Analysis, and Fraud Transaction Clustering.
+- [Automation Workflow Engine](https://miqdadbadjuber.id/projects/automation-workflow.html): Self-hosted automation orchestrator connecting multi-platform webhooks and Google Workspace APIs.
+
+## Technical Writing & Articles
+
+- [AntiSlop: Stopping Coding Agents from Generating Generic UI](https://miqdadbadjuber.id/blog/anti-ai-slop.html): Why LLMs possess native bias toward generic styles and how deterministic rule systems eliminate visual hallucinations.
+- [Context Engineering vs Fine-Tuning](https://miqdadbadjuber.id/blog/context-engineering-vs-finetuning.html): How surgical context injection and AST symbol pruning outperform static weight retraining in production codebase refactors.
+- [Optimizing Canvas 3D ASCII Sphere Renders to a Rock-Solid 60 FPS](https://miqdadbadjuber.id/blog/optimizing-canvas-ascii-60fps.html): Eliminating garbage collection freezes in JavaScript point-cloud math through bitwise integer luminescence precomputation.
+- [Building Resilient AI Bots with n8n and Google Workspace](https://miqdadbadjuber.id/blog/ai-agents-n8n-workspace.html): Architecture guide connecting Discord webhooks, self-hosted n8n orchestrators, and Google Apps Script endpoints.
+
+## Verified Credentials & Recognitions
+
+- **Google Developer:** Verified Developer Profile at [g.dev/miqdadbadjuber](https://g.dev/miqdadbadjuber).
+- **Google Skills:** Agent Engineering & ML Training credentials and skill badges.
+- **Dicoding Academy:** Verified Machine Learning, Deep Learning, and Python certifications.
+- **Full-Stack SaaS Development:** SaaS application development using modern AI developer ecosystems.

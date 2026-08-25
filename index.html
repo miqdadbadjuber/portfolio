@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Engineer | Miqdad Badjuber</title>
-    <meta name="description" content="Miqdad Badjuber, Indonesian AI engineer focused on ML, SaaS &amp; workflow automation. Creator of Anti AI Slop, a suite of 6 skills for AI coding agents, available on the Claude Code marketplace &amp; skill.sh.">
+    <meta name="description" content="Indonesian AI &amp; Machine Learning Engineer focused on machine learning model training, agentic AI skill development, and applied web systems. Actively developing open-source developer tooling and practical AI software including AntiSlop and ContextForge.">
     <meta name="author" content="Miqdad Badjuber">
     <meta name="theme-color" content="#020202">
     <link rel="canonical" href="https://miqdadbadjuber.id/">
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="6XwQVGer5c79QM2lV16pF7Zjcu2Bw3QvBM4vX_huRdA" />
 
-
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="AI Engineer | Miqdad Badjuber">
-    <meta property="og:description" content="Miqdad Badjuber, Indonesian AI engineer focused on ML, SaaS &amp; workflow automation. Creator of Anti AI Slop, a suite of 6 skills for AI coding agents, available on the Claude Code marketplace &amp; skill.sh.">
+    <meta property="og:description" content="Indonesian AI &amp; Machine Learning Engineer focused on machine learning model training, agentic AI skill development, and applied web systems. Actively developing open-source developer tooling and practical AI software including AntiSlop and ContextForge.">
     <meta property="og:site_name" content="Miqdad Badjuber Portfolio">
     <meta property="og:image" content="https://miqdadbadjuber.id/assets/images/og-cover.jpg">
     <meta property="og:image:width" content="1200">
@@ -25,11 +24,12 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Engineer | Miqdad Badjuber">
-    <meta name="twitter:description" content="Miqdad Badjuber, Indonesian AI engineer focused on ML, SaaS &amp; workflow automation. Creator of Anti AI Slop, a suite of 6 skills for AI coding agents, available on the Claude Code marketplace &amp; skill.sh.">
+    <meta name="twitter:description" content="Indonesian AI &amp; Machine Learning Engineer focused on machine learning model training, agentic AI skill development, and applied web systems. Actively developing open-source developer tooling and practical AI software including AntiSlop and ContextForge.">
     <meta name="twitter:image" content="https://miqdadbadjuber.id/assets/images/og-cover.jpg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/logo-web-favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/logo-web-favicon.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,11 +50,11 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Miqdad Badjuber",
-        "jobTitle": "AI Engineer",
+        "jobTitle": "AI & Machine Learning Engineer",
         "url": "https://miqdadbadjuber.id/",
         "image": "https://miqdadbadjuber.id/assets/images/profile.webp",
         "nationality": "Indonesia",
-        "description": "Indonesian AI engineer focused on machine learning, SaaS, and workflow automation. Creator of Anti AI Slop, an open-source skill that helps AI coding agents produce interfaces that don't look generic.",
+        "description": "Indonesian AI & Machine Learning Engineer focused on machine learning model training, agentic AI skill development, and applied web systems. Actively developing open-source developer tooling and practical AI software including AntiSlop and ContextForge.",
         "sameAs": [
             "https://github.com/miqdadbadjuber",
             "https://www.linkedin.com/in/miqdadbadjuber/",
@@ -63,14 +63,21 @@
             "https://www.youtube.com/@miqdadbadjuberr",
             "https://g.dev/miqdadbadjuber"
         ],
-        "knowsAbout": ["Artificial Intelligence", "AI Agents", "Machine Learning", "SaaS Development", "Workflow Automation", "Open Source"]
+        "knowsAbout": [
+            "Machine Learning",
+            "Deep Learning",
+            "Agentic AI & Coding Skills",
+            "Context Engineering",
+            "Computer Vision & NLP",
+            "Full-Stack Web Development",
+            "Workflow Automation",
+            "Open Source Tooling"
+        ]
     }
     </script>
 
     <style>
-        /* ======================== */
-        /* Design Tokens            */
-        /* ======================== */
+        /* Design Tokens */
         :root {
             --color-void: #020202;
             --color-cyan: #00f0ff;
@@ -81,12 +88,14 @@
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* ======================== */
-        /* Base                     */
-        /* ======================== */
+                /* Base                     */
+        html {
+            scrollbar-gutter: stable;
+        }
+
         @media (min-width: 1024px) {
             html {
-                font-size: 80%; /* Scales down REM-based layout for users with 125% OS scale, keeping it centered */
+                font-size: 80%; 
             }
         }
         
@@ -98,9 +107,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ======================== */
         /* Performance Layers & GPU */
-        /* ======================== */
         #navbar {
             will-change: transform;
             transform: translateZ(0);
@@ -135,9 +142,7 @@
             animation-play-state: paused !important;
         }
 
-        /* ======================== */
-        /* Accessibility            */
-        /* ======================== */
+        /* Accessibility */
         .skip-to-content {
             position: fixed;
             top: -4rem;
@@ -183,38 +188,7 @@
             border: 0;
         }
 
-        /* ======================== */
-        /* Circle/Ring Cursor       */
-        /* ======================== */
-        .cursor-ring {
-            position: fixed;
-            top: 0; left: 0;
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 240, 255, 0.5);
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: screen;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.2);
-            transition: width var(--transition-base) ease-out, height var(--transition-base) ease-out, border-color var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
-            will-change: transform;
-        }
-        .cursor-ring.hovering {
-            width: 60px; height: 60px;
-            border-color: var(--color-purple);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), inset 0 0 15px rgba(138, 43, 226, 0.4);
-            background-color: rgba(138, 43, 226, 0.1);
-        }
-        /* Hide cursor ring on touch devices */
-        @media (hover: none) and (pointer: coarse) {
-            .cursor-ring { display: none !important; }
-        }
-
-        /* ======================== */
-        /* ======================== */
-        /* 3D Canvas / Iframe       */
-        /* ======================== */
+                /* 3D Canvas / Iframe */
         #bg-iframe {
             position: absolute;
             top: 0; left: 0;
@@ -232,9 +206,7 @@
                 transform: translateX(-25vw) scale(0.8) translateZ(0);
             }
         }
-        /* ======================== */
-        /* Typography               */
-        /* ======================== */
+        /* Typography */
         .font-sora {
             font-family: 'Sora', sans-serif;
         }
@@ -242,6 +214,11 @@
             font-size: clamp(2.3rem, 6vw, 6rem);
             line-height: 1;
             letter-spacing: -0.02em;
+        }
+        @media (min-width: 768px) {
+            #home h1 {
+                margin-left: -6px !important;
+            }
         }
         .text-gradient {
             background: linear-gradient(to right, #ffffff, var(--color-cyan), var(--color-purple), #ffffff);
@@ -252,10 +229,7 @@
         }
         @keyframes textShine { to { background-position: 300% center; } }
 
-        /* ================================================= */
-        /* ========================================================== */
-        /* Matte Stealth Minimalist Buttons (Opsi 01)                 */
-        /* ========================================================== */
+                /* Buttons */
         .btn-matte-stealth, .btn-scifi {
             display: inline-flex;
             align-items: center;
@@ -296,7 +270,7 @@
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Secondary outline button - consistent styling */
+        /* Secondary button */
         .btn-outline {
             display: inline-flex;
             align-items: center;
@@ -310,9 +284,480 @@
             color: #ffffff;
         }
 
-        /* ======================== */
-        /* Background Elements      */
-        /* ======================== */
+        /* Dropdown navigation */
+        .details-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            background: transparent;
+            border: none;
+            padding: 0.35rem 0.25rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #d1d5db;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .details-btn-text {
+            position: relative;
+        }
+        .details-btn-text::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0%;
+            height: 1.5px;
+            background: linear-gradient(to right, #00f0ff, #ffffff);
+            border-radius: 9999px;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+        }
+        .details-nav-btn:hover .details-btn-text::after,
+        .details-nav-btn[aria-expanded="true"] .details-btn-text::after {
+            width: 100%;
+        }
+        .details-nav-btn:hover,
+        .details-nav-btn[aria-expanded="true"] {
+            color: #ffffff;
+        }
+        .details-btn-chevron {
+            width: 0.8rem;
+            height: 0.8rem;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+            stroke-width: 2.2;
+            color: #9ca3af;
+        }
+        .details-nav-btn:hover .details-btn-chevron,
+        .details-nav-btn[aria-expanded="true"] .details-btn-chevron {
+            color: #00f0ff;
+        }
+        .details-nav-btn[aria-expanded="true"] .details-btn-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Container */
+        .details-dropdown {
+            position: absolute;
+            top: calc(100% + 0.6rem);
+            left: 0;
+            min-width: 180px;
+            background: rgba(2, 2, 2, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.75rem;
+            padding: 0.35rem;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px) scale(0.98);
+            transform-origin: top left;
+            transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.2s;
+            z-index: 150;
+        }
+        .details-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Dropdown item */
+        .details-menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.45rem 0.65rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: #9ca3af;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .details-menu-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+        }
+        .details-menu-item:hover .details-item-indicator {
+            background-color: #00f0ff;
+            box-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+        }
+        .details-item-indicator {
+            width: 4px;
+            height: 4px;
+            border-radius: 9999px;
+            background-color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        /* Underline indicator */
+        .solid-wipe-line {
+            position: absolute;
+            left: 0;
+            top: 12%;
+            height: 76%;
+            width: 1.5px;
+            background-color: #00f0ff !important;
+            box-shadow: none !important;
+            filter: none !important;
+            border-radius: 9999px;
+            z-index: 20;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        /* Blog Section Styles */
+        /* Blog Section (Horizontal Minimalist Feed with Spoiler) */
+        .blog-row-item {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 1.5rem !important;
+            padding: 1.5rem 1.75rem;
+            background: rgba(255, 255, 255, 0.008);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1rem;
+            transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+            text-decoration: none;
+        }
+        .blog-row-item:hover {
+            border-color: rgba(0, 240, 255, 0.3) !important;
+            background: rgba(255, 255, 255, 0.015);
+        }
+        .blog-row-item:hover h3 {
+            color: #00f0ff !important;
+        }
+
+        .blog-text-container {
+            max-width: 38rem;
+        }
+
+        /* Hover arrow */
+        .blog-arrow-circle {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280 !important;
+            background: transparent;
+            border: 1px solid transparent;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(0.92);
+            flex-shrink: 0;
+        }
+        .blog-arrow-circle svg {
+            width: 1.15rem;
+            height: 1.15rem;
+            color: inherit;
+            stroke: currentColor;
+            stroke-width: 2;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .blog-row-item:hover .blog-arrow-circle {
+            color: #020202 !important;
+            background: #ffffff !important;
+            border-color: #ffffff !important;
+            box-shadow: none !important;
+            filter: none !important;
+            transform: scale(1);
+        }
+        .blog-row-item:hover .blog-arrow-circle svg {
+            transform: translateX(1.5px);
+        }
+
+        /* Spoiler mask */
+        .blog-spoiler-wrapper {
+            position: relative;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: 300px;
+            overflow: hidden;
+        }
+        @media (max-width: 768px) {
+            .blog-spoiler-wrapper {
+                max-height: 420px;
+            }
+        }
+        .blog-spoiler-mask {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 110px;
+            background: linear-gradient(to bottom, 
+                rgba(2, 2, 2, 0) 0%, 
+                rgba(2, 2, 2, 0.7) 45%, 
+                rgba(2, 2, 2, 0.98) 85%, 
+                #020202 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+        .tag-tech {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 4px;
+        }
+        .btn-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0.25rem 0;
+        }
+        .btn-view-all:hover {
+            color: #ffffff;
+        }
+        .btn-view-all-text {
+            position: relative;
+            padding-bottom: 3px;
+        }
+        .btn-view-all-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(to right, #00f0ff, #ffffff);
+            border-radius: 9999px;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+        .btn-view-all:hover .btn-view-all-text::after {
+            width: 100%;
+        }
+        .btn-view-all-arrow {
+            width: 1.05rem;
+            height: 1.05rem;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-view-all:hover .btn-view-all-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Project CTA */
+        .project-cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(0, 240, 255, 0.85);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 2px;
+            transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-cta-link:hover,
+        .group:hover .project-cta-link,
+        .project-card:hover .project-cta-link {
+            color: #ffffff;
+        }
+        .project-cta-text {
+            position: relative;
+        }
+        .project-cta-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 1.5px;
+            background: linear-gradient(to right, #00f0ff, #ffffff);
+            border-radius: 9999px;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+        .project-cta-link:hover .project-cta-text::after,
+        .group:hover .project-cta-link .project-cta-text::after,
+        .project-card:hover .project-cta-link .project-cta-text::after {
+            width: 100%;
+        }
+
+        /* Card arrow */
+        .project-arrow-circle {
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #020202 !important;
+            opacity: 0;
+            transform: scale(0.6) translateX(-6px);
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            flex-shrink: 0;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+        .project-arrow-circle svg {
+            width: 0.85rem;
+            height: 0.85rem;
+            color: inherit;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .project-arrow-circle,
+        .project-card:hover .project-arrow-circle,
+        .project-cta-link:hover .project-arrow-circle {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+        }
+        .group:hover .project-arrow-circle svg,
+        .project-card:hover .project-arrow-circle svg,
+        .project-cta-link:hover .project-arrow-circle svg {
+            transform: translateX(1.5px);
+        }
+
+        /* Repo arrow */
+        .repo-arrow-circle {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            background: transparent;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+        .repo-arrow-circle svg {
+            width: 13px;
+            height: 13px;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover .repo-arrow-circle,
+        .group:hover .repo-arrow-circle {
+            background: #ffffff !important;
+            color: #020202 !important;
+            transform: scale(1.05);
+        }
+        .glass-card:hover .repo-arrow-circle svg,
+        .group:hover .repo-arrow-circle svg {
+            transform: translate(0.5px, -0.5px);
+        }
+
+        /* Certificate arrow */
+        .cert-arrow-circle {
+            width: 1.375rem;
+            height: 1.375rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #020202 !important;
+            opacity: 0;
+            transform: scale(0.6) translateX(-4px);
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            flex-shrink: 0;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+        .cert-arrow-circle svg {
+            width: 0.75rem;
+            height: 0.75rem;
+            color: inherit;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cert-card:hover .cert-arrow-circle,
+        .group:hover .cert-arrow-circle {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+        }
+        .cert-card:hover .cert-arrow-circle svg,
+        .group:hover .cert-arrow-circle svg {
+            transform: translateX(1.5px);
+        }
+
+        /* Spoiler fade mask */
+        .projects-spoiler-wrapper {
+            position: relative;
+            max-height: 1250px;
+            overflow: hidden;
+        }
+        @media (max-width: 768px) {
+            .projects-spoiler-wrapper {
+                max-height: 950px;
+            }
+        }
+        .projects-spoiler-mask {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 280px;
+            background: linear-gradient(to bottom, 
+                rgba(2, 2, 2, 0) 0%, 
+                rgba(2, 2, 2, 0.65) 40%, 
+                rgba(2, 2, 2, 0.96) 80%, 
+                #020202 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .certs-spoiler-wrapper {
+            position: relative;
+            max-height: 480px;
+            overflow: hidden;
+        }
+        @media (max-width: 640px) {
+            .certs-spoiler-wrapper {
+                max-height: 600px;
+            }
+        }
+        .certs-spoiler-mask {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, 
+                rgba(2, 2, 2, 0) 0%, 
+                rgba(2, 2, 2, 0.65) 40%, 
+                rgba(2, 2, 2, 0.96) 80%, 
+                #020202 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Background Elements */
         .bg-grid {
             position: fixed; inset: 0; z-index: -1; pointer-events: none;
             background-image: 
@@ -331,8 +776,7 @@
             .noise { display: none; }
         }
 
-        /* HUD Lines */
-        .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
+                .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
 
         /* Section divider */
         .section-divider {
@@ -341,9 +785,7 @@
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
         }
 
-        /* ======================== */
-        /* Tech Stack Badges        */
-        /* ======================== */
+        /* Tech Stack Badges */
         .tag-tech {
             display: inline-block;
             padding: 0.25rem 0.625rem;
@@ -365,92 +807,63 @@
             border-color: rgba(0, 240, 255, 0.08);
         }
 
-        /* ======================== */
-        /* Card Styles              */
-        /* ======================== */
+        /* Card Styles */
         .glass-card, .project-card, .cert-card {
             background-color: rgba(255, 255, 255, 0.008);
             border: 1px solid rgba(255, 255, 255, 0.06);
             transition: border-color var(--transition-slow) ease,
-                        transform var(--transition-slow) var(--ease-out),
                         box-shadow var(--transition-slow) var(--ease-out);
         }
         .glass-card:hover, .project-card:hover, .cert-card:hover {
-            transform: translateY(-2px);
             border-color: rgba(255, 255, 255, 0.16);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        /* ========================================================== */
-        /* Sample 03: Ultra Soft Harmonic Spring Tab Switcher         */
-        /* ========================================================== */
-        .tab-switcher-track {
-            background-color: #0c0d12;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.75rem;
-            padding: 4px;
+        /* Credentials tab switcher */
+        .tab-box-track {
+            display: inline-flex;
+            gap: 0.375rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
-            display: flex;
-            width: 100%;
+            padding-bottom: 0.35rem;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
-        @media (min-width: 640px) {
-            .tab-switcher-track {
-                width: auto;
-            }
-        }
-        .tab-switcher-pill {
+        .tab-box-line {
             position: absolute;
-            top: 4px;
-            bottom: 4px;
-            left: 4px;
-            width: calc(50% - 4px);
-            background-color: rgba(255, 255, 255, 0.09);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: 0.5rem;
+            bottom: -1px;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 9999px;
+            transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
-            transition: transform 0.42s cubic-bezier(0.22, 1.08, 0.36, 1);
         }
-        @media (min-width: 640px) {
-            .tab-switcher-pill {
-                width: 9rem;
-            }
-        }
-        .tab-switcher-btn {
-            position: relative;
-            z-index: 10;
-            flex: 1 1 0%;
-            padding-top: 0.625rem;
-            padding-bottom: 0.625rem;
-            text-align: center;
+        .tab-box-btn {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
+            font-size: 0.8125rem;
+            font-weight: 600;
             background: transparent;
             border: none;
             cursor: pointer;
+            padding: 0.45rem 0.95rem;
+            border-radius: 0.5rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
         }
-        @media (min-width: 640px) {
-            .tab-switcher-btn {
-                width: 9rem;
-                flex: none;
-            }
-        }
-        .tab-btn-active {
+        .tab-box-btn.active {
             color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.06);
         }
-        .tab-btn-inactive {
-            color: #6b7280 !important;
+        .tab-box-btn.inactive {
+            color: #71717a !important;
         }
-        .tab-btn-inactive:hover {
-            color: #d1d5db !important;
+        .tab-box-btn.inactive:hover {
+            color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.04);
         }
 
-        /* ========================================================== */
-        /* Navbar Active Harmonic Spring Underline                    */
-        /* ========================================================== */
+        /* Navbar active indicator */
         .nav-active-line {
             position: absolute;
             bottom: -4px;
@@ -465,9 +878,7 @@
                         opacity 0.3s ease;
         }
 
-        /* ======================== */
-        /* Reduced Motion           */
-        /* ======================== */
+        /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -475,28 +886,30 @@
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
-            .cursor-ring { display: none !important; }
         }
 
-        /* ======================== */
-        /* Mobile Overrides         */
-        /* ======================== */
+        /* Mobile Overrides */
 
         /* Hide mobile-only elements on desktop */
         .mobile-only { display: none; }
         .mobile-project-carousel { display: none; }
         .mobile-about-text { display: none; }
+        .mobile-about-btn { display: none; }
+        .desktop-about-btn { display: block; }
 
         @media (max-width: 1023px) {
             /* Show mobile-only elements */
             .mobile-only { display: block; }
             .mobile-project-carousel { display: block !important; }
+            .mobile-about-btn { display: block !important; }
 
-            /* 1. Hero: name sized correctly & centered */
+            /* Hero mobile */
             #home h1 {
                 font-size: clamp(2.8rem, 13vw, 4.5rem);
                 text-align: center;
-                line-height: 0.9;
+                line-height: 1.05;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
             }
             #home .gsap-hero {
                 width: 100%;
@@ -510,18 +923,29 @@
             #home .gsap-hero > div {
                 justify-content: center;
             }
-            /* 2. About: hide desktop text, show mobile condensed version */
+            /* About mobile */
             #about .desktop-about-text { display: none !important; }
+            #about .desktop-about-btn { display: none !important; }
             #about .mobile-about-text { display: block !important; }
 
-            /* Keep current focus bullet point titles, hide sub-descriptions */
+            
             #about .space-y-4 p { display: none; }
-            /* Keep the left border line on current focus */
+            
 
-            /* 3. Projects: hide original structure, show carousel */
+            /* Projects carousel mobile */
             #projects .space-y-6 { display: none !important; }
 
-            /* 4. Credentials: compact */
+            /* Credentials mobile */
+            .tab-box-track {
+                display: flex !important;
+                width: 100% !important;
+            }
+            .tab-box-btn {
+                flex: 1 !important;
+                text-align: center !important;
+                justify-content: center !important;
+                padding: 0.5rem 0.5rem !important;
+            }
             #credentials .border.rounded-xl {
                 padding: 0.6rem !important;
             }
@@ -532,42 +956,139 @@
                 padding: 0.6rem !important;
             }
 
-            /* 5. Google credentials: compact row - profile bigger */
+            /* Google credentials mobile */
             #google-developer .grid {
                 grid-template-columns: 1fr;
-                gap: 0.75rem;
+                gap: 1rem;
             }
-            #google-developer a.flex {
+            #google-developer a.glass-card {
                 flex-direction: row !important;
                 align-items: center !important;
-                gap: 1rem !important;
-                padding: 1rem !important;
+                gap: 0.875rem !important;
+                padding: 1.125rem 3.25rem 1.125rem 1rem !important;
+                position: relative !important;
             }
             #google-developer div[class*="w-16"],
             #google-developer div[class*="w-20"] {
-                width: 5rem !important;
-                height: 5rem !important;
-                min-width: 5rem;
-                flex-shrink: 0;
+                width: 3.75rem !important;
+                height: 3.75rem !important;
+                min-width: 3.75rem !important;
+                flex-shrink: 0 !important;
             }
             #google-developer h3 {
-                font-size: 1rem;
+                font-size: 0.95rem !important;
+                margin-bottom: 0.15rem !important;
             }
-            /* Hide verbose description and badge grid in google cards */
+            #google-developer span[class*="tracking-"] {
+                font-size: 8px !important;
+                letter-spacing: 0.1em !important;
+                margin-bottom: 0.4rem !important;
+            }
+            #google-developer .repo-arrow-circle {
+                position: absolute !important;
+                top: 1rem !important;
+                right: 1rem !important;
+                width: 1.75rem !important;
+                height: 1.75rem !important;
+                opacity: 1 !important;
+                transform: scale(1) !important;
+                background: transparent !important;
+                color: #9ca3af !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            }
+            #google-developer a.glass-card:hover .repo-arrow-circle,
+            #google-developer a.glass-card:focus .repo-arrow-circle,
+            #google-developer a.glass-card:focus-visible .repo-arrow-circle,
+            #google-developer a.glass-card:active .repo-arrow-circle {
+                background: #ffffff !important;
+                color: #020202 !important;
+                transform: scale(1.05) !important;
+            }
+            
             #google-developer .flex.flex-col.gap-2\.5,
             #google-developer .grid.grid-cols-3 {
-                display: none;
+                display: none !important;
             }
 
-            /* 6. Contact: smaller mono font */
+            /* Blog mobile */
+            .blog-spoiler-wrapper {
+                max-height: 270px !important;
+            }
+            .blog-spoiler-mask {
+                height: 80px !important;
+            }
+            .blog-row-item {
+                display: block !important;
+                position: relative !important;
+                padding: 0.85rem 1rem !important;
+                background-color: rgba(6, 6, 6, 0.7) !important;
+                backdrop-filter: blur(12px) !important;
+                -webkit-backdrop-filter: blur(12px) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                border-radius: 0.875rem !important;
+                margin-bottom: 0.625rem !important;
+            }
+            .blog-text-container {
+                max-width: 100% !important;
+                padding-right: 1.75rem !important;
+            }
+            .blog-row-item h3 {
+                font-size: 0.8125rem !important;
+                line-height: 1.35 !important;
+                margin-bottom: 0.25rem !important;
+                font-weight: 700 !important;
+            }
+            .blog-row-item p {
+                font-size: 0.6875rem !important;
+                line-height: 1.45 !important;
+                color: #9ca3af !important;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2 !important;
+                -webkit-box-orient: vertical !important;
+                overflow: hidden !important;
+            }
+            .blog-arrow-circle {
+                position: absolute !important;
+                top: 0.75rem !important;
+                right: 0.75rem !important;
+                width: 1.35rem !important;
+                height: 1.35rem !important;
+                opacity: 1 !important;
+                transform: scale(1) !important;
+                background: transparent !important;
+                color: #71717a !important;
+                border-color: transparent !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border-radius: 9999px !important;
+                transition: all 0.2s ease !important;
+            }
+            .blog-arrow-circle svg {
+                width: 0.7rem !important;
+                height: 0.7rem !important;
+                stroke-width: 2.2 !important;
+            }
+            .blog-row-item:hover .blog-arrow-circle,
+            .blog-row-item:focus .blog-arrow-circle,
+            .blog-row-item:focus-visible .blog-arrow-circle,
+            .blog-row-item:active .blog-arrow-circle {
+                background: #ffffff !important;
+                color: #020202 !important;
+                border-color: #ffffff !important;
+                transform: scale(1.05) !important;
+            }
+
+            /* Contact mobile */
             #contact .font-mono {
                 font-size: 0.7rem;
             }
         }
 
-        /* ======================== */
-        /* Mobile Contact Drawer    */
-        /* ======================== */
+        /* Mobile Contact Drawer */
         .mobile-contact-toggle-wrap {
             display: block;
         }
@@ -599,46 +1120,70 @@
         }
     </style>
 
-
 </head>
 <body class="js-loading">
 
     <!-- Skip to Content - Accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-    <!-- Circle/Ring Cursor -->
-    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
-
     <!-- Backgrounds -->
     <iframe src="assets/bumi.html?v=2" id="bg-iframe" aria-hidden="true" frameborder="0" data-lenis-prevent></iframe>
     <div class="bg-grid" aria-hidden="true"></div>
     <div class="noise" aria-hidden="true"></div>
 
-    <!-- ================================ -->
-    <!-- Navigation                       -->
-    <!-- ================================ -->
-    <nav class="fixed top-0 w-full z-[100] transition-transform duration-500 bg-[#020202]/80 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.1)]" id="navbar" aria-label="Main navigation">
+        <!-- Navigation                       -->
+        <nav class="fixed top-0 w-full z-[100] transition-transform duration-500 bg-[#020202]/80 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.1)]" id="navbar" aria-label="Main navigation">
         <div class="max-w-[1400px] mx-auto px-6 py-4 md:py-3 flex justify-between items-center relative z-20">
-            <!-- Left: Logo -->
+            <!-- Menu Trigger -->
             <div class="flex items-center sm:w-32">
-                <a href="#home" class="flex items-center" aria-label="Go to homepage"><img src="assets/images/logo-web-nav.webp" alt="" width="169" height="169" class="h-7 w-7 object-contain"></a>
+                <div class="relative" id="details-menu-container">
+                    <button id="details-btn" class="details-nav-btn group" aria-haspopup="true" aria-expanded="false" aria-controls="details-dropdown" data-cursor-hover aria-label="Toggle details navigation">
+                        <span class="details-btn-text">Details</span>
+                        <svg class="details-btn-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 6l4 4 4-4"/>
+                        </svg>
+                    </button>
+
+                    <!-- Details Dropdown Menu -->
+                    <div id="details-dropdown" class="details-dropdown" role="menu" aria-label="Details menu">
+                        <div class="space-y-0.5">
+                            <a href="about/index.html" class="details-menu-item" role="menuitem" data-cursor-hover>
+                                <span>About</span>
+                                <span class="details-item-indicator"></span>
+                            </a>
+                            <a href="projects/index.html" class="details-menu-item" role="menuitem" data-cursor-hover>
+                                <span>Projects</span>
+                                <span class="details-item-indicator"></span>
+                            </a>
+                            <a href="credentials/index.html" class="details-menu-item" role="menuitem" data-cursor-hover>
+                                <span>Credentials</span>
+                                <span class="details-item-indicator"></span>
+                            </a>
+                            <a href="blog/index.html" class="details-menu-item" role="menuitem" data-cursor-hover>
+                                <span>Blog</span>
+                                <span class="details-item-indicator"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Center: Nav links with active underline -->
+            <!-- Nav Links -->
             <div class="hidden md:flex relative items-center gap-8 font-sora text-xs font-medium" id="nav-links-desktop" role="list">
-                <!-- Harmonic Spring Underline Indicator -->
+                <!-- Underline Indicator -->
                 <div id="nav-active-line" class="nav-active-line"></div>
 
                 <a href="#home" class="nav-link text-white font-semibold transition-colors duration-300 py-1" data-cursor-hover role="listitem">Home</a>
                 <a href="#about" class="nav-link text-gray-400 hover:text-white transition-colors duration-300 py-1" data-cursor-hover role="listitem">About</a>
                 <a href="#projects" class="nav-link text-gray-400 hover:text-white transition-colors duration-300 py-1" data-cursor-hover role="listitem">Projects</a>
                 <a href="#credentials" class="nav-link text-gray-400 hover:text-white transition-colors duration-300 py-1" data-cursor-hover role="listitem">Credentials</a>
+                <a href="#blog" class="nav-link text-gray-400 hover:text-white transition-colors duration-300 py-1" data-cursor-hover role="listitem">Blog</a>
                 <a href="#contact" class="nav-link text-gray-400 hover:text-white transition-colors duration-300 py-1" data-cursor-hover role="listitem">Contact</a>
             </div>
 
-            <!-- Right: GitHub & LinkedIn (Desktop) & Hamburger (Mobile) -->
+            <!-- Social Links -->
             <div class="flex items-center sm:w-32 justify-end gap-3">
-                <!-- Desktop Social Links (Clean White Icons) -->
+                <!-- Social Icons -->
                 <div class="hidden md:flex items-center gap-4">
                     <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300 transition-colors duration-300 flex items-center justify-center py-1" aria-label="GitHub Profile" data-cursor-hover>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
@@ -648,7 +1193,7 @@
                     </a>
                 </div>
 
-                <!-- Mobile hamburger -->
+                <!-- Hamburger Menu -->
                 <button class="md:hidden text-gray-400 hover:text-white p-2 transition-colors relative" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" data-cursor-hover>
                     <svg id="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="transition-all duration-300" aria-hidden="true">
                         <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -666,6 +1211,7 @@
                 <a href="#about" class="font-sora text-sm font-semibold text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">About</a>
                 <a href="#projects" class="font-sora text-sm font-semibold text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">Projects</a>
                 <a href="#credentials" class="font-sora text-sm font-semibold text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">Credentials</a>
+                <a href="#blog" class="font-sora text-sm font-semibold text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">Blog</a>
                 <a href="#contact" class="font-sora text-sm font-semibold text-gray-300 hover:text-white transition-all" role="menuitem" tabindex="-1">Contact</a>
                 
                 <div class="pt-4 border-t border-white/[0.08] flex items-center gap-6">
@@ -680,35 +1226,34 @@
         </div>
     </nav>
 
-    <!-- UI Overlay Lines -->
+    <!-- HUD Overlay -->
     <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block" aria-hidden="true"></div>
     <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block" aria-hidden="true"></div>
 
     <main class="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-20" id="main-content">
         
-        <!-- ================================ -->
-        <!-- HERO SECTION                     -->
-        <!-- ================================ -->
-        
+                <!-- Hero -->
+                
         <section id="home" class="flex flex-col justify-center relative min-h-[100vh]" aria-label="Introduction">
             <div class="gsap-hero relative z-10 w-full lg:w-3/5 text-left pt-12 md:pt-0 md:translate-x-[48px]">
                 <!-- Main Headline -->
-                <h1 class="font-display font-black text-mega uppercase text-white mb-6 break-words leading-[0.9] tracking-tighter">
+                <h1 class="font-display font-black text-mega text-white mb-6 break-words leading-[1.02] md:leading-[0.96] tracking-tight">
                     Miqdad<br>Badjuber
                 </h1>
                 
-                <!-- Subtitle (Animated Typewriter) -->
-                <div class="h-8 font-display text-sm md:text-base tracking-[0.2em] md:tracking-[0.25em] text-cyanGlow/80 uppercase font-semibold flex items-center" aria-live="polite" aria-atomic="true">
-                    <span id="typewriter-text"></span>
+                <!-- Subtitle (Animated Line-Sweep Reveal) -->
+                <div class="relative inline-block align-middle" style="height: 2.25rem;" aria-live="polite" aria-atomic="true">
+                    <div id="hero-wipe-line" class="solid-wipe-line opacity-0"></div>
+                    <div id="hero-text-wrap" class="overflow-hidden font-display text-base md:text-lg tracking-[0.2em] md:tracking-[0.25em] text-cyanGlow uppercase font-semibold whitespace-nowrap" style="clip-path: inset(0 100% 0 0); width: max-content; display: block; line-height: 2.25rem;">
+                        <span id="typewriter-text" style="display: inline-block;">AI Engineer</span>
+                    </div>
                 </div>
                 
             </div>
         </section>
 
-        <!-- ================================ -->
-        <!-- ABOUT SECTION                    -->
-        <!-- ================================ -->
-        <section id="about" class="py-16 md:py-24" aria-label="About me">
+                <!-- About -->
+                <section id="about" class="py-16 md:py-24" aria-label="About me">
             <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter mb-12 md:mb-16">
                 About<br><span class="text-gray-600">Me.</span>
             </h2>
@@ -719,29 +1264,32 @@
                     <!-- Desktop: two paragraphs -->
                     <div class="desktop-about-text">
                         <p class="text-gray-300 text-base md:text-lg leading-loose mb-6">
-                            I'm an AI &amp; Machine Learning Engineer based in Indonesia. I specialize in building full-stack SaaS applications, training ML models, and developing AI agent CLI tools.
+                            I'm an AI &amp; Machine Learning Engineer based in Indonesia. My primary focus currently centers on training machine learning models and developing specialized agentic coding skills.
                         </p>
-                        <p class="text-gray-400 text-base leading-loose">
-                            I engineer complete digital ecosystems. To connect these systems, I orchestrate n8n data pipelines, build custom Google Workspace automations, and develop interactive Discord and Telegram bots.
+                        <p class="text-gray-400 text-base leading-loose mb-6">
+                            Alongside model training, I actively experiment with full-stack web applications and AI agent CLI tools, built both independently and for practical technical project submissions.
                         </p>
                     </div>
                     <!-- Mobile: single condensed paragraph -->
-                    <p class="mobile-about-text text-gray-300 text-sm leading-relaxed">
-                        AI &amp; ML Engineer from Indonesia building full-stack SaaS, training models, orchestrating n8n, and developing AI agents &amp; bots.
+                    <p class="mobile-about-text text-gray-300 text-sm leading-relaxed mb-6">
+                        AI &amp; ML Engineer from Indonesia focused on ML model training, agentic coding skills, full-stack apps, and AI agent CLI tools.
                     </p>
+
+                    <!-- Link to full About page (Desktop) -->
+                    <div class="desktop-about-btn mt-8" style="margin-top: 2rem;">
+                        <a href="about/index.html" class="btn-view-all group" data-cursor-hover>
+                            <span class="btn-view-all-text">Read Full Story &amp; Background</span>
+                            <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 8h10M9 4l4 4-4 4"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 
                 <!-- Right - What I Focus On -->
                 <div class="border-l border-white/[0.06] pl-8 lg:pl-12">
                     <h3 class="font-display text-[13px] font-bold text-white mb-6 tracking-wide uppercase">Current Focus</h3>
                     <div class="space-y-4">
-                        <div>
-                            <div class="flex items-center gap-3 mb-1">
-                                <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
-                                <span class="font-display text-sm font-medium text-white">Full-Stack SaaS Development</span>
-                            </div>
-                            <p class="text-gray-500 text-sm pl-[18px]">Building scalable web applications from database to deployment.</p>
-                        </div>
                         <div>
                             <div class="flex items-center gap-3 mb-1">
                                 <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
@@ -752,31 +1300,42 @@
                         <div>
                             <div class="flex items-center gap-3 mb-1">
                                 <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                                <span class="font-display text-sm font-medium text-white">Full-Stack SaaS Development</span>
+                            </div>
+                            <p class="text-gray-500 text-sm pl-[18px]">Building scalable web applications from database to deployment.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-1">
+                                <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true"></div>
                                 <span class="font-display text-sm font-medium text-white">Workflow Automation &amp; Bots</span>
                             </div>
                             <p class="text-gray-500 text-sm pl-[18px]">Orchestrating n8n pipelines, Workspace scripts, and community bots.</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Link to full About page (Mobile: Positioned at bottom of entire section) -->
+                <div class="mobile-about-btn -mt-4">
+                    <a href="about/index.html" class="btn-view-all group" data-cursor-hover>
+                        <span class="btn-view-all-text">Read Full Story &amp; Background</span>
+                        <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 8h10M9 4l4 4-4 4"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </section>
 
         <div class="section-divider" role="separator"></div>
 
-
-        <!-- ================================ -->
-        <!-- PROJECTS SECTION                 -->
-        <!-- ================================ -->
-        
+                <!-- Projects -->
+                
         <section id="projects" class="py-16 md:py-24" aria-label="Selected projects">
-            <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter mb-5">
+            <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter mb-8 md:mb-12">
                 Selected<br><span class="text-gray-600">Projects.</span>
             </h2>
-            <p class="gsap-fade text-gray-500 max-w-lg text-sm leading-relaxed mb-12 md:mb-16">
-                A selection of systems I've designed and built. Each one started with a real problem that needed solving.
-            </p>
 
-            <!-- MOBILE PROJECTS CAROUSEL (hidden on desktop via CSS) -->
+            <!-- Mobile Carousel -->
             <div class="mobile-project-carousel mb-8" style="display:none">
                 <style>
                     .mobile-carousel-track {
@@ -785,8 +1344,8 @@
                         scroll-snap-type: x mandatory;
                         -webkit-overflow-scrolling: touch;
                         scroll-behavior: smooth;
-                        gap: 1rem;
-                        padding: 0.5rem 1rem 1rem 1rem;
+                        gap: 1.25rem;
+                        padding: 0.5rem 1rem 1.25rem 1rem;
                         scrollbar-width: none;
                         -ms-overflow-style: none;
                     }
@@ -794,7 +1353,7 @@
                         display: none;
                     }
                     .mobile-carousel-slide {
-                        flex: 0 0 82vw;
+                        flex: 0 0 84vw;
                         max-width: 340px;
                         scroll-snap-align: center;
                         scroll-snap-stop: always;
@@ -805,83 +1364,101 @@
                     .mobile-carousel-slide:active {
                         transform: scale(0.98);
                     }
+                    .mobile-project-card {
+                        background-color: rgba(6, 6, 6, 0.7) !important;
+                        backdrop-filter: blur(12px);
+                        -webkit-backdrop-filter: blur(12px);
+                        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                        border-radius: 1.25rem !important;
+                        overflow: hidden;
+                        box-shadow: none !important;
+                        filter: none !important;
+                    }
+                    .mobile-carousel-slide .project-arrow-circle {
+                        opacity: 1 !important;
+                        transform: scale(1) translateX(0) !important;
+                        pointer-events: auto !important;
+                    }
+                    .mobile-carousel-slide:active .project-arrow-circle {
+                        transform: scale(0.92) translateX(2px) !important;
+                    }
                 </style>
                 <div id="mobile-carousel-track" class="mobile-carousel-track">
-                    <!-- Slide 1: Anti AI Slop -->
-                    <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="mobile-carousel-slide">
-                        <div class="glass-card rounded-2xl overflow-hidden">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.04]">
-                                <img src="assets/images/antislop.webp" alt="Anti AI Slop" class="w-full h-full object-cover">
+                    <!-- Slide 1: AntiSlop -->
+                    <a href="projects/anti-ai-slop.html" class="mobile-carousel-slide">
+                        <div class="mobile-project-card">
+                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
+                                <img src="assets/images/antislop.webp" alt="AntiSlop" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
-                                <h3 class="font-display text-base font-bold text-white mb-1">Anti AI Slop</h3>
-                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">Rules & filter system to stop generic AI UI.</p>
-                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">GitHub &rarr;</span>
+                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">AntiSlop</h3>
+                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">38 deterministic rules stopping UI slop.</p>
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
                             </div>
                         </div>
                     </a>
                     <!-- Slide 2: ContextForge -->
-                    <a href="https://miqdadbadjuber.github.io/contextforge/" target="_blank" rel="noopener noreferrer" class="mobile-carousel-slide">
-                        <div class="glass-card rounded-2xl overflow-hidden">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.04]">
+                    <a href="projects/contextforge.html" class="mobile-carousel-slide">
+                        <div class="mobile-project-card">
+                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
                                 <img src="assets/images/contextforge.webp" alt="ContextForge" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
-                                <h3 class="font-display text-base font-bold text-white mb-1">ContextForge</h3>
-                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">CLI tool injecting optimal context for AI coding.</p>
-                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">Roadmap &rarr;</span>
+                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">ContextForge</h3>
+                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">CLI tool indexing code &amp; pruning context bundles.</p>
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
                             </div>
                         </div>
                     </a>
                     <!-- Slide 3: DiagramPilot -->
-                    <a href="https://diagrampilot.my.id/" target="_blank" rel="noopener noreferrer" class="mobile-carousel-slide">
-                        <div class="glass-card rounded-2xl overflow-hidden">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.04]">
+                    <a href="projects/diagrampilot.html" class="mobile-carousel-slide">
+                        <div class="mobile-project-card">
+                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
                                 <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
-                                <h3 class="font-display text-base font-bold text-white mb-1">DiagramPilot AI</h3>
-                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">AI agent for generating infrastructure diagrams.</p>
-                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">Live URL &rarr;</span>
+                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">DiagramPilot AI</h3>
+                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">Generates interactive diagrams from conversations.</p>
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
                             </div>
                         </div>
                     </a>
                     <!-- Slide 4: OpenFolio -->
-                    <a href="https://openfolio.my.id/" target="_blank" rel="noopener noreferrer" class="mobile-carousel-slide">
-                        <div class="glass-card rounded-2xl overflow-hidden">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.04]">
+                    <a href="projects/openfolio.html" class="mobile-carousel-slide">
+                        <div class="mobile-project-card">
+                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
                                 <img src="assets/images/openfolio.webp" alt="OpenFolio AI" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
-                                <h3 class="font-display text-base font-bold text-white mb-1">OpenFolio AI</h3>
-                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">Intelligent portfolio generator using LLMs.</p>
-                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">Live URL &rarr;</span>
+                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">OpenFolio AI</h3>
+                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">Serverless studio building custom portfolios.</p>
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
                             </div>
                         </div>
                     </a>
                     <!-- Slide 5: Automation Workflow -->
-                    <a href="#" class="mobile-carousel-slide">
-                        <div class="glass-card rounded-2xl overflow-hidden">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.04]">
+                    <a href="projects/automation-workflow.html" class="mobile-carousel-slide">
+                        <div class="mobile-project-card">
+                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
                                 <img src="assets/images/automation_workflow.webp" alt="Automation Workflow" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
-                                <h3 class="font-display text-base font-bold text-white mb-1">Automation Workflow</h3>
-                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">Automated data pipelines using n8n and webhooks.</p>
-                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">View Details &rarr;</span>
+                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">Automation Workflow</h3>
+                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">Event pipelines with n8n, bots &amp; Apps Script.</p>
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
                             </div>
                         </div>
                     </a>
                     <!-- Slide 6: Machine Learning -->
-                    <a href="https://github.com/miqdadbadjuber/Workflow-CI" target="_blank" rel="noopener noreferrer" class="mobile-carousel-slide">
-                        <div class="glass-card rounded-2xl overflow-hidden">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.04]">
+                    <a href="projects/machine-learning.html" class="mobile-carousel-slide">
+                        <div class="mobile-project-card">
+                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
                                 <img src="assets/images/machine_learning.webp" alt="Machine Learning" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
-                                <h3 class="font-display text-base font-bold text-white mb-1">Machine Learning</h3>
-                                <p class="text-gray-400 text-xs mb-3 leading-relaxed">Trained predictive models for workflow automation.</p>
-                                <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80">GitHub &rarr;</span>
+                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">Machine Learning</h3>
+                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">CNN, BiLSTM sentiment &amp; K-Means clustering suites.</p>
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
                             </div>
                         </div>
                     </a>
@@ -1016,130 +1593,143 @@
                 </script>
             </div>
 
-            <div class="space-y-6">
-                
-                <!-- PROJECT 1 - Anti Slop (NEW) -->
-                <article class="gsap-fade" data-cursor-hover>
-                    <div class="project-card rounded-2xl p-6 md:p-12 lg:p-16 hover:border-cyanGlow/15 group">
-                        <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
-                            <div class="flex-1 flex flex-col justify-center">
-                                <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Anti AI Slop</h3>
-                                <p class="text-gray-400 text-base leading-relaxed mb-6 max-w-xl">A specialist rules document and filter system designed to stop AI coding agents from generating generic UI ("AI slop"). Implements a 3-file system to maintain aesthetic liveliness and high craftsmanship without limiting visual preferences.</p>
-                                <div class="pt-4 flex flex-wrap gap-2">
-                                    <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 hover:text-cyanGlow transition-colors inline-flex items-center gap-1.5">GitHub →</a>
+            <!-- Projects List -->
+            <div class="projects-spoiler-wrapper">
+                <div class="space-y-6">
+                    
+                    <!-- PROJECT 1 - AntiSlop -->
+                    <article class="gsap-fade" data-cursor-hover>
+                        <div class="project-card rounded-2xl p-6 md:p-12 lg:p-16 hover:border-cyanGlow/15 group">
+                            <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
+                                <div class="flex-1 flex flex-col justify-center">
+                                    <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">AntiSlop</h3>
+                                    <p class="text-gray-400 text-base leading-relaxed mb-6 max-w-xl">38 mandatory deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop and robotic copy without restricting genuine design creativity.</p>
+                                    <div class="pt-4 flex flex-wrap gap-2">
+                                        <a href="projects/anti-ai-slop.html" class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+                                    </div>
+                                </div>
+                                <!-- Project Image -->
+                                <div class="flex-1 w-full aspect-video my-auto rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02]">
+                                    <img src="assets/images/antislop.webp" alt="AntiSlop banner" loading="lazy" decoding="async" fetchpriority="low" width="1280" height="720" class="absolute inset-0 w-full h-full object-cover object-center">
                                 </div>
                             </div>
-                            <!-- Project Image -->
-                            <div class="flex-1 w-full aspect-video my-auto rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02]">
-                                <img src="assets/images/antislop.webp" alt="Anti AI Slop banner" loading="lazy" decoding="async" fetchpriority="low" width="1280" height="720" class="absolute inset-0 w-full h-full object-cover object-center">
-                            </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
 
-                <!-- PROJECT 2 - ContextForge -->
-                <article class="gsap-fade" data-cursor-hover>
-                    <div class="project-card rounded-2xl p-6 md:p-12 lg:p-16 hover:border-cyanGlow/15 group relative overflow-hidden">
-                        <div class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-16">
-                            <div class="flex-1 flex flex-col justify-center">
-                                <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">ContextForge</h3>
-                                <p class="text-gray-400 text-base leading-relaxed mb-6 max-w-xl">CLI tool that intelligently builds, compresses, and injects optimal context windows for AI coding assistants. Understands file relevance to produce lean, token-efficient context bundles.</p>
-                                <div class="pt-4 flex flex-wrap gap-2">
-                                    <a href="https://miqdadbadjuber.github.io/contextforge/" target="_blank" rel="noopener noreferrer" class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 hover:text-cyanGlow transition-colors inline-flex items-center gap-1.5">Roadmap →</a>
+                    <!-- PROJECT 2 - ContextForge -->
+                    <article class="gsap-fade" data-cursor-hover>
+                        <div class="project-card rounded-2xl p-6 md:p-12 lg:p-16 hover:border-cyanGlow/15 group relative overflow-hidden">
+                            <div class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-16">
+                                <div class="flex-1 flex flex-col justify-center">
+                                    <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">ContextForge</h3>
+                                    <p class="text-gray-400 text-base leading-relaxed mb-6 max-w-xl">CLI tool that indexes codebases, scores file relevance, and uses AST symbol pruning to build token-efficient context bundles, cutting token consumption by up to 83%.</p>
+                                    <div class="pt-4 flex flex-wrap gap-2">
+                                        <a href="projects/contextforge.html" class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+                                    </div>
+                                </div>
+                                <!-- Project Image -->
+                                <div class="flex-1 w-full aspect-video my-auto rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02]">
+                                    <img src="assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" fetchpriority="low" width="1280" height="720" class="absolute inset-0 w-full h-full object-cover object-center">
                                 </div>
                             </div>
-                            <!-- Project Image -->
-                            <div class="flex-1 w-full aspect-video my-auto rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02]">
-                                <img src="assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" fetchpriority="low" width="1280" height="720" class="absolute inset-0 w-full h-full object-cover object-center">
+                        </div>
+                    </article>
+
+                    <!-- Grid for Remaining Projects -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 gsap-fade">
+                        <!-- Project 3: DiagramPilot AI -->
+                        <a href="projects/diagrampilot.html" class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
+                            <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
                             </div>
-                        </div>
+                            <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">DiagramPilot AI</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Full-stack Next.js tool converting natural language into interactive Mermaid architecture diagrams with pan, zoom, and SVG export.</p>
+                            <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
+                            </div>
+                        </a>
+
+                        <!-- Project 4: OpenFolio AI -->
+                        <a href="projects/openfolio.html" class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
+                            <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
+                            </div>
+                            <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">OpenFolio AI</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">React 19 SPA and Express serverless studio that conducts guest-only interviews to build, revise, and deploy custom developer portfolios to live URLs.</p>
+                            <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
+                            </div>
+                        </a>
+
+                        <!-- Project 5: Automation Workflow Engine -->
+                        <a href="projects/automation-workflow.html" class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
+                            <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
+                            </div>
+                            <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Automation Workflow Engine</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Event-driven workflows connecting Discord, Telegram, self-hosted n8n orchestrators, and automated reporting pipelines.</p>
+                            <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
+                            </div>
+                        </a>
+
+                        <!-- Project 6: Machine Learning -->
+                        <a href="projects/machine-learning.html" class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
+                            <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                                <img src="assets/images/machine_learning.webp" alt="Machine Learning Portfolio" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
+                            </div>
+                            <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Machine Learning</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Model training suites covering CNN classification (88%), BiLSTM sentiment analysis (88.69%), and K-Means clustering.</p>
+                            <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span>
+                            </div>
+                        </a>
                     </div>
-                </article>
 
-                <!-- Grid for Remaining Projects -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 gsap-fade">
-                    <!-- Project 3: DiagramPilot AI -->
-                    <a href="https://diagrampilot.my.id/" target="_blank" rel="noopener noreferrer" class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
-                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
-                            <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
-                        </div>
-                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">DiagramPilot AI</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-4">A production-ready, AI-native assistant that helps developers automatically generate architecture diagrams from natural language conversations.</p>
-                        <div class="mt-auto pt-4 flex flex-wrap gap-2">
-                            <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 group-hover:text-cyanGlow transition-colors">Live URL →</span>
-                        </div>
-                    </a>
-
-                    <!-- Project 4: OpenFolio AI -->
-                    <a href="https://openfolio.my.id/" target="_blank" rel="noopener noreferrer" class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
-                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
-                            <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
-                        </div>
-                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">OpenFolio AI</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-4">An AI-powered portfolio generator that creates personalized portfolio websites from user data. Handles content generation, template selection, and deployment.</p>
-                        <div class="mt-auto pt-4 flex flex-wrap gap-2">
-                            <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 group-hover:text-cyanGlow transition-colors">Live URL →</span>
-                        </div>
-                    </a>
-
-                    <!-- Project 5: Automation Workflow Engine -->
-                    <a href="#" class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
-                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
-                            <img src="assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
-                        </div>
-                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Automation Workflow Engine</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Self-hosted n8n instance with custom workflows for data processing, notifications, and third-party API orchestration.</p>
-                        <div class="mt-auto pt-4 flex flex-wrap gap-2">
-                            <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 group-hover:text-cyanGlow transition-colors">View Details →</span>
-                        </div>
-                    </a>
-
-                    <!-- Project 6: Machine Learning -->
-                    <a href="https://github.com/miqdadbadjuber/Workflow-CI" target="_blank" rel="noopener noreferrer" class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group cursor-pointer" data-cursor-hover>
-                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
-                            <img src="assets/images/machine_learning.webp" alt="Machine Learning Portfolio" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
-                        </div>
-                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Machine Learning</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Collection of ML projects covering image classification, sentiment analysis, clustering, and predictive modeling.</p>
-                        <div class="mt-auto pt-4 flex flex-wrap gap-2">
-                            <span class="text-[10px] uppercase tracking-widest font-bold text-cyanGlow/80 group-hover:text-cyanGlow transition-colors">GitHub →</span>
-                        </div>
-                    </a>
+                    <!-- OTHER PROJECTS - Two Column Grid -->
+                    <div class="gsap-fade grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                        <!-- Google Workspace Automation -->
+                        <article class="project-card rounded-2xl p-8 md:p-10 hover:border-white/[0.12]" data-cursor-hover>
+                            <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">Google Workspace Automation</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-5">Custom automation scripts that connect Google Sheets, Drive, and Forms into unified workflows. Eliminates manual data entry and file management across the workspace.</p>
+                        </article>
+                        <!-- Discord & Telegram Automation -->
+                        <article class="project-card rounded-2xl p-8 md:p-10 hover:border-cyanGlow/30 transition-colors duration-500" data-cursor-hover>
+                            <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">Discord &amp; Telegram Automation</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-5">Bot systems for community management across Discord and Telegram. Handles role assignment, notifications, user verification, and moderation workflows.</p>
+                        </article>
+                    </div>
                 </div>
 
-                <!-- OTHER PROJECTS - Two Column Grid -->
-                <div class="gsap-fade grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Google Workspace Automation -->
-                    <article class="project-card rounded-2xl p-8 md:p-10 hover:border-white/[0.12]" data-cursor-hover>
-                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">Google Workspace Automation</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Custom automation scripts that connect Google Sheets, Drive, and Forms into unified workflows. Eliminates manual data entry and file management across the workspace.</p>
-                    </article>
-                    <!-- Discord & Telegram Automation -->
-                    <article class="project-card rounded-2xl p-8 md:p-10 hover:border-cyanGlow/30 transition-colors duration-500" data-cursor-hover>
-                        <h3 class="font-display text-lg md:text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">Discord &amp; Telegram Automation</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Bot systems for community management across Discord and Telegram. Handles role assignment, notifications, user verification, and moderation workflows.</p>
-                    </article>
+                <!-- Gradient Veil -->
+                <div class="projects-spoiler-mask"></div>
+            </div>
 
-                </div>
+            <!-- View All Projects -->
+            <div class="pt-8 flex justify-center relative z-20">
+                <a href="projects/index.html" class="btn-view-all group" data-cursor-hover>
+                    <span class="btn-view-all-text">View All Projects</span>
+                    <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 8h10M9 4l4 4-4 4"/>
+                    </svg>
+                </a>
             </div>
         </section>
 
         <div class="section-divider" role="separator"></div>
 
-        <!-- ================================ -->
-        <!-- CREDENTIALS & CODE SECTION       -->
-        <!-- ================================ -->
-        <section id="credentials" class="py-16 md:py-24" aria-label="Credentials and open source">
+                <!-- Credentials -->
+                <section id="credentials" class="py-16 md:py-24" aria-label="Credentials and open source">
             <div class="flex flex-col lg:flex-row justify-between lg:items-end mb-12 md:mb-16 gap-6">
                 <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter">
                     Credentials<br><span class="text-gray-600">&amp; Code.</span>
                 </h2>
                 
                 <!-- Tab Controls (ARIA Tabs) -->
-                <div class="gsap-fade tab-switcher-track" role="tablist" aria-label="Credentials tabs">
-                    <div id="tab-sliding-pill" class="tab-switcher-pill"></div>
-                    <button id="tab-btn-github" role="tab" aria-selected="true" aria-controls="content-github" class="tab-switcher-btn tab-btn-active">Open Source</button>
-                    <button id="tab-btn-certs" role="tab" aria-selected="false" aria-controls="content-certs" class="tab-switcher-btn tab-btn-inactive">Certifications</button>
+                <div class="gsap-fade tab-box-track" id="credentials-tab-track" role="tablist" aria-label="Credentials tabs">
+                    <button id="tab-btn-github" role="tab" aria-selected="true" aria-controls="content-github" class="tab-box-btn active">Open Source</button>
+                    <button id="tab-btn-certs" role="tab" aria-selected="false" aria-controls="content-certs" class="tab-box-btn inactive">Certifications</button>
+                    <div id="tab-sliding-line" class="tab-box-line"></div>
                 </div>
             </div>
 
@@ -1148,226 +1738,310 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
                 <!-- Repo 1: Anti Slop -->
                 <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 group" data-cursor-hover>
-                    <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center justify-between mb-4">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700 group-hover:text-cyanGlow/60 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        <div class="repo-arrow-circle" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </div>
                     </div>
-                    <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">anti-slop</h4>
-                    <p class="text-gray-600 text-xs leading-relaxed">AI agent designed to detect and filter low-quality generative AI content.</p>
+                    <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">AntiSlop</h4>
+                    <p class="text-gray-600 text-xs leading-relaxed">Specialist rules and skill package preventing AI coding agents from generating UI slop.</p>
                 </a>
 
-                <!-- Repo 2: ContextForge (Coming Soon) -->
-                <a href="https://github.com/miqdadbadjuber/contextforge" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 group" data-cursor-hover>
-                    <div class="flex items-start justify-between mb-4">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                        <span class="text-[8px] uppercase tracking-widest font-bold px-2 py-0.5 bg-cyanGlow/10 text-cyanGlow rounded border border-cyanGlow/20 whitespace-nowrap">Coming Soon</span>
-                    </div>
-                    <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">contextforge</h4>
-                    <p class="text-gray-600 text-xs leading-relaxed">CLI tool for injecting repository context into LLM system prompts.</p>
-                </a>
-
-                <!-- Repo 3: DiagramPilot -->
+                <!-- Repo 2: DiagramPilot -->
                 <a href="https://github.com/miqdadbadjuber/DiagramPilot-AI" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 group" data-cursor-hover>
-                    <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center justify-between mb-4">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700 group-hover:text-cyanGlow/60 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        <div class="repo-arrow-circle" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </div>
                     </div>
                     <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">DiagramPilot-AI</h4>
-                    <p class="text-gray-600 text-xs leading-relaxed">Generates beautiful architectural diagrams directly from natural language prompts.</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">Generates interactive architectural diagrams directly from natural language prompts.</p>
                 </a>
 
-                <!-- Repo 4: OpenFolio -->
+                <!-- Repo 3: OpenFolio -->
                 <a href="https://github.com/miqdadbadjuber/OpenFolio-AI" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 group" data-cursor-hover>
-                    <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center justify-between mb-4">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700 group-hover:text-cyanGlow/60 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        <div class="repo-arrow-circle" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </div>
                     </div>
                     <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">OpenFolio-AI</h4>
-                    <p class="text-gray-600 text-xs leading-relaxed">AI-powered portfolio generator with content creation and deployment capabilities.</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">AI-powered portfolio studio with interview workflows and instant deployment capabilities.</p>
+                </a>
+
+                <!-- Repo 4: Portfolio (This Website) -->
+                <a href="https://github.com/miqdadbadjuber/portfolio" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 group" data-cursor-hover>
+                    <div class="flex items-center justify-between mb-4">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <div class="repo-arrow-circle" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </div>
+                    </div>
+                    <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow/80 transition-colors">Portfolio</h4>
+                    <p class="text-gray-600 text-xs leading-relaxed">Open-source personal developer portfolio built with Tailwind CSS and GSAP.</p>
                 </a>
             </div>
             <div class="flex justify-center mt-8">
-                <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-matte-stealth" data-cursor-hover>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                    <span>View Full GitHub Profile</span>
-                    <span class="btn-stealth-arrow">→</span>
+                <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-view-all group" data-cursor-hover>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-current shrink-0" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    <span class="btn-view-all-text">View Full GitHub Profile</span>
+                    <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 8h10M9 4l4 4-4 4"/>
+                    </svg>
                 </a>
             </div>
         </div>
 
         <!-- CERTIFICATIONS GRID -->
         <div id="content-certs" role="tabpanel" aria-labelledby="tab-btn-certs" class="hidden gsap-fade">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <!-- Certificate 12 -->
-                <a href="https://www.dicoding.com/certificates/QLZ99J629Z5D" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_12.webp?v=2" alt="Certificate Build Gen AI" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Build Gen AI</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
+            <!-- Certifications List -->
+            <div class="certs-spoiler-wrapper">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Certificate 12 -->
+                    <a href="https://www.dicoding.com/certificates/QLZ99J629Z5D" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_12.webp?v=2" alt="Certificate Build Gen AI" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Build Gen AI</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                <!-- Certificate 0a -->
-                <a href="https://developers.google.com/profile/badges/recognitions/learnings?u=miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_9.webp?v=2" alt="Certificate Agent Engineering" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                    <!-- Certificate 0a -->
+                    <a href="https://developers.google.com/profile/badges/recognitions/learnings?u=miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_9.webp?v=2" alt="Certificate Agent Engineering" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Agent Engineering</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Agent Engineering</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
+                    <!-- Certificate 0b -->
+                    <a href="https://developers.google.com/profile/badges/recognitions/learnings?u=miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_10.webp?v=2" alt="Certificate AI Code Quality & Security" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">AI Code Quality & Security</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                <!-- Certificate 0b -->
-                <a href="https://developers.google.com/profile/badges/recognitions/learnings?u=miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_10.webp?v=2" alt="Certificate AI Code Quality & Security" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                    <!-- Certificate 1 -->
+                    <a href="https://www.dicoding.com/certificates/53XE1R6L0ZRN" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_1.webp?v=2" alt="Certificate Deep Learning Fundamentals from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Deep Learning Fundamentals</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- Certificate 2 -->
+                    <a href="https://www.dicoding.com/certificates/JMZVOR54QXN9" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_2.webp?v=2" alt="Certificate Membangun Sistem Machine Learning from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Build Machine Learning</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">AI Code Quality & Security</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
+                    <!-- Certificate 3 -->
+                    <a href="https://www.dicoding.com/certificates/2VX309V14XYQ" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_3.webp?v=2" alt="Certificate Learn basics of ML from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Learn basics of ML</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                <!-- Certificate 1 -->
-                <a href="https://www.dicoding.com/certificates/53XE1R6L0ZRN" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_1.webp?v=2" alt="Certificate Deep Learning Fundamentals from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                    <!-- Certificate 4 -->
+                    <a href="https://www.dicoding.com/certificates/0LZ0Y71M0X65" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_4.webp?v=2" alt="Certificate Python Programming Skills from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Python Programming Skills</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Deep Learning Fundamentals</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
-                
-                <!-- Certificate 2 -->
-                <a href="https://www.dicoding.com/certificates/JMZVOR54QXN9" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_2.webp?v=2" alt="Certificate Membangun Sistem Machine Learning from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                    <!-- Certificate 5 -->
+                    <a href="https://www.dicoding.com/certificates/RVZK0JJMQZD5" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_5.webp?v=2" alt="Certificate Learn basics of AI from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Learn basics of AI</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Build Machine Learning</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
+                    <!-- Certificate 6 -->
+                    <a href="https://certificate-verifier-1023611269119.asia-southeast1.run.app/" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_6.webp?v=2" alt="Certificate Juara Vibe Coding event" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Juara Vibe Coding</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                <!-- Certificate 3 -->
-                <a href="https://www.dicoding.com/certificates/2VX309V14XYQ" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_3.webp?v=2" alt="Certificate Learn basics of ML from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                    <!-- Certificate 7 -->
+                    <a href="https://www.linkedin.com/in/miqdadbadjuber/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_7.webp?v=2" alt="Certificate Azure AI Fundamentals from Microsoft" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Azure AI Fundamentals</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Learn basics of ML</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
+                    <!-- Certificate 8 -->
+                    <a href="https://www.linkedin.com/in/miqdadbadjuber/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_8.webp?v=2" alt="Certificate Fullstack Web Development" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Fullstack Web Development</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
 
-                <!-- Certificate 4 -->
-                <a href="https://www.dicoding.com/certificates/0LZ0Y71M0X65" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_4.webp?v=2" alt="Certificate Python Programming Skills from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                    <!-- Certificate 11 -->
+                    <a href="https://www.dicoding.com/certificates/1RXYWKQO3ZVM" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
+                        <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
+                            <img src="assets/certs/cert_11.webp?v=2" alt="Certificate Data Science" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Data Science</h4>
+                            <div class="mt-3 flex items-center gap-2 text-xs font-sans text-gray-400 group-hover:text-white transition-colors">
+                                <span>View credentials</span>
+                                <span class="cert-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Python Programming Skills</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
+                <!-- Gradient Veil -->
+                <div class="certs-spoiler-mask"></div>
+            </div>
 
-                <!-- Certificate 5 -->
-                <a href="https://www.dicoding.com/certificates/RVZK0JJMQZD5" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_5.webp?v=2" alt="Certificate Learn basics of AI from Dicoding" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
-
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Learn basics of AI</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
-
-                <!-- Certificate 6 -->
-                <a href="https://certificate-verifier-1023611269119.asia-southeast1.run.app/" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_6.webp?v=2" alt="Certificate Juara Vibe Coding competition" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
-
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Juara Vibe Coding</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
-
-                <!-- Certificate 7 -->
-                <a href="https://www.linkedin.com/in/miqdadbadjuber/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_7.webp?v=2" alt="Certificate Azure AI Fundamentals from Microsoft" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
-
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Azure AI Fundamentals</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
-
-                <!-- Certificate 8 -->
-                <a href="https://www.linkedin.com/in/miqdadbadjuber/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_8.webp?v=2" alt="Certificate Fullstack Web Development" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
-
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Fullstack Web Development</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
-                </a>
-
-                <!-- Certificate 11 -->
-                <a href="https://www.dicoding.com/certificates/1RXYWKQO3ZVM" target="_blank" rel="noopener noreferrer" class="cert-card rounded-xl overflow-hidden group relative block" data-cursor-hover>
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-white/[0.08]">
-                        <img src="assets/certs/cert_11.webp?v=2" alt="Certificate Data Science" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" class="w-full h-full object-cover object-center">
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-display text-sm font-bold text-white mb-2 group-hover:text-cyanGlow transition-colors leading-tight">Data Science</h4>
-                        <p class="text-gray-400 text-xs font-sora font-medium mt-3 flex items-center gap-1.5 group-hover:text-cyanGlow transition-colors"><span>View credentials</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></p>
-                    </div>
+            <!-- View All Credentials -->
+            <div class="pt-8 flex justify-center relative z-20">
+                <a href="credentials/index.html" class="btn-view-all group" data-cursor-hover>
+                    <span class="btn-view-all-text">View All Credentials</span>
+                    <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 8h10M9 4l4 4-4 4"/>
+                    </svg>
                 </a>
             </div>
         </div>
 
         <!-- Tab Switching Script -->
         <script>
+            function updateCredentialsLine(activeBtn) {
+                const line = document.getElementById('tab-sliding-line');
+                const track = document.getElementById('credentials-tab-track');
+                if (!line || !track || !activeBtn) return;
+                const trackRect = track.getBoundingClientRect();
+                const btnRect = activeBtn.getBoundingClientRect();
+                line.style.left = (btnRect.left - trackRect.left) + 'px';
+                line.style.width = btnRect.width + 'px';
+            }
+
             function switchTab(tabId) {
-                const pill = document.getElementById('tab-sliding-pill');
                 const btnGithub = document.getElementById('tab-btn-github');
                 const btnCerts = document.getElementById('tab-btn-certs');
                 const contentGithub = document.getElementById('content-github');
                 const contentCerts = document.getElementById('content-certs');
                 
                 if (tabId === 'github') {
-                    if (pill) pill.style.transform = 'translateX(0px)';
-                    btnGithub.className = 'tab-switcher-btn tab-btn-active';
+                    btnGithub.className = 'tab-box-btn active';
                     btnGithub.setAttribute('aria-selected', 'true');
-                    btnCerts.className = 'tab-switcher-btn tab-btn-inactive';
+                    btnCerts.className = 'tab-box-btn inactive';
                     btnCerts.setAttribute('aria-selected', 'false');
+                    updateCredentialsLine(btnGithub);
                     contentGithub.classList.remove('hidden');
                     contentGithub.classList.add('block');
                     contentCerts.classList.remove('block');
                     contentCerts.classList.add('hidden');
                 } else {
-                    const offset = btnGithub.offsetWidth;
-                    if (pill) pill.style.transform = 'translateX(' + offset + 'px)';
-                    btnCerts.className = 'tab-switcher-btn tab-btn-active';
+                    btnCerts.className = 'tab-box-btn active';
                     btnCerts.setAttribute('aria-selected', 'true');
-                    btnGithub.className = 'tab-switcher-btn tab-btn-inactive';
+                    btnGithub.className = 'tab-box-btn inactive';
                     btnGithub.setAttribute('aria-selected', 'false');
+                    updateCredentialsLine(btnCerts);
                     contentCerts.classList.remove('hidden');
                     contentCerts.classList.add('block');
                     contentGithub.classList.remove('block');
@@ -1378,6 +2052,16 @@
             // Tab click handlers with keyboard support
             document.getElementById('tab-btn-github').addEventListener('click', () => switchTab('github'));
             document.getElementById('tab-btn-certs').addEventListener('click', () => switchTab('certs'));
+            
+            // Initial positioning & resize
+            window.addEventListener('DOMContentLoaded', () => {
+                const activeBtn = document.querySelector('#credentials-tab-track .tab-box-btn.active');
+                if (activeBtn) updateCredentialsLine(activeBtn);
+            });
+            window.addEventListener('resize', () => {
+                const activeBtn = document.querySelector('#credentials-tab-track .tab-box-btn.active');
+                if (activeBtn) updateCredentialsLine(activeBtn);
+            });
             
             // Arrow key navigation between tabs
             document.querySelectorAll('[role="tab"]').forEach(tab => {
@@ -1405,10 +2089,8 @@
 
         <div class="section-divider" role="separator"></div>
 
-        <!-- ================================ -->
-        <!-- GOOGLE DEVELOPER PROFILE SECTION -->
-        <!-- ================================ -->
-        <section id="google-developer" class="py-16 md:py-24" aria-label="Google Developer Profiles">
+                <!-- Google Developer Profile -->
+                <section id="google-developer" class="py-16 md:py-24" aria-label="Google Developer Profiles">
             
             <div class="mb-12 md:mb-16">
                 <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter">
@@ -1420,17 +2102,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 gsap-fade">
                 
                 <!-- Card 1: Google Developer -->
-                <a href="https://g.dev/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="glass-card flex flex-col items-center sm:flex-row sm:items-start gap-4 sm:gap-6 lg:gap-8 rounded-2xl p-6 lg:p-8 group" data-cursor-hover>
+                <a href="https://g.dev/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="glass-card relative flex flex-col items-center sm:flex-row sm:items-start gap-4 sm:gap-6 lg:gap-8 rounded-2xl p-6 lg:p-8 group" data-cursor-hover>
+                    <div class="absolute top-6 right-6 lg:top-8 lg:right-8 repo-arrow-circle" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </div>
+
                     <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-full border border-white/[0.08] p-[2px] group-hover:border-cyanGlow/40 transition-colors duration-500">
                         <img src="assets/images/profile.webp" alt="Google Developer" class="w-full h-full rounded-full object-cover">
                     </div>
                     
                     <div class="flex-1 text-center sm:text-left flex flex-col items-center sm:items-start w-full h-full justify-between">
                         <div>
-                            <div class="flex items-center gap-2 mb-1 justify-center sm:justify-start">
-                                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors">Miqdad Badjuber</h3>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-600 group-hover:text-cyanGlow/80 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            </div>
+                            <h3 class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-1">Miqdad Badjuber</h3>
                             <span class="font-display text-[9px] tracking-[0.25em] text-cyanGlow/70 uppercase block font-bold mb-4">Google Developer Member</span>
                             
                             <!-- Badges/Stats: 2 Poin -->
@@ -1451,17 +2134,18 @@
                 </a>
 
                 <!-- Card 2: Google Skill Boost -->
-                <a href="https://www.skills.google/public_profiles/fe940841-9fbf-40f7-bdd5-a56317d5579c" target="_blank" rel="noopener noreferrer" class="glass-card flex flex-col items-center sm:flex-row sm:items-start gap-6 lg:gap-8 rounded-2xl p-6 lg:p-8 group" data-cursor-hover>
-                    <div class="w-20 h-20 flex-shrink-0 rounded-full border border-white/[0.08] p-[2px] group-hover:border-cyanGlow/40 transition-colors duration-500">
+                <a href="https://www.skills.google/public_profiles/fe940841-9fbf-40f7-bdd5-a56317d5579c" target="_blank" rel="noopener noreferrer" class="glass-card relative flex flex-col items-center sm:flex-row sm:items-start gap-4 sm:gap-6 lg:gap-8 rounded-2xl p-6 lg:p-8 group" data-cursor-hover>
+                    <div class="absolute top-6 right-6 lg:top-8 lg:right-8 repo-arrow-circle" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </div>
+
+                    <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-full border border-white/[0.08] p-[2px] group-hover:border-cyanGlow/40 transition-colors duration-500">
                         <img src="assets/images/profile.webp" alt="Google Cloud Skill" class="w-full h-full rounded-full object-cover">
                     </div>
                     
                     <div class="flex-1 text-center sm:text-left flex flex-col items-center sm:items-start w-full h-full justify-between">
                         <div>
-                            <div class="flex items-center gap-2 mb-1 justify-center sm:justify-start">
-                                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors">Miqdad Badjuber</h3>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-600 group-hover:text-cyanGlow/80 transition-colors" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            </div>
+                            <h3 class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-1">Miqdad Badjuber</h3>
                             <span class="font-display text-[9px] tracking-[0.25em] text-cyanGlow/70 uppercase block font-bold mb-4">Google Cloud Skill Member</span>
                             
                             <!-- Badges/Stats: 2 Poin -->
@@ -1486,10 +2170,89 @@
 
         <div class="section-divider" role="separator"></div>
 
-        <!-- ================================ -->
-        <!-- CONTACT SECTION                  -->
-        <!-- ================================ -->
-        <section id="contact" class="py-16 md:py-24" aria-label="Contact information">
+                <!-- Blog Overview -->
+                <section id="blog" class="py-16 md:py-24" aria-label="Technical blog and articles">
+            <!-- Header (aligned with other section titles) -->
+            <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter mb-8 md:mb-12">
+                Blog<span class="text-gray-600">.</span>
+            </h2>
+
+            <!-- Blog Feed -->
+            <div class="gsap-fade blog-spoiler-wrapper">
+                <div class="space-y-4">
+                    
+                    <!-- Article 1: AntiSlop (Fully Visible) -->
+                    <a href="blog/anti-ai-slop.html" class="blog-row-item group">
+                        <div class="blog-text-container">
+                            <h3 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-2">
+                                AntiSlop: Stopping Coding Agents from Generating Generic UI
+                            </h3>
+                            <p class="text-gray-400 text-sm md:text-base leading-relaxed font-sans">
+                                Why LLMs possess a native bias toward purple gradients, and how a 3-file deterministic rule system eliminates visual hallucinations.
+                            </p>
+                        </div>
+                        <div class="blog-arrow-circle">
+                            <svg viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <!-- Article 2: Context Engineering vs Fine-Tuning (Fully Visible) -->
+                    <a href="blog/context-engineering-vs-finetuning.html" class="blog-row-item group">
+                        <div class="blog-text-container">
+                            <h3 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-2">
+                                Context Engineering vs Fine-Tuning: The Precision Key for AI Coding
+                            </h3>
+                            <p class="text-gray-400 text-sm md:text-base leading-relaxed font-sans">
+                                Why surgical context injection and AST symbol pruning outperform static model weight re-training while saving 70% in token overhead.
+                            </p>
+                        </div>
+                        <div class="blog-arrow-circle">
+                            <svg viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <!-- Article 3: Autonomous AI Agents (Partially submerged under Dark Fade Mask) -->
+                    <a href="blog/ai-agents-n8n-workspace.html" class="blog-row-item group">
+                        <div class="blog-text-container">
+                            <h3 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-2">
+                                Autonomous AI Agents with n8n and Workspace Automation
+                            </h3>
+                            <p class="text-gray-400 text-sm md:text-base leading-relaxed font-sans">
+                                Building autonomous pipelines that connect webhooks, Google Workspace data, and community bots into a unified workflow.
+                            </p>
+                        </div>
+                        <div class="blog-arrow-circle">
+                            <svg viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Gradient Veil -->
+                <div class="blog-spoiler-mask"></div>
+            </div>
+
+            <!-- View All Articles -->
+            <div class="gsap-fade pt-8 flex items-center justify-center max-w-[820px] mx-auto relative z-20">
+                <a href="blog/index.html" class="btn-view-all group">
+                    <span class="btn-view-all-text">View all articles</span>
+                    <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 8h10M9 4l4 4-4 4"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <div class="section-divider" role="separator"></div>
+
+                <!-- Contact -->
+                <section id="contact" class="py-16 md:py-24" aria-label="Contact information">
             <h2 class="gsap-fade font-display text-4xl md:text-6xl font-black tracking-tighter mb-12 text-white text-center">
                 Contact<span class="text-gray-600">.</span>
             </h2>
@@ -1542,7 +2305,7 @@
                         </div>
                     </div>
 
-                    <!-- Kanan: Contact Form (Collapsible Drawer on Mobile, Full on Desktop) -->
+                    <!-- Contact Form -->
                     <div id="mobile-contact-drawer" class="mobile-contact-drawer bg-transparent">
                         <div class="p-8 md:p-10">
                             <form class="flex flex-col gap-5 h-full font-display">
@@ -1567,16 +2330,15 @@
                                 <p id="contact-status" class="text-xs font-mono text-red-400 min-h-[1rem]" aria-live="polite"></p>
                             </form>
                         </div>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- ================================ -->
-    <!-- FOOTER                           -->
-    <!-- ================================ -->
-    <footer class="relative bg-[#020202]/90 backdrop-blur-md py-6 border-t border-white/[0.06] mt-0" role="contentinfo">
+        <!-- Footer -->
+        <footer class="relative bg-[#020202]/90 backdrop-blur-md py-6 border-t border-white/[0.06] mt-0" role="contentinfo">
         <div class="max-w-[1400px] mx-auto px-6 md:px-12">
             <!-- Desktop View -->
             <div class="hidden md:flex flex-row justify-between items-center gap-4">
@@ -1613,10 +2375,8 @@
         </div>
     </footer>
 
-    <!-- ================================ -->
-    <!-- SCRIPTS                          -->
-    <!-- ================================ -->
-
+        <!-- Scripts -->
+    
     <!-- FOUC Prevention - Remove loading class -->
     <script>document.body.classList.remove('js-loading');</script>
 
@@ -1626,52 +2386,69 @@
         if (yearEl) yearEl.textContent = new Date().getFullYear();
     </script>
 
-    <!-- Circle/Ring Cursor -->
+    <!-- Details Menu Dropdown Script -->
     <script>
         (function() {
-            const cursorRing = document.getElementById('cursor-ring');
-            
-            // Skip cursor logic entirely on touch devices - no rAF loop on mobile
-            const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-            if (isTouchDevice || !cursorRing) {
-                if (cursorRing) cursorRing.style.display = 'none';
-                return;
+            const detailsBtn = document.getElementById('details-btn');
+            const detailsDropdown = document.getElementById('details-dropdown');
+            const menuContainer = document.getElementById('details-menu-container');
+            if (!detailsBtn || !detailsDropdown || !menuContainer) return;
+
+            function toggleDetailsMenu(e) {
+                if (e) e.stopPropagation();
+                const isOpen = detailsDropdown.classList.contains('open');
+                if (isOpen) {
+                    closeDetailsMenu();
+                } else {
+                    openDetailsMenu();
+                }
             }
 
-            let mouseX = 0, mouseY = 0;
-            let ringX = 0, ringY = 0;
+            function openDetailsMenu() {
+                detailsDropdown.classList.add('open');
+                detailsBtn.setAttribute('aria-expanded', 'true');
+            }
 
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            }, { passive: true });
+            function closeDetailsMenu() {
+                detailsDropdown.classList.remove('open');
+                detailsBtn.setAttribute('aria-expanded', 'false');
+            }
 
-            document.querySelectorAll('[data-cursor-hover], a, button, .btn-scifi').forEach(el => {
-                el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'), { passive: true });
-                el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'), { passive: true });
+            detailsBtn.addEventListener('click', toggleDetailsMenu);
+
+            // Close when clicking an item
+            detailsDropdown.querySelectorAll('.details-menu-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    closeDetailsMenu();
+                });
             });
 
-            function animateCursor() {
-                const dx = mouseX - ringX;
-                const dy = mouseY - ringY;
-                if (Math.abs(dx) > 0.05 || Math.abs(dy) > 0.05) {
-                    ringX += dx * 0.15;
-                    ringY += dy * 0.15;
-                    cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+            // Close on click outside
+            document.addEventListener('click', (e) => {
+                if (!menuContainer.contains(e.target)) {
+                    closeDetailsMenu();
                 }
-                requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && detailsDropdown.classList.contains('open')) {
+                    closeDetailsMenu();
+                    detailsBtn.focus();
+                }
+            });
         })();
     </script>
 
-    <!-- Mobile Menu Toggle -->
+    <!-- Mobile Menu Toggle Script -->
     <script>
         (function() {
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerIcon = document.getElementById('hamburger-icon');
-            const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+            if (!menuToggle || !mobileMenu || !hamburgerIcon) return;
+
+            const menuLinks = mobileMenu.querySelectorAll('a');
 
             function openMenu() {
                 mobileMenu.classList.remove('scale-y-0', 'opacity-0');
@@ -1680,9 +2457,7 @@
                 menuToggle.setAttribute('aria-expanded', 'true');
                 menuToggle.setAttribute('aria-label', 'Close navigation menu');
                 hamburgerIcon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
-                // Make menu links focusable
                 menuLinks.forEach(link => link.setAttribute('tabindex', '0'));
-                // Focus first link
                 if (menuLinks.length > 0) menuLinks[0].focus();
             }
 
@@ -1693,7 +2468,6 @@
                 menuToggle.setAttribute('aria-expanded', 'false');
                 menuToggle.setAttribute('aria-label', 'Open navigation menu');
                 hamburgerIcon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
-                // Remove focusability from menu links
                 menuLinks.forEach(link => link.setAttribute('tabindex', '-1'));
             }
 
@@ -1704,14 +2478,12 @@
 
             menuToggle.addEventListener('click', toggleMenu);
 
-            // Close menu when a link is clicked
             menuLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     if (mobileMenu.classList.contains('scale-y-100')) closeMenu();
                 });
             });
 
-            // Close menu on Escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && mobileMenu.classList.contains('scale-y-100')) {
                     closeMenu();
@@ -1768,7 +2540,7 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Unified throttled scroll handler for Navbar & ScrollSpy (Zero Layout Thrashing)
+        // Throttled scroll handler for nav and scrollspy
         let lastScroll = 0;
         let navTicking = false;
         const navbar = document.getElementById('navbar');
@@ -1794,10 +2566,8 @@
             }
         }, { passive: true });
 
-        // ==========================================================
-        // Navbar Active Harmonic Spring Line & Scroll Spy
-        // ==========================================================
-        (function() {
+                // Navbar Active Harmonic Spring Line & Scroll Spy
+                (function() {
             const navContainer = document.getElementById('nav-links-desktop');
             const navLine = document.getElementById('nav-active-line');
             if (!navContainer || !navLine) return;
@@ -1855,7 +2625,7 @@
                 setActiveLink(currentActiveLink);
             });
 
-            // Cached section offsets to eliminate Layout Thrashing (zero forced reflows)
+            // Cache section offsets to avoid layout reflow
             const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
             let sectionOffsets = [];
 
@@ -1906,63 +2676,84 @@
             setTimeout(initPosition, 600);
         })();
 
-        // Typewriter Effect
+        // Line-Sweep Kinetic Role Animation
         const roles = [
             "AI Engineer",
             "Machine Learning Engineer",
             "SaaS Development",
-            "Google Workspace Automation",
-            "Automation & AI Workflow",
-            "Discord & Telegram Bot"
+            "Workflow Automation & Bots"
         ];
         
         let roleIndex = 0;
         const typewriterEl = document.getElementById('typewriter-text');
+        const wipeLineEl = document.getElementById('hero-wipe-line');
+        const textWrapEl = document.getElementById('hero-text-wrap');
         
         function playRoleAnimation() {
-            if (!typewriterEl) return;
+            if (!typewriterEl || !wipeLineEl || !textWrapEl) return;
             const text = roles[roleIndex];
-            typewriterEl.innerHTML = '';
+            typewriterEl.textContent = text;
             
             if (prefersReducedMotion) {
-                typewriterEl.textContent = text;
+                textWrapEl.style.clipPath = 'none';
+                wipeLineEl.style.opacity = '0';
                 setTimeout(() => {
                     roleIndex = (roleIndex + 1) % roles.length;
                     playRoleAnimation();
                 }, 3000);
                 return;
             }
-            
-            const chars = text.split('').map(char => {
-                const span = document.createElement('span');
-                span.textContent = char === ' ' ? '\u00A0' : char;
-                span.style.opacity = '0';
-                typewriterEl.appendChild(span);
-                return span;
-            });
-            
-            gsap.to(chars, {
-                opacity: 1,
-                duration: 0.1,
-                stagger: 0.03,
-                ease: "power2.inOut",
+
+            const totalWidth = Math.ceil(typewriterEl.getBoundingClientRect().width);
+
+            // Reset
+            textWrapEl.style.clipPath = 'inset(0 100% 0 0)';
+            gsap.set(wipeLineEl, { x: 0, opacity: 1 });
+
+            const progress = { x: 0 };
+            const tl = gsap.timeline({
                 onComplete: () => {
-                    gsap.to(chars, {
-                        opacity: 0,
-                        duration: 0.5,
-                        delay: 2.5,
-                        stagger: 0.01,
-                        ease: "power2.inOut",
-                        onComplete: () => {
-                            roleIndex = (roleIndex + 1) % roles.length;
-                            playRoleAnimation();
-                        }
-                    });
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    setTimeout(playRoleAnimation, 400);
                 }
             });
+
+            // Intro reveal animation
+            tl.to(progress, {
+                x: totalWidth,
+                duration: 0.9,
+                ease: "back.out(1.4)",
+                onUpdate: function() {
+                    const curX = progress.x;
+                    gsap.set(wipeLineEl, { x: curX });
+                    const rightRemaining = Math.max(0, ((totalWidth - curX) / totalWidth) * 100);
+                    textWrapEl.style.clipPath = `inset(0 ${rightRemaining}% 0 0)`;
+                }
+            })
+            .to(wipeLineEl, { opacity: 0, duration: 0.2 })
+            // Hold text
+            .to({}, { duration: 2.2 })
+            // Outro sweep animation
+            .call(() => {
+                progress.x = totalWidth;
+                gsap.set(wipeLineEl, { x: totalWidth, opacity: 1 });
+            })
+            .to(progress, {
+                x: 0,
+                duration: 0.7,
+                ease: "power2.inOut",
+                onUpdate: function() {
+                    const curX = Math.max(0, progress.x);
+                    gsap.set(wipeLineEl, { x: curX });
+                    const rightRemaining = Math.min(100, ((totalWidth - curX) / totalWidth) * 100);
+                    textWrapEl.style.clipPath = `inset(0 ${rightRemaining}% 0 0)`;
+                }
+            })
+            .to(wipeLineEl, { opacity: 0, duration: 0.15 })
+            .set(textWrapEl, { clipPath: 'inset(0 100% 0 0)' });
         }
         
-        setTimeout(playRoleAnimation, 800);
+        setTimeout(playRoleAnimation, 400);
     </script>
 
     <!-- Contact Form Handling & Mobile Drawer Toggle -->
@@ -2002,10 +2793,6 @@
                     drawer.classList.add('expanded');
                     if (toggleLabel) toggleLabel.textContent = 'Hide Message Form';
                     if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
-                    setTimeout(() => {
-                        const nameInput = document.getElementById('contact-name');
-                        if (nameInput) nameInput.focus();
-                    }, 400);
                 } else {
                     drawer.classList.remove('expanded');
                     if (toggleLabel) toggleLabel.textContent = 'Send Message';
@@ -2015,7 +2802,7 @@
         })();
     </script>
 
-    <!-- GPU Performance Optimization: Pause WebGL iframe when out of view -->
+    <!-- Pause WebGL iframe when out of view -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const heroSection = document.getElementById("home");
@@ -2031,14 +2818,8 @@
                             bgIframe.style.display = "none";
                         }
                     });
-                }, { 
-                    rootMargin: "200px 0px 0px 0px", // Keep it loaded slightly before scrolling back
-                    threshold: 0 
-                });
-                
+                }, { rootMargin: "200px 0px 0px 0px", threshold: 0 });
                 observer.observe(heroSection);
-            }
-        });
     </script>
 </body>
 </html>

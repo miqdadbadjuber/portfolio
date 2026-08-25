@@ -22,3 +22,5 @@ build/
 .agent/
 .audit-and-report/
 sample.html
+sample/
+samples/
