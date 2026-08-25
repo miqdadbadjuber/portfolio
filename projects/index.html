@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Miqdad Badjuber</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../assets/images/logo-web-favicon.png">
-    <link rel="apple-touch-icon" href="../assets/images/logo-web-favicon.png">
+    <link rel="icon" type="image/png" href="/assets/images/logo-web-favicon.png">
+    <link rel="apple-touch-icon" href="/assets/images/logo-web-favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;700;900&display=block" rel="stylesheet">
@@ -445,7 +445,7 @@
 
     <!-- Header -->
     <header class="w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-8 md:pt-12 flex justify-between items-center relative z-20">
-        <a href="../index.html" class="btn-back">
+        <a href="../" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
             <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M13 8H3M7 12L3 8l4-4"/>
             </svg>
@@ -675,7 +675,7 @@
 
         <!-- BOTTOM NAVIGATION: Back to Home Button -->
         <div class="mt-14 pt-8 border-t border-white/[0.08] flex items-center">
-            <a href="../index.html" class="btn-back">
+            <a href="../" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
                 <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13 8H3M7 12L3 8l4-4"/>
                 </svg>
