@@ -218,6 +218,16 @@
             line-height: 1;
             letter-spacing: -0.02em;
         }
+        .hero-role-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1.85rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #ffffff;
+            line-height: 1.2;
+            user-select: none;
+        }
         @media (min-width: 768px) {
             #home h1 {
                 margin-left: -6px !important;
@@ -1089,6 +1099,13 @@
             #contact .font-mono {
                 font-size: 0.7rem;
             }
+
+            /* Hero Role Mobile (Strictly Isolated) */
+            .hero-role-title {
+                font-size: 1.75rem !important;
+                letter-spacing: 0.1em !important;
+                line-height: 1.2 !important;
+            }
         }
 
         /* Mobile Contact Drawer */
@@ -1244,12 +1261,11 @@
                     Miqdad<br>Badjuber
                 </h1>
                 
-                <!-- Subtitle (Animated Line-Sweep Reveal) -->
-                <div class="relative inline-block align-middle" style="height: 2.25rem;" aria-live="polite" aria-atomic="true">
-                    <div id="hero-wipe-line" class="solid-wipe-line opacity-0"></div>
-                    <div id="hero-text-wrap" class="overflow-hidden font-display text-base md:text-lg tracking-[0.2em] md:tracking-[0.25em] text-cyanGlow uppercase font-semibold whitespace-nowrap" style="clip-path: inset(0 100% 0 0); width: max-content; display: block; line-height: 2.25rem;">
-                        <span id="typewriter-text" style="display: inline-block;">AI Engineer</span>
-                    </div>
+                <!-- Subtitle (Static Clean AI Engineer Role) -->
+                <div class="hero-role-clean-wrap">
+                    <h2 class="hero-role-title">
+                        AI <span class="text-cyanGlow">Engineer</span>
+                    </h2>
                 </div>
                 
             </div>
@@ -2183,6 +2199,22 @@
             <!-- Blog Feed -->
             <div class="gsap-fade blog-spoiler-wrapper">
                 <div class="space-y-4">
+                    <!-- Article: Mid 2026: China Wakes Up -->
+                    <a href="/blog/mid-2026-china-wakes-up.html" class="blog-row-item group">
+                        <div class="blog-text-container">
+                            <h3 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-2">
+                                Mid 2026: China Wakes Up and the Global AGI Race
+                            </h3>
+                            <p class="text-gray-400 text-sm md:text-base leading-relaxed font-sans">
+                                Geopolitical compute dynamics, massive AI research consolidation at the Tianwan nuclear cluster, and the cyber espionage dilemma over model weights in the race toward AGI.
+                            </p>
+                        </div>
+                        <div class="blog-arrow-circle">
+                            <svg viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </a>
                     
                     <!-- Article 1: AntiSlop (Fully Visible) -->
                     <a href="/blog/anti-ai-slop.html" class="blog-row-item group">
@@ -2676,87 +2708,7 @@
             initPosition();
             setTimeout(initPosition, 50);
             setTimeout(initPosition, 200);
-            setTimeout(initPosition, 600);
         })();
-
-        // Line-Sweep Kinetic Role Animation
-        const roles = [
-            "AI Engineer",
-            "Machine Learning Engineer",
-            "SaaS Development",
-            "Workflow Automation & Bots"
-        ];
-        
-        let roleIndex = 0;
-        const typewriterEl = document.getElementById('typewriter-text');
-        const wipeLineEl = document.getElementById('hero-wipe-line');
-        const textWrapEl = document.getElementById('hero-text-wrap');
-        
-        function playRoleAnimation() {
-            if (!typewriterEl || !wipeLineEl || !textWrapEl) return;
-            const text = roles[roleIndex];
-            typewriterEl.textContent = text;
-            
-            if (prefersReducedMotion) {
-                textWrapEl.style.clipPath = 'none';
-                wipeLineEl.style.opacity = '0';
-                setTimeout(() => {
-                    roleIndex = (roleIndex + 1) % roles.length;
-                    playRoleAnimation();
-                }, 3000);
-                return;
-            }
-
-            const totalWidth = Math.ceil(typewriterEl.getBoundingClientRect().width);
-
-            // Reset
-            textWrapEl.style.clipPath = 'inset(0 100% 0 0)';
-            gsap.set(wipeLineEl, { x: 0, opacity: 1 });
-
-            const progress = { x: 0 };
-            const tl = gsap.timeline({
-                onComplete: () => {
-                    roleIndex = (roleIndex + 1) % roles.length;
-                    setTimeout(playRoleAnimation, 400);
-                }
-            });
-
-            // Intro reveal animation
-            tl.to(progress, {
-                x: totalWidth,
-                duration: 0.9,
-                ease: "back.out(1.4)",
-                onUpdate: function() {
-                    const curX = progress.x;
-                    gsap.set(wipeLineEl, { x: curX });
-                    const rightRemaining = Math.max(0, ((totalWidth - curX) / totalWidth) * 100);
-                    textWrapEl.style.clipPath = `inset(0 ${rightRemaining}% 0 0)`;
-                }
-            })
-            .to(wipeLineEl, { opacity: 0, duration: 0.2 })
-            // Hold text
-            .to({}, { duration: 2.2 })
-            // Outro sweep animation
-            .call(() => {
-                progress.x = totalWidth;
-                gsap.set(wipeLineEl, { x: totalWidth, opacity: 1 });
-            })
-            .to(progress, {
-                x: 0,
-                duration: 0.7,
-                ease: "power2.inOut",
-                onUpdate: function() {
-                    const curX = Math.max(0, progress.x);
-                    gsap.set(wipeLineEl, { x: curX });
-                    const rightRemaining = Math.min(100, ((totalWidth - curX) / totalWidth) * 100);
-                    textWrapEl.style.clipPath = `inset(0 ${rightRemaining}% 0 0)`;
-                }
-            })
-            .to(wipeLineEl, { opacity: 0, duration: 0.15 })
-            .set(textWrapEl, { clipPath: 'inset(0 100% 0 0)' });
-        }
-        
-        setTimeout(playRoleAnimation, 400);
     </script>
 
     <!-- Contact Form Handling & Mobile Drawer Toggle -->
