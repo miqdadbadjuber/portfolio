@@ -13,7 +13,7 @@
 
             html,body {
                 margin: 0;
-                background: #020202;
+                background: transparent;
             }
 
             #wrap {
@@ -83,11 +83,11 @@
             const renderer = new THREE.WebGLRenderer({
                 canvas: glCanvas,
                 antialias: false,
-                preserveDrawingBuffer: true
+                preserveDrawingBuffer: true,
+                alpha: true
             });
             renderer.outputColorSpace = THREE.SRGBColorSpace;
             const scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x000000);
             const camera = new THREE.PerspectiveCamera(FOV_FAR,1,0.02,100);
 
             const loader = new THREE.TextureLoader();
@@ -145,7 +145,7 @@
 
             const cv = document.getElementById("a")
               , ctx = cv.getContext("2d", {
-                alpha: false
+                alpha: true
             });
             const samp = document.createElement('canvas');
             const sctx = samp.getContext('2d', {
@@ -267,8 +267,7 @@
                     return;
                 }
 
-                ctx.fillStyle = "#020202";
-                ctx.fillRect(0, 0, W, H);
+                ctx.clearRect(0, 0, W, H);
                 const txt = S.text || " ";
                 const tl = txt.length;
 

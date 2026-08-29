@@ -103,13 +103,11 @@
         .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 
                 .bg-grid {
-            position: fixed; inset: 0; z-index: -1; pointer-events: none;
-            background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(circle at center, black, transparent 80%);
-            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(125% 125% at 50% 10%, #000000 40%, #2b0707 100%), #000000;
         }
 
                 .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }

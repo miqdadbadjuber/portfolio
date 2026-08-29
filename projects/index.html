@@ -70,13 +70,17 @@
         .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 
                 .bg-grid {
-            position: fixed; inset: 0; z-index: -1; pointer-events: none;
-            background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(circle at center, black, transparent 80%);
-            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background: 
+                radial-gradient(ellipse 65% 45% at 22% 38%, rgba(16, 185, 129, 0.12), transparent 60%),
+                radial-gradient(ellipse 80% 55% at 76% 18%, rgba(6, 182, 212, 0.10), transparent 60%),
+                radial-gradient(ellipse 50% 70% at 68% 68%, rgba(16, 185, 129, 0.10), transparent 55%),
+                radial-gradient(ellipse 90% 40% at 35% 88%, rgba(5, 150, 105, 0.09), transparent 55%),
+                radial-gradient(ellipse 45% 40% at 8% 12%, rgba(52, 211, 153, 0.08), transparent 50%),
+                #000000;
         }
 
                 .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
@@ -126,16 +130,20 @@
             transform: translateX(-3px);
         }
 
-        /* Project Card (Exact styling from index.html) */
+        /* Project Card (Deep Dark Obsidian Brown) */
         .project-card {
-            background-color: rgba(255, 255, 255, 0.008);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: border-color var(--transition-slow) ease,
-                        box-shadow var(--transition-slow) var(--ease-out);
+            background-color: #080605 !important;
+            background: #080605 !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 1rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .project-card:hover {
-            border-color: rgba(255, 255, 255, 0.16);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background-color: #0e0b09 !important;
+            background: #0e0b09 !important;
+            border-color: rgba(0, 240, 255, 0.25) !important;
+            transform: none !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
         }
 
         /* Project CTA Link */
@@ -309,12 +317,11 @@
                 padding: 0.4rem 0.75rem !important;
             }
 
-            /* Project Card Mobile (Model 1: Full-Bleed 16:9 Banner Glass Card) */
+            /* Project Card Mobile (Full-Bleed 16:9 Banner Card) */
             .project-card {
-                background-color: rgba(6, 6, 6, 0.7) !important;
-                backdrop-filter: blur(12px) !important;
-                -webkit-backdrop-filter: blur(12px) !important;
-                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                background-color: #080605 !important;
+                background: #080605 !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
                 border-radius: 1.25rem !important;
                 padding: 0 !important;
                 overflow: hidden !important;
@@ -501,12 +508,14 @@
                                 <span class="text-gray-600">•</span>
                                 <span class="text-gray-400">v3.1.3</span>
                             </div>
-                            <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">AntiSlop</h2>
+                            <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+                                <a href="anti-ai-slop.html" class="hover:text-cyanGlow transition-colors">AntiSlop</a>
+                            </h2>
                             <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 font-sans">
                                 38 mandatory deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop and robotic copy without restricting genuine design creativity.
                             </p>
                             <div class="project-action-row flex items-center justify-between">
-                                <a href="/projects/anti-ai-slop.html" class="project-cta-link">
+                                <a href="anti-ai-slop.html" class="project-cta-link">
                                     <span class="project-cta-text">View Details</span>
                                     <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                                 </a>
@@ -517,9 +526,9 @@
                             </div>
                         </div>
                         <!-- Project Image Banner -->
-                        <div class="w-full lg:w-5/12 aspect-video rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02] shrink-0">
+                        <a href="anti-ai-slop.html" class="w-full lg:w-5/12 aspect-video rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02] shrink-0 block">
                             <img src="../assets/images/antislop.webp" alt="AntiSlop banner" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center">
-                        </div>
+                        </a>
                     </div>
                 </div>
             </article>
@@ -534,12 +543,14 @@
                                 <span class="text-gray-600">•</span>
                                 <span class="text-gray-400">Open Source</span>
                             </div>
-                            <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">ContextForge</h2>
+                            <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+                                <a href="contextforge.html" class="hover:text-cyanGlow transition-colors">ContextForge</a>
+                            </h2>
                             <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 font-sans">
                                 CLI tool that indexes codebases, scores file relevance, and uses AST symbol pruning to build token-efficient context bundles, cutting token consumption by up to 83%.
                             </p>
                             <div class="project-action-row flex items-center justify-between">
-                                <a href="/projects/contextforge.html" class="project-cta-link">
+                                <a href="contextforge.html" class="project-cta-link">
                                     <span class="project-cta-text">View Details</span>
                                     <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                                 </a>
@@ -550,9 +561,9 @@
                             </div>
                         </div>
                         <!-- Project Image Banner -->
-                        <div class="w-full lg:w-5/12 aspect-video rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02] shrink-0">
+                        <a href="contextforge.html" class="w-full lg:w-5/12 aspect-video rounded-xl border border-white/[0.04] relative overflow-hidden group-hover:border-cyanGlow/20 transition-colors duration-500 bg-white/[0.02] shrink-0 block">
                             <img src="../assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center">
-                        </div>
+                        </a>
                     </div>
                 </div>
             </article>
@@ -563,19 +574,21 @@
                 <!-- Project 3: DiagramPilot AI -->
                 <article class="project-item" data-category="fullstack">
                     <div class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group h-full">
-                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                        <a href="diagrampilot.html" class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative block">
                             <img src="../assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
-                        </div>
+                        </a>
                         <div class="project-card-body flex flex-col flex-1">
                             <div class="flex items-center gap-2 mb-2 text-xs font-sans text-gray-400 font-medium">
                                 <span>Architecture Blueprint Generator</span>
                             </div>
-                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">DiagramPilot AI</h3>
+                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight">
+                                <a href="diagrampilot.html" class="group-hover:text-cyanGlow transition-colors">DiagramPilot AI</a>
+                            </h3>
                             <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
                                 Full-stack Next.js and Mermaid.js system converting natural language conversations into interactive architecture diagrams with zoom, pan, and SVG export.
                             </p>
                             <div class="project-action-row flex items-center justify-between pt-4 mt-auto border-t border-white/[0.04] w-full">
-                                <a href="/projects/diagrampilot.html" class="project-cta-link">
+                                <a href="diagrampilot.html" class="project-cta-link">
                                     <span class="project-cta-text">View Details</span>
                                     <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                                 </a>
@@ -591,19 +604,21 @@
                 <!-- Project 4: OpenFolio AI -->
                 <article class="project-item" data-category="fullstack">
                     <div class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group h-full">
-                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                        <a href="openfolio.html" class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative block">
                             <img src="../assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
-                        </div>
+                        </a>
                         <div class="project-card-body flex flex-col flex-1">
                             <div class="flex items-center gap-2 mb-2 text-xs font-sans text-gray-400 font-medium">
                                 <span>AI Portfolio Studio</span>
                             </div>
-                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">OpenFolio AI</h3>
+                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight">
+                                <a href="openfolio.html" class="group-hover:text-cyanGlow transition-colors">OpenFolio AI</a>
+                            </h3>
                             <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
                                 React 19 SPA and Express serverless studio that conducts guest-only interviews to build, revise, and deploy custom developer portfolios to live URLs.
                             </p>
                             <div class="project-action-row flex items-center justify-between pt-4 mt-auto border-t border-white/[0.04] w-full">
-                                <a href="/projects/openfolio.html" class="project-cta-link">
+                                <a href="openfolio.html" class="project-cta-link">
                                     <span class="project-cta-text">View Details</span>
                                     <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                                 </a>
@@ -619,19 +634,21 @@
                 <!-- Project 5: Machine Learning Systems & Experiments -->
                 <article class="project-item" data-category="ml">
                     <div class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group h-full">
-                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                        <a href="machine-learning.html" class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative block">
                             <img src="../assets/images/machine_learning.webp" alt="Machine Learning Systems" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
-                        </div>
+                        </a>
                         <div class="project-card-body flex flex-col flex-1">
                             <div class="flex items-center gap-2 mb-2 text-xs font-sans text-gray-400 font-medium">
                                 <span>Deep Learning &amp; Unsupervised ML</span>
                             </div>
-                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Machine Learning Experiments</h3>
+                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight">
+                                <a href="machine-learning.html" class="group-hover:text-cyanGlow transition-colors">Machine Learning Experiments</a>
+                            </h3>
                             <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
                                 End-to-end model training suites covering CNN image classification (88% acc), Gojek review BiLSTM sentiment analysis (88.69% acc), and K-Means fraud transaction clustering with 6 GitHub repositories.
                             </p>
                             <div class="project-action-row flex items-center justify-between pt-4 mt-auto border-t border-white/[0.04] w-full">
-                                <a href="/projects/machine-learning.html" class="project-cta-link">
+                                <a href="machine-learning.html" class="project-cta-link">
                                     <span class="project-cta-text">View Details</span>
                                     <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                                 </a>
@@ -647,19 +664,21 @@
                 <!-- Project 6: Automation Workflow Engine -->
                 <article class="project-item" data-category="automation">
                     <div class="project-card rounded-2xl p-6 flex flex-col hover:border-cyanGlow/30 transition-colors group h-full">
-                        <div class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative">
+                        <a href="automation-workflow.html" class="bg-white/[0.02] aspect-video rounded-xl border border-white/[0.04] mb-5 w-full overflow-hidden relative block">
                             <img src="../assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="object-cover object-center w-full h-full">
-                        </div>
+                        </a>
                         <div class="project-card-body flex flex-col flex-1">
                             <div class="flex items-center gap-2 mb-2 text-xs font-sans text-gray-400 font-medium">
                                 <span>Event Orchestration Pipeline</span>
                             </div>
-                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight group-hover:text-cyanGlow transition-colors">Automation Workflow Engine</h3>
+                            <h3 class="font-display text-xl font-bold text-white mb-2 tracking-tight">
+                                <a href="automation-workflow.html" class="group-hover:text-cyanGlow transition-colors">Automation Workflow Engine</a>
+                            </h3>
                             <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
                                 Event-driven workflow architectures connecting Discord and Telegram chat triggers with self-hosted n8n orchestrators, Google Apps Script backends, and automated PDF reporting.
                             </p>
                             <div class="project-action-row flex items-center justify-between pt-4 mt-auto border-t border-white/[0.04] w-full">
-                                <a href="/projects/automation-workflow.html" class="project-cta-link">
+                                <a href="automation-workflow.html" class="project-cta-link">
                                     <span class="project-cta-text">View Details</span>
                                     <span class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                                 </a>
