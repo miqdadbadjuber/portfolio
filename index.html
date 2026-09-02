@@ -1414,8 +1414,8 @@
         <div id="ambient-home" class="ambient-layer is-active" style="background: #000000;"></div>
         <div id="ambient-about" class="ambient-layer" style="background: radial-gradient(125% 125% at 50% 100%, #000000 40%, #2b0707 100%), #000000;"></div>
         <div id="ambient-projects" class="ambient-layer" style="background: #000000;"></div>
-        <div id="ambient-credentials" class="ambient-layer" style="background: radial-gradient(ellipse 65% 50% at 18% 25%, rgba(5, 29, 5, 0.55) 0%, rgba(5, 29, 5, 0.18) 30%, transparent 60%), radial-gradient(ellipse 75% 60% at 82% 55%, rgba(5, 29, 5, 0.50) 0%, rgba(5, 29, 5, 0.15) 30%, transparent 60%), radial-gradient(ellipse 55% 45% at 30% 75%, rgba(5, 29, 5, 0.42) 0%, rgba(5, 29, 5, 0.10) 25%, transparent 55%), #000000;"></div>
-        <div id="ambient-contact" class="ambient-layer" style="background: radial-gradient(ellipse 120% 80% at 70% 20%, rgba(255, 20, 147, 0.15), transparent 50%), radial-gradient(ellipse 100% 60% at 30% 10%, rgba(0, 255, 255, 0.12), transparent 60%), radial-gradient(ellipse 90% 70% at 50% 0%, rgba(138, 43, 226, 0.18), transparent 65%), radial-gradient(ellipse 110% 50% at 80% 30%, rgba(255, 215, 0, 0.08), transparent 40%), #000000;"></div>
+        <div id="ambient-credentials" class="ambient-layer" style="background: #000000;"></div>
+        <div id="ambient-contact" class="ambient-layer" style="background: #000000;"></div>
     </div>
     <div class="noise" aria-hidden="true"></div>
 
@@ -2930,13 +2930,14 @@ if (window.location.protocol === 'file:') {
         var box = document.getElementById('showcase-box');
         if (!track || !N) return;
 
+        var isFile = window.location.protocol === 'file:';
         var links = [
-            'projects/anti-ai-slop.html',
-            'projects/contextforge.html',
-            'projects/diagrampilot.html',
-            'projects/openfolio.html',
-            'projects/automation-workflow.html',
-            'projects/machine-learning.html'
+            (isFile ? '' : '/') + 'projects/anti-ai-slop.html',
+            (isFile ? '' : '/') + 'projects/contextforge.html',
+            (isFile ? '' : '/') + 'projects/diagrampilot.html',
+            (isFile ? '' : '/') + 'projects/openfolio.html',
+            (isFile ? '' : '/') + 'projects/automation-workflow.html',
+            (isFile ? '' : '/') + 'projects/machine-learning.html'
         ];
 
         var cur = 0, dur = 6000, t0 = Date.now();
