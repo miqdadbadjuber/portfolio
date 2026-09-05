@@ -48,6 +48,7 @@
 
         html {
             scrollbar-gutter: stable;
+            scroll-behavior: smooth;
         }
 
         @media (min-width: 1024px) {
@@ -177,6 +178,29 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(0, 240, 255, 0.4);
+        }
+
+        /* Desktop Table of Contents */
+        .toc-link {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            line-height: 1.4;
+            color: #71717a;
+            text-decoration: none;
+            padding: 0.35rem 0 0.35rem 0.75rem;
+            border-left: 2px solid transparent;
+            margin-left: -1px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toc-link:hover {
+            color: #ffffff;
+            border-left-color: rgba(255, 255, 255, 0.4);
+        }
+        .toc-link.active {
+            color: #00f0ff;
+            font-weight: 600;
+            border-left-color: #00f0ff;
         }
 
         /* Mobile */
@@ -372,10 +396,14 @@
             </header>
 
             <!-- Project Details Body -->
-            <div class="space-y-10 text-gray-300 text-base md:text-lg leading-loose font-sans max-w-3xl">
+            <!-- Two Column Layout: Main Content (8 cols) + Sticky Desktop Sidebar (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
+                <div class="lg:col-span-8 space-y-10 text-gray-300 text-base md:text-lg leading-loose font-sans">
                 
                 <!-- Section 1: Overview & Problem -->
-                <div>
+                <div id="overview" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         Overview &amp; Problem Solved
                     </h2>
@@ -385,7 +413,7 @@
                 </div>
 
                 <!-- Section 2: End-to-End Pipeline -->
-                <div>
+                <div id="architecture" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         System Architecture
                     </h2>
@@ -401,7 +429,7 @@
                 </div>
 
                 <!-- Section 3: Architecture Code Bridge -->
-                <div>
+                <div id="logic" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         Implementation Logic
                     </h2>
@@ -439,7 +467,7 @@
                 </div>
 
                 <!-- Section 4: Operational Outcomes -->
-                <div>
+                <div id="outcomes" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         Operational Outcomes
                     </h2>
@@ -468,6 +496,55 @@
                         <span class="btn-back-text">Back to all projects</span>
                     </a>
                 </div>
+
+                </div>
+
+                <!-- Right Column: Desktop Table of Contents & Quick Metadata (4 cols, hidden on mobile) -->
+                <aside class="hidden lg:block lg:col-span-4 space-y-6 lg:border-l lg:border-white/[0.08] lg:pl-8 font-sans sticky top-12">
+                    
+                    <!-- Table of Contents -->
+                    <div>
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Table of Contents
+                        </div>
+                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="project-toc">
+                            <a href="#overview" class="toc-link active">Overview &amp; Problem</a>
+                            <a href="#architecture" class="toc-link">System Architecture</a>
+                            <a href="#logic" class="toc-link">Implementation Logic</a>
+                            <a href="#outcomes" class="toc-link">Operational Outcomes</a>
+                        </nav>
+                    </div>
+
+                    <!-- Project Specs / Quick Info -->
+                    <div class="pt-5 border-t border-white/[0.08]">
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Project Info
+                        </div>
+                        <div class="space-y-2 text-xs text-gray-400">
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Type</span>
+                                <span class="text-white font-semibold">Workflow Automation</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Stack</span>
+                                <span class="text-white font-semibold">n8n, Apps Script, Bots</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Triggers</span>
+                                <span class="text-white font-semibold">Discord, Telegram</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Output</span>
+                                <span class="text-white font-semibold">Sheets, Docs, PDF</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Status</span>
+                                <span class="text-cyanGlow font-semibold">Production</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
 
             </div>
 
@@ -526,5 +603,35 @@ if (window.location.protocol === 'file:') {
     });
 }
 </script>
+    <!-- Table of Contents Active Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sectionIds = ['overview', 'architecture', 'logic', 'outcomes'];
+            const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+            if (tocLinks.length > 0 && sections.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            tocLinks.forEach((link) => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    rootMargin: '-10% 0px -70% 0px',
+                    threshold: 0
+                });
+
+                sections.forEach(s => observer.observe(s));
+            }
+        });
+    </script>
 </body>
 </html>

@@ -48,6 +48,7 @@
 
         html {
             scrollbar-gutter: stable;
+            scroll-behavior: smooth;
         }
 
         @media (min-width: 1024px) {
@@ -154,6 +155,29 @@
         }
         .btn-back:hover .btn-back-arrow {
             transform: translate(-3px, -1px);
+        }
+
+        /* Desktop Table of Contents */
+        .toc-link {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            line-height: 1.4;
+            color: #71717a;
+            text-decoration: none;
+            padding: 0.35rem 0 0.35rem 0.75rem;
+            border-left: 2px solid transparent;
+            margin-left: -1px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toc-link:hover {
+            color: #ffffff;
+            border-left-color: rgba(255, 255, 255, 0.4);
+        }
+        .toc-link.active {
+            color: #00f0ff;
+            font-weight: 600;
+            border-left-color: #00f0ff;
         }
 
         /* Mobile */
@@ -290,60 +314,74 @@
             </header>
 
             <!-- Reading Body -->
-            <div class="space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans max-w-3xl">
-                <p>
-                    If you have used modern LLM coding assistants like Claude, Gemini, or ChatGPT to generate front-end interfaces, you have almost certainly encountered the exact same aesthetic signature: saturated purple-to-blue gradients, oversized rounded pill buttons, generic cards with glowing borders, and marketing hero copy that sounds suspiciously uniform.
-                </p>
+            <!-- Two Column Layout: Main Content (8 cols) + Sticky Desktop Sidebar (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
+                <div class="lg:col-span-8 space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans">
+                
+                <!-- Section 1: Introduction -->
+                <div id="intro" class="space-y-6 scroll-mt-16">
+                    <p>
+                        If you have used modern LLM coding assistants like Claude, Gemini, or ChatGPT to generate front-end interfaces, you have almost certainly encountered the exact same aesthetic signature: saturated purple-to-blue gradients, oversized rounded pill buttons, generic cards with glowing borders, and marketing hero copy that sounds suspiciously uniform.
+                    </p>
 
-                <p>
-                    In the developer community, this phenomenon is widely recognized as <strong>"AI Slop"</strong>. It is not necessarily broken code, but rather a lack of design intent and intentional taste.
-                </p>
+                    <p>
+                        In the developer community, this phenomenon is widely recognized as <strong>"AI Slop"</strong>. It is not necessarily broken code, but rather a lack of design intent and intentional taste.
+                    </p>
 
-                <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-lg">
-                    "AI models default to the mathematical average of the Internet. Without explicit architectural rules, your user interface is mathematically doomed to look generic."
-                </blockquote>
+                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-lg">
+                        "AI models default to the mathematical average of the Internet. Without explicit architectural rules, your user interface is mathematically doomed to look generic."
+                    </blockquote>
+                </div>
 
-                <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-6">
-                    01. The Probabilistic Trap of Generic Design
-                </h2>
-                <p class="text-gray-400">
-                    Why does every AI model choose purple buttons and generic floating cards? Because thousands of SaaS templates uploaded to GitHub between 2021 and 2025 used that exact pattern. When prompted with vague instructions like <em>"Build a modern dashboard landing page"</em>, the model selects the highest probability tokens in its vector weights.
-                </p>
+                <!-- Section 2: Probabilistic Trap -->
+                <div id="probabilistic-trap" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        01. The Probabilistic Trap of Generic Design
+                    </h2>
+                    <p class="text-gray-400">
+                        Why does every AI model choose purple buttons and generic floating cards? Because thousands of SaaS templates uploaded to GitHub between 2021 and 2025 used that exact pattern. When prompted with vague instructions like <em>"Build a modern dashboard landing page"</em>, the model selects the highest probability tokens in its vector weights.
+                    </p>
 
-                <!-- Code block -->
-                <div class="code-box p-4 my-6">
-                    <div class="flex justify-between items-center pb-3 mb-3 border-b border-white/[0.06]">
-                        <!-- macOS Window Controls -->
-                        <div class="flex items-center gap-1.5" aria-hidden="true">
-                            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80"></div>
+                    <!-- Code block -->
+                    <div class="code-box p-4 my-6">
+                        <div class="flex justify-between items-center pb-3 mb-3 border-b border-white/[0.06]">
+                            <!-- macOS Window Controls -->
+                            <div class="flex items-center gap-1.5" aria-hidden="true">
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80"></div>
+                            </div>
+                            <button onclick="copyCode(this)" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/[0.06] flex items-center justify-center" title="Copy code" aria-label="Copy code">
+                                <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </button>
                         </div>
-                        <button onclick="copyCode(this)" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/[0.06] flex items-center justify-center" title="Copy code" aria-label="Copy code">
-                            <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                            <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
-                        <div class="code-line"><span class="code-num">1</span><span><span class="text-gray-500"># Rule: Prohibit Default AI Aesthetics</span></span></div>
-                        <div class="code-line"><span class="code-num">2</span><span>- DO NOT use generic purple/indigo linear gradients on CTA buttons.</span></div>
-                        <div class="code-line"><span class="code-num">3</span><span>- DO NOT use rounded-full pill buttons unless explicitly asked.</span></div>
-                        <div class="code-line"><span class="code-num">4</span><span>- USE high-contrast typography and precise geometric border tokens.</span></div>
-                        <div class="code-line"><span class="code-num">5</span><span>- PRESERVE void dark themes (#020202) over washed-out slate colors.</span></div>
+                        <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
+                            <div class="code-line"><span class="code-num">1</span><span><span class="text-gray-500"># Rule: Prohibit Default AI Aesthetics</span></span></div>
+                            <div class="code-line"><span class="code-num">2</span><span>- DO NOT use generic purple/indigo linear gradients on CTA buttons.</span></div>
+                            <div class="code-line"><span class="code-num">3</span><span>- DO NOT use rounded-full pill buttons unless explicitly asked.</span></div>
+                            <div class="code-line"><span class="code-num">4</span><span>- USE high-contrast typography and precise geometric border tokens.</span></div>
+                            <div class="code-line"><span class="code-num">5</span><span>- PRESERVE void dark themes (#020202) over washed-out slate colors.</span></div>
+                        </div>
                     </div>
                 </div>
 
-                <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-6">
-                    02. The 3-File Deterministic Defense System
-                </h2>
-                <p class="text-gray-400">
-                    To permanently eliminate AI slop, you need a deterministic rule system embedded within your workspace rather than hoping the model remembers your preferences in every prompt session.
-                </p>
+                <!-- Section 3: Deterministic Defense -->
+                <div id="defense-system" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        02. The 3-File Deterministic Defense System
+                    </h2>
+                    <p class="text-gray-400">
+                        To permanently eliminate AI slop, you need a deterministic rule system embedded within your workspace rather than hoping the model remembers your preferences in every prompt session.
+                    </p>
+                </div>
 
                 <!-- Bottom Back Navigation with Smooth Underline -->
                 <div class="pt-8 border-t border-white/[0.06] flex items-center">
@@ -354,6 +392,55 @@
                         <span class="btn-back-text">Back to all articles</span>
                     </a>
                 </div>
+
+                </div>
+
+                <!-- Right Column: Desktop Table of Contents & Article Info (4 cols, hidden on mobile) -->
+                <aside class="hidden lg:block lg:col-span-4 space-y-6 lg:border-l lg:border-white/[0.08] lg:pl-8 font-sans sticky top-12">
+                    
+                    <!-- Table of Contents -->
+                    <div>
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Table of Contents
+                        </div>
+                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="article-toc">
+                            <a href="#intro" class="toc-link active">The Problem with AI Slop</a>
+                            <a href="#probabilistic-trap" class="toc-link">The Probabilistic Trap</a>
+                            <a href="#defense-system" class="toc-link">Deterministic Defense</a>
+                        </nav>
+                    </div>
+
+                    <!-- Article Info / Metadata -->
+                    <div class="pt-5 border-t border-white/[0.08]">
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Article Info
+                        </div>
+                        <div class="space-y-2 text-xs text-gray-400">
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Author</span>
+                                <span class="text-white font-semibold">Miqdad Badjuber</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Published</span>
+                                <span class="text-white font-semibold">August 23, 2026</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Read Time</span>
+                                <span class="text-white font-semibold">5 min read</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Category</span>
+                                <span class="text-white font-semibold">AI Interface Design</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Type</span>
+                                <span class="text-cyanGlow font-semibold">Technical Essay</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
+
             </div>
 
         </article>
@@ -410,5 +497,35 @@ if (window.location.protocol === 'file:') {
     });
 }
 </script>
+    <!-- Table of Contents Active Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sectionIds = ['intro', 'probabilistic-trap', 'defense-system'];
+            const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+            if (tocLinks.length > 0 && sections.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            tocLinks.forEach((link) => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    rootMargin: '-10% 0px -70% 0px',
+                    threshold: 0
+                });
+
+                sections.forEach(s => observer.observe(s));
+            }
+        });
+    </script>
 </body>
 </html>

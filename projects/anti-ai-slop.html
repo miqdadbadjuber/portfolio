@@ -47,6 +47,7 @@
         }
 
         html {
+            scroll-behavior: smooth;
             scrollbar-gutter: stable;
         }
 
@@ -177,6 +178,29 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(0, 240, 255, 0.4);
+        }
+
+        /* Desktop Table of Contents */
+        .toc-link {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            line-height: 1.4;
+            color: #71717a;
+            text-decoration: none;
+            padding: 0.35rem 0 0.35rem 0.75rem;
+            border-left: 2px solid transparent;
+            margin-left: -1px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toc-link:hover {
+            color: #ffffff;
+            border-left-color: rgba(255, 255, 255, 0.4);
+        }
+        .toc-link.active {
+            color: #00f0ff;
+            font-weight: 600;
+            border-left-color: #00f0ff;
         }
 
         /* Mobile */
@@ -378,36 +402,44 @@
             </header>
 
             <!-- Project Details Body -->
-            <div class="space-y-10 text-gray-300 text-base md:text-lg leading-loose font-sans max-w-3xl">
+            <!-- Two Column Layout: Main Content (8 cols) + Sticky Desktop Sidebar (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
+                <div class="lg:col-span-8 space-y-10 text-gray-300 text-base md:text-lg leading-loose font-sans">
                 
                 <!-- Section 1: Overview & Motivation -->
-                <div>
+                <div id="overview" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         Overview &amp; Philosophy
                     </h2>
-                    <p class="text-gray-400">
-                        AntiSlop is a <strong>filter, not a style guide</strong>: it does not prescribe colors, fonts, or rigid layouts. Instead, it systematically strips away the mathematical average of the Internet that LLMs gravitate toward (purple gradients, rounded pill badges, low contrast text, and robotic corporate copy) while allowing your project's custom design rules to provide the creative soul.
+                    <p class="text-gray-400 mb-3 leading-relaxed">
+                        AntiSlop is a <strong>filter, not a style guide</strong>: it does not prescribe colors, fonts, or rigid layouts. Instead, it systematically strips away the mathematical average of the Internet that LLMs gravitate toward (purple gradients, rounded pill badges, low contrast text, and robotic corporate copy). It is not only for building pages: it also writes and audits copy, so AI text stops reading like AI.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed">
+                        The core prevents slop but cannot invent creative direction. Your project's <code class="text-zinc-200 font-mono text-xs bg-white/[0.06] px-1.5 py-0.5 rounded">DESIGN.md</code> supplies the aesthetic soul; a sterile result means the direction was missing, not that the filter failed.
                     </p>
                 </div>
 
                 <!-- Section 2: Core Rule Architecture -->
-                <div>
+                <div id="architecture" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         Core Architecture &amp; Tiers
                     </h2>
-                    <p class="text-gray-400 mb-4">
-                        The engine enforces 38 mandatory rules categorized into three strict operational tiers:
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        The engine enforces 38 mandatory rules (R-01 to R-38) organized into three strict operational tiers, complemented by a Liveliness Toolkit:
                     </p>
                     <ul class="space-y-2 text-sm md:text-base text-gray-300 list-disc pl-5">
-                        <li><strong class="text-white">Hard Gate:</strong> Absolute prohibitions (no generic purple gradients, no em dashes, no robotic markdown tags).</li>
+                        <li><strong class="text-white">Hard Gate:</strong> Absolute prohibitions (no generic purple gradients, no em dashes, no robotic markdown tags, no unstyled bento grids).</li>
                         <li><strong class="text-white">Purpose-Gate:</strong> Techniques allowed only when explicit functional rationale is provided.</li>
                         <li><strong class="text-white">Quality Locks:</strong> Strict cross-file consistency for typography, border contrast, and interactive feedback.</li>
+                        <li><strong class="text-white">Liveliness Toolkit:</strong> Three active dials (ENERGY, RHYTHM, MOTION) and a Design Read to keep output specific, alive, and human.</li>
                         <li><strong class="text-white">Delivery Gate:</strong> Mandatory PASS or FAIL verification report executed before any code ships.</li>
                     </ul>
                 </div>
 
                 <!-- Section 3: Packaged Agent Skills -->
-                <div>
+                    <div id="skills" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         Modular Agent Skills
                     </h2>
@@ -476,79 +508,276 @@
                 </div>
 
                 <!-- Section 4: Installation & Usage Guide -->
-                <div>
+                <div id="installation" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         How to Install &amp; Run
                     </h2>
-                    <p class="text-gray-400 mb-4">
-                        antislop is built upon the open Agent Skills standard and supports Claude Code, Antigravity CLI, Codex, and Cursor:
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        antislop is built upon the open Agent Skills standard and natively supports 7 assistants: Claude Code, Antigravity CLI, Codex, OpenCode, Cursor, Gemini CLI, and Hermes. Choose from 5 official installation paths:
                     </p>
 
-                    <!-- Code block 1: Install methods -->
-                    <div class="code-box p-4 my-6">
-                        <div class="flex justify-between items-center pb-3 mb-3 border-b border-white/[0.06]">
-                            <div class="flex items-center gap-1.5" aria-hidden="true">
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80"></div>
+                    <!-- Install Methods: 6 Clean Paths -->
+                    <div class="space-y-5 my-6 font-sans">
+                        <!-- Path 1: Interactive CLI Picker -->
+                        <div>
+                            <div class="text-sm font-semibold text-white mb-2">
+                                1. Interactive CLI Picker <span class="text-xs font-normal text-cyanGlow ml-1">(Recommended)</span>
                             </div>
-                            <button onclick="copyCode(this)" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/[0.06] flex items-center justify-center" title="Copy code" aria-label="Copy code">
-                                <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                                <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </button>
+                            <div class="code-box p-3 sm:p-3.5">
+                                <div class="flex justify-between items-center gap-3">
+                                    <div class="font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto py-0.5">
+                                        <span class="text-cyanGlow select-none mr-2">$</span><span>npx antislop-ai</span>
+                                    </div>
+                                    <button type="button" onclick="copyCode(this)" data-copy="npx antislop-ai" class="text-gray-400 hover:text-white transition-colors p-1.5 rounded hover:bg-white/[0.06] flex items-center justify-center shrink-0" title="Copy command" aria-label="Copy command">
+                                        <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                        <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
-                            <div class="code-line"><span class="code-num">1</span><span class="font-sans italic text-gray-500"># 1. Interactive CLI Picker (Recommended)</span></div>
-                            <div class="code-line"><span class="code-num">2</span><span>npx antislop-ai</span></div>
-                            <div class="code-line"><span class="code-num">3</span><span></span></div>
-                            <div class="code-line"><span class="code-num">4</span><span class="font-sans italic text-gray-500"># 2. Via skills.sh Registry</span></div>
-                            <div class="code-line"><span class="code-num">5</span><span>npx skills add miqdadbadjuber/anti-slop</span></div>
-                            <div class="code-line"><span class="code-num">6</span><span></span></div>
-                            <div class="code-line"><span class="code-num">7</span><span class="font-sans italic text-gray-500"># 3. Claude Code Plugin</span></div>
-                            <div class="code-line"><span class="code-num">8</span><span>/plugin marketplace add https://github.com/miqdadbadjuber/anti-slop</span></div>
-                            <div class="code-line"><span class="code-num">9</span><span>/plugin install antislop@anti-slop</span></div>
+
+                        <!-- Path 2: Antigravity CLI Plugin -->
+                        <div>
+                            <div class="text-sm font-semibold text-white mb-2">
+                                2. Antigravity CLI Plugin
+                            </div>
+                            <div class="code-box p-3 sm:p-3.5">
+                                <div class="flex justify-between items-center gap-3">
+                                    <div class="font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto py-0.5">
+                                        <span class="text-cyanGlow select-none mr-2">$</span><span>agy plugin install https://github.com/miqdadbadjuber/anti-slop</span>
+                                    </div>
+                                    <button type="button" onclick="copyCode(this)" data-copy="agy plugin install https://github.com/miqdadbadjuber/anti-slop" class="text-gray-400 hover:text-white transition-colors p-1.5 rounded hover:bg-white/[0.06] flex items-center justify-center shrink-0" title="Copy command" aria-label="Copy command">
+                                        <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                        <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Path 3: Codex Plugin & Marketplace -->
+                        <div>
+                            <div class="text-sm font-semibold text-white mb-2">
+                                3. Codex CLI Plugin &amp; Marketplace
+                            </div>
+                            <div class="code-box p-3 sm:p-3.5">
+                                <div class="flex justify-between items-start gap-3">
+                                    <div class="font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto py-0.5 space-y-1">
+                                        <div><span class="text-cyanGlow select-none mr-2">$</span><span>codex plugin marketplace add miqdadbadjuber/anti-slop</span></div>
+                                        <div><span class="text-cyanGlow select-none mr-2">$</span><span>codex plugin add antislop@anti-slop</span></div>
+                                    </div>
+                                    <button type="button" onclick="copyCode(this)" data-copy="codex plugin marketplace add miqdadbadjuber/anti-slop&#10;codex plugin add antislop@anti-slop" class="text-gray-400 hover:text-white transition-colors p-1.5 rounded hover:bg-white/[0.06] flex items-center justify-center shrink-0 mt-0.5" title="Copy command" aria-label="Copy command">
+                                        <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                        <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Path 4: Claude Code Native Plugin -->
+                        <div>
+                            <div class="text-sm font-semibold text-white mb-2">
+                                4. Claude Code Native Plugin
+                            </div>
+                            <div class="code-box p-3 sm:p-3.5">
+                                <div class="flex justify-between items-start gap-3">
+                                    <div class="font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto py-0.5 space-y-1">
+                                        <div><span>/plugin marketplace add https://github.com/miqdadbadjuber/anti-slop</span></div>
+                                        <div><span>/plugin install antislop@anti-slop</span></div>
+                                    </div>
+                                    <button type="button" onclick="copyCode(this)" data-copy="/plugin marketplace add https://github.com/miqdadbadjuber/anti-slop&#10;/plugin install antislop@anti-slop" class="text-gray-400 hover:text-white transition-colors p-1.5 rounded hover:bg-white/[0.06] flex items-center justify-center shrink-0 mt-0.5" title="Copy command" aria-label="Copy command">
+                                        <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                        <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Path 5: Via skills.sh Registry -->
+                        <div>
+                            <div class="text-sm font-semibold text-white mb-2">
+                                5. skills.sh Open Registry
+                            </div>
+                            <div class="code-box p-3 sm:p-3.5">
+                                <div class="flex justify-between items-center gap-3">
+                                    <div class="font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto py-0.5">
+                                        <span class="text-cyanGlow select-none mr-2">$</span><span>npx skills add miqdadbadjuber/anti-slop</span>
+                                    </div>
+                                    <button type="button" onclick="copyCode(this)" data-copy="npx skills add miqdadbadjuber/anti-slop" class="text-gray-400 hover:text-white transition-colors p-1.5 rounded hover:bg-white/[0.06] flex items-center justify-center shrink-0" title="Copy command" aria-label="Copy command">
+                                        <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                        <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Path 6: Single File Direct Fetch -->
+                        <div>
+                            <div class="text-sm font-semibold text-white mb-2">
+                                6. Single-File Direct Fetch
+                            </div>
+                            <div class="code-box p-3 sm:p-3.5">
+                                <div class="flex justify-between items-center gap-3">
+                                    <div class="font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto py-0.5">
+                                        <span class="text-cyanGlow select-none mr-2">$</span><span>curl -o antislop.md https://raw.githubusercontent.com/miqdadbadjuber/anti-slop/main/antislop.md</span>
+                                    </div>
+                                    <button type="button" onclick="copyCode(this)" data-copy="curl -o antislop.md https://raw.githubusercontent.com/miqdadbadjuber/anti-slop/main/antislop.md" class="text-gray-400 hover:text-white transition-colors p-1.5 rounded hover:bg-white/[0.06] flex items-center justify-center shrink-0" title="Copy command" aria-label="Copy command">
+                                        <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                        <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Section 5: Usage Modes -->
-                <div>
+                <div id="modes" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         Operational Modes
                     </h2>
-                    <p class="text-gray-400">
+                    <p class="text-gray-400 mb-5">
                         antislop operates in two dedicated modes chosen at the start of any session:
                     </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4 pt-2 font-sans">
-                        <div class="p-3 sm:p-5 border border-white/[0.08] bg-white/[0.015] rounded-lg sm:rounded-xl">
-                            <div class="font-sans text-xs sm:text-base font-semibold text-white mb-1">During Mode (Active Building)</div>
-                            <p class="text-[11px] sm:text-sm text-gray-400 leading-relaxed">
-                                Guides generation actively as files are being written, concluding with a strict Delivery Gate pass/fail validation.
-                            </p>
+                    <!-- Interactive Developer Terminal -->
+                    <div class="bg-[#07070a] border border-white/[0.08] rounded-xl overflow-hidden font-mono mt-4">
+                        <!-- Terminal Header with Tabs -->
+                        <div class="flex items-center justify-between px-3.5 sm:px-4 py-2.5 bg-white/[0.02] border-b border-white/[0.06]">
+                            <div class="flex items-center gap-1.5" aria-hidden="true">
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80"></div>
+                            </div>
+
+                            <!-- Tab Selectors -->
+                            <div class="flex items-center gap-1">
+                                <button type="button" onclick="setModeTab(1)" id="modetab-1" class="px-2.5 sm:px-3 py-1 rounded text-xs font-mono transition-all bg-white/10 text-cyanGlow font-semibold">
+                                    during-mode.sh
+                                </button>
+                                <button type="button" onclick="setModeTab(2)" id="modetab-2" class="px-2.5 sm:px-3 py-1 rounded text-xs font-mono transition-all text-gray-500 hover:text-gray-300">
+                                    after-mode.sh
+                                </button>
+                            </div>
                         </div>
-                        <div class="p-3 sm:p-5 border border-white/[0.08] bg-white/[0.015] rounded-lg sm:rounded-xl">
-                            <div class="font-sans text-xs sm:text-base font-semibold text-white mb-1">After Mode (Audit &amp; Review)</div>
-                            <p class="text-[11px] sm:text-sm text-gray-400 leading-relaxed">
-                                Audits existing codebases, producing a prioritized findings report with actionable refactor recommendations.
-                            </p>
+
+                        <!-- Terminal Output Body -->
+                        <div id="mode-term-output" class="p-4 sm:p-5 text-xs font-mono leading-relaxed space-y-2">
+                            <!-- Default During Mode Content -->
+                            <div class="text-gray-400">
+                                <span class="text-cyanGlow">$</span> antislop --mode=during
+                            </div>
+                            <div class="text-gray-500 text-[11px] pt-1">
+                                [active-watch] Intercepting AI token stream in real time...
+                            </div>
+                            <div class="space-y-1 text-zinc-300 pt-1">
+                                <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                                    <span>1. No generic purple gradients</span>
+                                    <span class="text-cyanGlow font-bold">PASS</span>
+                                </div>
+                                <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                                    <span>2. Contrast ratio &ge; 4.5:1</span>
+                                    <span class="text-cyanGlow font-bold">PASS</span>
+                                </div>
+                                <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                                    <span>3. No robotic tags or badge slop</span>
+                                    <span class="text-cyanGlow font-bold">PASS</span>
+                                </div>
+                            </div>
+                            <div class="pt-2 text-green-400 font-semibold flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                                <span>Delivery Gate: PASSED. All 38 rules verified.</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bottom Back Navigation -->
-                <div class="pt-8 border-t border-white/[0.06] flex items-center">
-                    <a href="/projects/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
-                        <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13 8H3M7 12L3 8l4-4"/>
-                        </svg>
-                        <span class="btn-back-text">Back to all projects</span>
-                    </a>
+                    <!-- Bottom Back Navigation -->
+                    <div class="pt-8 border-t border-white/[0.06] flex items-center">
+                        <a href="/projects/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
+                            <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M13 8H3M7 12L3 8l4-4"/>
+                            </svg>
+                            <span class="btn-back-text">Back to all projects</span>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Right Column: Desktop Table of Contents & Quick Metadata (4 cols, hidden on mobile) -->
+                <aside class="hidden lg:block lg:col-span-4 space-y-6 lg:border-l lg:border-white/[0.08] lg:pl-8 font-sans sticky top-12">
+                    
+                    <!-- Table of Contents -->
+                    <div>
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Table of Contents
+                        </div>
+                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="project-toc">
+                            <a href="#overview" class="toc-link active">Overview &amp; Philosophy</a>
+                            <a href="#architecture" class="toc-link">Core Architecture</a>
+                            <a href="#skills" class="toc-link">Modular Agent Skills</a>
+                            <a href="#installation" class="toc-link">How to Install &amp; Run</a>
+                            <a href="#modes" class="toc-link">Operational Modes</a>
+                        </nav>
+                    </div>
+
+                    <!-- Project Specs / Quick Info -->
+                    <div class="pt-5 border-t border-white/[0.08]">
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Project Info
+                        </div>
+                        <div class="space-y-2 text-xs text-gray-400">
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Type</span>
+                                <span class="text-white font-semibold">Agent Filter &amp; Skills</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Ecosystem</span>
+                                <span class="text-white font-semibold">7 AI Assistants</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Standard</span>
+                                <span class="text-white font-semibold">Agent Skills Open Spec</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">License</span>
+                                <span class="text-white font-semibold">MIT Open Source</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Version</span>
+                                <span class="text-cyanGlow font-semibold">v3.2.3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
 
             </div>
 
@@ -573,10 +802,14 @@
     <!-- Copy Code Helper -->
     <script>
         function copyCode(btn) {
-            const codeBox = btn.closest('.code-box');
-            if (!codeBox) return;
-            const lines = codeBox.querySelectorAll('.code-line > span:last-child');
-            const text = Array.from(lines).map(l => l.innerText).join('\n');
+            let text = btn.getAttribute('data-copy');
+            if (!text) {
+                const codeBox = btn.closest('.code-box');
+                if (!codeBox) return;
+                const lines = codeBox.querySelectorAll('.code-line > span:last-child');
+                text = Array.from(lines).map(l => l.innerText).join('\n');
+            }
+            if (!text) return;
             navigator.clipboard.writeText(text).then(() => {
                 const copyIcon = btn.querySelector('.copy-icon');
                 const checkIcon = btn.querySelector('.check-icon');
@@ -607,5 +840,104 @@ if (window.location.protocol === 'file:') {
     });
 }
 </script>
+    <!-- Operational Modes Terminal Switcher -->
+    <script>
+        function setModeTab(tab) {
+            const btn1 = document.getElementById('modetab-1');
+            const btn2 = document.getElementById('modetab-2');
+            const output = document.getElementById('mode-term-output');
+            if (!output) return;
+
+            if (tab === 1) {
+                btn1.className = "px-2.5 sm:px-3 py-1 rounded text-xs font-mono transition-all bg-white/10 text-cyanGlow font-semibold";
+                btn2.className = "px-2.5 sm:px-3 py-1 rounded text-xs font-mono transition-all text-gray-500 hover:text-gray-300";
+                output.innerHTML = `
+                    <div class="text-gray-400">
+                        <span class="text-cyanGlow">$</span> antislop --mode=during
+                    </div>
+                    <div class="text-gray-500 text-[11px] pt-1">
+                        [active-watch] Intercepting AI token stream in real time...
+                    </div>
+                    <div class="space-y-1 text-zinc-300 pt-1">
+                        <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                            <span>1. No generic purple gradients</span>
+                            <span class="text-cyanGlow font-bold">PASS</span>
+                        </div>
+                        <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                            <span>2. Contrast ratio &ge; 4.5:1</span>
+                            <span class="text-cyanGlow font-bold">PASS</span>
+                        </div>
+                        <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                            <span>3. No robotic tags or badge slop</span>
+                            <span class="text-cyanGlow font-bold">PASS</span>
+                        </div>
+                    </div>
+                    <div class="pt-2 text-green-400 font-semibold flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                        <span>Delivery Gate: PASSED. All 38 rules verified.</span>
+                    </div>
+                `;
+            } else {
+                btn2.className = "px-2.5 sm:px-3 py-1 rounded text-xs font-mono transition-all bg-white/10 text-cyanGlow font-semibold";
+                btn1.className = "px-2.5 sm:px-3 py-1 rounded text-xs font-mono transition-all text-gray-500 hover:text-gray-300";
+                output.innerHTML = `
+                    <div class="text-gray-400">
+                        <span class="text-cyanGlow">$</span> antislop --mode=after
+                    </div>
+                    <div class="text-gray-500 text-[11px] pt-1">
+                        [scan] Scanning entire workspace for structural drift...
+                    </div>
+                    <div class="space-y-1 text-zinc-300 pt-1">
+                        <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                            <span>Files Analyzed</span>
+                            <span class="text-white font-mono">42 files</span>
+                        </div>
+                        <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                            <span>Violations Detected</span>
+                            <span class="text-white font-mono">0 critical</span>
+                        </div>
+                        <div class="flex items-center justify-between py-0.5 border-b border-white/[0.04]">
+                            <span>Refactor Advice</span>
+                            <span class="text-cyanGlow font-mono">2 suggestions generated</span>
+                        </div>
+                    </div>
+                    <div class="pt-2 text-cyanGlow font-semibold flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyanGlow"></span>
+                        <span>Audit Complete: Workspace health score 98/100.</span>
+                    </div>
+                `;
+            }
+        }
+    </script>
+    <!-- Table of Contents Active Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sectionIds = ['overview', 'architecture', 'skills', 'installation', 'modes'];
+            const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+            if (tocLinks.length > 0 && sections.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            tocLinks.forEach((link) => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    rootMargin: '-10% 0px -70% 0px',
+                    threshold: 0
+                });
+
+                sections.forEach(s => observer.observe(s));
+            }
+        });
+    </script>
 </body>
 </html>

@@ -48,6 +48,7 @@
 
         html {
             scrollbar-gutter: stable;
+            scroll-behavior: smooth;
         }
 
         @media (min-width: 1024px) {
@@ -154,6 +155,29 @@
         }
         .btn-back:hover .btn-back-arrow {
             transform: translate(-3px, -1px);
+        }
+
+        /* Desktop Table of Contents */
+        .toc-link {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            line-height: 1.4;
+            color: #71717a;
+            text-decoration: none;
+            padding: 0.35rem 0 0.35rem 0.75rem;
+            border-left: 2px solid transparent;
+            margin-left: -1px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toc-link:hover {
+            color: #ffffff;
+            border-left-color: rgba(255, 255, 255, 0.4);
+        }
+        .toc-link.active {
+            color: #00f0ff;
+            font-weight: 600;
+            border-left-color: #00f0ff;
         }
 
         /* Mobile */
@@ -290,57 +314,71 @@
             </header>
 
             <!-- Reading Body -->
-            <div class="space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans max-w-3xl">
-                <p>
-                    Most enterprise AI bots remain trapped as passive chat endpoints. The true business leverage emerges when intelligent conversational agents are wired directly into production file stores, spreadsheets, and back-office pipelines.
-                </p>
+            <!-- Two Column Layout: Main Content (8 cols) + Sticky Desktop Sidebar (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
+                <div class="lg:col-span-8 space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans">
+                
+                <!-- Section 1: Introduction -->
+                <div id="intro" class="space-y-6 scroll-mt-16">
+                    <p>
+                        Most enterprise AI bots remain trapped as passive chat endpoints. The true business leverage emerges when intelligent conversational agents are wired directly into production file stores, spreadsheets, and back-office pipelines.
+                    </p>
 
-                <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-base">
-                    "The tangible value of business automation is measured by how seamlessly a short chat command translates into verifiable database mutations without manual touchpoints."
-                </blockquote>
+                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-base">
+                        "The tangible value of business automation is measured by how seamlessly a short chat command translates into verifiable database mutations without manual touchpoints."
+                    </blockquote>
+                </div>
 
-                <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-6">
-                    01. Event Pipeline: Discord, Webhooks, and n8n
-                </h2>
-                <p class="text-gray-400">
-                    The architecture starts when a team member dispatches a command in Discord or Telegram. The bot verifies role access, normalizes input entities, and posts an authenticated JSON payload to a self-hosted n8n webhook listener.
-                </p>
+                <!-- Section 2: Event Pipeline -->
+                <div id="event-pipeline" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        01. Event Pipeline: Discord, Webhooks, and n8n
+                    </h2>
+                    <p class="text-gray-400">
+                        The architecture starts when a team member dispatches a command in Discord or Telegram. The bot verifies role access, normalizes input entities, and posts an authenticated JSON payload to a self-hosted n8n webhook listener.
+                    </p>
 
-                <!-- Code block -->
-                <div class="code-box p-4 my-6">
-                    <div class="flex justify-between items-center pb-3 mb-3 border-b border-white/[0.06]">
-                        <!-- macOS Window Controls -->
-                        <div class="flex items-center gap-1.5" aria-hidden="true">
-                            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80"></div>
+                    <!-- Code block -->
+                    <div class="code-box p-4 my-6">
+                        <div class="flex justify-between items-center pb-3 mb-3 border-b border-white/[0.06]">
+                            <!-- macOS Window Controls -->
+                            <div class="flex items-center gap-1.5" aria-hidden="true">
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80"></div>
+                            </div>
+                            <button onclick="copyCode(this)" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/[0.06] flex items-center justify-center" title="Copy code" aria-label="Copy code">
+                                <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </button>
                         </div>
-                        <button onclick="copyCode(this)" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/[0.06] flex items-center justify-center" title="Copy code" aria-label="Copy code">
-                            <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                            <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
-                        <div class="code-line"><span class="code-num">1</span><span><span class="text-purple-400">function</span> <span class="text-blue-400">doPost</span>(e) {</span></div>
-                        <div class="code-line"><span class="code-num">2</span><span>    <span class="text-purple-400">const</span> payload = JSON.parse(e.postData.contents);</span></div>
-                        <div class="code-line"><span class="code-num">3</span><span>    <span class="text-purple-400">const</span> sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(<span class="text-green-300">"Logs"</span>);</span></div>
-                        <div class="code-line"><span class="code-num">4</span><span>    sheet.appendRow([<span class="text-purple-400">new</span> Date(), payload.user_id, payload.action, payload.summary]);</span></div>
-                        <div class="code-line"><span class="code-num">5</span><span>    <span class="text-purple-400">return</span> ContentService.createTextOutput(JSON.stringify({ status: <span class="text-green-300">"success"</span> }));</span></div>
-                        <div class="code-line"><span class="code-num">6</span><span>}</span></div>
+                        <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
+                            <div class="code-line"><span class="code-num">1</span><span><span class="text-purple-400">function</span> <span class="text-blue-400">doPost</span>(e) {</span></div>
+                            <div class="code-line"><span class="code-num">2</span><span>    <span class="text-purple-400">const</span> payload = JSON.parse(e.postData.contents);</span></div>
+                            <div class="code-line"><span class="code-num">3</span><span>    <span class="text-purple-400">const</span> sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(<span class="text-green-300">"Logs"</span>);</span></div>
+                            <div class="code-line"><span class="code-num">4</span><span>    sheet.appendRow([<span class="text-purple-400">new</span> Date(), payload.user_id, payload.action, payload.summary]);</span></div>
+                            <div class="code-line"><span class="code-num">5</span><span>    <span class="text-purple-400">return</span> ContentService.createTextOutput(JSON.stringify({ status: <span class="text-green-300">"success"</span> }));</span></div>
+                            <div class="code-line"><span class="code-num">6</span><span>}</span></div>
+                        </div>
                     </div>
                 </div>
 
-                <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-6">
-                    02. Executing Google Apps Script and Credential Security
-                </h2>
-                <p class="text-gray-400">
-                    The n8n orchestrator parses the intent via structured LLM nodes, then dispatches signed requests to Google Apps Script web apps. Data updates immediately in Google Sheets, dynamic PDF reports generate in Google Drive, and an audit response posts back to the user within seconds.
-                </p>
+                <!-- Section 3: Google Apps Script -->
+                <div id="apps-script" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        02. Executing Google Apps Script and Credential Security
+                    </h2>
+                    <p class="text-gray-400">
+                        The n8n orchestrator parses the intent via structured LLM nodes, then dispatches signed requests to Google Apps Script web apps. Data updates immediately in Google Sheets, dynamic PDF reports generate in Google Drive, and an audit response posts back to the user within seconds.
+                    </p>
+                </div>
 
                 <!-- Bottom Back Navigation with Smooth Underline -->
                 <div class="pt-8 border-t border-white/[0.06] flex items-center">
@@ -351,6 +389,55 @@
                         <span class="btn-back-text">Back to all articles</span>
                     </a>
                 </div>
+
+                </div>
+
+                <!-- Right Column: Desktop Table of Contents & Article Info (4 cols, hidden on mobile) -->
+                <aside class="hidden lg:block lg:col-span-4 space-y-6 lg:border-l lg:border-white/[0.08] lg:pl-8 font-sans sticky top-12">
+                    
+                    <!-- Table of Contents -->
+                    <div>
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Table of Contents
+                        </div>
+                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="article-toc">
+                            <a href="#intro" class="toc-link active">Architecture Vision</a>
+                            <a href="#event-pipeline" class="toc-link">Event Pipeline &amp; Webhooks</a>
+                            <a href="#apps-script" class="toc-link">Apps Script &amp; Security</a>
+                        </nav>
+                    </div>
+
+                    <!-- Article Info / Metadata -->
+                    <div class="pt-5 border-t border-white/[0.08]">
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Article Info
+                        </div>
+                        <div class="space-y-2 text-xs text-gray-400">
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Author</span>
+                                <span class="text-white font-semibold">Miqdad Badjuber</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Published</span>
+                                <span class="text-white font-semibold">July 29, 2026</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Read Time</span>
+                                <span class="text-white font-semibold">7 min read</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Category</span>
+                                <span class="text-white font-semibold">Automation &amp; Agents</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Type</span>
+                                <span class="text-cyanGlow font-semibold">Architecture Guide</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
+
             </div>
 
         </article>
@@ -407,5 +494,35 @@ if (window.location.protocol === 'file:') {
     });
 }
 </script>
+    <!-- Table of Contents Active Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sectionIds = ['intro', 'event-pipeline', 'apps-script'];
+            const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+            if (tocLinks.length > 0 && sections.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            tocLinks.forEach((link) => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    rootMargin: '-10% 0px -70% 0px',
+                    threshold: 0
+                });
+
+                sections.forEach(s => observer.observe(s));
+            }
+        });
+    </script>
 </body>
 </html>

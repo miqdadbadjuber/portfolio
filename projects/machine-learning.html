@@ -266,6 +266,29 @@
             border-color: rgba(0, 240, 255, 0.4);
         }
 
+        /* Desktop Table of Contents */
+        .toc-link {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            line-height: 1.4;
+            color: #71717a;
+            text-decoration: none;
+            padding: 0.35rem 0 0.35rem 0.75rem;
+            border-left: 2px solid transparent;
+            margin-left: -1px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toc-link:hover {
+            color: #ffffff;
+            border-left-color: rgba(255, 255, 255, 0.4);
+        }
+        .toc-link.active {
+            color: #00f0ff;
+            font-weight: 600;
+            border-left-color: #00f0ff;
+        }
+
         /* Mobile */
         @media (max-width: 1023px) {
             header.w-full,
@@ -455,10 +478,14 @@
             </header>
 
             <!-- Project Details Body -->
-            <div class="space-y-12 text-gray-300 text-base md:text-lg leading-loose font-sans max-w-3xl">
+            <!-- Two Column Layout: Main Content (8 cols) + Sticky Desktop Sidebar (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
+                <div class="lg:col-span-8 space-y-12 text-gray-300 text-base md:text-lg leading-loose font-sans">
                 
                 <!-- Section 1: Computer Vision -->
-                <div class="space-y-4">
+                <div id="vision" class="space-y-4 scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight">
                         Computer Vision <span class="hidden sm:inline">(Natural Scene Classification)</span>
                     </h2>
@@ -492,7 +519,7 @@
                 </div>
 
                 <!-- Section 2: Natural Language Processing -->
-                <div class="space-y-4">
+                <div id="nlp" class="space-y-4 scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight">
                         Natural Language Processing <span class="hidden sm:inline">(Gojek Review Sentiment)</span>
                     </h2>
@@ -522,7 +549,7 @@
                 </div>
 
                 <!-- Section 3: Unsupervised Machine Learning -->
-                <div class="space-y-4">
+                <div id="clustering" class="space-y-4 scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight">
                         Unsupervised Anomaly Detection <span class="hidden sm:inline">(Fraud Transaction Clustering)</span>
                     </h2>
@@ -552,7 +579,7 @@
                 </div>
 
                 <!-- Open Source Repositories Section -->
-                <div id="repositories" class="pt-6 scroll-mt-8">
+                <div id="repositories" class="pt-6 scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-4">
                         Open Source Training Repositories
                     </h2>
@@ -649,6 +676,55 @@
                     </a>
                 </div>
 
+                </div>
+
+                <!-- Right Column: Desktop Table of Contents & Quick Metadata (4 cols, hidden on mobile) -->
+                <aside class="hidden lg:block lg:col-span-4 space-y-6 lg:border-l lg:border-white/[0.08] lg:pl-8 font-sans sticky top-12">
+                    
+                    <!-- Table of Contents -->
+                    <div>
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Table of Contents
+                        </div>
+                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="project-toc">
+                            <a href="#vision" class="toc-link active">Computer Vision (CNN)</a>
+                            <a href="#nlp" class="toc-link">NLP Sentiment (BiLSTM)</a>
+                            <a href="#clustering" class="toc-link">Anomaly Clustering (PCA)</a>
+                            <a href="#repositories" class="toc-link">Open Source Repos</a>
+                        </nav>
+                    </div>
+
+                    <!-- Project Specs / Quick Info -->
+                    <div class="pt-5 border-t border-white/[0.08]">
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Project Info
+                        </div>
+                        <div class="space-y-2 text-xs text-gray-400">
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Type</span>
+                                <span class="text-white font-semibold">ML &amp; Deep Learning Suite</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Domains</span>
+                                <span class="text-white font-semibold">Vision, NLP, Clustering</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Frameworks</span>
+                                <span class="text-white font-semibold">TensorFlow, Scikit-Learn</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Exports</span>
+                                <span class="text-white font-semibold">SavedModel, TFLite, TF.js</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Repositories</span>
+                                <span class="text-cyanGlow font-semibold">6 Open Source Projects</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
+
             </div>
 
         </article>
@@ -684,5 +760,35 @@ if (window.location.protocol === 'file:') {
     });
 }
 </script>
+    <!-- Table of Contents Active Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sectionIds = ['vision', 'nlp', 'clustering', 'repositories'];
+            const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+            if (tocLinks.length > 0 && sections.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            tocLinks.forEach((link) => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    rootMargin: '-10% 0px -70% 0px',
+                    threshold: 0
+                });
+
+                sections.forEach(s => observer.observe(s));
+            }
+        });
+    </script>
 </body>
 </html>

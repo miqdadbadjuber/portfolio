@@ -48,6 +48,7 @@
 
         html {
             scrollbar-gutter: stable;
+            scroll-behavior: smooth;
         }
 
         @media (min-width: 1024px) {
@@ -177,6 +178,29 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(0, 240, 255, 0.4);
+        }
+
+        /* Desktop Table of Contents */
+        .toc-link {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            line-height: 1.4;
+            color: #71717a;
+            text-decoration: none;
+            padding: 0.35rem 0 0.35rem 0.75rem;
+            border-left: 2px solid transparent;
+            margin-left: -1px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toc-link:hover {
+            color: #ffffff;
+            border-left-color: rgba(255, 255, 255, 0.4);
+        }
+        .toc-link.active {
+            color: #00f0ff;
+            font-weight: 600;
+            border-left-color: #00f0ff;
         }
 
         /* Mobile */
@@ -377,10 +401,14 @@
             </header>
 
             <!-- Project Details Body -->
-            <div class="space-y-10 text-gray-300 text-base md:text-lg leading-loose font-sans max-w-3xl">
+            <!-- Two Column Layout: Main Content (8 cols) + Sticky Desktop Sidebar (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
+                <div class="lg:col-span-8 space-y-10 text-gray-300 text-base md:text-lg leading-loose font-sans">
                 
                 <!-- Section 1: The Problem -->
-                <div>
+                <div id="problem" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         The Friction with LLM Context
                     </h2>
@@ -434,7 +462,7 @@
                 </div>
 
                 <!-- Section 2: The Solution & Pipeline -->
-                <div>
+                <div id="pipeline" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         How ContextForge Works
                     </h2>
@@ -451,12 +479,12 @@
                 </div>
 
                 <!-- Section 3: Installation & Usage Guide -->
-                <div>
+                <div id="installation" class="scroll-mt-16">
                     <div class="flex flex-wrap items-baseline gap-2 sm:gap-3 mb-2 sm:mb-3">
                         <h2 class="font-display text-2xl font-bold text-white tracking-tight">
                             Installation &amp; Usage
                         </h2>
-                        <span class="text-[10px] sm:text-xs font-sans text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded whitespace-nowrap inline-block w-fit">Coming Soon <span class="hidden sm:inline">(In Active Beta)</span></span>
+                        <span class="text-[10px] sm:text-xs font-sans text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded whitespace-nowrap inline-block w-fit">Coming Soon <span class="hidden sm:inline">(Beta)</span></span>
                     </div>
                     <p class="text-gray-400 mb-4">
                         Upcoming global CLI distribution for local workflow integration:
@@ -491,7 +519,7 @@
                 </div>
 
                 <!-- Section 4: Performance & Benchmarks -->
-                <div>
+                <div id="benchmarks" class="scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
                         Key Metrics &amp; Token Savings
                     </h2>
@@ -520,6 +548,55 @@
                         <span class="btn-back-text">Back to all projects</span>
                     </a>
                 </div>
+
+                </div>
+
+                <!-- Right Column: Desktop Table of Contents & Quick Metadata (4 cols, hidden on mobile) -->
+                <aside class="hidden lg:block lg:col-span-4 space-y-6 lg:border-l lg:border-white/[0.08] lg:pl-8 font-sans sticky top-12">
+                    
+                    <!-- Table of Contents -->
+                    <div>
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Table of Contents
+                        </div>
+                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="project-toc">
+                            <a href="#problem" class="toc-link active">Friction &amp; Problem</a>
+                            <a href="#pipeline" class="toc-link">How It Works</a>
+                            <a href="#installation" class="toc-link">Installation &amp; Usage</a>
+                            <a href="#benchmarks" class="toc-link">Performance &amp; Metrics</a>
+                        </nav>
+                    </div>
+
+                    <!-- Project Specs / Quick Info -->
+                    <div class="pt-5 border-t border-white/[0.08]">
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Project Info
+                        </div>
+                        <div class="space-y-2 text-xs text-gray-400">
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Type</span>
+                                <span class="text-white font-semibold">Developer Tool / CLI</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Architecture</span>
+                                <span class="text-white font-semibold">AST &amp; Relevance Graph</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Execution</span>
+                                <span class="text-white font-semibold">100% Local (0ms API)</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">License</span>
+                                <span class="text-white font-semibold">MIT Open Source</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Version</span>
+                                <span class="text-cyanGlow font-semibold">v0.8.0-beta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
 
             </div>
 
@@ -578,5 +655,35 @@ if (window.location.protocol === 'file:') {
     });
 }
 </script>
+    <!-- Table of Contents Active Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sectionIds = ['problem', 'pipeline', 'installation', 'benchmarks'];
+            const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+            if (tocLinks.length > 0 && sections.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                             const id = entry.target.getAttribute('id');
+                            tocLinks.forEach((link) => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    rootMargin: '-10% 0px -70% 0px',
+                    threshold: 0
+                });
+
+                sections.forEach(s => observer.observe(s));
+            }
+        });
+    </script>
 </body>
 </html>

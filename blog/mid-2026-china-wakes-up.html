@@ -48,6 +48,7 @@
 
         html {
             scrollbar-gutter: stable;
+            scroll-behavior: smooth;
         }
 
         @media (min-width: 1024px) {
@@ -122,6 +123,29 @@
         }
         .btn-back:hover .btn-back-arrow {
             transform: translate(-3px, -1px);
+        }
+
+        /* Desktop Table of Contents */
+        .toc-link {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8125rem;
+            line-height: 1.4;
+            color: #71717a;
+            text-decoration: none;
+            padding: 0.35rem 0 0.35rem 0.75rem;
+            border-left: 2px solid transparent;
+            margin-left: -1px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toc-link:hover {
+            color: #ffffff;
+            border-left-color: rgba(255, 255, 255, 0.4);
+        }
+        .toc-link.active {
+            color: #00f0ff;
+            font-weight: 600;
+            border-left-color: #00f0ff;
         }
 
         /* Mobile */
@@ -234,74 +258,91 @@
             </header>
 
             <!-- Reading Body -->
-            <div class="space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans max-w-3xl">
-                <p>
-                    In the scenario simulation of artificial general intelligence trajectories leading toward 2027 by ai-2027.com, mid-2026 marks a decisive geopolitical turning point. In China, the leadership of the CCP begins to directly feel the accelerating reality and geopolitical gravity of AGI.
-                </p>
+            <!-- Two Column Layout: Main Content (8 cols) + Sticky Desktop Sidebar (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
+                <div class="lg:col-span-8 space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans">
+                
+                <!-- Section 1: Introduction -->
+                <div id="intro" class="space-y-6 scroll-mt-16">
+                    <p>
+                        In the scenario simulation of artificial general intelligence trajectories leading toward 2027 by ai-2027.com, mid-2026 marks a decisive geopolitical turning point. In China, the leadership of the CCP begins to directly feel the accelerating reality and geopolitical gravity of AGI.
+                    </p>
 
-                <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-lg">
-                    "The race toward AGI is no longer treated as a speculative software trend, but as an existential mobilization of nuclear power, centralized compute clusters, and high-stakes cyber operations."
-                </blockquote>
-
-                <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-6">
-                    01. The Compute Deficit and Hardware Bottlenecks
-                </h2>
-
-                <p class="text-gray-400">
-                    Tightening semiconductor export controls alongside limited initial state backing left Chinese research laboratories under-resourced relative to their Western counterparts.
-                </p>
-
-                <p class="text-gray-400">
-                    To maintain momentum, domestic labs relied on smuggling banned Taiwanese silicon, purchasing older-generation hardware, and fabricating domestic chips that lagged roughly three years behind the US-Taiwanese frontier. Through these stopgap measures, China maintained approximately 12% of the world's AI-relevant compute. However, older architecture proved significantly harder to manage, and silicon supply remained an ongoing structural friction.
-                </p>
-
-                <p class="text-gray-400">
-                    A few standout domestic teams, particularly DeepCent, achieved remarkable breakthroughs with constrained compute. Yet the hardware deficit strictly bounded their scope without centralized backing, keeping their best models approximately six months behind OpenBrain's flagship systems.
-                </p>
-
-                <!-- Embedded Article Graphic (Clean Borderless Image) -->
-                <div class="my-8">
-                    <img src="../assets/images/mid-2026.webp" alt="Global compute and AI capabilities trajectory map for mid 2026" class="w-full h-auto rounded-lg object-cover">
-                    <figcaption class="mt-2 text-xs text-gray-500 font-sans text-center">
-                        Image source: <a href="https://ai-2027.com" target="_blank" rel="noopener noreferrer" class="text-cyanGlow/80 hover:underline">ai-2027.com</a>
-                    </figcaption>
+                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-base md:text-lg">
+                        "The race toward AGI is no longer treated as a speculative software trend, but as an existential mobilization of nuclear power, centralized compute clusters, and high-stakes cyber operations."
+                    </blockquote>
                 </div>
 
-                <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-6">
-                    02. Doctrine Shift and Radical Compute Centralization
-                </h2>
+                <!-- Section 2: Compute Deficit -->
+                <div id="compute-deficit" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        01. The Compute Deficit and Hardware Bottlenecks
+                    </h2>
 
-                <p class="text-gray-400">
-                    For years, top leadership prioritized physical manufacturing while regarding consumer software platforms with caution. But as internal strategic assessments highlighted the unstoppable pace of Western AGI milestones, state posture shifted decisively toward an all-out AI initiative.
-                </p>
+                    <p class="text-gray-400">
+                        Tightening semiconductor export controls alongside limited initial state backing left Chinese research laboratories under-resourced relative to their Western counterparts.
+                    </p>
 
-                <p class="text-gray-400">
-                    The government initiated a nationwide AI research consolidation, establishing instant data-sharing and algorithmic exchange protocols across domestic labs. Over the course of twelve months, leading researchers were unified into a collective led by DeepCent, directly pooling algorithmic insights, training datasets, and compute hardware.
-                </p>
+                    <p class="text-gray-400">
+                        To maintain momentum, domestic labs relied on smuggling banned Taiwanese silicon, purchasing older-generation hardware, and fabricating domestic chips that lagged roughly three years behind the US-Taiwanese frontier. Through these stopgap measures, China maintained approximately 12% of the world's AI-relevant compute. However, older architecture proved significantly harder to manage, and silicon supply remained an ongoing structural friction.
+                    </p>
 
-                <p class="text-gray-400">
-                    To power this effort, a Centralized Development Zone (CDZ) was established at the Tianwan Nuclear Power Plant, the largest nuclear facility on earth. The CDZ hosts a massive new datacenter for DeepCent alongside high-security research campuses. At this stage, nearly 50% of China's AI-relevant compute was unified under DeepCent, with more than 80% of new chips routed straight to the CDZ to establish what would become the largest centralized compute cluster globally.
-                </p>
+                    <p class="text-gray-400">
+                        A few standout domestic teams, particularly DeepCent, achieved remarkable breakthroughs with constrained compute. Yet the hardware deficit strictly bounded their scope without centralized backing, keeping their best models approximately six months behind OpenBrain's flagship systems.
+                    </p>
 
-                <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-6">
-                    03. The Cyber Espionage Dilemma: Model Weights
-                </h2>
+                    <!-- Embedded Article Graphic (Clean Borderless Image) -->
+                    <div class="my-8">
+                        <img src="../assets/images/mid-2026.webp" alt="Global compute and AI capabilities trajectory map for mid 2026" class="w-full h-auto rounded-lg object-cover">
+                        <figcaption class="mt-2 text-xs text-gray-500 font-sans text-center">
+                            Image source: <a href="https://ai-2027.com" target="_blank" rel="noopener noreferrer" class="text-cyanGlow/80 hover:underline">ai-2027.com</a>
+                        </figcaption>
+                    </div>
+                </div>
 
-                <p class="text-gray-400">
-                    Even with unprecedented compute concentration at Tianwan, China remained behind on algorithmic architecture due to weaker base models. Intelligence units doubled down on plans to exfiltrate OpenBrain's proprietary model weights.
-                </p>
+                <!-- Section 3: Doctrine Shift -->
+                <div id="centralization" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        02. Doctrine Shift and Radical Compute Centralization
+                    </h2>
 
-                <p class="text-gray-400">
-                    Stealing weights is vastly more difficult than typical code exfiltration: the weights consist of multi-terabyte files stored on heavily secured infrastructure hardened to RAND SL3 specifications. Intelligence planners believed they could execute the breach with insider assistance, but likely only once before security defenses permanently adapted.
-                </p>
+                    <p class="text-gray-400">
+                        For years, top leadership prioritized physical manufacturing while regarding consumer software platforms with caution. But as internal strategic assessments highlighted the unstoppable pace of Western AGI milestones, state posture shifted decisively toward an all-out AI initiative.
+                    </p>
 
-                <p class="text-gray-400">
-                    This created an acute strategic dilemma for leadership: should they execute the breach immediately to secure Agent-1, or hold out for a subsequent model while risking that OpenBrain's defensive countermeasures upgrade beyond penetration capability?
-                </p>
+                    <p class="text-gray-400">
+                        The government initiated a nationwide AI research consolidation, establishing instant data-sharing and algorithmic exchange protocols across domestic labs. Over the course of twelve months, leading researchers were unified into a collective led by DeepCent, directly pooling algorithmic insights, training datasets, and compute hardware.
+                    </p>
 
-                <p class="pt-4 border-t border-white/[0.08] text-sm text-gray-400">
-                    Adapted and synthesized from the geopolitical scenario analysis at <a href="https://ai-2027.com" target="_blank" rel="noopener noreferrer" class="text-cyanGlow hover:underline">ai-2027.com</a>.
-                </p>
+                    <p class="text-gray-400">
+                        To power this effort, a Centralized Development Zone (CDZ) was established at the Tianwan Nuclear Power Plant, the largest nuclear facility on earth. The CDZ hosts a massive new datacenter for DeepCent alongside high-security research campuses. At this stage, nearly 50% of China's AI-relevant compute was unified under DeepCent, with more than 80% of new chips routed straight to the CDZ to establish what would become the largest centralized compute cluster globally.
+                    </p>
+                </div>
+
+                <!-- Section 4: Cyber Espionage -->
+                <div id="espionage" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        03. The Cyber Espionage Dilemma: Model Weights
+                    </h2>
+
+                    <p class="text-gray-400">
+                        Even with unprecedented compute concentration at Tianwan, China remained behind on algorithmic architecture due to weaker base models. Intelligence units doubled down on plans to exfiltrate OpenBrain's proprietary model weights.
+                    </p>
+
+                    <p class="text-gray-400">
+                        Stealing weights is vastly more difficult than typical code exfiltration: the weights consist of multi-terabyte files stored on heavily secured infrastructure hardened to RAND SL3 specifications. Intelligence planners believed they could execute the breach with insider assistance, but likely only once before security defenses permanently adapted.
+                    </p>
+
+                    <p class="text-gray-400">
+                        This created an acute strategic dilemma for leadership: should they execute the breach immediately to secure Agent-1, or hold out for a subsequent model while risking that OpenBrain's defensive countermeasures upgrade beyond penetration capability?
+                    </p>
+
+                    <p class="pt-4 border-t border-white/[0.08] text-sm text-gray-400">
+                        Adapted and synthesized from the geopolitical scenario analysis at <a href="https://ai-2027.com" target="_blank" rel="noopener noreferrer" class="text-cyanGlow hover:underline">ai-2027.com</a>.
+                    </p>
+                </div>
 
                 <!-- Bottom Back Navigation with Smooth Underline -->
                 <div class="pt-8 border-t border-white/[0.06] flex items-center">
@@ -312,6 +353,56 @@
                         <span class="btn-back-text">Back to all articles</span>
                     </a>
                 </div>
+
+                </div>
+
+                <!-- Right Column: Desktop Table of Contents & Article Info (4 cols, hidden on mobile) -->
+                <aside class="hidden lg:block lg:col-span-4 space-y-6 lg:border-l lg:border-white/[0.08] lg:pl-8 font-sans sticky top-12">
+                    
+                    <!-- Table of Contents -->
+                    <div>
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Table of Contents
+                        </div>
+                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="article-toc">
+                            <a href="#intro" class="toc-link active">Geopolitical Turning Point</a>
+                            <a href="#compute-deficit" class="toc-link">Compute Deficit &amp; Silicon</a>
+                            <a href="#centralization" class="toc-link">Nuclear Compute Centralization</a>
+                            <a href="#espionage" class="toc-link">Model Weights Dilemma</a>
+                        </nav>
+                    </div>
+
+                    <!-- Article Info / Metadata -->
+                    <div class="pt-5 border-t border-white/[0.08]">
+                        <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
+                            Article Info
+                        </div>
+                        <div class="space-y-2 text-xs text-gray-400">
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Author</span>
+                                <span class="text-white font-semibold">Miqdad Badjuber</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Published</span>
+                                <span class="text-white font-semibold">August 28, 2026</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Read Time</span>
+                                <span class="text-white font-semibold">4 min read</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Category</span>
+                                <span class="text-white font-semibold">Geopolitics &amp; AGI</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Type</span>
+                                <span class="text-cyanGlow font-semibold">Scenario Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
+
             </div>
 
         </article>
@@ -347,6 +438,36 @@
             }
         });
     }
+    </script>
+    <!-- Table of Contents Active Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sectionIds = ['intro', 'compute-deficit', 'centralization', 'espionage'];
+            const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+            if (tocLinks.length > 0 && sections.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            tocLinks.forEach((link) => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    rootMargin: '-10% 0px -70% 0px',
+                    threshold: 0
+                });
+
+                sections.forEach(s => observer.observe(s));
+            }
+        });
     </script>
 </body>
 </html>
