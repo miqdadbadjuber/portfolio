@@ -79,50 +79,49 @@
 
                 .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
 
-                .log-row {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        /* Vantara Style Circular Button (Clean, No Blue Background, Inverts to White on Hover) */
+        .circle-action-btn {
+            width: 2.25rem;
+            height: 2.25rem;
+            min-width: 2.25rem;
+            min-height: 2.25rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a1a1aa;
+            background: transparent;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+            pointer-events: auto !important;
+        }
+        .group:hover .circle-action-btn,
+        .circle-action-btn:hover {
+            color: #000000;
+            background: #ffffff;
+            border-color: #ffffff;
+            transform: translate(2px, -2px);
+        }
+
+        /* Vantara Featured Spotlight Card (Matching Open Source Cards from Home Index) */
+        .spotlight-card {
+            background-color: #080605;
+            background: #080605;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.7);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
-            display: block;
-            text-decoration: none;
         }
-        .log-row:hover {
-            background: rgba(255, 255, 255, 0.015);
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
+        .spotlight-card:hover {
+            background-color: #0e0b09;
+            background: #0e0b09;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85);
         }
 
-                .article-list-container {
-            position: relative;
-        }
-        .article-hover-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(to right, #ffffff 0%, rgba(0, 240, 255, 0.9) 70%, transparent 100%);
-            border-radius: 9999px;
-            pointer-events: none;
-            opacity: 0;
-            z-index: 10;
-            box-shadow: 0 0 14px rgba(0, 240, 255, 0.5);
-            transition: transform 0.4s cubic-bezier(0.34, 1.35, 0.64, 1), width 0.4s cubic-bezier(0.34, 1.35, 0.64, 1), opacity 0.25s ease;
-        }
-
-                .tag-tech {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 4px;
-        }
-
-                .btn-back {
+        .btn-back {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -185,7 +184,7 @@
                 padding-bottom: 3.5rem !important;
             }
             h1 {
-                font-size: 1.75rem !important; /* 28px */
+                font-size: 2rem !important;
                 line-height: 1.2 !important;
                 letter-spacing: -0.03em !important;
             }
@@ -201,47 +200,18 @@
                 color: #d4d4d8 !important;
                 margin-top: 0.5rem !important;
             }
-                        .article-hover-line {
-                display: none !important;
-            }
-                        #articles-list {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 0 !important;
-            }
-            .log-row {
-                background: transparent !important;
-                border: none !important;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
-                border-radius: 0 !important;
-                padding: 1.15rem 0 !important;
-                margin: 0 !important;
-                transition: background-color 0.2s ease !important;
-            }
-            .log-row:active {
-                background: rgba(255, 255, 255, 0.02) !important;
-            }
-            .log-row h2 {
-                font-size: 1.05rem !important; /* 16.8px */
-                line-height: 1.35 !important;
-                color: #ffffff !important;
-            }
-            .log-row h2 svg {
-                display: none !important;
-            }
-            .log-row span.text-xs {
-                font-size: 0.6875rem !important;
-                color: #71717a !important;
-            }
-            .log-row p {
-                font-size: 0.75rem !important;
-                line-height: 1.6 !important;
-                color: #a1a1aa !important;
-                margin-top: 0.35rem !important;
-            }
                         .mt-14 {
                 margin-top: 2rem !important;
                 padding-top: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .circle-action-btn {
+                width: 2.75rem !important;
+                height: 2.75rem !important;
+                min-width: 2.75rem !important;
+                min-height: 2.75rem !important;
             }
         }
     </style>
@@ -250,8 +220,8 @@
     <div class="bg-grid"></div>
 
     <!-- HUD Overlay -->
-    <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
-    <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
+    <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block pointer-events-none"></div>
+    <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block pointer-events-none"></div>
 
     <!-- Header -->
     <header class="w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-8 md:pt-12 flex justify-between items-center relative z-20">
@@ -275,171 +245,184 @@
     <!-- Main Content -->
     <main class="relative z-10 w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-10 pb-16 md:pt-14 md:pb-24">
         
-        <section class="space-y-12">
-            
-            <!-- Header -->
-            <div class="space-y-4">
-                <h1 class="font-display text-4xl md:text-6xl font-black tracking-tighter text-white">
-                    Blog<span class="text-gray-600">.</span>
-                </h1>
-                <p class="text-gray-400 text-base md:text-lg max-w-2xl leading-relaxed font-sans">
-                    Thoughts, tutorials, and practical insights on AI engineering, web development, and tech workflows.
-                </p>
-            </div>
+        <!-- Header -->
+        <div class="mb-10 pb-6 border-b border-white/[0.08]">
+            <h1 class="font-display text-4xl md:text-6xl font-black tracking-tighter text-white">
+                Blog<span class="text-gray-600">.</span>
+            </h1>
+            <p class="text-zinc-400 text-sm md:text-base max-w-xl font-sans leading-relaxed mt-2">
+                Technical analyses, architectural breakdowns, and practical dispatches on applied artificial intelligence.
+            </p>
+        </div>
 
-            <!-- Year 2026 Archive -->
-            <div class="space-y-2">
-                <div class="font-display text-xs font-bold uppercase tracking-widest text-gray-500 pb-3 border-b border-white/[0.06]">
-                    2026
-                </div>
+        <!-- Asymmetric Vantara Grid: Left Stack (4 Articles) + Right Hero Card (Lead Piece) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-                <!-- Interactive Articles Container with Harmonic Spring Underline -->
-                <div id="articles-list" class="article-list-container space-y-1">
-                    <div id="article-hover-line" class="article-hover-line"></div>
-                    <!-- Article: Mid 2026: China Wakes Up -->
-                    <a href="/blog/mid-2026-china-wakes-up.html" class="log-row py-6 group">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-                            <h2 class="font-display text-lg md:text-xl font-bold text-white group-hover:text-cyanGlow transition-colors flex items-center">
-                                <span>Mid 2026: China Wakes Up and the Global AGI Race</span>
-                                <svg class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-cyanGlow w-4 h-4 inline-block ml-1.5 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
-                            </h2>
-                            <span class="text-xs font-sans text-gray-500 group-hover:text-gray-400 transition-colors whitespace-nowrap shrink-0 hidden sm:inline-block">
-                                Aug 28, 2026
-                            </span>
+            <!-- LEFT COLUMN: Vertical Stack with Proportional Thumbnails -->
+            <div class="lg:col-span-7 space-y-0 divide-y divide-white/[0.08] border-t border-b border-white/[0.08]">
+                
+                <!-- Stack Item 1: AntiSlop -->
+                <article class="py-4.5 sm:py-5 group">
+                    <a href="/blog/anti-ai-slop.html" class="flex items-center justify-between gap-4 sm:gap-5">
+                        <!-- Thumbnail (Clean 16:10 aspect, static on hover) -->
+                        <div class="w-28 sm:w-36 md:w-40 lg:w-44 aspect-[16/10] shrink-0 overflow-hidden rounded-xl bg-[#080605] border border-white/10">
+                            <img src="../assets/images/antislop.webp" alt="AntiSlop Architecture" class="w-full h-full object-cover">
                         </div>
-                        <p class="text-gray-400 text-sm leading-relaxed max-w-3xl font-sans">
-                            An analysis of the mid-2026 geopolitical AI scenario from ai-2027.com: the hardware compute deficit, DeepCent centralization at Tianwan Nuclear Plant, and the cyber intelligence dilemma over OpenBrain model weights.
-                        </p>
-                        <div class="flex items-center justify-between mt-3 sm:hidden">
-                            <div class="inline-flex items-center gap-1.5 text-xs text-white/90 font-medium font-sans border-b border-white/30 pb-0.5">
-                                <span>Read article</span>
-                                <svg class="w-3 h-3 text-cyanGlow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
+
+                        <!-- Content Info (Human font-sans, natural casing) -->
+                        <div class="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
+                            <div class="font-sans text-xs text-zinc-400 font-medium">
+                                Agentic systems · Aug 23, 2026
                             </div>
-                            <span class="text-xs font-sans text-gray-400">Aug 28, 2026</span>
+                            <h2 class="font-display text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-cyanGlow transition-colors leading-snug line-clamp-2">
+                                AntiSlop: Stopping Coding Agents from Generating Generic UI
+                            </h2>
+                            <p class="font-sans text-xs sm:text-sm text-zinc-400 leading-relaxed line-clamp-2 hidden sm:block">
+                                Why LLMs possess a native bias toward purple gradients and rounded pill badges, and how a deterministic rule system eliminates visual hallucinations.
+                            </p>
+                        </div>
+
+                        <!-- Action Button (Transparent -> White on hover) -->
+                        <div class="circle-action-btn">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                            </svg>
                         </div>
                     </a>
+                </article>
 
-                    <!-- Article 1: AntiSlop -->
-                    <a href="/blog/anti-ai-slop.html" class="log-row py-6 group">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-                            <h2 class="font-display text-lg md:text-xl font-bold text-white group-hover:text-cyanGlow transition-colors flex items-center">
-                                <span>AntiSlop: Stopping Coding Agents from Generating Generic UI</span>
-                                <svg class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-cyanGlow w-4 h-4 inline-block ml-1.5 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
-                            </h2>
-                            <span class="text-xs font-sans text-gray-500 group-hover:text-gray-400 transition-colors whitespace-nowrap shrink-0 hidden sm:inline-block">
-                                Aug 23, 2026
-                            </span>
+                <!-- Stack Item 2: Context Engineering -->
+                <article class="py-4.5 sm:py-5 group">
+                    <a href="/blog/context-engineering-vs-finetuning.html" class="flex items-center justify-between gap-4 sm:gap-5">
+                        <!-- Thumbnail -->
+                        <div class="w-28 sm:w-36 md:w-40 lg:w-44 aspect-[16/10] shrink-0 overflow-hidden rounded-xl bg-[#080605] border border-white/10">
+                            <img src="../assets/images/contextforge.webp" alt="Context Engineering" class="w-full h-full object-cover">
                         </div>
-                        <p class="text-gray-400 text-sm leading-relaxed max-w-3xl font-sans">
-                            Why LLMs possess a native bias toward purple gradients and rounded pill badges, and how a 3-file deterministic rule system eliminates visual hallucinations in AI coding agents.
-                        </p>
-                        <!-- Mobile Action Footer with Date at Right (Hidden on Desktop) -->
-                        <div class="flex items-center justify-between mt-3 sm:hidden">
-                            <div class="inline-flex items-center gap-1.5 text-xs text-white/90 font-medium font-sans border-b border-white/30 pb-0.5">
-                                <span>Read article</span>
-                                <svg class="w-3 h-3 text-cyanGlow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
+
+                        <!-- Content Info -->
+                        <div class="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
+                            <div class="font-sans text-xs text-zinc-400 font-medium">
+                                Context engineering · Aug 18, 2026
                             </div>
-                            <span class="text-xs font-sans text-gray-400">Aug 23, 2026</span>
+                            <h2 class="font-display text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-cyanGlow transition-colors leading-snug line-clamp-2">
+                                Context Engineering vs Fine-Tuning: The Precision Key for AI Coding
+                            </h2>
+                            <p class="font-sans text-xs sm:text-sm text-zinc-400 leading-relaxed line-clamp-2 hidden sm:block">
+                                Why surgical context injection and AST symbol pruning outperform static model weight re-training while saving 70% in token overhead.
+                            </p>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="circle-action-btn">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                            </svg>
                         </div>
                     </a>
+                </article>
 
-                    <!-- Article 2: Context Engineering vs Fine-Tuning -->
-                    <a href="/blog/context-engineering-vs-finetuning.html" class="log-row py-6 group">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-                            <h2 class="font-display text-lg md:text-xl font-bold text-white group-hover:text-cyanGlow transition-colors flex items-center">
-                                <span>Context Engineering vs Fine-Tuning: The Precision Key for AI Coding</span>
-                                <svg class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-cyanGlow w-4 h-4 inline-block ml-1.5 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
-                            </h2>
-                            <span class="text-xs font-sans text-gray-500 group-hover:text-gray-400 transition-colors whitespace-nowrap shrink-0 hidden sm:inline-block">
-                                Aug 18, 2026
-                            </span>
+                <!-- Stack Item 3: Canvas ASCII 60 FPS -->
+                <article class="py-4.5 sm:py-5 group">
+                    <a href="/blog/optimizing-canvas-ascii-60fps.html" class="flex items-center justify-between gap-4 sm:gap-5">
+                        <!-- Thumbnail -->
+                        <div class="w-28 sm:w-36 md:w-40 lg:w-44 aspect-[16/10] shrink-0 overflow-hidden rounded-xl bg-[#080605] border border-white/10">
+                            <img src="../assets/images/machine_learning.webp" alt="Canvas ASCII Math" class="w-full h-full object-cover">
                         </div>
-                        <p class="text-gray-400 text-sm leading-relaxed max-w-3xl font-sans">
-                            Why surgical context injection and AST symbol pruning outperform static model weight re-training in production codebase refactors while saving 70% in token overhead.
-                        </p>
-                        <!-- Mobile Action Footer with Date at Right (Hidden on Desktop) -->
-                        <div class="flex items-center justify-between mt-3 sm:hidden">
-                            <div class="inline-flex items-center gap-1.5 text-xs text-white/90 font-medium font-sans border-b border-white/30 pb-0.5">
-                                <span>Read article</span>
-                                <svg class="w-3 h-3 text-cyanGlow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
+
+                        <!-- Content Info -->
+                        <div class="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
+                            <div class="font-sans text-xs text-zinc-400 font-medium">
+                                Graphics &amp; WebGL · Aug 12, 2026
                             </div>
-                            <span class="text-xs font-sans text-gray-400">Aug 18, 2026</span>
+                            <h2 class="font-display text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-cyanGlow transition-colors leading-snug line-clamp-2">
+                                Optimizing Canvas 3D ASCII Sphere Renders to a Rock-Solid 60 FPS
+                            </h2>
+                            <p class="font-sans text-xs sm:text-sm text-zinc-400 leading-relaxed line-clamp-2 hidden sm:block">
+                                Eliminating garbage collection freezes in JavaScript point-cloud math through bitwise integer luminescence precomputation and 2D canvas batching.
+                            </p>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="circle-action-btn">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                            </svg>
                         </div>
                     </a>
+                </article>
 
-                    <!-- Article 3: Canvas ASCII 60 FPS -->
-                    <a href="/blog/optimizing-canvas-ascii-60fps.html" class="log-row py-6 group">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-                            <h2 class="font-display text-lg md:text-xl font-bold text-white group-hover:text-cyanGlow transition-colors flex items-center">
-                                <span>Optimizing Canvas 3D ASCII Sphere Renders to a Rock-Solid 60 FPS</span>
-                                <svg class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-cyanGlow w-4 h-4 inline-block ml-1.5 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
-                            </h2>
-                            <span class="text-xs font-sans text-gray-500 group-hover:text-gray-400 transition-colors whitespace-nowrap shrink-0 hidden sm:inline-block">
-                                Aug 12, 2026
-                            </span>
+                <!-- Stack Item 4: AI Agents & n8n -->
+                <article class="py-4.5 sm:py-5 group">
+                    <a href="/blog/ai-agents-n8n-workspace.html" class="flex items-center justify-between gap-4 sm:gap-5">
+                        <!-- Thumbnail -->
+                        <div class="w-28 sm:w-36 md:w-40 lg:w-44 aspect-[16/10] shrink-0 overflow-hidden rounded-xl bg-[#080605] border border-white/10">
+                            <img src="../assets/images/automation_workflow.webp" alt="Automation Workflow" class="w-full h-full object-cover">
                         </div>
-                        <p class="text-gray-400 text-sm leading-relaxed max-w-3xl font-sans">
-                            Eliminating garbage collection freezes in JavaScript point-cloud math through bitwise integer luminescence precomputation and 2D canvas batching.
-                        </p>
-                        <!-- Mobile Action Footer with Date at Right (Hidden on Desktop) -->
-                        <div class="flex items-center justify-between mt-3 sm:hidden">
-                            <div class="inline-flex items-center gap-1.5 text-xs text-white/90 font-medium font-sans border-b border-white/30 pb-0.5">
-                                <span>Read article</span>
-                                <svg class="w-3 h-3 text-cyanGlow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
+
+                        <!-- Content Info -->
+                        <div class="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
+                            <div class="font-sans text-xs text-zinc-400 font-medium">
+                                Workflow automation · Jul 29, 2026
                             </div>
-                            <span class="text-xs font-sans text-gray-400">Aug 12, 2026</span>
+                            <h2 class="font-display text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-cyanGlow transition-colors leading-snug line-clamp-2">
+                                Building Resilient AI Bots with n8n and Google Workspace
+                            </h2>
+                            <p class="font-sans text-xs sm:text-sm text-zinc-400 leading-relaxed line-clamp-2 hidden sm:block">
+                                A production architecture connecting Discord webhooks, self-hosted n8n orchestrators, and Google Apps Script endpoints for automated enterprise workflows.
+                            </p>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="circle-action-btn">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                            </svg>
                         </div>
                     </a>
-
-                    <!-- Article 4: AI Agents & n8n -->
-                    <a href="/blog/ai-agents-n8n-workspace.html" class="log-row py-6 group">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-                            <h2 class="font-display text-lg md:text-xl font-bold text-white group-hover:text-cyanGlow transition-colors flex items-center">
-                                <span>Building Resilient AI Bots with n8n and Google Workspace</span>
-                                <svg class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-cyanGlow w-4 h-4 inline-block ml-1.5 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
-                            </h2>
-                            <span class="text-xs font-sans text-gray-500 group-hover:text-gray-400 transition-colors whitespace-nowrap shrink-0 hidden sm:inline-block">
-                                Jul 29, 2026
-                            </span>
-                        </div>
-                        <p class="text-gray-400 text-sm leading-relaxed max-w-3xl font-sans">
-                            A production architecture connecting Discord webhooks, self-hosted n8n orchestrators, and Google Apps Script endpoints for automated enterprise workflows.
-                        </p>
-                        <!-- Mobile Action Footer with Date at Right (Hidden on Desktop) -->
-                        <div class="flex items-center justify-between mt-3 sm:hidden">
-                            <div class="inline-flex items-center gap-1.5 text-xs text-white/90 font-medium font-sans border-b border-white/30 pb-0.5">
-                                <span>Read article</span>
-                                <svg class="w-3 h-3 text-cyanGlow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                                </svg>
-                            </div>
-                            <span class="text-xs font-sans text-gray-400">Jul 29, 2026</span>
-                        </div>
-                    </a>
-
-                </div>
+                </article>
 
             </div>
 
-        </section>
+            <!-- RIGHT COLUMN: Spotlight Hero Card (Matching Home Index Cards) -->
+            <div class="lg:col-span-5 order-first lg:order-last">
+                <article class="spotlight-card group">
+                    <a href="/blog/mid-2026-china-wakes-up.html" class="block">
+                        <!-- Hero Image Container (Border separator, no zoom on hover) -->
+                        <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
+                            <img src="../assets/images/mid-2026.webp" alt="Global Compute Trajectory" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
+                        </div>
+
+                        <!-- Bottom Content Block (Inherits card background) -->
+                        <div class="p-5 sm:p-6 space-y-3 sm:space-y-4">
+                            <div class="font-sans text-xs text-zinc-400 font-medium flex items-center justify-between">
+                                <span class="text-zinc-300">Geopolitics &amp; Compute</span>
+                                <span class="text-zinc-500">Aug 28, 2026</span>
+                            </div>
+
+                            <h2 class="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-cyanGlow transition-colors leading-snug">
+                                Mid 2026: China Wakes Up and the Global AGI Race
+                            </h2>
+
+                            <p class="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed line-clamp-3">
+                                An analysis of the mid-2026 geopolitical AI scenario from ai-2027.com: the hardware compute deficit, DeepCent centralization at Tianwan Nuclear Plant, and the cyber intelligence dilemma over OpenBrain model weights.
+                            </p>
+
+                            <!-- Read Button Pill (Inverts cleanly on hover) -->
+                            <div class="pt-1">
+                                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-xs sm:text-sm font-sans font-medium text-white group-hover:bg-white group-hover:text-black group-hover:border-white transition-all">
+                                    <span>Read article</span>
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            </div>
+
+        </div>
 
         <!-- BOTTOM NAVIGATION: Back to Home Button -->
         <div class="mt-14 pt-8 border-t border-white/[0.08] flex items-center">
@@ -466,33 +449,6 @@
             </a>
         </div>
     </footer>
-
-    <!-- Harmonic Spring Hover Tracker Script -->
-    <script>
-        (function() {
-            const listContainer = document.getElementById('articles-list');
-            const hoverLine = document.getElementById('article-hover-line');
-            if (!listContainer || !hoverLine) return;
-
-            const rows = Array.from(listContainer.querySelectorAll('.log-row'));
-
-            rows.forEach(row => {
-                row.addEventListener('mouseenter', () => {
-                    const top = row.offsetTop + row.offsetHeight - 1;
-                    const left = row.offsetLeft;
-                    const width = row.offsetWidth;
-
-                    hoverLine.style.width = width + 'px';
-                    hoverLine.style.transform = `translate(${left}px, ${top}px)`;
-                    hoverLine.style.opacity = '1';
-                });
-            });
-
-            listContainer.addEventListener('mouseleave', () => {
-                hoverLine.style.opacity = '0';
-            });
-        })();
-    </script>
 <script>
 if (window.location.protocol === 'file:') {
     document.querySelectorAll('a[href^="/"]').forEach(function(el) {
