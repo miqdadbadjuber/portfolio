@@ -45,6 +45,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="assets/vendor/neat.min.js"></script>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -761,6 +762,25 @@
         .ambient-layer.is-active {
             opacity: 1;
         }
+        .ambient-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none !important;
+            opacity: 0;
+            transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity;
+            z-index: 1;
+        }
+        .ambient-canvas.is-active {
+            opacity: 1;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .ambient-canvas {
+                transition: opacity 0.3s ease;
+            }
+        }
         .noise {
             position: fixed; inset: 0; z-index: -1; pointer-events: none;
             opacity: 0.04; mix-blend-mode: overlay;
@@ -1421,6 +1441,7 @@
         <div id="ambient-projects" class="ambient-layer" style="background: #000000;"></div>
         <div id="ambient-credentials" class="ambient-layer" style="background: #000000;"></div>
         <div id="ambient-contact" class="ambient-layer" style="background: #000000;"></div>
+        <canvas id="neat-gradient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
     </div>
     <div class="noise" aria-hidden="true"></div>
 
@@ -2652,6 +2673,7 @@
             touchMultiplier: 2,
             infinite: false,
         });
+        window.lenis = lenis;
 
         // Single rAF driver via gsap.ticker - avoids duplicate rAF loop
         lenis.on('scroll', (e) => {
@@ -2794,6 +2816,15 @@
                         }
                     }
                 });
+
+                const neatCanvas = document.getElementById('neat-gradient-canvas');
+                if (neatCanvas) {
+                    if (sectionId === 'credentials' || sectionId === 'contact' || sectionId === 'google-developer') {
+                        neatCanvas.classList.add('is-active');
+                    } else {
+                        neatCanvas.classList.remove('is-active');
+                    }
+                }
             }
 
             function onScrollSpy(scrollYVal) {
@@ -3013,6 +3044,194 @@ if (window.location.protocol === 'file:') {
         }
         go(0);
         requestAnimationFrame(tick);
+    })();
+    </script>
+
+    <!-- Living WebGL Ambient Gradient for Credentials and Contact -->
+    <script>
+    (function() {
+        const canvas = document.getElementById('neat-gradient-canvas');
+        if (!canvas || !window.NeatGradient) return;
+
+        let hasWebGL = false;
+        try {
+            hasWebGL = !!(window.WebGLRenderingContext && (canvas.getContext('webgl2') || canvas.getContext('webgl')));
+        } catch (e) {
+            hasWebGL = false;
+        }
+        if (!hasWebGL) return;
+
+        const isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const config = {
+            colors: [
+                { color: '#000000', enabled: true },
+                { color: '#111111', enabled: true },
+                { color: '#121212', enabled: true },
+                { color: '#000000', enabled: true },
+                { color: '#1B1B1B', enabled: true },
+                { color: '#000000', enabled: true },
+            ],
+            speed: isReduced ? 0 : 2.5,
+            horizontalPressure: 3,
+            verticalPressure: 4,
+            waveFrequencyX: 2,
+            waveFrequencyY: 3,
+            waveAmplitude: 5,
+            secondaryWaveEnabled: false,
+            secondaryWaveFrequencyX: 3,
+            secondaryWaveFrequencyY: 3,
+            secondaryWaveAmplitude: 5,
+            secondaryWaveSpeed: 0.6,
+            secondaryWaveAngle: 1,
+            shadows: 1,
+            highlights: 5,
+            colorBrightness: 1,
+            colorSaturation: 7,
+            wireframe: false,
+            antialias: false,
+            colorBlending: 8,
+            backgroundColor: '#000000',
+            backgroundAlpha: 1,
+            grainScale: 0,
+            grainSparsity: 0,
+            grainIntensity: 0,
+            grainSpeed: 1,
+            resolution: 1.2,
+            yOffset: 1299.0999145507812,
+            yOffsetWaveMultiplier: 4,
+            yOffsetColorMultiplier: 4,
+            yOffsetFlowMultiplier: 4,
+            flowDistortionA: 0,
+            flowDistortionB: 0,
+            flowScale: 1,
+            flowEase: 0,
+            flowEnabled: true,
+            enableProceduralTexture: false,
+            transparentTextureVoid: false,
+            textureMode: 'bitmap',
+            bakeEdgeSoftness: 1,
+            textureVoidLikelihood: 0.45,
+            textureVoidWidthMin: 200,
+            textureVoidWidthMax: 486,
+            textureBandDensity: 2.15,
+            textureColorBlending: 0.01,
+            textureSeed: 333,
+            textureEase: 0.5,
+            proceduralBackgroundColor: '#000000',
+            textureShapeTriangles: 20,
+            textureShapeCircles: 15,
+            textureShapeBars: 15,
+            textureShapeSquiggles: 10,
+            domainWarpEnabled: false,
+            domainWarpIntensity: 0,
+            domainWarpScale: 3,
+            vignetteIntensity: 0,
+            vignetteRadius: 0.8,
+            fresnelEnabled: false,
+            fresnelPower: 2,
+            fresnelIntensity: 0.5,
+            fresnelColor: '#FFFFFF',
+            iridescenceEnabled: false,
+            iridescenceIntensity: 0.5,
+            iridescenceSpeed: 1,
+            prismEdgeEnabled: false,
+            prismEdgeIntensity: 0.5,
+            prismEdgeThinness: 3,
+            prismEdgeSpread: 1,
+            prismEdgeSpeed: 0.5,
+            prismEdgeRipple: 1,
+            bloomIntensity: 0,
+            bloomThreshold: 0.7,
+            chromaticAberration: 0,
+            shapeType: 'plane',
+            shapeRotationX: 0,
+            shapeRotationY: 0,
+            shapeRotationZ: 0,
+            shapeAutoRotateSpeedX: 0,
+            shapeAutoRotateSpeedY: 0,
+            sphereRadius: 15,
+            torusRadius: 15,
+            torusTube: 5,
+            cylinderRadius: 10,
+            cylinderHeight: 40,
+            planeBend: 0,
+            planeTwist: 0,
+            silhouetteFade: 0.25,
+            cylinderFade: 0.08,
+            ribbonFade: 0.05,
+            flatShading: true,
+            cameraLock: true,
+            cameraX: 0,
+            cameraY: 0,
+            cameraZ: 0,
+            cameraRotationX: 0,
+            cameraRotationY: 0,
+            cameraRotationZ: 0,
+            cameraZoom: 1,
+        };
+
+        let gradient = null;
+        try {
+            gradient = new window.NeatGradient({
+                ref: canvas,
+                ...config
+            });
+        } catch (err) {
+            console.warn('NeatGradient failed to initialize:', err);
+            return;
+        }
+
+        // Parallax linkage during scroll
+        const updateParallax = (scrollY) => {
+            if (gradient && canvas.classList.contains('is-active')) {
+                gradient.yOffset = 1299.0999145507812 + scrollY * 0.4;
+            }
+        };
+
+        if (window.lenis) {
+            window.lenis.on('scroll', (e) => {
+                if (typeof e.scroll === 'number') {
+                    updateParallax(e.scroll);
+                }
+            });
+        } else {
+            window.addEventListener('scroll', () => {
+                updateParallax(window.scrollY || window.pageYOffset || 0);
+            }, { passive: true });
+        }
+
+        // Smooth scroll observer for credentials, google developer, and contact sections
+        const targetIds = ['credentials', 'google-developer', 'contact'];
+        const targets = targetIds.map(id => document.getElementById(id)).filter(Boolean);
+        const visibleSections = new Set();
+
+        if ('IntersectionObserver' in window && targets.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        visibleSections.add(entry.target.id);
+                    } else {
+                        visibleSections.delete(entry.target.id);
+                    }
+                });
+
+                if (visibleSections.size > 0) {
+                    canvas.classList.add('is-active');
+                } else {
+                    const currentActive = document.querySelector('#nav-links-desktop a.nav-link.text-white');
+                    const activeHref = currentActive ? currentActive.getAttribute('href') : '';
+                    if (activeHref !== '#credentials' && activeHref !== '#contact') {
+                        canvas.classList.remove('is-active');
+                    }
+                }
+            }, {
+                rootMargin: '160px 0px 160px 0px',
+                threshold: 0.01
+            });
+
+            targets.forEach(t => observer.observe(t));
+        }
     })();
     </script>
 
