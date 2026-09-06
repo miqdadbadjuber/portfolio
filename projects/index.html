@@ -90,7 +90,17 @@
             height: 1.5rem;
             color: #9ca3af;
             text-decoration: none;
+            position: relative;
             transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -8px;
+            transform: translateY(-50%);
+            width: calc(100% + 16px);
+            height: 44px;
         }
         .btn-back:hover {
             color: #ffffff;
@@ -262,21 +272,27 @@
             background-color: rgba(255, 255, 255, 0.06);
         }
 
+        /* Header and Footer social link tap targets (44x44px via pseudo-element without layout shift) */
+        header .flex.items-center.gap-4.h-6 a,
+        footer .flex.items-center.gap-4 a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header .flex.items-center.gap-4.h-6 a::before,
+        footer .flex.items-center.gap-4 a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+        }
+
         /* Mobile Filters */
         @media (max-width: 1023px) {
-            h1 {
-                font-size: clamp(2rem, 8vw, 2.5rem) !important;
-                line-height: 1.1 !important;
-            }
-            .page-header-block {
-                margin-bottom: 1.5rem !important;
-            }
-            .page-header-desc {
-                font-size: 0.8125rem !important; /* 13px */
-                line-height: 1.65 !important;
-                color: #e4e4e7 !important;
-                margin-top: 0.5rem !important;
-            }
             header.w-full,
             body > header {
                 padding-left: 1.25rem !important;
@@ -290,7 +306,20 @@
                 padding-left: 1.25rem !important;
                 padding-right: 1.25rem !important;
                 padding-top: 1.75rem !important;
-                padding-bottom: 3rem !important;
+                padding-bottom: 3.5rem !important;
+            }
+            h1 {
+                font-size: clamp(2rem, 8vw, 2.5rem) !important;
+                line-height: 1.1 !important;
+            }
+            .page-header-block {
+                margin-bottom: 1.5rem !important;
+            }
+            .page-header-desc {
+                font-size: 0.8125rem !important; /* 13px */
+                line-height: 1.65 !important;
+                color: #e4e4e7 !important;
+                margin-top: 0.5rem !important;
             }
             .filter-track {
                 display: flex !important;

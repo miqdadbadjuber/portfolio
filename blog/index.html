@@ -132,7 +132,17 @@
             height: 1.5rem;
             color: #9ca3af;
             text-decoration: none;
+            position: relative;
             transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -8px;
+            transform: translateY(-50%);
+            width: calc(100% + 16px);
+            height: 44px;
         }
         .btn-back:hover {
             color: #ffffff;
@@ -166,8 +176,34 @@
             transform: translate(-3px, -1px);
         }
 
-        /* Mobile */
+        /* Header and Footer social link tap targets (44x44px via pseudo-element without layout shift) */
+        header .flex.items-center.gap-4.h-6 a,
+        footer .flex.items-center.gap-4 a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header .flex.items-center.gap-4.h-6 a::before,
+        footer .flex.items-center.gap-4 a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+        }
+
+        /* Mobile & Tablet (max-width: 1023px) */
         @media (max-width: 1023px) {
+            .desktop-blog-view {
+                display: none !important;
+            }
+            .mobile-blog-deck {
+                display: block !important;
+            }
+
             header.w-full,
             body > header {
                 padding-left: 1.25rem !important;
@@ -177,41 +213,60 @@
                 margin-top: 0 !important;
                 margin-bottom: 0 !important;
             }
+
             main {
                 padding-left: 1.25rem !important;
                 padding-right: 1.25rem !important;
                 padding-top: 1.75rem !important;
                 padding-bottom: 3.5rem !important;
             }
+
             h1 {
-                font-size: 2rem !important;
-                line-height: 1.2 !important;
+                font-size: clamp(2rem, 8vw, 2.5rem) !important;
+                line-height: 1.1 !important;
                 letter-spacing: -0.03em !important;
             }
-            main section.space-y-12 {
-                gap: 1.75rem !important;
+
+            .page-header-block {
+                margin-bottom: 1.5rem !important;
             }
-            main section.space-y-12 > * + * {
-                margin-top: 1.75rem !important;
-            }
-            main section > div:first-child p {
+
+            .page-intro-text {
                 font-size: 0.8125rem !important; /* 13px */
                 line-height: 1.65 !important;
                 color: #d4d4d8 !important;
                 margin-top: 0.5rem !important;
             }
-                        .mt-14 {
-                margin-top: 2rem !important;
-                padding-top: 1.25rem !important;
+
+            /* Option 4.2: Mobile Deck Carousel Track (Clean alignment, no negative margin bleed) */
+            .mobile-carousel-track {
+                display: flex !important;
+                gap: 1rem !important;
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory !important;
+                -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+                padding-bottom: 0.75rem !important;
+                padding-top: 0.25rem !important;
+            }
+            .mobile-carousel-track::-webkit-scrollbar {
+                display: none !important;
+            }
+            .mobile-carousel-card {
+                scroll-snap-align: start !important;
+                flex-shrink: 0 !important;
+                width: 82% !important;
+                max-width: 320px !important;
             }
         }
 
-        @media (max-width: 767px) {
-            .circle-action-btn {
-                width: 2.75rem !important;
-                height: 2.75rem !important;
-                min-width: 2.75rem !important;
-                min-height: 2.75rem !important;
+        /* Desktop Layout (min-width: 1024px) */
+        @media (min-width: 1024px) {
+            .desktop-blog-view {
+                display: grid !important;
+            }
+            .mobile-blog-deck {
+                display: none !important;
             }
         }
     </style>
@@ -246,17 +301,17 @@
     <main class="relative z-10 w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-10 pb-16 md:pt-14 md:pb-24">
         
         <!-- Header -->
-        <div class="mb-10 pb-6 border-b border-white/[0.08]">
+        <div class="page-header-block mb-10 pb-6 border-b border-white/[0.08]">
             <h1 class="font-display text-4xl md:text-6xl font-black tracking-tighter text-white">
                 Blog<span class="text-gray-600">.</span>
             </h1>
-            <p class="text-zinc-400 text-sm md:text-base max-w-xl font-sans leading-relaxed mt-2">
+            <p class="page-intro-text text-zinc-400 text-sm md:text-base max-w-xl font-sans leading-relaxed mt-2">
                 Technical analyses, architectural breakdowns, and practical dispatches on applied artificial intelligence.
             </p>
         </div>
 
-        <!-- Asymmetric Vantara Grid: Left Stack (4 Articles) + Right Hero Card (Lead Piece) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- DESKTOP BLOG VIEW (Locked & Unchanged, Active on lg: 1024px+) -->
+        <div class="desktop-blog-view hidden lg:grid lg:grid-cols-12 grid-cols-12 gap-8 items-start">
 
             <!-- LEFT COLUMN: Vertical Stack with Proportional Thumbnails -->
             <div class="lg:col-span-7 space-y-0 divide-y divide-white/[0.08] border-t border-b border-white/[0.08]">
@@ -264,12 +319,10 @@
                 <!-- Stack Item 1: AntiSlop -->
                 <article class="py-4.5 sm:py-5 group">
                     <a href="/blog/anti-ai-slop.html" class="flex items-center justify-between gap-4 sm:gap-5">
-                        <!-- Thumbnail (Clean 16:10 aspect, static on hover) -->
                         <div class="w-28 sm:w-36 md:w-40 lg:w-44 aspect-[16/10] shrink-0 overflow-hidden rounded-xl bg-[#080605] border border-white/10">
                             <img src="../assets/images/antislop.webp" alt="AntiSlop Architecture" class="w-full h-full object-cover">
                         </div>
 
-                        <!-- Content Info (Human font-sans, natural casing) -->
                         <div class="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
                             <div class="font-sans text-xs text-zinc-400 font-medium">
                                 Agentic systems · Aug 23, 2026
@@ -282,7 +335,6 @@
                             </p>
                         </div>
 
-                        <!-- Action Button (Transparent -> White on hover) -->
                         <div class="circle-action-btn">
                             <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 12L12 4M12 4H6M12 4V10"/>
@@ -294,12 +346,10 @@
                 <!-- Stack Item 2: Context Engineering -->
                 <article class="py-4.5 sm:py-5 group">
                     <a href="/blog/context-engineering-vs-finetuning.html" class="flex items-center justify-between gap-4 sm:gap-5">
-                        <!-- Thumbnail -->
                         <div class="w-28 sm:w-36 md:w-40 lg:w-44 aspect-[16/10] shrink-0 overflow-hidden rounded-xl bg-[#080605] border border-white/10">
                             <img src="../assets/images/contextforge.webp" alt="Context Engineering" class="w-full h-full object-cover">
                         </div>
 
-                        <!-- Content Info -->
                         <div class="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
                             <div class="font-sans text-xs text-zinc-400 font-medium">
                                 Context engineering · Aug 18, 2026
@@ -312,7 +362,6 @@
                             </p>
                         </div>
 
-                        <!-- Action Button -->
                         <div class="circle-action-btn">
                             <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 12L12 4M12 4H6M12 4V10"/>
@@ -324,12 +373,10 @@
                 <!-- Stack Item 3: Canvas ASCII 60 FPS -->
                 <article class="py-4.5 sm:py-5 group">
                     <a href="/blog/optimizing-canvas-ascii-60fps.html" class="flex items-center justify-between gap-4 sm:gap-5">
-                        <!-- Thumbnail -->
                         <div class="w-28 sm:w-36 md:w-40 lg:w-44 aspect-[16/10] shrink-0 overflow-hidden rounded-xl bg-[#080605] border border-white/10">
                             <img src="../assets/images/machine_learning.webp" alt="Canvas ASCII Math" class="w-full h-full object-cover">
                         </div>
 
-                        <!-- Content Info -->
                         <div class="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
                             <div class="font-sans text-xs text-zinc-400 font-medium">
                                 Graphics &amp; WebGL · Aug 12, 2026
@@ -342,7 +389,6 @@
                             </p>
                         </div>
 
-                        <!-- Action Button -->
                         <div class="circle-action-btn">
                             <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 12L12 4M12 4H6M12 4V10"/>
@@ -354,12 +400,10 @@
                 <!-- Stack Item 4: AI Agents & n8n -->
                 <article class="py-4.5 sm:py-5 group">
                     <a href="/blog/ai-agents-n8n-workspace.html" class="flex items-center justify-between gap-4 sm:gap-5">
-                        <!-- Thumbnail -->
                         <div class="w-28 sm:w-36 md:w-40 lg:w-44 aspect-[16/10] shrink-0 overflow-hidden rounded-xl bg-[#080605] border border-white/10">
                             <img src="../assets/images/automation_workflow.webp" alt="Automation Workflow" class="w-full h-full object-cover">
                         </div>
 
-                        <!-- Content Info -->
                         <div class="flex-1 min-w-0 space-y-1 sm:space-y-1.5">
                             <div class="font-sans text-xs text-zinc-400 font-medium">
                                 Workflow automation · Jul 29, 2026
@@ -372,7 +416,6 @@
                             </p>
                         </div>
 
-                        <!-- Action Button -->
                         <div class="circle-action-btn">
                             <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 12L12 4M12 4H6M12 4V10"/>
@@ -387,13 +430,11 @@
             <div class="lg:col-span-5 order-first lg:order-last">
                 <article class="spotlight-card group">
                     <a href="/blog/mid-2026-china-wakes-up.html" class="block">
-                        <!-- Hero Image Container (Border separator, no zoom on hover) -->
                         <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
                             <img src="../assets/images/mid-2026.webp" alt="Global Compute Trajectory" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
                         </div>
 
-                        <!-- Bottom Content Block (Inherits card background) -->
                         <div class="p-5 sm:p-6 space-y-3 sm:space-y-4">
                             <div class="font-sans text-xs text-zinc-400 font-medium flex items-center justify-between">
                                 <span class="text-zinc-300">Geopolitics &amp; Compute</span>
@@ -408,9 +449,8 @@
                                 An analysis of the mid-2026 geopolitical AI scenario from ai-2027.com: the hardware compute deficit, DeepCent centralization at Tianwan Nuclear Plant, and the cyber intelligence dilemma over OpenBrain model weights.
                             </p>
 
-                            <!-- Read Button Pill (Inverts cleanly on hover) -->
                             <div class="pt-1">
-                                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-xs sm:text-sm font-sans font-medium text-white group-hover:bg-white group-hover:text-black group-hover:border-white transition-all">
+                                <div class="spotlight-cta-btn inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-xs sm:text-sm font-sans font-medium text-white group-hover:bg-white group-hover:text-black group-hover:border-white transition-all">
                                     <span>Read article</span>
                                     <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M4 12L12 4M12 4H6M12 4V10"/>
@@ -420,6 +460,171 @@
                         </div>
                     </a>
                 </article>
+            </div>
+
+        </div>
+
+        <!-- MOBILE BLOG DECK (Option 4.2: Open Source Hybrid Feed, Active on < 1024px) -->
+        <div class="mobile-blog-deck block lg:hidden space-y-8">
+
+            <!-- Section 1: Carousel Track of 3 Featured Articles -->
+            <div>
+                <div class="mb-3.5 pb-2 border-b border-white/[0.08]">
+                    <h2 class="text-sm font-bold font-display text-white">Featured Dispatches</h2>
+                </div>
+
+                <div class="mobile-carousel-track">
+                    <!-- Carousel Card 1: Mid 2026 (Lead Piece) -->
+                    <article class="mobile-carousel-card spotlight-card group cursor-pointer">
+                        <a href="/blog/mid-2026-china-wakes-up.html" class="block">
+                            <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
+                                <img src="../assets/images/mid-2026.webp" alt="Global Compute Trajectory" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-sans font-medium text-zinc-400">
+                                    <span class="text-zinc-300 truncate mr-2">Geopolitics &amp; Compute</span>
+                                    <span class="text-zinc-500 shrink-0">Aug 28, 2026</span>
+                                </div>
+                                <h3 class="text-sm sm:text-base font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                    Mid 2026: China Wakes Up and the Global AGI Race
+                                </h3>
+                                <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-2">
+                                    An analysis of the mid-2026 geopolitical AI scenario: hardware compute deficits, nuclear power centralization, and model weight intelligence dilemmas.
+                                </p>
+                                <div class="pt-2.5 flex items-center justify-between border-t border-white/[0.06]">
+                                    <span class="text-xs font-sans text-zinc-300 font-medium">Read article</span>
+                                    <div class="circle-action-btn">
+                                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Carousel Card 2: AntiSlop -->
+                    <article class="mobile-carousel-card spotlight-card group cursor-pointer">
+                        <a href="/blog/anti-ai-slop.html" class="block">
+                            <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
+                                <img src="../assets/images/antislop.webp" alt="AntiSlop Architecture" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-sans font-medium text-zinc-400">
+                                    <span class="text-zinc-300 truncate mr-2">Agentic systems</span>
+                                    <span class="text-zinc-500 shrink-0">Aug 23, 2026</span>
+                                </div>
+                                <h3 class="text-sm sm:text-base font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                    AntiSlop: Stopping Coding Agents from Generating Generic UI
+                                </h3>
+                                <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-2">
+                                    Why LLMs possess a native bias toward purple gradients and rounded pill badges, and how a deterministic rule system eliminates visual hallucinations.
+                                </p>
+                                <div class="pt-2.5 flex items-center justify-between border-t border-white/[0.06]">
+                                    <span class="text-xs font-sans text-zinc-300 font-medium">Read article</span>
+                                    <div class="circle-action-btn">
+                                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Carousel Card 3: Context Engineering -->
+                    <article class="mobile-carousel-card spotlight-card group cursor-pointer">
+                        <a href="/blog/context-engineering-vs-finetuning.html" class="block">
+                            <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
+                                <img src="../assets/images/contextforge.webp" alt="Context Engineering" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-sans font-medium text-zinc-400">
+                                    <span class="text-zinc-300 truncate mr-2">Context engineering</span>
+                                    <span class="text-zinc-500 shrink-0">Aug 18, 2026</span>
+                                </div>
+                                <h3 class="text-sm sm:text-base font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                    Context Engineering vs Fine-Tuning: The Precision Key for AI Coding
+                                </h3>
+                                <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-2">
+                                    Why surgical context injection and AST symbol pruning outperform static model weight re-training while saving 70% in token overhead.
+                                </p>
+                                <div class="pt-2.5 flex items-center justify-between border-t border-white/[0.06]">
+                                    <span class="text-xs font-sans text-zinc-300 font-medium">Read article</span>
+                                    <div class="circle-action-btn">
+                                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Section 2: Feed of Remaining Articles (Open Source Card Aesthetic) -->
+            <div>
+                <div class="mb-4 pb-2 border-b border-white/[0.08]">
+                    <h2 class="text-sm font-bold font-display text-white">More Dispatches</h2>
+                </div>
+
+                <div class="space-y-3.5">
+                    <!-- Feed Card 4: Canvas ASCII -->
+                    <article class="spotlight-card group cursor-pointer">
+                        <a href="/blog/optimizing-canvas-ascii-60fps.html" class="p-4 sm:p-4.5 flex items-center gap-4">
+                            <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-[#080605]">
+                                <img src="../assets/images/machine_learning.webp" alt="Canvas ASCII Math" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 min-w-0 space-y-1">
+                                <div class="flex items-center justify-between text-[11px] font-sans text-zinc-400">
+                                    <span class="text-zinc-300 font-medium truncate mr-1">Graphics &amp; WebGL</span>
+                                    <span class="text-zinc-500 shrink-0">Aug 12, 2026</span>
+                                </div>
+                                <h3 class="text-xs sm:text-sm font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                    Optimizing Canvas 3D ASCII Sphere Renders to a Rock-Solid 60 FPS
+                                </h3>
+                                <div class="flex items-center justify-between pt-1">
+                                    <span class="text-[11px] font-sans text-zinc-400">Read article</span>
+                                    <div class="circle-action-btn !w-7 !h-7 !min-w-[1.75rem] !min-h-[1.75rem]">
+                                        <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Feed Card 5: AI Agents & n8n -->
+                    <article class="spotlight-card group cursor-pointer">
+                        <a href="/blog/ai-agents-n8n-workspace.html" class="p-4 sm:p-4.5 flex items-center gap-4">
+                            <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-[#080605]">
+                                <img src="../assets/images/automation_workflow.webp" alt="Automation Workflow" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 min-w-0 space-y-1">
+                                <div class="flex items-center justify-between text-[11px] font-sans text-zinc-400">
+                                    <span class="text-zinc-300 font-medium truncate mr-1">Workflow automation</span>
+                                    <span class="text-zinc-500 shrink-0">Jul 29, 2026</span>
+                                </div>
+                                <h3 class="text-xs sm:text-sm font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                    Building Resilient AI Bots with n8n and Google Workspace
+                                </h3>
+                                <div class="flex items-center justify-between pt-1">
+                                    <span class="text-[11px] font-sans text-zinc-400">Read article</span>
+                                    <div class="circle-action-btn !w-7 !h-7 !min-w-[1.75rem] !min-h-[1.75rem]">
+                                        <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
             </div>
 
         </div>
