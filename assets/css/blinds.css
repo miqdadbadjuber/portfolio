@@ -1,0 +1,1290 @@
+/* Blinds. .bld is the component; the studio around it (.bldd-*) lives in
+   site.css, the home card (.art-bl-*) too.
+   Per-slat vars written by the rAF loop:
+     --p     0..1.15  open progress, overshooting past 1 on the spring
+     --vel   velocity lean while a slat is moving
+     --hue   0..360   gradient hue when an item has no photo */
+
+.bld {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+  /* every slat shadow is drawn from one ink and three alphas (a1 contact,
+     a2 ambient, rest for the deep option), so both themes stay balanced
+     from one place. Dark pages need more alpha to read the same weight. */
+  --bld-sh-ink: 0 0 0;
+  --bld-sh-a1: 0.2;
+  --bld-sh-a2: 0.24;
+  --bld-sh-rest: 0.14;
+  /* the hairline a card's edge is drawn with */
+  --bld-line: rgb(255 255 255 / 0.08);
+}
+html[data-theme='light'] .bld {
+  --bld-sh-ink: 40 34 26;
+  --bld-sh-a1: 0.09;
+  --bld-sh-a2: 0.11;
+  --bld-sh-rest: 0.08;
+  --bld-line: rgb(20 18 15 / 0.12);
+}
+/* the track holds the slats; on a reel it is the thing that drifts */
+.bld-track {
+  display: flex;
+  gap: var(--bld-gap, 8px);
+  width: 100%;
+  height: 100%;
+}
+.bld--h .bld-track {
+  flex-direction: row;
+}
+.bld--v .bld-track {
+  flex-direction: column;
+}
+/* the draggable layouts: horizontal swipes belong to them, vertical ones
+   still scroll the page */
+.bld--reel,
+.bld--ring,
+.bld--snap,
+.bld--stack,
+.bld--deck,
+.bld--fan,
+.bld--fold,
+.bld--peek {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.bld--reel:active,
+.bld--ring:active,
+.bld--snap:active,
+.bld--stack:active,
+.bld--fan:active,
+.bld--fold:active,
+.bld--peek:active,
+.bld--deck:active {
+  cursor: grabbing;
+}
+
+/* the belt: slats are absolute and ride their own compositor layer, the
+   loop writes one translate per slat, so neither the drift nor an opening
+   slat ever re-layouts or repaints the strip */
+.bld--reel {
+  overflow: hidden;
+}
+.bld--reel .bld-track {
+  position: relative;
+  display: block;
+}
+.bld--reel .bld-slat {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  will-change: transform;
+}
+/* the belt's photos ride the track's one layer: promoting dozens of them
+   individually is pure GPU memory, they never resize while it cruises */
+.bld--reel .bld-img,
+.bld--snap .bld-img {
+  will-change: auto;
+}
+
+/* the lens: a magnifying disc over the stage. Blinds.tsx builds the backdrop
+   displacement from a radial map; this layer is only the glass, a bright
+   core, a shimmer ring near the rim and a lit edge. */
+.bld-lens {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(180px, 60cqi, 440px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 30;
+  background:
+    radial-gradient(circle at 42% 38%, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0.05) 30%, transparent 50%),
+    radial-gradient(circle at 50% 50%, transparent 74%, rgb(120 170 255 / 0.3) 84%, rgb(255 255 255 / 0.18) 92%, transparent 100%);
+  box-shadow:
+    0 0 0 1.5px rgb(255 255 255 / 0.55),
+    inset 0 0 0 1px rgb(255 255 255 / 0.22),
+    inset 0 0 36px rgb(255 255 255 / 0.1),
+    0 24px 70px rgb(0 0 0 / 0.45);
+}
+.bld-lens-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.bld-slat {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: var(--bld-r, 18px);
+  background: #101014;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  /* every slat rests on a two-layer shadow, contact and ambient, and the
+     open one grows it with the spring rather than a transition, so the
+     shadow control works on cruising drums and side cards too. --bld-sh
+     scales it, --bld-sh-base adds the deep option's resting layer. The
+     ambient layer grows with the stage, so a full-bleed hero reads the
+     same weight as the column. --bld-sh-p is the open progress the shadow
+     follows; the card layouts pin it, see below. */
+  --bld-sh-p: min(var(--p, 0), 1);
+  box-shadow:
+    0 2px 6px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a1, 0.2) * (0.4 + 0.6 * var(--bld-sh-p, 0)) * var(--bld-sh, 1))),
+    0 max(12px, 1.4cqi) max(28px, 3.4cqi) rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * (0.35 + 0.65 * var(--bld-sh-p, 0)) * var(--bld-sh, 1))),
+    0 3px 10px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-rest, 0.14) * var(--bld-sh-base, 0)));
+  /* a shape can lean the whole slat (slant's skew); unset otherwise */
+  transform: var(--bld-shape-tf,);
+  /* the strip owns the motion; a slat never transitions on its own */
+  transition: none;
+  /* the label maths inside never reaches page layout */
+  contain: layout;
+}
+.bld.bld-shadow-none {
+  --bld-sh: 0;
+  --bld-sh-base: 0;
+}
+/* a card never changes size, so nothing else on it needs repainting while
+   it moves: its layer is rasterised once and only composited. A shadow that
+   followed the spring undid that, re-rasterising every card on every frame
+   of a deal or a swipe, so on the card layouts the shadow holds one weight. */
+.bld--ring .bld-slat,
+.bld--snap .bld-slat,
+.bld--stack .bld-slat,
+.bld--deck .bld-slat,
+.bld--fan .bld-slat,
+.bld--fold .bld-slat,
+.bld--peek .bld-slat {
+  --bld-sh-p: 0.75;
+}
+/* a strip's label swings and its caption rises every frame the slat moves:
+   on their own layers that is a compositor move, not text repainted at each
+   angle, and the title stops hopping whole pixels as the slat slides.
+   Strip layouts only: on a belt the labels never move within their card. */
+.bld:not(.bld--reel):not(.bld--ring):not(.bld--snap):not(.bld--stack):not(.bld--deck):not(.bld--fan):not(.bld--fold):not(.bld--peek) .bld-label,
+.bld:not(.bld--reel):not(.bld--ring):not(.bld--snap):not(.bld--stack):not(.bld--deck):not(.bld--fan):not(.bld--fold):not(.bld--peek) .bld-body {
+  will-change: transform, opacity;
+}
+.bld.bld-shadow-deep {
+  --bld-sh: 1.35;
+  --bld-sh-base: 1;
+}
+/* on a light page the white hairline reads as an outline: tint the edge with
+   ink instead, and let an empty slat be paper rather than near-black */
+html[data-theme='light'] .bld-slat {
+  border-color: rgb(20 18 15 / 0.12);
+  background: #ece8e0;
+}
+.bld--h .bld-slat {
+  /* narrows on small viewports so a wide set cannot overflow the strip */
+  min-width: clamp(36px, 9vw, 52px);
+}
+.bld--v .bld-slat {
+  min-height: 52px;
+}
+.bld-slat:focus-visible {
+  outline: none !important;
+  outline-offset: 2px;
+}
+
+/* artwork: it leans with the spring's velocity and relaxes from a tight dim
+   crop to a full-colour wide one as the slat opens */
+.bld-art {
+  position: absolute;
+  inset: -14px; /* bleed so the lean never shows an edge */
+  transform: skewX(calc(var(--vel, 0) * -0.55deg));
+  background:
+    radial-gradient(120% 90% at 85% 10%, hsl(calc(var(--hue) + 40) 70% 78% / 0.9), transparent 60%),
+    radial-gradient(130% 100% at 15% 95%, hsl(calc(var(--hue) - 25) 65% 60% / 0.85), transparent 65%),
+    linear-gradient(160deg, hsl(var(--hue) 55% 72%), hsl(calc(var(--hue) + 70) 50% 52%));
+}
+/* a photo covers the generated art completely, so painting three gradients
+   under it every springing frame is wasted work */
+.bld-art:has(.bld-img) {
+  background: none;
+}
+.bld--v .bld-art {
+  transform: skewY(calc(var(--vel, 0) * -0.55deg));
+}
+/* the watermark number, off unless a variant turns it on */
+.bld-big {
+  display: none;
+}
+.bld-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* closed it is dim, muted and zoomed in; open it relaxes to full colour.
+     Both ride --p, so they move with the spring, overshoot and all. */
+  transform: scale(calc(1.18 - 0.14 * min(var(--p, 0), 1)));
+  filter: grayscale(calc(0.35 * (1 - min(var(--p, 0), 1))))
+    brightness(calc(0.74 + 0.28 * min(var(--p, 0), 1)))
+    saturate(calc(0.85 + 0.25 * min(var(--p, 0), 1)));
+  /* its own compositor layer, so the per-frame transform and filter changes
+     are GPU work rather than a re-raster of a full photo every frame */
+  will-change: transform, filter;
+}
+.bld--h .bld-img {
+  /* the photo is not sized to its slat, which would re-raster it on every
+     frame of a width spring. It is a fixed 2:1 layer at the slat's height
+     and the slat's clip reveals more of it as it opens: identical to
+     object-fit cover until the slat is wider than 2:1, where min-width
+     takes over. */
+  inset: auto;
+  top: 0;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  aspect-ratio: 2 / 1;
+  min-width: 100%;
+  transform: translateX(-50%) scale(calc(1.18 - 0.14 * min(var(--p, 0), 1)));
+}
+/* a quiet vignette so white text always reads */
+.bld-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(8 8 12 / 0.62), transparent 52%);
+}
+
+/* the label reads up a closed slat and swings upright as it opens, riding
+   the same spring as the width, overshoot included */
+.bld-label {
+  position: absolute;
+  /* every shape publishes the insets its curves leave clear (--bld-safe-*),
+     16px all round on a slab. A closed label rotates about a pivot 6px in
+     from its left end, so its thickness (a line plus the number chip, about
+     1.67 of the font size) hangs to the left of that pivot: putting the
+     pivot at the slat's centre plus half the thickness centres the upright
+     title at any text size, and it slides to the safe inset as the slat
+     opens. --bld-k is the open progress. */
+  --bld-k: min(var(--p, 0) * 1.25, 1);
+  left: calc((50% + var(--bld-fs, 1.05rem) * 0.83 - 6px) * (1 - var(--bld-k)) + var(--bld-safe-l, 16px) * var(--bld-k));
+  bottom: var(--bld-safe-b, 16px);
+  /* a title that cannot fit between the safe edges truncates rather than
+     running into a curve, see .bld-title. Dividing by the open progress
+     keeps a closed rotated label, whose width is its vertical extent, from
+     being squeezed by the thin slat. */
+  max-width: calc((100% - var(--bld-safe-l, 16px) - var(--bld-safe-r, 16px)) / max(0.001, var(--bld-k)));
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+  color: #fff;
+  transform-origin: 6px 100%;
+  /* --bld-rot flips sign for a top label, so rotated text always runs into
+     the slat instead of off its edge */
+  transform: rotate(calc(var(--bld-rot, -90deg) * (1 - var(--bld-k))));
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.35);
+}
+.bld--v .bld-label {
+  transform: none;
+  top: 14px;
+  bottom: auto;
+}
+.bld-index {
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  padding: 2px 7px;
+  border-radius: 999px;
+  /* a plain tint, not a backdrop blur: one backdrop per slat left the
+     compositor re-blurring a dozen of them on every scrolled frame */
+  background: rgb(12 12 16 / 0.42);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14);
+}
+.bld-title {
+  font-weight: 600;
+  font-size: var(--bld-fs, 1.05rem);
+  letter-spacing: 0.01em;
+  /* truncates inside the label's safe width instead of being clipped */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* body copy staggers in once the slat is mostly open */
+.bld-body {
+  position: absolute;
+  left: var(--bld-safe-l, 16px);
+  right: var(--bld-safe-r, 16px);
+  /* stacked above the label by the label's own thickness plus a gap, so a
+     bigger text size pushes the caption up instead of colliding with it */
+  bottom: calc(var(--bld-safe-b, 16px) + var(--bld-fs, 1.05rem) * 1.67 + 10px);
+  display: grid;
+  gap: 2px;
+  color: #fff;
+  pointer-events: none;
+  opacity: clamp(0, (var(--p, 0) - 0.55) * 3.3, 1);
+  transform: translateY(calc(10px * (1 - clamp(0, (var(--p, 0) - 0.55) * 3.3, 1))));
+}
+.bld--v .bld-body {
+  bottom: 14px;
+}
+.bld-sub {
+  font-size: 0.88rem;
+  opacity: 0.92;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 0.4);
+}
+.bld-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  padding-top: 6px;
+  margin-top: 4px;
+  border-top: 1px solid rgb(255 255 255 / 0.22);
+  width: fit-content;
+  padding-right: 18px;
+}
+
+/* a narrow box gets the calm version: stacked rows, tap to open. A container
+   query rather than a media query, so a preview box and a real phone behave
+   the same. Reduced motion tames the springs separately. */
+@container (max-width: 480px) {
+  /* the reel keeps drifting and the drum keeps turning; the rest stacks */
+  .bld--h:not(.bld--reel):not(.bld--ring):not(.bld--snap):not(.bld--stack):not(.bld--deck):not(.bld--fan):not(.bld--fold):not(.bld--peek) .bld-track {
+    flex-direction: column;
+  }
+  .bld--h:not(.bld--reel):not(.bld--ring):not(.bld--snap):not(.bld--stack):not(.bld--deck):not(.bld--fan):not(.bld--fold):not(.bld--peek) .bld-slat {
+    min-width: 0;
+    min-height: 52px;
+  }
+  .bld--h:not(.bld--reel):not(.bld--ring):not(.bld--snap):not(.bld--stack):not(.bld--deck):not(.bld--fan):not(.bld--fold):not(.bld--peek) .bld-label {
+    transform: none;
+    top: auto;
+    bottom: 12px;
+  }
+  /* stacked rows spring in height, so the photo is a fixed 3:2 layer at the
+     row's width, centred, and the row's clip reveals more of it as it
+     opens. Sized to the row it was re-decoded and re-rasterised on every
+     frame, which is what made phones stutter. */
+  .bld--h:not(.bld--reel):not(.bld--ring):not(.bld--snap):not(.bld--stack):not(.bld--deck):not(.bld--fan):not(.bld--fold):not(.bld--peek) .bld-img {
+    inset: auto;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    min-width: 0;
+    min-height: 100%;
+    transform: translateY(-50%) scale(calc(1.18 - 0.14 * min(var(--p, 0), 1)));
+  }
+}
+/* the vertical strip springs its slats' heights the same way */
+.bld--v .bld-img {
+  inset: auto;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  min-height: 100%;
+  transform: translateY(-50%) scale(calc(1.18 - 0.14 * min(var(--p, 0), 1)));
+}
+
+/* variants: one physics core, different looks */
+
+/* coverflow: closed slats angle toward the open one, which floats forward */
+.bld-var-tilt {
+  perspective: 1000px;
+}
+.bld-var-tilt .bld-slat {
+  transform: var(--bld-shape-tf,) rotateY(calc(var(--side, 0) * (1 - min(var(--p, 0), 1)) * 16deg))
+    translateZ(calc(min(var(--p, 0), 1) * 46px));
+}
+
+/* editorial: full colour, and the giant watermark number belongs to the open
+   slat alone so closed ones stay clean */
+.bld-var-peek .bld-big {
+  display: block;
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-size: calc(var(--bld-fs, 1.05rem) * 3.4);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgb(255 255 255 / 0.3);
+  opacity: clamp(0, (var(--p, 0) - 0.3) * 2, 1);
+  pointer-events: none;
+}
+.bld-var-peek .bld-index {
+  display: none;
+}
+
+/* label styles are a choice of their own, not the variant's: swing rotates
+   upright, steady and sideways stay put */
+.bld.bld-label-steady .bld-label {
+  transform: none;
+  left: var(--bld-safe-l, 16px); /* never rotated, so never re-centred */
+  opacity: clamp(0, (var(--p, 0) - 0.3) * 2.4, 1);
+}
+/* label position, for swing and steady */
+.bld.bld-pos-top .bld-slat {
+  --bld-rot: 90deg; /* rotated text runs downward from the top */
+}
+.bld.bld-pos-top .bld-label {
+  bottom: auto;
+  top: var(--bld-safe-t, 16px);
+  transform-origin: 6px 0;
+}
+.bld.bld-pos-top .bld-body,
+.bld.bld-pos-center .bld-body {
+  /* the label is not at the foot, so the caption has it to itself */
+  bottom: var(--bld-safe-b, 16px);
+}
+.bld.bld-pos-center .bld-label {
+  left: 0;
+  top: 0;
+  bottom: auto;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+}
+
+/* sideways uses real vertical text flow rather than a transform, so the
+   layout engine sizes the column and nothing clips. Position picks where the
+   title sits along the slat: up from the foot, down from the head, or
+   floating in the middle. */
+.bld.bld-label-sideways .bld-label {
+  writing-mode: vertical-rl;
+  /* spin in place, not around the base's bottom-left origin */
+  transform: none;
+  translate: none;
+  rotate: 180deg;
+  transform-origin: center;
+  /* the column is one line wide and slides with the spring: centred across
+     a closed slat, parked at the shape's left inset once open, so an open
+     panel's title hugs its edge rather than the closed slat's centre */
+  --bld-k: min(var(--p, 0) * 1.25, 1);
+  left: calc(50% * (1 - var(--bld-k)) + var(--bld-safe-l, 18px) * var(--bld-k));
+  right: auto;
+  translate: calc(-50% * (1 - var(--bld-k))) 0;
+  top: 24px;
+  bottom: 26px;
+  width: auto;
+  height: auto;
+  max-width: none;
+  align-items: center;
+  justify-content: flex-start; /* at the foot, reading upward */
+  letter-spacing: 0.02em;
+}
+.bld.bld-label-sideways .bld-body {
+  /* the vertical title owns the left edge whatever its position, since a
+     long one hanging from the head still reaches the foot, so the caption
+     moves right of the column and drops to the foot */
+  left: calc(var(--bld-safe-l, 16px) + var(--bld-fs, 1.05rem) * 1.7 + 14px);
+  bottom: var(--bld-safe-b, 16px);
+}
+.bld.bld-pos-center.bld-label-sideways .bld-label {
+  justify-content: center;
+}
+.bld.bld-pos-top.bld-label-sideways .bld-label {
+  justify-content: flex-end;
+}
+
+/* shapes are border-radius on the slat, which clips the art, so every mode
+   and the open/closed morph come for free. The 999px radii lean on CSS
+   radius scaling: the browser shrinks them to fit, so a capsule stays a
+   capsule at 78px and at 400px. Each shape moves the text off its curves. */
+
+/* squircle: continuous corners where the engine has them, a plain round of
+   the same size elsewhere. The radius is a share of the width, capped, so a
+   closed slat lands near an icon's proportion rather than a capsule's. */
+.bld.bld-shape-squircle .bld-slat {
+  border-radius: min(31%, 120px);
+}
+@supports (corner-shape: squircle) {
+  .bld.bld-shape-squircle .bld-slat {
+    corner-shape: squircle;
+  }
+}
+.bld.bld-shape-squircle {
+  --bld-safe-l: 24px;
+  --bld-safe-r: 24px;
+  --bld-safe-b: 22px;
+  --bld-safe-t: 22px;
+}
+
+/* pill: a hairline inner ring gives the capsule an edge, and the label
+   becomes a chip centred in the cap, reading up the middle when closed and
+   floating in the foot when open. The chip is what makes text fit a capsule
+   at any width, since the caps would clip a corner-parked label. */
+.bld.bld-shape-pill .bld-slat {
+  border-radius: 999px;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.14),
+    0 2px 6px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a1, 0.2) * (0.4 + 0.6 * var(--bld-sh-p, 0)) * var(--bld-sh, 1))),
+    0 max(12px, 1.4cqi) max(28px, 3.4cqi) rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * (0.35 + 0.65 * var(--bld-sh-p, 0)) * var(--bld-sh, 1))),
+    0 3px 10px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-rest, 0.14) * var(--bld-sh-base, 0)));
+}
+.bld.bld-shape-pill:not(.bld-label-sideways):not(.bld-pos-center) .bld-label {
+  left: 50%;
+  translate: -50% 0;
+  transform-origin: 50% 50%;
+  bottom: 22px;
+  /* spins about its own centre, then slides along its own axis by half its
+     width, so a closed chip stands above its anchor instead of half below
+     the slat's edge */
+  transform: rotate(calc(var(--bld-rot, -90deg) * (1 - var(--bld-k))))
+    translateX(calc(50% * (1 - var(--bld-k))));
+  /* the cap is a semicircle, so the chip gets at most about 60% of the width */
+  max-width: calc(min(62%, 100% - 20px) / max(0.001, var(--bld-k)));
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  background: rgb(10 10 14 / 0.55);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  text-shadow: none;
+}
+.bld.bld-shape-pill:not(.bld-label-sideways):not(.bld-pos-center) .bld-index {
+  background: rgb(255 255 255 / 0.16);
+  box-shadow: none;
+}
+.bld.bld-shape-pill.bld-label-steady .bld-label {
+  transform: none;
+}
+.bld.bld-shape-pill.bld-pos-top:not(.bld-label-sideways) .bld-label {
+  top: 22px;
+  bottom: auto;
+}
+.bld.bld-shape-pill .bld-body {
+  /* centred in the foot above the chip, inset past the cap's curve */
+  left: 20%;
+  right: 20%;
+  bottom: calc(22px + var(--bld-fs, 1.05rem) * 1.67 + 14px);
+  text-align: center;
+}
+.bld.bld-shape-pill.bld-label-sideways .bld-body,
+.bld.bld-shape-pill.bld-pos-top .bld-body {
+  /* no chip in the foot, so the caption takes it */
+  bottom: 30px;
+}
+.bld.bld-shape-pill.bld-label-sideways .bld-label,
+.bld.bld-shape-pill.bld-pos-top.bld-label-sideways .bld-label,
+.bld.bld-shape-pill.bld-pos-center.bld-label-sideways .bld-label {
+  /* a capsule has no foot or head to anchor to, only a waist, so the
+     vertical title sits centred whatever the position control says */
+  top: 8%;
+  bottom: 8%;
+  justify-content: center;
+}
+.bld.bld-shape-pill {
+  --bld-safe-l: 24px;
+}
+
+/* arch: a round head over a square foot, so the label sits at the foot and
+   the top position moves below the dome */
+.bld.bld-shape-arch .bld-slat {
+  border-radius: 999px 999px var(--bld-r, 18px) var(--bld-r, 18px);
+}
+.bld.bld-shape-arch {
+  --bld-safe-t: 26%;
+}
+.bld.bld-shape-arch.bld-label-sideways .bld-label {
+  top: 14%;
+}
+.bld.bld-shape-arch.bld-pos-top.bld-label-sideways .bld-label {
+  /* the head is a dome, so a title that would hang from it sits at the waist */
+  justify-content: center;
+}
+
+/* cut: bevelled corners, native where the engine has corner-shape and a
+   polygon clip otherwise. The bevel rides the corner radius, and a 45
+   degree cut only ever touches its own corner, so the slab insets clear it. */
+.bld.bld-shape-cut .bld-slat {
+  --bld-c: calc(var(--bld-r, 18px) * 1.3);
+}
+@supports (corner-shape: bevel) {
+  /* native bevel, so border, fill and shadow all follow the shape */
+  .bld.bld-shape-cut .bld-slat {
+    corner-shape: bevel;
+    border-radius: var(--bld-c);
+    box-shadow:
+      0 2px 6px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a1, 0.2) * (0.4 + 0.6 * var(--bld-sh-p, 0)) * var(--bld-sh, 1))),
+      0 max(12px, 1.4cqi) max(28px, 3.4cqi) rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * (0.35 + 0.65 * var(--bld-sh-p, 0)) * var(--bld-sh, 1))),
+      0 3px 10px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-rest, 0.14) * var(--bld-sh-base, 0)));
+  }
+}
+@supports not (corner-shape: bevel) {
+  /* fallback: clip the art and let the transparent slat cast a drop-shadow
+     that follows the cut, the same trick as slant */
+  .bld.bld-shape-cut .bld-slat {
+    border-radius: 0;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    filter:
+      drop-shadow(0 8px 20px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * (0.35 + 0.65 * var(--bld-sh-p, 0)) * var(--bld-sh, 1))))
+      drop-shadow(0 3px 8px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-rest, 0.14) * var(--bld-sh-base, 0))));
+  }
+  .bld.bld-shape-cut .bld-art {
+    inset: 0;
+    clip-path: polygon(
+      var(--bld-c) 0,
+      calc(100% - var(--bld-c)) 0,
+      100% var(--bld-c),
+      100% calc(100% - var(--bld-c)),
+      calc(100% - var(--bld-c)) 100%,
+      var(--bld-c) 100%,
+      0 calc(100% - var(--bld-c)),
+      0 var(--bld-c)
+    );
+  }
+  /* same leak guard as slant: keep the photo in the clipped layer */
+  .bld.bld-shape-cut .bld-img {
+    inset: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    aspect-ratio: auto;
+    transform: scale(calc(1.18 - 0.14 * min(var(--p, 0), 1)));
+    will-change: auto;
+  }
+}
+.bld.bld-shape-cut {
+  --bld-safe-l: 18px;
+  --bld-safe-r: 18px;
+  --bld-safe-b: 18px;
+  --bld-safe-t: 18px;
+}
+
+/* slant: the strip cut on one diagonal. The slat itself is skewed, so the
+   flex layout, the overflow clip, the border and the real box-shadow all
+   follow the cut for free, in every mode; the artwork and the text carry
+   the counter-skew and stay upright. Text lives in the slat's own box,
+   which maps onto the parallelogram exactly, so no inset ever lands on a
+   cut-away corner. */
+.bld.bld-shape-slant {
+  --bld-skew: 4deg;
+  --bld-shape-tf: skewX(calc(-1 * var(--bld-skew)));
+  --bld-shape-ctf: skewX(var(--bld-skew));
+  --bld-safe-l: 22px;
+  --bld-safe-r: 22px;
+}
+.bld--v.bld-shape-slant {
+  --bld-shape-tf: skewY(calc(-1 * var(--bld-skew)));
+  --bld-shape-ctf: skewY(var(--bld-skew));
+}
+.bld.bld-shape-slant .bld-slat {
+  border-radius: 0;
+}
+/* the end slats lean past the box by half the cut, so the strip keeps a
+   shoulder for them. Only the plain strip: the belts position their track
+   in code and a padding would shift their maths. */
+.bld--h.bld-shape-slant:not(.bld--reel):not(.bld--snap):not(.bld--ring):not(.bld--stack):not(.bld--deck):not(.bld--fan) .bld-track {
+  padding-inline: 26px;
+}
+.bld--v.bld-shape-slant:not(.bld--reel):not(.bld--snap):not(.bld--ring):not(.bld--stack):not(.bld--deck):not(.bld--fan) .bld-track {
+  padding-block: 26px;
+}
+.bld.bld-shape-slant .bld-art {
+  /* side bleed covers what the counter-skew sweeps in */
+  inset: -14px -56px;
+  transform: var(--bld-shape-ctf);
+}
+.bld--v.bld-shape-slant .bld-art {
+  inset: -56px -14px;
+}
+.bld.bld-shape-slant .bld-label {
+  transform: var(--bld-shape-ctf) rotate(calc(var(--bld-rot, -90deg) * (1 - var(--bld-k))));
+}
+.bld.bld-shape-slant.bld-label-steady .bld-label,
+.bld.bld-shape-slant.bld-label-sideways .bld-label,
+.bld--v.bld-shape-slant .bld-label {
+  transform: var(--bld-shape-ctf);
+}
+.bld.bld-shape-slant .bld-body {
+  transform: var(--bld-shape-ctf) translateY(calc(10px * (1 - clamp(0, (var(--p, 0) - 0.55) * 3.3, 1))));
+}
+.bld.bld-shape-slant .bld-big {
+  transform: var(--bld-shape-ctf);
+}
+/* the photo paints in the art's layer here: a promoted img can escape a
+   skewed ancestor clip, and without one the spring's repaint stays local */
+.bld.bld-shape-slant .bld-img {
+  inset: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  aspect-ratio: auto;
+  transform: scale(calc(1.18 - 0.14 * min(var(--p, 0), 1)));
+  will-change: auto;
+}
+
+/* a card is never a thin closed slat, so its label skips the closed pose
+   entirely: pinning the open progress to 1 leaves every label rule upright
+   and at its inset */
+.bld.bld--ring .bld-label,
+.bld.bld--snap .bld-label,
+.bld.bld--stack .bld-label,
+.bld.bld--deck .bld-label,
+.bld.bld--fan .bld-label,
+.bld.bld--fold .bld-label,
+.bld.bld--peek .bld-label {
+  --bld-k: 1;
+}
+
+/* a picture-only strip, not a word on it */
+.bld.bld-label-none .bld-label,
+.bld.bld-label-none .bld-body,
+.bld.bld-label-none .bld-big {
+  display: none;
+}
+
+/* the poster look hides everything but the title */
+.bld.bld-no-index .bld-index {
+  display: none;
+}
+.bld.bld-no-body .bld-body {
+  display: none;
+}
+
+/* the drum is a real rotating cylinder: the loop places every card with
+   rotateY and translateZ, and CSS supplies the stage and the rear fade */
+.bld--ring {
+  position: relative;
+  perspective: calc(var(--bld-persp, 1500px) * 0.77);
+  /* no clip, so the stage box never cuts a card; the rear fade hides them
+     as they turn away */
+  overflow: visible;
+}
+.bld--ring .bld-track {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+  width: auto;
+}
+.bld--ring .bld-slat {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* perspective magnifies the front card by about a fifth, so this is the
+     pre-scale height: 58% lands near 70% of the stage once magnified */
+  height: 58%;
+  flex: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* rear cards dim, desaturate and fade before they flip away */
+  filter: brightness(calc(0.35 + 0.65 * var(--face, 1)))
+    saturate(calc(0.6 + 0.4 * var(--face, 1)));
+  opacity: clamp(0, calc(var(--face, 1) * 2.4 - 0.35), 1);
+}
+
+/* snap: the centred carousel. Fixed cards, and the loop springs the track so
+   one is always centred while its neighbours angle away in 3D and recede. */
+.bld--snap {
+  overflow: hidden;
+  perspective: var(--bld-persp, 1500px);
+}
+.bld--snap .bld-track {
+  width: max-content;
+  align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.bld--snap .bld-slat {
+  flex: 0 0 auto;
+  height: 84%;
+  /* the pose reads --u/--au, the card's continuous distance from centre
+     written by the loop, so a card tilts and sinks as it leaves the middle
+     under the hand. --bld-spread is the depth knob: how far side cards
+     angle and sink. */
+  transform: var(--bld-shape-tf,) rotateY(calc(max(-3, min(3, var(--u, 0))) * -20deg * var(--bld-spread, 1)))
+    translateZ(calc(min(var(--au, 0), 3) * -60px * var(--bld-spread, 1)));
+  opacity: calc(1 - min(var(--au, 0), 3) * 0.16 * var(--bld-spread, 1));
+}
+.bld--snap .bld-img {
+  /* colour and crop follow the same distance: the centred card is full
+     colour at rest, its neighbours a little dimmer and tighter, and nothing
+     pops at the moment the centred index changes */
+  transform: translateX(-50%) scale(calc(1.04 + 0.1 * min(var(--au, 0), 1)));
+  filter: brightness(calc(1 - min(var(--au, 0), 1) * 0.22)) saturate(calc(1 - min(var(--au, 0), 1) * 0.15));
+}
+/* vertical snap is the same coverflow on its side: cards above centre tip
+   down toward the middle, cards below tip up */
+.bld--v.bld--snap .bld-track {
+  flex-direction: column;
+  width: 100%;
+  height: max-content;
+}
+.bld--v.bld--snap .bld-slat {
+  transform: var(--bld-shape-tf,) rotateX(calc(max(-3, min(3, var(--u, 0))) * 20deg * var(--bld-spread, 1)))
+    translateZ(calc(min(var(--au, 0), 3) * -60px * var(--bld-spread, 1)));
+}
+.bld--v.bld--snap .bld-img {
+  transform: translateY(-50%) scale(calc(1.04 + 0.1 * min(var(--au, 0), 1)));
+}
+.bld--v.bld--snap {
+  touch-action: pan-x; /* the belt takes vertical swipes, the page horizontal */
+}
+/* the vertical variants: the same machinery along the other axis */
+.bld--v.bld--reel,
+.bld--v.bld--ring,
+.bld--v.bld--stack,
+.bld--v.bld--deck,
+.bld--v.bld--fan {
+  touch-action: pan-x;
+}
+.bld--v.bld--reel .bld-slat {
+  /* a vertical reel slat spans the box and the belt sizes its height */
+  width: 100%;
+  height: auto;
+}
+.bld--v.bld--fan .bld-slat {
+  /* the hand sits against the left edge, so the pivot moves far to the
+     right and the held card lifts leftward */
+  left: 40%;
+  top: 50%;
+  transform-origin: calc(50% + var(--bld-fan-r, 900px)) 50%;
+}
+.bld--v.bld--deck .bld-slat {
+  /* the swung card tips over a side edge when the deal runs vertically */
+  transform-origin: 82% 50%;
+}
+.bld--v.bld--stack .bld-slat {
+  /* shorter cards, so a vertical fling has road to travel */
+  height: 56%;
+}
+
+/* stack: cards piled at the centre. The loop places them by depth and drives
+   the top card under your hand. */
+.bld--stack {
+  position: relative;
+  /* no clip, so the thrown card flies clear of the box whole */
+  overflow: visible;
+}
+.bld--stack .bld-track {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: auto;
+}
+.bld--stack .bld-slat {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 78%;
+  flex: none;
+  will-change: transform, opacity;
+  box-shadow:
+    0 2px 6px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a1, 0.2) * var(--bld-sh, 1))),
+    0 12px 30px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * 1.2 * var(--bld-sh, 1)));
+}
+
+/* deck: a fanned pile on one continuous spring, on the stack's stage. The
+   loop writes every card's pose from its depth, so the CSS owns only the
+   pivot and the shading that keeps the pile reading as layers. */
+.bld--deck {
+  position: relative;
+  /* never clipped: deckGeom keeps the arc inside the box where there is room
+     for it, and past that it simply spills */
+  overflow: visible;
+}
+.bld--deck .bld-track {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: auto;
+}
+.bld--deck .bld-slat {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 78%; /* the loop overrides this with a card-shaped height */
+  flex: none;
+  transform-origin: 50% 82%;
+  will-change: transform, opacity;
+  /* one weight for every layer: a depth-graded shadow re-rasterised the
+     whole pile on every frame of a deal */
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.06) inset,
+    0 2px 6px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a1, 0.2) * 0.8 * var(--bld-sh, 1))),
+    0 14px 34px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * 1.05 * var(--bld-sh, 1)));
+}
+.bld--deck .bld-img {
+  /* each layer down sits a little further from the light, dimmer but never
+     washed out: the pile should read crisp rather than hazy. Keyed to the
+     continuous depth alone; the open-progress term popped the colour at
+     the halfway point of every deal. */
+  filter: grayscale(calc(0.16 * min(var(--cd, 0), 1)))
+    brightness(calc(1.02 - min(var(--cd, 0), 3) * 0.09))
+    saturate(calc(1.08 - 0.16 * min(var(--cd, 0), 1)));
+}
+.bld--deck .bld-art {
+  /* here the lean belongs to the top card's tilt, not a skew */
+  transform: none;
+}
+/* fan: a hand of cards held in an arc. The loop rotates each card about a
+   pivot far below the box, which is the arc itself, and the held card lifts
+   out of the hand. */
+.bld--fan {
+  position: relative;
+  overflow: visible;
+}
+.bld--fan .bld-track {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: auto;
+}
+.bld--fan .bld-slat {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  flex: none;
+  transform-origin: 50% calc(50% + var(--bld-fan-r, 900px));
+  will-change: transform, opacity;
+  /* every card rests on the same shadow; the lift reads from the pop and
+     the colour, not from a shadow repainted on every frame of the sweep */
+  box-shadow:
+    0 2px 5px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a1, 0.2) * 0.7 * var(--bld-sh, 1))),
+    0 10px 24px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * 0.85 * var(--bld-sh, 1)));
+}
+.bld--fan .bld-img {
+  /* the held card is full colour, the rest of the hand a touch dimmer, by
+     continuous distance (--au, written by the loop) so the colour travels
+     with the sweep instead of switching at the halfway point */
+  filter: grayscale(calc(0.2 * min(var(--au, 0), 1)))
+    brightness(calc(1 - 0.2 * min(var(--au, 0), 1)))
+    saturate(calc(1.05 - 0.15 * min(var(--au, 0), 1)));
+}
+.bld--fan .bld-art {
+  /* the arc pose is the motion, so no velocity skew on top */
+  transform: none;
+}
+
+/* fold: one flat card facing the camera, the rest folded steeply into a wing
+   on either side. The loop writes every pose; CSS owns the 3D stage, the
+   wing shading, and the carousel furniture (arrows and the dot pill). */
+.bld--fold {
+  position: relative;
+  overflow: hidden;
+  perspective: var(--bld-persp, 1500px);
+}
+.bld--fold .bld-track {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: auto;
+  transform-style: preserve-3d;
+}
+.bld--fold .bld-slat {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  flex: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.bld--fold .bld-img {
+  /* the centre card is full colour, the folded wings a touch dimmer */
+  filter: grayscale(calc(0.2 * (1 - min(var(--p, 0), 1))))
+    brightness(calc(0.78 + 0.22 * min(var(--p, 0), 1)))
+    saturate(calc(0.9 + 0.15 * min(var(--p, 0), 1)));
+}
+.bld--fold .bld-art {
+  /* the fold pose is the motion, so no velocity skew on top */
+  transform: none;
+}
+/* the wings fold shut, so their text folds away with the card and only the
+   centre card's caption reads: fade the label out as --p drops */
+.bld--fold .bld-label,
+.bld--fold .bld-body {
+  opacity: clamp(0, (var(--p, 0) - 0.55) * 3.3, 1);
+}
+
+/* the arrows: quiet round buttons riding mid-height at the stage's edges */
+.bld-nav {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: #1b1b21;
+  color: #fff;
+  cursor: pointer;
+  /* the press rides the brand cord curve, so it lands with a soft bounce */
+  transition: scale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 10px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * var(--bld-sh, 1)));
+}
+.bld-nav:hover {
+  scale: 1.08;
+  background: #26262e;
+}
+.bld-nav:active {
+  scale: 0.9;
+  transition: scale 0.09s ease;
+}
+.bld-nav:focus-visible {
+  outline: none !important;
+  outline-offset: 2px;
+}
+.bld-nav svg {
+  width: 20px;
+  height: 20px;
+  transition: translate 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+/* the chevron leans the way the cards will go */
+.bld-nav--prev:hover svg {
+  translate: -1.5px 0;
+}
+.bld-nav--next:hover svg {
+  translate: 1.5px 0;
+}
+.bld-nav--prev {
+  left: var(--bld-nav-i, 10px);
+}
+.bld-nav--next {
+  right: var(--bld-nav-i, 10px);
+}
+html[data-theme='light'] .bld-nav {
+  border-color: rgb(20 18 15 / 0.08);
+  background: #fff;
+  color: #26221c;
+}
+html[data-theme='light'] .bld-nav:hover {
+  background: #f5f2ec;
+}
+
+/* the dot pill: one capsule at the foot, the centred card's dot stretched */
+.bld-dots {
+  position: absolute;
+  left: 50%;
+  bottom: var(--bld-dots-b, 12px);
+  translate: -50% 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: #1b1b21;
+  box-shadow: 0 2px 10px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * var(--bld-sh, 1)));
+}
+.bld-dot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.28);
+  cursor: pointer;
+  /* the active dot stretches into a short bar, and the handoff glides */
+  transition: width 0.28s cubic-bezier(0.3, 1.2, 0.4, 1), background 0.28s ease, scale 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.bld-dot:hover:not(.is-on) {
+  background: rgb(255 255 255 / 0.55);
+  scale: 1.35;
+}
+.bld-dot:active {
+  scale: 0.8;
+  transition: scale 0.09s ease;
+}
+/* a 6px dot is no click target: pad the hit area out invisibly */
+.bld-dot::after {
+  content: '';
+  position: absolute;
+  /* stops just short of the 7px gap, so neighbours never steal a click */
+  inset: -9px -3px;
+}
+.bld-dot.is-on {
+  width: 17px;
+  background: #fff;
+}
+.bld-dot:focus-visible {
+  outline: none !important;
+  outline-offset: 2px;
+}
+html[data-theme='light'] .bld-dots {
+  border-color: rgb(20 18 15 / 0.08);
+  background: #fff;
+}
+html[data-theme='light'] .bld-dot {
+  background: rgb(20 18 15 / 0.22);
+}
+html[data-theme='light'] .bld-dot:hover:not(.is-on) {
+  background: rgb(20 18 15 / 0.45);
+}
+html[data-theme='light'] .bld-dot.is-on {
+  background: #26221c;
+}
+
+/* peek: one flat card at a time, its neighbours showing at the edges. The
+   card is only the photo; the caption sits under it in the page's own
+   colour, the way a player puts the title under the art. The loop writes
+   per card --u (signed distance from the centre, in cards, continuous) and
+   --au (its size), and on the root --bld-press (the held card's squish)
+   and --bld-vs (a hard throw's stretch). Everything below reads those, so
+   a card's layer is rasterised once and only moved. Later than the shape
+   rules on purpose: the slat is see-through here and the art wears the
+   shape instead, via inherit. */
+.bld--peek {
+  overflow: hidden;
+  /* the zone under the photo: a title line, a caption line, the dot pill */
+  --bld-cap: calc(var(--bld-fs, 1.05rem) * 3.6 + 42px);
+  --bld-dots-b: 6px;
+}
+.bld--peek .bld-track {
+  width: max-content;
+  align-items: stretch;
+  will-change: transform;
+}
+.bld.bld--peek .bld-slat {
+  flex: 0 0 auto;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+  /* scales about the photo's centre, not the card-plus-caption's */
+  transform-origin: 50% calc((100% - var(--bld-cap)) / 2);
+  /* recedes with distance, sits a touch smaller while held, and stretches
+     a hair along its travel under a throw */
+  transform: var(--bld-shape-tf,) scale(calc((1 - min(var(--au, 0), 1.5) * 0.07) * (1 - var(--bld-press, 0) * 0.03)))
+    scaleX(calc(1 + var(--bld-vs, 0) * 0.035));
+  will-change: transform;
+}
+html[data-theme='light'] .bld.bld--peek .bld-slat {
+  background: transparent;
+}
+.bld.bld--peek .bld-art {
+  inset: 0 0 var(--bld-cap) 0;
+  overflow: hidden;
+  border-radius: inherit;
+  transform: none;
+  background: #101014;
+  box-shadow:
+    inset 0 0 0 1px var(--bld-line),
+    0 2px 6px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a1, 0.2) * 0.9 * var(--bld-sh, 1))),
+    0 max(14px, 1.6cqi) max(34px, 4cqi) rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-a2, 0.24) * 1.1 * var(--bld-sh, 1))),
+    0 3px 10px rgb(var(--bld-sh-ink, 0 0 0) / calc(var(--bld-sh-rest, 0.14) * var(--bld-sh-base, 0)));
+}
+@supports (corner-shape: squircle) {
+  .bld.bld--peek .bld-art {
+    corner-shape: inherit;
+  }
+}
+html[data-theme='light'] .bld.bld--peek .bld-art {
+  background: #ece8e0;
+}
+/* no vignette: the text is not on the photo here */
+.bld.bld--peek .bld-art::after {
+  display: none;
+}
+.bld.bld--peek .bld-img {
+  inset: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  aspect-ratio: auto;
+  /* the photo drifts against the card's travel, a slower layer behind a
+     window; the overscan is what the drift has to move within. Side cards
+     dim and cool a little, the centred one is full colour. */
+  transform: translateX(calc(var(--u, 0) * var(--bld-drift, -30px))) scale(1.14);
+  filter: brightness(calc(1 - min(var(--au, 0), 1) * 0.3)) saturate(calc(1 - min(var(--au, 0), 1) * 0.2));
+  will-change: transform, filter;
+}
+/* the caption: centred under the photo, page colour, no shadow. It trails
+   the card a little and fades as the card leaves the centre; the second
+   line trails a little more. :not(#_) outranks every label variant (pill's
+   chip, sideways, top) so the caption always lands here. */
+.bld.bld--peek .bld-label:not(#_) {
+  left: 0;
+  right: 0;
+  top: calc(100% - var(--bld-cap) + 14px);
+  bottom: auto;
+  width: auto;
+  height: auto;
+  max-width: none;
+  padding: 0 16px;
+  justify-content: center;
+  writing-mode: horizontal-tb;
+  rotate: none;
+  color: inherit;
+  text-shadow: none;
+  background: none;
+  border: 0;
+  transform: none;
+  transform-origin: center;
+  translate: calc(var(--u, 0) * -22px) 0;
+  opacity: calc(1 - min(var(--au, 0) * 1.6, 1));
+  will-change: transform, opacity;
+}
+.bld.bld--peek .bld-index:not(#_) {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  box-shadow: none;
+}
+.bld.bld--peek .bld-body:not(#_) {
+  left: 0;
+  right: 0;
+  top: calc(100% - var(--bld-cap) + 14px + var(--bld-fs, 1.05rem) * 1.8);
+  bottom: auto;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0 16px;
+  color: inherit;
+  text-align: center;
+  transform: none;
+  translate: calc(var(--u, 0) * -34px) 0;
+  opacity: calc(1 - min(var(--au, 0) * 1.6, 1));
+  will-change: transform, opacity;
+}
+.bld.bld--peek .bld-sub {
+  text-shadow: none;
+  opacity: 0.72;
+}
+.bld.bld--peek .bld-meta {
+  border-top: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0.5;
+}
+.bld.bld--peek.bld-no-body .bld-body:not(#_) {
+  display: none;
+}
+.bld.bld--peek.bld-label-none .bld-label:not(#_),
+.bld.bld--peek.bld-label-none .bld-body:not(#_) {
+  display: none;
+}
+/* with no caption the photo takes the whole card, the pill floating on it */
+.bld.bld--peek.bld-label-none {
+  --bld-cap: 0px;
+  --bld-dots-b: 14px;
+}
+

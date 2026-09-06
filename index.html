@@ -41,6 +41,9 @@
     <!-- Tailwind CSS (precompiled static build, not CDN runtime) -->
     <link rel="stylesheet" href="assets/css/tailwind.css">
 
+    <!-- Feral Blinds CSS (Offline Vendor) -->
+    <link rel="stylesheet" href="assets/css/blinds.css">
+
     <!-- GSAP, Lenis Smooth Scroll -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -170,9 +173,13 @@
 
         /* Focus-visible for keyboard navigation */
         :focus-visible {
-            outline: 2px solid rgba(0, 240, 255, 0.6);
+            outline: 2px solid rgba(255, 255, 255, 0.35);
             outline-offset: 3px;
             border-radius: 2px;
+        }
+        :focus:not(:focus-visible) {
+            outline: none !important;
+            box-shadow: none !important;
         }
         /* Remove outline for mouse/touch users */
         :focus:not(:focus-visible) {
@@ -243,45 +250,46 @@
         }
         @keyframes textShine { to { background-position: 300% center; } }
 
-                /* Buttons */
+                /* Buttons - Ghost Invert */
         .btn-matte-stealth, .btn-scifi {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.625rem;
-            background-color: #0c0d12;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.75rem;
-            color: #d1d5db;
+            gap: 0.65rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 0.625rem;
+            color: rgba(255, 255, 255, 0.85);
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.85rem 1.85rem;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            padding: 0.875rem 1.5rem;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             text-decoration: none;
             position: relative;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
         .btn-matte-stealth:hover, .btn-scifi:hover {
-            background-color: #14161f;
-            border-color: rgba(255, 255, 255, 0.22);
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            background: #ffffff;
+            border-color: #ffffff;
+            color: #050505;
+            font-weight: 700;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.16);
         }
         .btn-matte-stealth:hover .btn-stealth-arrow, .btn-scifi:hover .btn-stealth-arrow {
-            transform: translateX(4px);
+            color: #050505;
+            transform: translateX(3px);
         }
         .btn-matte-stealth:active, .btn-scifi:active {
-            transform: translateY(0px) scale(0.98);
+            transform: translateY(0px) scale(0.99);
         }
         .btn-stealth-arrow {
             display: inline-flex;
             align-items: center;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.25s ease;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* Secondary button */
@@ -327,7 +335,7 @@
             background: linear-gradient(to right, #00f0ff, #ffffff);
             border-radius: 9999px;
             transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+            /* glow removed */
         }
         .details-nav-btn:hover .details-btn-text::after,
         .details-nav-btn[aria-expanded="true"] .details-btn-text::after {
@@ -400,7 +408,7 @@
         }
         .details-menu-item:hover .details-item-indicator {
             background-color: #00f0ff;
-            box-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+            /* glow removed */
         }
         .details-item-indicator {
             width: 4px;
@@ -466,7 +474,7 @@
             background: linear-gradient(to right, #00f0ff, #ffffff);
             border-radius: 9999px;
             transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            /* glow removed */
         }
         .btn-view-all:hover .btn-view-all-text::after {
             width: 100%;
@@ -499,7 +507,8 @@
             background-color: #07080c !important;
             border: 1px solid rgba(255, 255, 255, 0.08) !important;
             box-shadow: 0 6px 28px rgba(0, 0, 0, 0.7) !important;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
         .project-card:hover,
@@ -507,14 +516,44 @@
         .glass-card:hover,
         .cert-card:hover {
             background-color: #0e1017 !important;
-            border-color: rgba(0, 240, 255, 0.25) !important;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85) !important;
         }
 
         .blog-row-item:hover {
             background-color: #0e1017 !important;
-            border-color: rgba(0, 240, 255, 0.3) !important;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85) !important;
+        }
+
+        /* Hover response: Content inside reacts instead of border */
+        .glass-card:hover h3,
+        .glass-card:hover h4,
+        .project-card:hover h3,
+        .project-card:hover h4,
+        .cert-card:hover h3,
+        .cert-card:hover h4,
+        .blog-row-item:hover h3,
+        .repo-card:hover h4 {
+            color: #ffffff !important;
+            transition: color 0.25s ease;
+        }
+
+        .glass-card:hover p,
+        .project-card:hover p,
+        .cert-card:hover p,
+        .blog-row-item:hover p {
+            color: rgba(255, 255, 255, 0.88) !important;
+            transition: color 0.25s ease;
+        }
+
+        .glass-card:hover img,
+        .project-card:hover img,
+        .mobile-project-card:hover img,
+        .cert-card:hover img {
+            filter: brightness(1.08) saturate(1.08);
+            transform: scale(1.025);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
         }
 
         #contact .glass-card {
@@ -534,7 +573,9 @@
         #contact input:focus,
         #contact textarea:focus {
             background-color: #14100c !important;
-            border-color: rgba(0, 240, 255, 0.5) !important;
+            border-color: rgba(255, 255, 255, 0.18) !important;
+            outline: none !important;
+            box-shadow: none !important;
         }
 
         /* Project CTA */
@@ -570,7 +611,7 @@
             background: linear-gradient(to right, #00f0ff, #ffffff);
             border-radius: 9999px;
             transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+            /* glow removed */
         }
         .project-cta-link:hover .project-cta-text::after,
         .group:hover .project-cta-link .project-cta-text::after,
@@ -641,7 +682,7 @@
         #google-developer a.glass-card:hover {
             background-color: #0e0b09 !important;
             background: #0e0b09 !important;
-            border-color: rgba(0, 240, 255, 0.25) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
             transform: none !important;
         }
 
@@ -824,12 +865,12 @@
         /* Card Styles */
         .glass-card, .project-card, .cert-card {
             background-color: rgba(255, 255, 255, 0.008);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: border-color var(--transition-slow) ease,
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background-color var(--transition-slow) ease,
                         box-shadow var(--transition-slow) var(--ease-out);
         }
         .glass-card:hover, .project-card:hover, .cert-card:hover {
-            border-color: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.08);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
@@ -1141,290 +1182,189 @@
             }
         }
     
-        /* ===== PROJECT SHOWCASE (Full-Bleed Photo Slider aligned with HUD Lines) ===== */
+        /* ===== PROJECT SHOWCASE (Feral Blinds - Spanning HUD Lines) ===== */
         .showcase-box {
             position: relative;
             margin-left: -2rem;
             margin-right: -2rem;
             width: calc(100% + 4rem);
-            height: 76vh;
-            min-height: 520px;
-            max-height: 760px;
+            height: 500px;
             overflow: hidden;
-            background: #000000;
+            background: transparent;
             border: none !important;
             border-radius: 0 !important;
             box-shadow: none !important;
         }
-        @media (max-width: 767px) {
-            .showcase-box {
-                margin-left: 0;
-                margin-right: 0;
-                width: 100%;
-                min-height: 480px;
-                height: 72vh;
-            }
-        }
-        .showcase-track {
-            display: flex;
-            width: 600%;
-            height: 100%;
-            transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform;
-        }
-        .showcase-panel {
-            position: relative;
-            width: 16.6667%;
-            height: 100%;
-            flex-shrink: 0;
-            overflow: hidden;
-            background: #000000;
-            border: none !important;
-            border-radius: 0 !important;
-        }
-        .showcase-img-wrap {
-            position: absolute;
-            inset: 0;
+
+        #blinds-container {
             width: 100%;
-            height: 100%;
-        }
-        .showcase-img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            filter: brightness(0.92) contrast(1.04);
-            transform: none !important;
-            animation: none !important;
-            transition: none !important;
-        }
-        .shade-top {
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 100px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent);
-            z-index: 1;
-            pointer-events: none;
-        }
-        .shade-bottom {
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.88) 22%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.1) 68%, transparent 100%),
-                linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.25) 40%, transparent 80%);
-            z-index: 1;
-            pointer-events: none;
-        }
-        .sc-counter {
-            position: absolute;
-            top: 1.75rem;
-            right: 2.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            color: #9ca3af;
-            z-index: 30;
-            pointer-events: none;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
-        }
-        .sc-counter-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.18rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-        @media (max-width: 767px) {
-            .sc-counter { top: 1.25rem; right: 1.25rem; }
-        }
-        .sc-text {
-            position: absolute;
-            left: 2.25rem;
-            bottom: 5.25rem;
-            max-width: 620px;
-            z-index: 25;
-        }
-        @media (max-width: 767px) {
-            .sc-text { left: 1.25rem; right: 1.25rem; bottom: 7.25rem; max-width: 100%; }
-        }
-        .sc-title {
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(2.1rem, 4.4vw, 3.9rem);
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            color: #ffffff;
-            line-height: 1.05;
-            margin-bottom: 0.75rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
-        }
-        .sc-desc {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(0.88rem, 1.15vw, 1rem);
-            line-height: 1.72;
-            color: #e5e7eb;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
-        }
-        .sc-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem 2.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            z-index: 30;
-            pointer-events: none;
-        }
-        @media (max-width: 767px) {
-            .sc-bar { padding: 1.25rem; }
-        }
-        .sc-dots {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-            pointer-events: auto;
-            margin-bottom: 0.4rem;
-        }
-        .sc-dot {
+            height: 500px;
             position: relative;
-            width: clamp(32px, 4.5vw, 58px);
-            height: 2.5px;
-            background: rgba(255, 255, 255, 0.22);
-            border-radius: 9999px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .sc-dot:hover {
-            background: rgba(255, 255, 255, 0.45);
-        }
-        .sc-dot-fill {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 0%;
-            background: #ffffff;
-            border-radius: 9999px;
-        }
-        .sc-dot.active .sc-dot-fill {
-            background: #00f0ff;
-            box-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
-        }
-        .sc-arrows {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            pointer-events: auto;
-            z-index: 35;
-        }
-        @media (max-width: 767px) {
-            .sc-arrows { bottom: 1.25rem; }
-        }
-        .sc-arrow {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.85rem;
-            height: 2.85rem;
-            border-radius: 9999px;
-            background: rgba(10, 10, 14, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            cursor: pointer;
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-        }
-        .sc-arrow:hover {
-            background: #ffffff;
-            border-color: #ffffff;
-            color: #020202;
-            transform: scale(1.06);
-        }
-        .sc-arrow:active {
-            transform: scale(0.95);
-        }
-        .sc-arrow svg {
-            width: 1.15rem;
-            height: 1.15rem;
-            stroke-width: 2.2;
-        }
-        .sc-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: rgba(0, 240, 255, 0.9);
-            text-decoration: none;
-            position: relative;
-            z-index: 50 !important;
-            pointer-events: auto !important;
-            cursor: pointer !important;
-            margin-bottom: 0.35rem;
-            transition: color 0.3s ease;
-        }
-        .sc-cta:hover {
-            color: #ffffff;
-        }
-        .sc-cta-label {
-            position: relative;
-        }
-        .sc-cta-label::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0%;
-            height: 1.5px;
-            background: linear-gradient(to right, #00f0ff, #ffffff);
-            border-radius: 9999px;
-            transition: width 0.35s ease;
-        }
-        .sc-cta:hover .sc-cta-label::after {
-            width: 100%;
-        }
-        .sc-cta-circle {
-            width: 1.85rem;
-            height: 1.85rem;
-            border-radius: 9999px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            color: #020202;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-            transition: background 0.3s ease, transform 0.3s ease;
-            flex-shrink: 0;
-        }
-        .sc-cta-circle svg {
-            width: 0.85rem;
-            height: 0.85rem;
-            stroke: currentColor;
-            stroke-width: 2.2;
-            transition: transform 0.25s ease;
-        }
-        .sc-cta:hover .sc-cta-circle {
-            background: #00f0ff;
-            transform: scale(1.06) translateX(2px);
-        }
-        .sc-cta:hover .sc-cta-circle svg {
-            transform: translateX(1.5px);
         }
 
+        .bld-root {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .bld-slat {
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            cursor: pointer;
+            outline: none !important;
+        }
+
+        .bld-slat:hover, .bld-slat:focus-visible, .bld-slat:focus, .bld-slat:active, .bld-slat[aria-expanded="true"] {
+            /* Border never changes on hover */
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Content inside slat responds when hovered/focused */
+        .bld-slat:hover .bld-img {
+            filter: grayscale(0) brightness(1.08) saturate(1.1) !important;
+            transform: scale(1.03) !important;
+            transition: filter 0.3s ease, transform 0.35s ease !important;
+        }
+
+        .bld-slat:hover .bld-title {
+            color: #ffffff !important;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9) !important;
+            transition: color 0.25s ease !important;
+        }
+
+        .bld-slat:hover .bld-index {
+            background: rgba(255, 255, 255, 0.16) !important;
+            color: #ffffff !important;
+            transition: background 0.25s ease, color 0.25s ease !important;
+        }
+
+        .bld-slat:hover .bld-sub {
+            color: #ffffff !important;
+            opacity: 1 !important;
+            transition: color 0.25s ease, opacity 0.25s ease !important;
+        }
+
+        .bld-art {
+            inset: 0 !important;
+            transform: none !important;
+        }
+
+        .bld--h .bld-img {
+            inset: 0 !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            aspect-ratio: auto !important;
+            min-width: 100% !important;
+            object-fit: cover !important;
+            object-position: center center !important;
+            transform: scale(calc(1.05 - 0.05 * min(var(--p, 0), 1))) !important;
+            filter: grayscale(calc(0.35 * (1 - min(var(--p, 0), 1))))
+                    brightness(calc(0.74 + 0.28 * min(var(--p, 0), 1)))
+                    saturate(calc(0.85 + 0.25 * min(var(--p, 0), 1))) !important;
+        }
+
+        .bld-slat[aria-expanded="true"] .bld-img,
+        .bld-slat[data-open="true"] .bld-img {
+            transform: scale(1) !important;
+            object-fit: cover !important;
+            object-position: center center !important;
+        }
+
+        /* Dark Gradient Shade: strictly isolated to the bottom text zone (bottom ~32%), leaving the project artwork bright and clear */
+        .bld-art::after {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: linear-gradient(to top, 
+                rgba(0, 0, 0, 0.96) 0%, 
+                rgba(0, 0, 0, 0.88) 16%, 
+                rgba(0, 0, 0, 0.45) 26%, 
+                rgba(0, 0, 0, 0.08) 32%, 
+                transparent 36%
+            ) !important;
+            pointer-events: none !important;
+            z-index: 2 !important;
+        }
+
+        /* Title typography (Sora font with crisp shadow) */
+        .bld-title {
+            font-family: 'Sora', sans-serif !important;
+            font-weight: 800 !important;
+            font-size: clamp(1.4rem, 2.2vw, 2rem) !important;
+            letter-spacing: -0.03em !important;
+            color: #ffffff !important;
+            line-height: 1.1 !important;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.9) !important;
+        }
+
+        /* Description typography (Inter font with clean line height) */
+        .bld-sub {
+            font-family: 'Inter', sans-serif !important;
+            font-size: clamp(0.84rem, 1vw, 0.92rem) !important;
+            line-height: 1.55 !important;
+            color: #d1d5db !important;
+            max-width: 580px !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95) !important;
+        }
+
+        /* Meta / year badge: completely removed per user request */
+        .bld-meta {
+            display: none !important;
+        }
+
+        /* Index pill (01, 02, etc.) */
+        .bld-index {
+            font-family: 'Space Grotesk', sans-serif !important;
+            font-size: 0.75rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.05em !important;
+            color: #ffffff !important;
+            background: rgba(0, 0, 0, 0.8) !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+        }
+
+        /* Open Slat Text Stacking: Title on Top, Description Underneath (Clear separation, zero collision) */
+        .bld-slat[aria-expanded="true"] .bld-label {
+            left: 2rem !important;
+            bottom: 4.85rem !important;
+            z-index: 10 !important;
+        }
+
+        .bld-slat[aria-expanded="true"] .bld-body {
+            left: 2rem !important;
+            right: 2rem !important;
+            bottom: 1.5rem !important;
+            max-width: 580px !important;
+            z-index: 10 !important;
+        }
+
+        @media (max-width: 768px) {
+            .bld-slat[aria-expanded="true"] .bld-label {
+                left: 1.25rem !important;
+                bottom: 4.25rem !important;
+            }
+            .bld-slat[aria-expanded="true"] .bld-body {
+                left: 1.25rem !important;
+                right: 1.25rem !important;
+                bottom: 1.25rem !important;
+                max-width: 100% !important;
+            }
+        }
+
+    
+        /* Suppress external watermarks */
+        a[data-n], a[href*="neat.firecms.co"], #neat-seo-schema {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
     </style>
 
 </head>
@@ -1646,120 +1586,7 @@
             </h2>
 
             <div class="showcase-box gsap-fade" id="showcase-box">
-
-                <!-- Counter in Top-Right -->
-                <div class="sc-counter">
-                    <span id="sc-num" class="sc-counter-num">01</span>
-                    <span>/</span><span>06</span>
-                </div>
-
-                <!-- Horizontal Sliding Track (6 Panels) -->
-                <div id="sc-track" class="showcase-track">
-
-                    <!-- 1: AntiSlop -->
-                    <article class="showcase-panel">
-                        <div class="showcase-img-wrap">
-                            <img src="assets/images/antislop.webp" alt="AntiSlop banner" loading="lazy" class="showcase-img">
-                            <div class="shade-top"></div>
-                            <div class="shade-bottom"></div>
-                        </div>
-                        <div class="sc-text">
-                            <h3 class="sc-title">AntiSlop</h3>
-                            <p class="sc-desc">38 mandatory deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop and robotic copy without restricting genuine design creativity.</p>
-                        </div>
-                    </article>
-
-                    <!-- 2: ContextForge -->
-                    <article class="showcase-panel">
-                        <div class="showcase-img-wrap">
-                            <img src="assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" class="showcase-img">
-                            <div class="shade-top"></div>
-                            <div class="shade-bottom"></div>
-                        </div>
-                        <div class="sc-text">
-                            <h3 class="sc-title">ContextForge</h3>
-                            <p class="sc-desc">CLI tool that indexes codebases, scores file relevance, and uses AST symbol pruning to build token-efficient context bundles, cutting token consumption by up to 83%.</p>
-                        </div>
-                    </article>
-
-                    <!-- 3: DiagramPilot AI -->
-                    <article class="showcase-panel">
-                        <div class="showcase-img-wrap">
-                            <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI banner" loading="lazy" class="showcase-img">
-                            <div class="shade-top"></div>
-                            <div class="shade-bottom"></div>
-                        </div>
-                        <div class="sc-text">
-                            <h3 class="sc-title">DiagramPilot AI</h3>
-                            <p class="sc-desc">Full-stack Next.js tool converting natural language into interactive Mermaid architecture diagrams with pan, zoom, and SVG export.</p>
-                        </div>
-                    </article>
-
-                    <!-- 4: OpenFolio AI -->
-                    <article class="showcase-panel">
-                        <div class="showcase-img-wrap">
-                            <img src="assets/images/openfolio.webp" alt="OpenFolio AI banner" loading="lazy" class="showcase-img">
-                            <div class="shade-top"></div>
-                            <div class="shade-bottom"></div>
-                        </div>
-                        <div class="sc-text">
-                            <h3 class="sc-title">OpenFolio AI</h3>
-                            <p class="sc-desc">React 19 SPA and Express serverless studio that conducts guest-only interviews to build, revise, and deploy custom developer portfolios to live URLs.</p>
-                        </div>
-                    </article>
-
-                    <!-- 5: Automation Engine -->
-                    <article class="showcase-panel">
-                        <div class="showcase-img-wrap">
-                            <img src="assets/images/automation_workflow.webp" alt="Automation Workflow banner" loading="lazy" class="showcase-img">
-                            <div class="shade-top"></div>
-                            <div class="shade-bottom"></div>
-                        </div>
-                        <div class="sc-text">
-                            <h3 class="sc-title">Automation Engine</h3>
-                            <p class="sc-desc">Event-driven pipelines orchestrating Discord, Telegram, self-hosted n8n workflows, Google Workspace scripts, and automated reporting bots.</p>
-                        </div>
-                    </article>
-
-                    <!-- 6: Machine Learning -->
-                    <article class="showcase-panel">
-                        <div class="showcase-img-wrap">
-                            <img src="assets/images/machine_learning.webp" alt="Machine Learning portfolio banner" loading="lazy" class="showcase-img">
-                            <div class="shade-top"></div>
-                            <div class="shade-bottom"></div>
-                        </div>
-                        <div class="sc-text">
-                            <h3 class="sc-title">Machine Learning</h3>
-                            <p class="sc-desc">Model training suites covering CNN classification (88%), BiLSTM sentiment analysis (88.69%), and K-Means clustering algorithms.</p>
-                        </div>
-                    </article>
-
-                </div>
-
-                <!-- Bottom Controls Bar -->
-                <div class="sc-bar">
-                    <!-- Left: Segmented progress indicators -->
-                    <div id="sc-dots" class="sc-dots"></div>
-
-                    <!-- Center: Navigation arrows -->
-                    <div class="sc-arrows">
-                        <button type="button" id="sc-prev" class="sc-arrow" aria-label="Previous Project">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                        </button>
-                        <button type="button" id="sc-next" class="sc-arrow" aria-label="Next Project">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                        </button>
-                    </div>
-
-                    <!-- Right: View Details CTA -->
-                    <a href="/projects/anti-ai-slop.html" id="sc-cta" class="sc-cta">
-                        <span class="sc-cta-label">View Details</span>
-                        <span class="sc-cta-circle">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </span>
-                    </a>
-                </div>
-
+                <div id="blinds-container"></div>
             </div>
 
             <!-- Mobile Carousel -->
@@ -1795,7 +1622,7 @@
                         background-color: rgba(6, 6, 6, 0.7) !important;
                         backdrop-filter: blur(12px);
                         -webkit-backdrop-filter: blur(12px);
-                        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.08) !important;
                         border-radius: 1.25rem !important;
                         overflow: hidden;
                         box-shadow: none !important;
@@ -1809,7 +1636,17 @@
                     .mobile-carousel-slide:active .project-arrow-circle {
                         transform: scale(0.92) translateX(2px) !important;
                     }
-                </style>
+                
+        /* Suppress external watermarks */
+        a[data-n], a[href*="neat.firecms.co"], #neat-seo-schema {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+    </style>
                 <div id="mobile-carousel-track" class="mobile-carousel-track">
                     <!-- Slide 1: AntiSlop -->
                     <a href="/projects/anti-ai-slop.html" class="mobile-carousel-slide">
@@ -2465,7 +2302,7 @@
                         <div class="mobile-contact-toggle-wrap pt-4">
                             <button type="button" id="mobile-contact-toggle" class="btn-matte-stealth w-full flex items-center justify-center gap-2" data-cursor-hover>
                                 <span id="mobile-toggle-label">Send Message</span>
-                                <svg id="mobile-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-stealth-arrow transition-transform duration-300" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                <svg id="mobile-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="btn-stealth-arrow transition-transform duration-300" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             </button>
                         </div>
                     </div>
@@ -2477,20 +2314,20 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div class="space-y-2">
                                         <label for="contact-name" class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Name</label>
-                                        <input type="text" id="contact-name" name="name" class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-cyanGlow/50 transition-colors" placeholder="Your Name">
+                                        <input type="text" id="contact-name" name="name" class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 transition-colors" placeholder="Your Name">
                                     </div>
                                     <div class="space-y-2">
                                         <label for="contact-email" class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Email</label>
-                                        <input type="email" id="contact-email" name="email" class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-cyanGlow/50 transition-colors" placeholder="email@example.com">
+                                        <input type="email" id="contact-email" name="email" class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 transition-colors" placeholder="email@example.com">
                                     </div>
                                 </div>
                                 <div class="space-y-2 flex-1 flex flex-col">
                                     <label for="contact-message" class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Message</label>
-                                    <textarea id="contact-message" name="message" class="w-full flex-1 min-h-[120px] bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-cyanGlow/50 transition-colors resize-none" placeholder="Drop your message here..."></textarea>
+                                    <textarea id="contact-message" name="message" class="w-full flex-1 min-h-[120px] bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 transition-colors resize-none" placeholder="Drop your message here..."></textarea>
                                 </div>
                                 <button type="button" onclick="sendContactForm()" class="btn-matte-stealth w-full" data-cursor-hover>
                                     <span>Send Message</span>
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-stealth-arrow" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="btn-stealth-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                                 </button>
                                 <p id="contact-status" class="text-xs font-mono text-red-400 min-h-[1rem]" aria-live="polite"></p>
                             </form>
@@ -2952,98 +2789,104 @@ if (window.location.protocol === 'file:') {
 }
 </script>
 
-    <!-- Project Showcase Slider -->
+    <!-- Feral Blinds Dependencies -->
+    <script src="assets/vendor/react.production.min.js"></script>
+    <script src="assets/vendor/react-dom.production.min.js"></script>
+    <script src="assets/vendor/blinds.min.js"></script>
+
+    <!-- Project Showcase Blinds Init -->
     <script>
     (function(){
-        var track = document.getElementById('sc-track');
-        var panels = document.querySelectorAll('.showcase-panel');
-        var N = panels.length;
-        var numEl = document.getElementById('sc-num');
-        var dotsEl = document.getElementById('sc-dots');
-        var ctaEl = document.getElementById('sc-cta');
-        var prevBtn = document.getElementById('sc-prev');
-        var nextBtn = document.getElementById('sc-next');
-        var box = document.getElementById('showcase-box');
-        if (!track || !N) return;
-
         var isFile = window.location.protocol === 'file:';
-        var links = [
-            (isFile ? '' : '/') + 'projects/anti-ai-slop.html',
-            (isFile ? '' : '/') + 'projects/contextforge.html',
-            (isFile ? '' : '/') + 'projects/diagrampilot.html',
-            (isFile ? '' : '/') + 'projects/openfolio.html',
-            (isFile ? '' : '/') + 'projects/automation-workflow.html',
-            (isFile ? '' : '/') + 'projects/machine-learning.html'
+        var prefix = isFile ? '' : '/';
+
+        var projects = [
+            {
+                name: "AntiSlop",
+                oneLiner: "38 deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop.",
+                cover: "assets/images/antislop.webp",
+                href: prefix + "projects/anti-ai-slop.html"
+            },
+            {
+                name: "ContextForge",
+                oneLiner: "CLI tool indexing codebases and pruning AST symbol bundles, cutting AI token consumption by up to 83%.",
+                cover: "assets/images/contextforge.webp",
+                href: prefix + "projects/contextforge.html"
+            },
+            {
+                name: "DiagramPilot AI",
+                oneLiner: "Full-stack tool converting natural language into interactive Mermaid architecture diagrams with SVG export.",
+                cover: "assets/images/diagrampilot.webp",
+                href: prefix + "projects/diagrampilot.html"
+            },
+            {
+                name: "OpenFolio AI",
+                oneLiner: "Generative studio conducting interview-driven workflows to build and deploy custom developer portfolios.",
+                cover: "assets/images/openfolio.webp",
+                href: prefix + "projects/openfolio.html"
+            },
+            {
+                name: "Automation Engine",
+                oneLiner: "Event-driven pipelines orchestrating Telegram bots, self-hosted n8n workflows, and cloud reporting scripts.",
+                cover: "assets/images/automation_workflow.webp",
+                href: prefix + "projects/automation-workflow.html"
+            },
+            {
+                name: "Machine Learning",
+                oneLiner: "Model training suites covering CNN vision (88%), BiLSTM sentiment analysis (88.69%), and K-Means clustering.",
+                cover: "assets/images/machine_learning.webp",
+                href: prefix + "projects/machine-learning.html"
+            }
         ];
 
-        var cur = 0, dur = 6000, t0 = Date.now();
-
-        // Build dots
-        if (dotsEl) {
-            dotsEl.innerHTML = '';
-            for (var i = 0; i < N; i++) {
-                var d = document.createElement('div');
-                d.className = 'sc-dot' + (i === 0 ? ' active' : '');
-                d.innerHTML = '<div class="sc-dot-fill"></div>';
-                (function(x){ d.onclick = function(){ go(x); t0 = Date.now(); }; })(i);
-                dotsEl.appendChild(d);
-            }
-        }
-
-        function dots() { return dotsEl ? dotsEl.querySelectorAll('.sc-dot') : []; }
-
-        function go(idx) {
-            cur = ((idx % N) + N) % N;
-            track.style.transform = 'translateX(-' + (cur * (100 / N)) + '%)';
-            if (numEl) numEl.textContent = String(cur + 1).padStart(2, '0');
-            if (ctaEl && links[cur]) {
-                ctaEl.href = links[cur];
-                ctaEl.setAttribute('href', links[cur]);
-            }
-            var dd = dots();
-            for (var i = 0; i < dd.length; i++) {
-                var f = dd[i].querySelector('.sc-dot-fill');
-                if (i === cur) {
-                    dd[i].classList.add('active');
-                } else {
-                    dd[i].classList.remove('active');
-                    if (f) f.style.width = i < cur ? '100%' : '0%';
-                }
-            }
-        }
-
-        if (prevBtn) prevBtn.onclick = function(){ go(cur - 1); t0 = Date.now(); };
-        if (nextBtn) nextBtn.onclick = function(){ go(cur + 1); t0 = Date.now(); };
-
-        window.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight') { go(cur + 1); t0 = Date.now(); }
-            if (e.key === 'ArrowLeft')  { go(cur - 1); t0 = Date.now(); }
+        var items = projects.map(function(p) {
+            return {
+                title: p.name,
+                subtitle: p.oneLiner,
+                image: p.cover,
+                href: p.href
+            };
         });
 
-        // Touch swipe
-        var sx = 0;
-        if (box) {
-            box.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
-            box.addEventListener('touchend', function(e){
-                var d = sx - e.changedTouches[0].clientX;
-                if (Math.abs(d) > 40) { go(d > 0 ? cur + 1 : cur - 1); t0 = Date.now(); }
-            }, {passive:true});
+        function navigate(url) {
+            if (!url) return;
+            window.location.href = url;
         }
 
-        // Auto-slide (continuous, no hover pause)
-        function tick() {
-            var el = Date.now() - t0;
-            var r = Math.min(1, el / dur);
-            var dd = dots();
-            if (dd[cur]) {
-                var f = dd[cur].querySelector('.sc-dot-fill');
-                if (f) f.style.width = (r * 100) + '%';
+        var container = document.getElementById('blinds-container');
+        if (!container) return;
+
+        function initBlinds() {
+            if (!window.renderBlinds) {
+                setTimeout(initBlinds, 50);
+                return;
             }
-            if (el >= dur) { go(cur + 1); t0 = Date.now(); }
-            requestAnimationFrame(tick);
+            window.renderBlinds(container, {
+                items: items,
+                mode: 'strip',
+                labelStyle: 'steady',
+                labelPosition: 'bottom',
+                radius: 18,
+                gap: 8,
+                textSize: 1.05,
+                expandRatio: 8.5,
+                tuning: { k: 90, c: 17, lean: 0.45, squeeze: 0.95 },
+                autoPlay: 3400,
+                showIndex: false,
+                showBody: true,
+                onActivate: function(i) {
+                    if (items[i] && items[i].href) {
+                        navigate(items[i].href);
+                    }
+                }
+            });
         }
-        go(0);
-        requestAnimationFrame(tick);
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initBlinds();
+        } else {
+            window.addEventListener('DOMContentLoaded', initBlinds);
+        }
     })();
     </script>
 
@@ -3177,6 +3020,10 @@ if (window.location.protocol === 'file:') {
                 ref: canvas,
                 ...config
             });
+            // Initially pause WebGL loop until user scrolls to credentials/contact
+            if (gradient && typeof gradient.pause === 'function') {
+                gradient.pause();
+            }
         } catch (err) {
             console.warn('NeatGradient failed to initialize:', err);
             return;
@@ -3205,6 +3052,7 @@ if (window.location.protocol === 'file:') {
         const targetIds = ['credentials', 'google-developer', 'contact'];
         const targets = targetIds.map(id => document.getElementById(id)).filter(Boolean);
         const visibleSections = new Set();
+        let pauseTimer = null;
 
         if ('IntersectionObserver' in window && targets.length > 0) {
             const observer = new IntersectionObserver((entries) => {
@@ -3217,12 +3065,27 @@ if (window.location.protocol === 'file:') {
                 });
 
                 if (visibleSections.size > 0) {
+                    if (pauseTimer) {
+                        clearTimeout(pauseTimer);
+                        pauseTimer = null;
+                    }
                     canvas.classList.add('is-active');
+                    if (gradient && typeof gradient.resume === 'function') {
+                        gradient.resume();
+                    }
                 } else {
                     const currentActive = document.querySelector('#nav-links-desktop a.nav-link.text-white');
                     const activeHref = currentActive ? currentActive.getAttribute('href') : '';
                     if (activeHref !== '#credentials' && activeHref !== '#contact') {
                         canvas.classList.remove('is-active');
+                        if (!pauseTimer) {
+                            pauseTimer = setTimeout(() => {
+                                if (visibleSections.size === 0 && gradient && typeof gradient.pause === 'function') {
+                                    gradient.pause();
+                                }
+                                pauseTimer = null;
+                            }, 1400);
+                        }
                     }
                 }
             }, {
@@ -3231,6 +3094,26 @@ if (window.location.protocol === 'file:') {
             });
 
             targets.forEach(t => observer.observe(t));
+        }
+
+        // Viewport culling for 3D Earth (assets/bumi.html)
+        const homeSection = document.getElementById('home');
+        const bgIframe = document.getElementById('bg-iframe');
+
+        if (homeSection && bgIframe && 'IntersectionObserver' in window) {
+            const earthObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const isVisible = entry.isIntersecting;
+                    if (bgIframe.contentWindow) {
+                        try {
+                            bgIframe.contentWindow.postMessage({ miqdadPause: !isVisible }, '*');
+                        } catch (e) {}
+                    }
+                    bgIframe.style.visibility = isVisible ? 'visible' : 'hidden';
+                });
+            }, { threshold: 0.01, rootMargin: '160px 0px 160px 0px' });
+
+            earthObserver.observe(homeSection);
         }
     })();
     </script>

@@ -174,7 +174,7 @@
                 return Math.max(7, Math.round(Math.min(W, H) / 84));
             }
             function resize() {
-                DPR = Math.min(2, window.devicePixelRatio || 1);
+                DPR = 1;
                 W = innerWidth;
                 H = innerHeight;
                 cv.width = Math.round(W * DPR);
@@ -213,10 +213,21 @@
                 passive: true
             });
             /* Copyright Miqdad Badjuber: host page drives scroll progress via postMessage */
+            let isPaused = false;
             addEventListener("message", function(ev) {
                 var d = ev && ev.data;
-                if (d && typeof d.miqdadScroll === "number")
+                if (!d) return;
+                if (typeof d.miqdadScroll === "number")
                     targetP = Math.min(1, Math.max(0, d.miqdadScroll));
+                if (typeof d.miqdadPause === "boolean") {
+                    if (d.miqdadPause && !isPaused) {
+                        isPaused = true;
+                    } else if (!d.miqdadPause && isPaused) {
+                        isPaused = false;
+                        lastRender = performance.now();
+                        requestAnimationFrame(frame);
+                    }
+                }
             });
 
             // Precomputed Level LUT (Lookup Table) for 60fps zero-overhead luminance mapping
@@ -240,9 +251,9 @@
 
             let lastRender = performance.now();
             function frame(now) {
-                if (document.hidden) {
+                if (document.hidden || isPaused) {
                     lastRender = now;
-                    requestAnimationFrame(frame);
+                    if (!isPaused) requestAnimationFrame(frame);
                     return;
                 }
                 const dt = Math.min(0.05, (now - lastRender) / 1000);
