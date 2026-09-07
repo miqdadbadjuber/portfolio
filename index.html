@@ -1237,13 +1237,19 @@
         }
 
         #mobile-liquid-backdrop {
-            display: none;
+            display: none !important;
             position: fixed;
             inset: 0;
             z-index: 998;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none !important;
+            transition: opacity 0.25s ease;
         }
         #mobile-liquid-backdrop.is-active {
-            display: block;
+            display: block !important;
+            opacity: 1;
+            pointer-events: auto !important;
         }
 
         /* Mobile Social Liquid Speed Dial (Fixed Bottom Right, Always Visible) */
@@ -1400,13 +1406,19 @@
         #mobile-social-dial:not(.is-open) .link-x { transition-delay: 0ms; }
 
         #mobile-social-backdrop {
-            display: none;
+            display: none !important;
             position: fixed;
             inset: 0;
             z-index: 998;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none !important;
+            transition: opacity 0.25s ease;
         }
         #mobile-social-backdrop.is-active {
-            display: block;
+            display: block !important;
+            opacity: 1;
+            pointer-events: auto !important;
         }
 
         @media (max-width: 1023px) {
@@ -1418,6 +1430,11 @@
 
             .mobile-project-carousel {
                 display: block !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .view-all-projects-wrap {
+                padding-top: 0.5rem !important;
             }
 
             .mobile-about-btn {
@@ -1445,12 +1462,24 @@
             }
 
             /* Hero mobile */
+            #home {
+                min-height: 100svh !important;
+                min-height: 100dvh !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+            }
+
             #home h1 {
-                font-size: clamp(2.8rem, 13vw, 4.5rem);
+                font-size: clamp(2.6rem, 12vw, 4.2rem);
                 text-align: center;
                 line-height: 1.05;
                 margin-left: 0 !important;
                 margin-right: 0 !important;
+                margin-bottom: 1.25rem !important;
             }
 
             #home .gsap-hero {
@@ -1461,6 +1490,8 @@
                 align-items: center;
                 display: flex;
                 flex-direction: column;
+                padding-top: 0 !important;
+                margin-top: -3.5rem !important;
             }
 
             #home .gsap-hero>div {
@@ -1961,8 +1992,8 @@
             </div>
         </div>
     </div>
-    <div id="mobile-liquid-backdrop" class="mobile-only" aria-hidden="true"></div>
-    <div id="mobile-social-backdrop" class="mobile-only" aria-hidden="true"></div>
+    <div id="mobile-liquid-backdrop" aria-hidden="true"></div>
+    <div id="mobile-social-backdrop" aria-hidden="true"></div>
 
     <!-- Mobile Liquid Social Speed Dial (Fixed Bottom Right, Mobile Only) -->
     <div id="mobile-social-dial" class="mobile-only" aria-label="Mobile Social Media Speed Dial">
@@ -2310,16 +2341,33 @@
             <!-- Mobile Carousel -->
             <div class="mobile-project-carousel mb-8" style="display:none">
                 <style>
+                    /* Mobile Carousel: Full Bleed Container without side clipping */
+                    .mobile-project-carousel {
+                        margin-left: -1.5rem !important;
+                        margin-right: -1.5rem !important;
+                        width: calc(100% + 3rem) !important;
+                        overflow: hidden;
+                        margin-top: 0.75rem !important;
+                    }
+
                     .mobile-carousel-track {
                         display: flex;
                         overflow-x: auto;
-                        scroll-snap-type: x mandatory;
+                        scroll-snap-type: none !important;
                         -webkit-overflow-scrolling: touch;
-                        scroll-behavior: smooth;
-                        gap: 1.25rem;
-                        padding: 0.5rem 1rem 1.25rem 1rem;
+                        scroll-behavior: auto;
+                        gap: 1rem;
+                        padding: 0.75rem 1.25rem 1.25rem 1.25rem;
                         scrollbar-width: none;
                         -ms-overflow-style: none;
+                        cursor: grab;
+                        touch-action: pan-y pinch-zoom;
+                        user-select: none;
+                        -webkit-user-select: none;
+                    }
+
+                    .mobile-carousel-track:active {
+                        cursor: grabbing;
                     }
 
                     .mobile-carousel-track::-webkit-scrollbar {
@@ -2327,38 +2375,168 @@
                     }
 
                     .mobile-carousel-slide {
-                        flex: 0 0 84vw;
-                        max-width: 340px;
-                        scroll-snap-align: center;
-                        scroll-snap-stop: always;
-                        display: block;
-                        text-decoration: none;
-                        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                        flex: 0 0 68vw;
+                        max-width: 255px;
+                        scroll-snap-align: none !important;
+                        scroll-snap-stop: normal !important;
+                        display: flex;
+                        flex-direction: column;
                     }
 
-                    .mobile-carousel-slide:active {
-                        transform: scale(0.98);
-                    }
-
-                    .mobile-project-card {
-                        background-color: rgba(6, 6, 6, 0.7) !important;
-                        backdrop-filter: blur(12px);
-                        -webkit-backdrop-filter: blur(12px);
+                    /* Project Card Styling (100% matching projects/index.html mobile) */
+                    .mobile-carousel-slide .mobile-project-card {
+                        background-color: #080605 !important;
+                        background: #080605 !important;
                         border: 1px solid rgba(255, 255, 255, 0.08) !important;
-                        border-radius: 1.25rem !important;
+                        border-radius: 1.15rem !important;
                         overflow: hidden;
+                        box-shadow: none !important;
+                        filter: none !important;
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+                        width: 100%;
+                        transition: border-color 0.25s ease;
+                    }
+
+                    .mobile-carousel-slide .mobile-project-card-body {
+                        padding: 0.95rem 1rem 1.1rem 1rem !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        flex: 1 1 0% !important;
+                        width: 100% !important;
+                    }
+
+                    .mobile-carousel-slide .mobile-project-tag {
+                        font-family: 'Inter', sans-serif !important;
+                        font-size: 0.7rem !important;
+                        font-weight: 500 !important;
+                        color: #9ca3af !important;
+                        margin-bottom: 0.25rem !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        gap: 0.35rem !important;
+                    }
+
+                    .mobile-carousel-slide .mobile-project-title {
+                        font-family: 'Space Grotesk', sans-serif !important;
+                        font-size: 0.95rem !important;
+                        font-weight: 700 !important;
+                        line-height: 1.3 !important;
+                        color: #ffffff !important;
+                        margin-bottom: 0.25rem !important;
+                        letter-spacing: -0.01em !important;
+                    }
+
+                    .mobile-carousel-slide .mobile-project-title a {
+                        color: #ffffff !important;
+                        text-decoration: none !important;
+                        transition: color 0.2s ease;
+                    }
+
+                    .mobile-carousel-slide .mobile-project-title a:hover {
+                        color: #00f0ff !important;
+                    }
+
+                    .mobile-carousel-slide .mobile-project-desc {
+                        font-family: 'Inter', sans-serif !important;
+                        font-size: 0.725rem !important;
+                        line-height: 1.48 !important;
+                        color: #9ca3af !important;
+                        margin-bottom: 0.75rem !important;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    }
+
+                    .mobile-carousel-slide .project-action-row {
+                        display: flex !important;
+                        flex-direction: row !important;
+                        flex-wrap: nowrap !important;
+                        align-items: center !important;
+                        justify-content: space-between !important;
+                        width: 100% !important;
+                        padding-top: 0.65rem !important;
+                        margin-top: auto !important;
+                        border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+                        gap: 0.4rem !important;
+                    }
+
+                    .mobile-carousel-slide .project-cta-link {
+                        display: inline-flex !important;
+                        align-items: center !important;
+                        gap: 0.4rem !important;
+                        font-family: 'Space Grotesk', sans-serif !important;
+                        font-size: 0.725rem !important;
+                        font-weight: 600 !important;
+                        color: #ffffff !important;
+                        text-decoration: none !important;
+                        text-transform: none !important;
+                        letter-spacing: normal !important;
+                        white-space: nowrap !important;
+                    }
+
+                    .mobile-carousel-slide .project-cta-text {
+                        text-transform: none !important;
+                        letter-spacing: normal !important;
+                    }
+
+                    .mobile-carousel-slide .project-arrow-circle {
+                        width: 1.4rem !important;
+                        height: 1.4rem !important;
+                        border-radius: 9999px !important;
+                        display: inline-flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        background: #ffffff !important;
+                        color: #020202 !important;
+                        opacity: 1 !important;
+                        transform: scale(1) translateX(0) !important;
+                        pointer-events: auto !important;
+                        flex-shrink: 0 !important;
                         box-shadow: none !important;
                         filter: none !important;
                     }
 
-                    .mobile-carousel-slide .project-arrow-circle {
-                        opacity: 1 !important;
-                        transform: scale(1) translateX(0) !important;
-                        pointer-events: auto !important;
+                    .mobile-carousel-slide .project-arrow-circle svg {
+                        width: 0.75rem !important;
+                        height: 0.75rem !important;
+                        color: #020202 !important;
+                        stroke: currentColor !important;
+                        stroke-width: 2.2 !important;
                     }
 
-                    .mobile-carousel-slide:active .project-arrow-circle {
-                        transform: scale(0.92) translateX(2px) !important;
+                    .mobile-carousel-slide .btn-github-source {
+                        display: inline-flex !important;
+                        align-items: center !important;
+                        gap: 0.3rem !important;
+                        padding: 0.3rem 0.55rem !important;
+                        font-size: 0.675rem !important;
+                        font-family: 'Space Grotesk', sans-serif !important;
+                        font-weight: 600 !important;
+                        background-color: rgba(255, 255, 255, 0.08) !important;
+                        color: #e4e4e7 !important;
+                        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                        border-radius: 0.45rem !important;
+                        white-space: nowrap !important;
+                        flex-shrink: 0 !important;
+                        text-decoration: none !important;
+                        transform: none !important;
+                        transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease !important;
+                    }
+
+                    .mobile-carousel-slide .btn-github-source:hover,
+                    .mobile-carousel-slide .btn-github-source:active {
+                        background-color: #ffffff !important;
+                        color: #09090b !important;
+                        border-color: #ffffff !important;
+                    }
+
+                    .mobile-carousel-slide .btn-github-source svg {
+                        width: 11px !important;
+                        height: 11px !important;
+                        flex-shrink: 0 !important;
                     }
 
                     /* Suppress external watermarks */
@@ -2375,133 +2553,222 @@
                 </style>
                 <div id="mobile-carousel-track" class="mobile-carousel-track">
                     <!-- Slide 1: AntiSlop -->
-                    <a href="/projects/anti-ai-slop.html" class="mobile-carousel-slide">
-                        <div class="mobile-project-card">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/antislop.webp" alt="AntiSlop" loading="lazy" decoding="async"
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">AntiSlop</h3>
-                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">38 deterministic rules stopping UI
-                                    slop.</p>
-                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span
-                                        class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg></span></span>
+                    <article class="mobile-carousel-slide">
+                        <div class="mobile-project-card group">
+                            <a href="/projects/anti-ai-slop.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/antislop.webp" alt="AntiSlop banner" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
+                            </a>
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Agent Skills Package</span>
+                                    <span class="text-gray-600">•</span>
+                                    <span>v3.1.3</span>
+                                </div>
+                                <h3 class="mobile-project-title">
+                                    <a href="/projects/anti-ai-slop.html">AntiSlop</a>
+                                </h3>
+                                <p class="mobile-project-desc">
+                                    38 mandatory deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop and robotic copy without restricting genuine design creativity.
+                                </p>
+                                <div class="project-action-row">
+                                    <a href="/projects/anti-ai-slop.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </a>
+                    </article>
                     <!-- Slide 2: ContextForge -->
-                    <a href="/projects/contextforge.html" class="mobile-carousel-slide">
-                        <div class="mobile-project-card">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/contextforge.webp" alt="ContextForge" loading="lazy"
-                                    decoding="async" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">ContextForge
+                    <article class="mobile-carousel-slide">
+                        <div class="mobile-project-card group">
+                            <a href="/projects/contextforge.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
+                            </a>
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Context Optimization CLI</span>
+                                    <span class="text-gray-600">•</span>
+                                    <span>Open Source</span>
+                                </div>
+                                <h3 class="mobile-project-title">
+                                    <a href="/projects/contextforge.html">ContextForge</a>
                                 </h3>
-                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">CLI tool indexing code &amp;
-                                    pruning context bundles.</p>
-                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span
-                                        class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg></span></span>
+                                <p class="mobile-project-desc">
+                                    CLI tool that indexes codebases, scores file relevance, and uses AST symbol pruning to build token-efficient context bundles, cutting token consumption by up to 83%.
+                                </p>
+                                <div class="project-action-row">
+                                    <a href="/projects/contextforge.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/MiqdadBadjuber/contextforge" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </a>
-                    <!-- Slide 3: DiagramPilot -->
-                    <a href="/projects/diagrampilot.html" class="mobile-carousel-slide">
-                        <div class="mobile-project-card">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy"
-                                    decoding="async" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">DiagramPilot
-                                    AI</h3>
-                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">Generates interactive diagrams
-                                    from conversations.</p>
-                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span
-                                        class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg></span></span>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Slide 4: OpenFolio -->
-                    <a href="/projects/openfolio.html" class="mobile-carousel-slide">
-                        <div class="mobile-project-card">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy"
-                                    decoding="async" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">OpenFolio AI
+                    </article>
+                    <!-- Slide 3: DiagramPilot AI -->
+                    <article class="mobile-carousel-slide">
+                        <div class="mobile-project-card group">
+                            <a href="/projects/diagrampilot.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
+                            </a>
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Architecture Blueprint Generator</span>
+                                </div>
+                                <h3 class="mobile-project-title">
+                                    <a href="/projects/diagrampilot.html">DiagramPilot AI</a>
                                 </h3>
-                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">Serverless studio building custom
-                                    portfolios.</p>
-                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span
-                                        class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg></span></span>
+                                <p class="mobile-project-desc">
+                                    Full-stack Next.js and Mermaid.js system converting natural language conversations into interactive architecture diagrams with zoom, pan, and SVG export.
+                                </p>
+                                <div class="project-action-row">
+                                    <a href="/projects/diagrampilot.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber/DiagramPilot-AI" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </a>
-                    <!-- Slide 5: Automation Workflow -->
-                    <a href="/projects/automation-workflow.html" class="mobile-carousel-slide">
-                        <div class="mobile-project-card">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow"
-                                    loading="lazy" decoding="async" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">Automation
-                                    Workflow</h3>
-                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">Event pipelines with n8n, bots
-                                    &amp; Apps Script.</p>
-                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span
-                                        class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg></span></span>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Slide 6: Machine Learning -->
-                    <a href="/projects/machine-learning.html" class="mobile-carousel-slide">
-                        <div class="mobile-project-card">
-                            <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/machine_learning.webp" alt="Machine Learning" loading="lazy"
-                                    decoding="async" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">Machine
-                                    Learning</h3>
-                                <p class="text-gray-300 text-xs mb-4 leading-relaxed">CNN, BiLSTM sentiment &amp;
-                                    K-Means clustering suites.</p>
-                                <span class="project-cta-link"><span class="project-cta-text">View Details</span> <span
-                                        class="project-arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg></span></span>
+                    </article>
+                    <!-- Slide 4: OpenFolio AI -->
+                    <article class="mobile-carousel-slide">
+                        <div class="mobile-project-card group">
+                            <a href="/projects/openfolio.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
+                            </a>
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>AI Portfolio Studio</span>
+                                </div>
+                                <h3 class="mobile-project-title">
+                                    <a href="/projects/openfolio.html">OpenFolio AI</a>
+                                </h3>
+                                <p class="mobile-project-desc">
+                                    React 19 SPA and Express serverless studio that conducts guest-only interviews to build, revise, and deploy custom developer portfolios to live URLs.
+                                </p>
+                                <div class="project-action-row">
+                                    <a href="/projects/openfolio.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber/OpenFolio-AI" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </a>
+                    </article>
+                    <!-- Slide 5: Machine Learning Experiments -->
+                    <article class="mobile-carousel-slide">
+                        <div class="mobile-project-card group">
+                            <a href="/projects/machine-learning.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/machine_learning.webp" alt="Machine Learning Systems" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
+                            </a>
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Deep Learning &amp; Unsupervised ML</span>
+                                </div>
+                                <h3 class="mobile-project-title">
+                                    <a href="/projects/machine-learning.html">Machine Learning Experiments</a>
+                                </h3>
+                                <p class="mobile-project-desc">
+                                    End-to-end model training suites covering CNN image classification (88% acc), Gojek review BiLSTM sentiment analysis (88.69% acc), and K-Means fraud transaction clustering with 6 GitHub repositories.
+                                </p>
+                                <div class="project-action-row">
+                                    <a href="/projects/machine-learning.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Slide 6: Automation Workflow Engine -->
+                    <article class="mobile-carousel-slide">
+                        <div class="mobile-project-card group">
+                            <a href="/projects/automation-workflow.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
+                            </a>
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Event Orchestration Pipeline</span>
+                                </div>
+                                <h3 class="mobile-project-title">
+                                    <a href="/projects/automation-workflow.html">Automation Workflow Engine</a>
+                                </h3>
+                                <p class="mobile-project-desc">
+                                    Event-driven workflow architectures connecting Discord and Telegram chat triggers with self-hosted n8n orchestrators, Google Apps Script backends, and automated PDF reporting.
+                                </p>
+                                <div class="project-action-row">
+                                    <a href="/projects/automation-workflow.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
                 <!-- Interactive Dots Indicator -->
-                <div id="carousel-dots" class="flex justify-center items-center gap-2 mt-4"
+                <div id="carousel-dots" class="flex justify-center items-center gap-2 mt-2.5"
                     aria-label="Carousel navigation"></div>
                 <script>
                     (function () {
@@ -2513,47 +2780,53 @@
                         var total = slides.length;
                         if (!total) return;
 
+                        var dots = [];
+                        var activeIdx = 0;
+                        var momentumRafId = null;
+
+                        function stopMomentum() {
+                            if (momentumRafId) {
+                                cancelAnimationFrame(momentumRafId);
+                                momentumRafId = null;
+                            }
+                        }
+
+                        function smoothScrollTo(targetLeft, duration) {
+                            stopMomentum();
+                            var start = track.scrollLeft;
+                            var change = targetLeft - start;
+                            var startTime = performance.now();
+
+                            function step(currentTime) {
+                                var elapsed = currentTime - startTime;
+                                var progress = Math.min(elapsed / duration, 1);
+                                var ease = 1 - Math.pow(1 - progress, 3);
+                                track.scrollLeft = start + change * ease;
+                                if (progress < 1) {
+                                    momentumRafId = requestAnimationFrame(step);
+                                } else {
+                                    momentumRafId = null;
+                                }
+                            }
+                            momentumRafId = requestAnimationFrame(step);
+                        }
+
                         // Generate dots
                         dotsContainer.innerHTML = '';
                         slides.forEach(function (_, i) {
                             var dot = document.createElement('button');
                             dot.type = 'button';
-                            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                            dot.setAttribute('aria-label', 'Go to project ' + (i + 1));
                             dot.style.cssText = 'height: 4px; border-radius: 9999px; transition: width 0.3s cubic-bezier(0.2, 0.9, 0.3, 1), background-color 0.3s ease; border: none; padding: 0; cursor: pointer; ' + (i === 0 ? 'width: 24px; background: rgba(0, 240, 255, 0.85);' : 'width: 6px; background: rgba(255, 255, 255, 0.2);');
                             dot.addEventListener('click', function () {
-                                goToSlide(i);
-                                pauseAutoPlay();
+                                var s = slides[i];
+                                if (s) {
+                                    smoothScrollTo(s.offsetLeft - 20, 380);
+                                }
                             });
                             dotsContainer.appendChild(dot);
+                            dots.push(dot);
                         });
-
-                        var dots = Array.from(dotsContainer.children);
-                        var activeIdx = 0;
-                        var isProgrammatic = false;
-                        var programTimer = null;
-
-                        function getSnapPos(idx) {
-                            var s = slides[idx];
-                            if (!s) return 0;
-                            return s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
-                        }
-
-                        function goToSlide(idx) {
-                            activeIdx = (idx + total) % total;
-                            updateDots(activeIdx);
-
-                            // Lock intermediate scroll events to prevent dot flickering/stuttering during loop-back
-                            isProgrammatic = true;
-                            if (programTimer) clearTimeout(programTimer);
-                            programTimer = setTimeout(function () {
-                                isProgrammatic = false;
-                            }, 600);
-
-                            track.scrollTo({
-                                left: getSnapPos(activeIdx),
-                                behavior: 'smooth'
-                            });
-                        }
 
                         function updateDots(idx) {
                             dots.forEach(function (dot, i) {
@@ -2567,18 +2840,17 @@
                             });
                         }
 
-                        // Passive, fluid scroll tracking for natural finger swipes
-                        var isScrolling = false;
+                        // Passive dot tracker
+                        var isTicking = false;
                         track.addEventListener('scroll', function () {
-                            if (isProgrammatic) return; // Don't stutter intermediate dots during auto loop-back
-                            if (!isScrolling) {
+                            if (!isTicking) {
                                 window.requestAnimationFrame(function () {
-                                    var trackCenter = track.scrollLeft + track.clientWidth / 2;
+                                    var center = track.scrollLeft + (track.clientWidth / 2);
                                     var closestIdx = 0;
                                     var minDiff = Infinity;
                                     slides.forEach(function (slide, i) {
-                                        var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-                                        var diff = Math.abs(trackCenter - slideCenter);
+                                        var slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+                                        var diff = Math.abs(slideCenter - center);
                                         if (diff < minDiff) {
                                             minDiff = diff;
                                             closestIdx = i;
@@ -2588,60 +2860,105 @@
                                         activeIdx = closestIdx;
                                         updateDots(activeIdx);
                                     }
-                                    isScrolling = false;
+                                    isTicking = false;
                                 });
-                                isScrolling = true;
+                                isTicking = true;
                             }
                         }, { passive: true });
 
-                        // Auto-advance without fighting touch gestures
-                        var autoTimer = null;
-                        var pauseTimer = null;
+                        // === ULTRA-SMOOTH MOMENTUM INERTIA ENGINE (NO REM / AYUNAN SAMPE ABIS) ===
+                        var isPointerDown = false;
+                        var startX = 0;
+                        var startScrollLeft = 0;
+                        var lastX = 0;
+                        var lastTime = 0;
+                        var velocityX = 0;
+                        var hasMoved = false;
 
-                        function startAutoPlay() {
-                            stopAutoPlay();
-                            autoTimer = setInterval(function () {
-                                var nextIdx = (activeIdx + 1) % total;
-                                goToSlide(nextIdx);
-                            }, 4000);
-                        }
+                        track.addEventListener('pointerdown', function (e) {
+                            if (e.button !== undefined && e.button !== 0) return;
+                            stopMomentum();
+                            isPointerDown = true;
+                            hasMoved = false;
+                            startX = e.clientX;
+                            lastX = e.clientX;
+                            startScrollLeft = track.scrollLeft;
+                            lastTime = performance.now();
+                            velocityX = 0;
+                        }, { passive: true });
 
-                        function stopAutoPlay() {
-                            if (autoTimer) {
-                                clearInterval(autoTimer);
-                                autoTimer = null;
+                        window.addEventListener('pointermove', function (e) {
+                            if (!isPointerDown) return;
+                            var currentX = e.clientX;
+                            var currentTime = performance.now();
+                            var deltaX = currentX - startX;
+
+                            if (Math.abs(deltaX) > 4) {
+                                hasMoved = true;
+                            }
+
+                            track.scrollLeft = startScrollLeft - deltaX;
+
+                            var dt = currentTime - lastTime;
+                            if (dt > 8) {
+                                var instantVelocity = (lastX - currentX) / dt;
+                                velocityX = velocityX * 0.35 + instantVelocity * 0.65;
+                                lastX = currentX;
+                                lastTime = currentTime;
+                            }
+                        }, { passive: true });
+
+                        function handlePointerUp() {
+                            if (!isPointerDown) return;
+                            isPointerDown = false;
+
+                            var now = performance.now();
+                            if (now - lastTime > 70) {
+                                velocityX = 0;
+                            }
+
+                            // Inertial momentum fling (Ayunan lembut tanpa rem)
+                            if (Math.abs(velocityX) > 0.08) {
+                                var currentVelocity = velocityX * 15;
+                                if (currentVelocity > 45) currentVelocity = 45;
+                                if (currentVelocity < -45) currentVelocity = -45;
+
+                                var friction = 0.948; // Smooth natural coasting decay
+
+                                function momentumStep() {
+                                    track.scrollLeft += currentVelocity;
+                                    currentVelocity *= friction;
+
+                                    if (Math.abs(currentVelocity) > 0.25) {
+                                        momentumRafId = requestAnimationFrame(momentumStep);
+                                    } else {
+                                        momentumRafId = null;
+                                    }
+                                }
+                                momentumRafId = requestAnimationFrame(momentumStep);
                             }
                         }
 
-                        function pauseAutoPlay() {
-                            isProgrammatic = false;
-                            stopAutoPlay();
-                            if (pauseTimer) clearTimeout(pauseTimer);
-                            pauseTimer = setTimeout(startAutoPlay, 6000);
-                        }
+                        window.addEventListener('pointerup', handlePointerUp, { passive: true });
+                        window.addEventListener('pointercancel', handlePointerUp, { passive: true });
 
-                        track.addEventListener('touchstart', pauseAutoPlay, { passive: true });
-                        track.addEventListener('touchmove', pauseAutoPlay, { passive: true });
-                        track.addEventListener('wheel', pauseAutoPlay, { passive: true });
-                        track.addEventListener('pointerdown', pauseAutoPlay, { passive: true });
-
-                        window._setMobileCarouselActive = function (isActive) {
-                            if (isActive) {
-                                startAutoPlay();
-                            } else {
-                                stopAutoPlay();
+                        // Suppress accidental clicks during drag
+                        track.addEventListener('click', function (e) {
+                            if (hasMoved) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                hasMoved = false;
                             }
-                        };
+                        }, true);
 
-                        if (window._getCurrentSection && window._getCurrentSection() === 'projects') {
-                            startAutoPlay();
-                        }
+                        // Compatibility no-op
+                        window._setMobileCarouselActive = function () {};
                     })();
                 </script>
             </div>
 
             <!-- View All Projects -->
-            <div class="pt-12 md:pt-16 flex justify-center relative z-20">
+            <div class="pt-12 md:pt-16 flex justify-center relative z-20 view-all-projects-wrap">
                 <a href="/projects/index.html" class="btn-view-all btn-view-all-projects group" data-cursor-hover>
                     <span class="btn-view-all-text">View All Projects</span>
                     <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none"
@@ -3579,6 +3896,12 @@
                 window._triggerScrollSpy(scrollPos);
             }
         });
+
+        // Backup native scroll listener for mobile swipe & gestures
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY || window.pageYOffset || 0;
+            updateNavbarOnScroll(scrollPos);
+        }, { passive: true });
 
         if (prefersReducedMotion) {
             window.addEventListener('scroll', () => {
