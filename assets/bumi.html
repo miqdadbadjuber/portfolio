@@ -250,14 +250,20 @@
             buildLvlLUT();
 
             let lastRender = performance.now();
+            const FPS_INTERVAL = 1000 / 30;
             function frame(now) {
                 if (document.hidden || isPaused) {
                     lastRender = now;
                     if (!isPaused) requestAnimationFrame(frame);
                     return;
                 }
-                const dt = Math.min(0.05, (now - lastRender) / 1000);
-                lastRender = now;
+                const elapsed = now - lastRender;
+                if (elapsed < FPS_INTERVAL) {
+                    requestAnimationFrame(frame);
+                    return;
+                }
+                const dt = Math.min(0.05, elapsed / 1000);
+                lastRender = now - (elapsed % FPS_INTERVAL);
                 earth.rotation.y += S.spin * dt;
                 p += (targetP - p) * 0.06;
                 const e = p * p * (3 - 2 * p);

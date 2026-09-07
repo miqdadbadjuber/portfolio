@@ -131,6 +131,7 @@
             pointer-events: none;
         }
 
+
         @media (max-width: 1024px) {
             /* Reduce backdrop-filter convolution cost on mobile */
             .backdrop-blur-2xl { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
@@ -1652,7 +1653,7 @@
                     <a href="/projects/anti-ai-slop.html" class="mobile-carousel-slide">
                         <div class="mobile-project-card">
                             <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/antislop.webp" alt="AntiSlop" class="w-full h-full object-cover">
+                                <img src="assets/images/antislop.webp" alt="AntiSlop" loading="lazy" decoding="async" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">AntiSlop</h3>
@@ -1665,7 +1666,7 @@
                     <a href="/projects/contextforge.html" class="mobile-carousel-slide">
                         <div class="mobile-project-card">
                             <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/contextforge.webp" alt="ContextForge" class="w-full h-full object-cover">
+                                <img src="assets/images/contextforge.webp" alt="ContextForge" loading="lazy" decoding="async" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">ContextForge</h3>
@@ -1678,7 +1679,7 @@
                     <a href="/projects/diagrampilot.html" class="mobile-carousel-slide">
                         <div class="mobile-project-card">
                             <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" class="w-full h-full object-cover">
+                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">DiagramPilot AI</h3>
@@ -1691,7 +1692,7 @@
                     <a href="/projects/openfolio.html" class="mobile-carousel-slide">
                         <div class="mobile-project-card">
                             <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" class="w-full h-full object-cover">
+                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">OpenFolio AI</h3>
@@ -1704,7 +1705,7 @@
                     <a href="/projects/automation-workflow.html" class="mobile-carousel-slide">
                         <div class="mobile-project-card">
                             <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow" class="w-full h-full object-cover">
+                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow" loading="lazy" decoding="async" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">Automation Workflow</h3>
@@ -1717,7 +1718,7 @@
                     <a href="/projects/machine-learning.html" class="mobile-carousel-slide">
                         <div class="mobile-project-card">
                             <div class="aspect-video w-full overflow-hidden border-b border-white/[0.08]">
-                                <img src="assets/images/machine_learning.webp" alt="Machine Learning" class="w-full h-full object-cover">
+                                <img src="assets/images/machine_learning.webp" alt="Machine Learning" loading="lazy" decoding="async" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3 class="font-display text-lg font-bold text-white mb-1 tracking-tight">Machine Learning</h3>
@@ -1851,8 +1852,17 @@
                         track.addEventListener('wheel', pauseAutoPlay, {passive: true});
                         track.addEventListener('pointerdown', pauseAutoPlay, {passive: true});
 
-                        // Start autoPlay gently after 3.5s
-                        setTimeout(startAutoPlay, 3500);
+                        window._setMobileCarouselActive = function(isActive) {
+                            if (isActive) {
+                                startAutoPlay();
+                            } else {
+                                stopAutoPlay();
+                            }
+                        };
+
+                        if (window._getCurrentSection && window._getCurrentSection() === 'projects') {
+                            startAutoPlay();
+                        }
                     })();
                 </script>
             </div>
@@ -2190,8 +2200,8 @@
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                     </div>
 
-                    <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-full border border-white/[0.08] p-[2px] group-hover:border-cyanGlow/40 transition-colors duration-500">
-                        <img src="assets/images/profile.webp" alt="Google Developer" class="w-full h-full rounded-full object-cover">
+                    <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-full border border-white/[0.08] p-[2px] transition-colors duration-500">
+                        <img src="assets/images/profile.webp" alt="Google Developer" loading="lazy" decoding="async" class="w-full h-full rounded-full object-cover">
                     </div>
                     
                     <div class="flex-1 text-center sm:text-left flex flex-col items-center sm:items-start w-full h-full justify-between">
@@ -2222,8 +2232,8 @@
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                     </div>
 
-                    <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-full border border-white/[0.08] p-[2px] group-hover:border-cyanGlow/40 transition-colors duration-500">
-                        <img src="assets/images/profile.webp" alt="Google Cloud Skill" class="w-full h-full rounded-full object-cover">
+                    <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-full border border-white/[0.08] p-[2px] transition-colors duration-500">
+                        <img src="assets/images/profile.webp" alt="Google Cloud Skill" loading="lazy" decoding="async" class="w-full h-full rounded-full object-cover">
                     </div>
                     
                     <div class="flex-1 text-center sm:text-left flex flex-col items-center sm:items-start w-full h-full justify-between">
@@ -2500,7 +2510,7 @@
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const lenis = new Lenis({
-            duration: prefersReducedMotion ? 0 : 1.2,
+            duration: prefersReducedMotion ? 0 : 0.7,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
             gestureDirection: 'vertical',
@@ -2512,16 +2522,47 @@
         });
         window.lenis = lenis;
 
-        // Single rAF driver via gsap.ticker - avoids duplicate rAF loop
-        lenis.on('scroll', (e) => {
-            ScrollTrigger.update();
-            if (window._triggerScrollSpy && typeof e.scroll === 'number') {
-                window._triggerScrollSpy(e.scroll);
-            }
-        });
+        // Synchronized single rAF driver via gsap.ticker with lagSmoothing disabled
+        gsap.ticker.lagSmoothing(0);
         gsap.ticker.add((time) => {
             lenis.raf(time * 1000);
         });
+
+        // Navbar scroll state
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+
+        function updateNavbarOnScroll(currentScroll) {
+            if (!navbar) return;
+            if (currentScroll <= 0) {
+                navbar.style.transform = 'translateY(0)';
+            } else if (currentScroll > lastScroll && currentScroll > 50) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
+        }
+
+        // Unified scroll listener through Lenis
+        lenis.on('scroll', (e) => {
+            ScrollTrigger.update();
+            const scrollPos = typeof e.scroll === 'number' ? e.scroll : (window.scrollY || window.pageYOffset || 0);
+            updateNavbarOnScroll(scrollPos);
+            if (window._triggerScrollSpy) {
+                window._triggerScrollSpy(scrollPos);
+            }
+        });
+
+        if (prefersReducedMotion) {
+            window.addEventListener('scroll', () => {
+                const scrollPos = window.scrollY || window.pageYOffset || 0;
+                updateNavbarOnScroll(scrollPos);
+                if (window._triggerScrollSpy) {
+                    window._triggerScrollSpy(scrollPos);
+                }
+            }, { passive: true });
+        }
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2532,7 +2573,7 @@
                 if (targetElement) {
                     lenis.scrollTo(targetElement, {
                         offset: -80,
-                        duration: prefersReducedMotion ? 0 : 1.2
+                        duration: prefersReducedMotion ? 0 : 0.7
                     });
                 }
             });
@@ -2543,33 +2584,7 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Throttled scroll handler for nav and scrollspy
-        let lastScroll = 0;
-        let navTicking = false;
-        const navbar = document.getElementById('navbar');
-
-        function onScrollTick() {
-            const currentScroll = window.scrollY || window.pageYOffset || 0;
-            if (currentScroll <= 0) {
-                navbar.style.transform = 'translateY(0)';
-            } else if (currentScroll > lastScroll && currentScroll > 50) {
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
-            lastScroll = currentScroll;
-            if (window._triggerScrollSpy) window._triggerScrollSpy(currentScroll);
-            navTicking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!navTicking) {
-                navTicking = true;
-                requestAnimationFrame(onScrollTick);
-            }
-        }, { passive: true });
-
-                // Navbar Active Harmonic Spring Line & Scroll Spy
+        // Navbar Active Harmonic Spring Line & Scroll Spy
                 (function() {
             const navContainer = document.getElementById('nav-links-desktop');
             const navLine = document.getElementById('nav-active-line');
@@ -2641,7 +2656,78 @@
                 }));
             }
 
-            function setAmbientLayer(sectionId) {
+            let currentActiveSection = 'home';
+            let lastEarthState = null;
+
+            function updateEarthSwitch(scrollYVal) {
+                const bgIframe = document.getElementById('bg-iframe');
+                if (!bgIframe) return;
+
+                const scrollY = (typeof scrollYVal === 'number') ? scrollYVal : (window.scrollY || window.pageYOffset || 0);
+                const homeSec = document.getElementById('home');
+                const homeBottom = homeSec ? (homeSec.offsetTop + homeSec.offsetHeight) : window.innerHeight;
+
+                // Earth stays alive until the Hero area completely exits above the viewport
+                const isEarthVisible = scrollY < homeBottom;
+
+                if (lastEarthState !== isEarthVisible) {
+                    lastEarthState = isEarthVisible;
+                    if (bgIframe.contentWindow) {
+                        try {
+                            bgIframe.contentWindow.postMessage({ miqdadPause: !isEarthVisible }, '*');
+                        } catch (e) {}
+                    }
+                    bgIframe.style.visibility = isEarthVisible ? 'visible' : 'hidden';
+                }
+            }
+
+            window._setAnimationSwitch = function(sectionId, scrollYVal) {
+                if (!sectionId) return;
+                currentActiveSection = sectionId;
+
+                const isProjects = (sectionId === 'projects');
+                const isNeat = (sectionId === 'credentials' || sectionId === 'contact' || sectionId === 'google-developer');
+
+                // 1. Earth ASCII (Natural scroll culling: only off after Hero is completely out of view)
+                updateEarthSwitch(scrollYVal);
+
+                // 2. Project Showcase (Desktop & Mobile)
+                if (typeof window._setBlindsActive === 'function') {
+                    window._setBlindsActive(isProjects);
+                }
+                if (typeof window._setMobileCarouselActive === 'function') {
+                    window._setMobileCarouselActive(isProjects);
+                }
+
+                // 3. WebGL NeatGradient
+                const neatCanvas = document.getElementById('neat-gradient-canvas');
+                if (window._gradientInstance) {
+                    if (isNeat) {
+                        if (typeof window._gradientInstance.resume === 'function') {
+                            window._gradientInstance.resume();
+                        }
+                    } else {
+                        if (typeof window._gradientInstance.pause === 'function') {
+                            window._gradientInstance.pause();
+                        }
+                    }
+                }
+                if (neatCanvas) {
+                    if (isNeat) {
+                        neatCanvas.classList.add('is-active');
+                        neatCanvas.style.visibility = 'visible';
+                    } else {
+                        neatCanvas.classList.remove('is-active');
+                        neatCanvas.style.visibility = 'hidden';
+                    }
+                }
+            };
+
+            window._getCurrentSection = function() {
+                return currentActiveSection;
+            };
+
+            function setAmbientLayer(sectionId, scrollYVal) {
                 const ambientIds = ['home', 'about', 'projects', 'credentials', 'contact'];
                 ambientIds.forEach(id => {
                     const layer = document.getElementById('ambient-' + id);
@@ -2654,24 +2740,22 @@
                     }
                 });
 
-                const neatCanvas = document.getElementById('neat-gradient-canvas');
-                if (neatCanvas) {
-                    if (sectionId === 'credentials' || sectionId === 'contact' || sectionId === 'google-developer') {
-                        neatCanvas.classList.add('is-active');
-                    } else {
-                        neatCanvas.classList.remove('is-active');
-                    }
+                if (window._setAnimationSwitch) {
+                    window._setAnimationSwitch(sectionId, scrollYVal);
                 }
             }
 
             function onScrollSpy(scrollYVal) {
+                const currentScrollY = (typeof scrollYVal === 'number' ? scrollYVal : (window.scrollY || window.pageYOffset || 0));
+                updateEarthSwitch(currentScrollY);
+
                 if (!sectionOffsets.length) return;
-                const scrollPosition = (typeof scrollYVal === 'number' ? scrollYVal : (window.scrollY || window.pageYOffset || 0)) + 250;
+                const scrollPosition = currentScrollY + 250;
 
                 for (let i = sectionOffsets.length - 1; i >= 0; i--) {
                     const sec = sectionOffsets[i];
                     if (sec && sec.top <= scrollPosition) {
-                        setAmbientLayer(sec.id);
+                        setAmbientLayer(sec.id, currentScrollY);
                         if (!isHovering) {
                             const matchingLink = navLinks.find(l => l.getAttribute('href') === '#' + sec.id);
                             if (matchingLink && matchingLink !== currentActiveLink) {
@@ -2856,31 +2940,50 @@ if (window.location.protocol === 'file:') {
         var container = document.getElementById('blinds-container');
         if (!container) return;
 
+        var blindsConfig = {
+            items: items,
+            mode: 'strip',
+            labelStyle: 'steady',
+            labelPosition: 'bottom',
+            radius: 18,
+            gap: 8,
+            textSize: 1.05,
+            expandRatio: 8.5,
+            tuning: { k: 90, c: 17, lean: 0.45, squeeze: 0.95 },
+            autoPlay: false,
+            showIndex: false,
+            showBody: true,
+            onActivate: function(i) {
+                if (items[i] && items[i].href) {
+                    navigate(items[i].href);
+                }
+            }
+        };
+
+        var blindsInitialized = false;
+
         function initBlinds() {
             if (!window.renderBlinds) {
                 setTimeout(initBlinds, 50);
                 return;
             }
-            window.renderBlinds(container, {
-                items: items,
-                mode: 'strip',
-                labelStyle: 'steady',
-                labelPosition: 'bottom',
-                radius: 18,
-                gap: 8,
-                textSize: 1.05,
-                expandRatio: 8.5,
-                tuning: { k: 90, c: 17, lean: 0.45, squeeze: 0.95 },
-                autoPlay: 3400,
-                showIndex: false,
-                showBody: true,
-                onActivate: function(i) {
-                    if (items[i] && items[i].href) {
-                        navigate(items[i].href);
-                    }
-                }
-            });
+            if (window._getCurrentSection && window._getCurrentSection() === 'projects') {
+                blindsConfig.autoPlay = 3400;
+            } else {
+                blindsConfig.autoPlay = false;
+            }
+            window.renderBlinds(container, blindsConfig);
+            blindsInitialized = true;
         }
+
+        window._setBlindsActive = function(isActive) {
+            if (!blindsInitialized || !window.renderBlinds || !container) return;
+            var targetAutoPlay = isActive ? 3400 : false;
+            if (blindsConfig.autoPlay !== targetAutoPlay) {
+                blindsConfig.autoPlay = targetAutoPlay;
+                window.renderBlinds(container, blindsConfig);
+            }
+        };
 
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
             initBlinds();
@@ -2940,7 +3043,7 @@ if (window.location.protocol === 'file:') {
             grainSparsity: 0,
             grainIntensity: 0,
             grainSpeed: 1,
-            resolution: 1.2,
+            resolution: 0.75,
             yOffset: 1299.0999145507812,
             yOffsetWaveMultiplier: 4,
             yOffsetColorMultiplier: 4,
@@ -3020,9 +3123,21 @@ if (window.location.protocol === 'file:') {
                 ref: canvas,
                 ...config
             });
-            // Initially pause WebGL loop until user scrolls to credentials/contact
-            if (gradient && typeof gradient.pause === 'function') {
-                gradient.pause();
+            window._gradientInstance = gradient;
+            const currentSec = (window._getCurrentSection && window._getCurrentSection()) || 'home';
+            const isNeatActive = (currentSec === 'credentials' || currentSec === 'contact' || currentSec === 'google-developer');
+            if (isNeatActive) {
+                canvas.classList.add('is-active');
+                canvas.style.visibility = 'visible';
+                if (typeof gradient.resume === 'function') {
+                    gradient.resume();
+                }
+            } else {
+                canvas.classList.remove('is-active');
+                canvas.style.visibility = 'hidden';
+                if (typeof gradient.pause === 'function') {
+                    gradient.pause();
+                }
             }
         } catch (err) {
             console.warn('NeatGradient failed to initialize:', err);
@@ -3048,72 +3163,10 @@ if (window.location.protocol === 'file:') {
             }, { passive: true });
         }
 
-        // Smooth scroll observer for credentials, google developer, and contact sections
-        const targetIds = ['credentials', 'google-developer', 'contact'];
-        const targets = targetIds.map(id => document.getElementById(id)).filter(Boolean);
-        const visibleSections = new Set();
-        let pauseTimer = null;
-
-        if ('IntersectionObserver' in window && targets.length > 0) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        visibleSections.add(entry.target.id);
-                    } else {
-                        visibleSections.delete(entry.target.id);
-                    }
-                });
-
-                if (visibleSections.size > 0) {
-                    if (pauseTimer) {
-                        clearTimeout(pauseTimer);
-                        pauseTimer = null;
-                    }
-                    canvas.classList.add('is-active');
-                    if (gradient && typeof gradient.resume === 'function') {
-                        gradient.resume();
-                    }
-                } else {
-                    const currentActive = document.querySelector('#nav-links-desktop a.nav-link.text-white');
-                    const activeHref = currentActive ? currentActive.getAttribute('href') : '';
-                    if (activeHref !== '#credentials' && activeHref !== '#contact') {
-                        canvas.classList.remove('is-active');
-                        if (!pauseTimer) {
-                            pauseTimer = setTimeout(() => {
-                                if (visibleSections.size === 0 && gradient && typeof gradient.pause === 'function') {
-                                    gradient.pause();
-                                }
-                                pauseTimer = null;
-                            }, 1400);
-                        }
-                    }
-                }
-            }, {
-                rootMargin: '160px 0px 160px 0px',
-                threshold: 0.01
-            });
-
-            targets.forEach(t => observer.observe(t));
-        }
-
-        // Viewport culling for 3D Earth (assets/bumi.html)
-        const homeSection = document.getElementById('home');
-        const bgIframe = document.getElementById('bg-iframe');
-
-        if (homeSection && bgIframe && 'IntersectionObserver' in window) {
-            const earthObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const isVisible = entry.isIntersecting;
-                    if (bgIframe.contentWindow) {
-                        try {
-                            bgIframe.contentWindow.postMessage({ miqdadPause: !isVisible }, '*');
-                        } catch (e) {}
-                    }
-                    bgIframe.style.visibility = isVisible ? 'visible' : 'hidden';
-                });
-            }, { threshold: 0.01, rootMargin: '160px 0px 160px 0px' });
-
-            earthObserver.observe(homeSection);
+        // Initial sync of all animations via master switch
+        const initialSec = (window._getCurrentSection && window._getCurrentSection()) || 'home';
+        if (window._setAnimationSwitch) {
+            window._setAnimationSwitch(initialSec);
         }
     })();
     </script>
