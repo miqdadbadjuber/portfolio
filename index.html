@@ -1450,15 +1450,50 @@
                 display: none !important;
             }
 
+            html, body {
+                overscroll-behavior-y: none;
+            }
+
             /* Hide Earth 3D element on mobile only */
             #bg-iframe {
                 display: none !important;
             }
 
-            /* Mobile ambient background: use NeatGradient from the start */
+            /* Mobile ambient background: Rock-Solid Fixed GPU Layer Lock */
+            .ambient-backdrop-container {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                height: 100dvh !important;
+                height: 100svh !important;
+                z-index: -2 !important;
+                overflow: hidden !important;
+                pointer-events: none !important;
+                transform: translateZ(0) !important;
+                -webkit-transform: translateZ(0) !important;
+                backface-visibility: hidden !important;
+                -webkit-backface-visibility: hidden !important;
+                will-change: transform !important;
+                contain: strict !important;
+            }
+
             #neat-gradient-canvas {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
                 opacity: 1 !important;
                 visibility: visible !important;
+                pointer-events: none !important;
+                transform: translateZ(0) !important;
+                -webkit-transform: translateZ(0) !important;
+                backface-visibility: hidden !important;
+                -webkit-backface-visibility: hidden !important;
             }
 
             /* Hero mobile */
@@ -3950,7 +3985,7 @@
                 if (window._triggerScrollSpy) {
                     window._triggerScrollSpy(scrollPos);
                 }
-                if (window._updateGradientParallax) {
+                if (window._updateGradientParallax && !isMobileViewport()) {
                     window._updateGradientParallax(scrollPos);
                 }
             }
@@ -4589,8 +4624,11 @@
                 return;
             }
 
-            // Parallax linkage during scroll
+            // Parallax linkage during scroll (Strict Desktop Only; Mobile is kept completely fixed and steady)
             const updateParallax = (scrollY) => {
+                // Mobile isolation: never shift gradient yOffset on mobile
+                if (window.innerWidth < 1024) return;
+
                 if (gradient && canvas.classList.contains('is-active')) {
                     gradient.yOffset = 1299.0999145507812 + scrollY * 0.4;
                 }
@@ -4598,7 +4636,7 @@
             window._updateGradientParallax = updateParallax;
 
             window.addEventListener('scroll', () => {
-                if (window.innerWidth < 1024 || !window.lenis) {
+                if (window.innerWidth >= 1024 && !window.lenis) {
                     updateParallax(window.scrollY || window.pageYOffset || 0);
                 }
             }, { passive: true });
