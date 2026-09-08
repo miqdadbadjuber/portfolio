@@ -1459,26 +1459,25 @@
                 display: none !important;
             }
 
-            /* Mobile ambient background: Rock-Solid Fixed GPU Layer Lock */
+            /* Mobile ambient background: 100% Viewport Coverage without Cutoff */
             .ambient-backdrop-container {
                 position: fixed !important;
                 top: 0 !important;
                 left: 0 !important;
                 right: 0 !important;
-                bottom: 0 !important;
-                width: 100% !important;
-                height: 100% !important;
-                height: 100dvh !important;
-                height: 100svh !important;
+                width: 100vw !important;
+                height: 125vh !important;
+                min-height: 125vh !important;
+                min-height: 125dvh !important;
+                min-height: 125lvh !important;
                 z-index: -2 !important;
                 overflow: hidden !important;
                 pointer-events: none !important;
-                transform: translateZ(0) !important;
-                -webkit-transform: translateZ(0) !important;
-                backface-visibility: hidden !important;
-                -webkit-backface-visibility: hidden !important;
-                will-change: transform !important;
-                contain: strict !important;
+                background: #000000 !important;
+                transform: none !important;
+                -webkit-transform: none !important;
+                will-change: auto !important;
+                contain: none !important;
             }
 
             #neat-gradient-canvas {
@@ -1487,13 +1486,13 @@
                 left: 0 !important;
                 width: 100% !important;
                 height: 100% !important;
+                min-height: 100% !important;
                 opacity: 1 !important;
                 visibility: visible !important;
                 pointer-events: none !important;
-                transform: translateZ(0) !important;
-                -webkit-transform: translateZ(0) !important;
-                backface-visibility: hidden !important;
-                -webkit-backface-visibility: hidden !important;
+                transform: none !important;
+                -webkit-transform: none !important;
+                will-change: auto !important;
             }
 
             /* Hero mobile */
