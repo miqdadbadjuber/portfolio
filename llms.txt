@@ -37,6 +37,7 @@ His engineering philosophy centers on continuous learning, consistency, and buil
 
 ## Technical Writing & Articles
 
+- [How AntiSlop Hit 2,300 Stars and 7k Installs Since Launching Last Month](https://miqdadbadjuber.id/blog/antislop-viral-milestone.html): The growth breakdown of an open source ruleset for AI coding agents, +7k installs, and endorsement from Oracle product leadership.
 - [AntiSlop: Stopping Coding Agents from Generating Generic UI](https://miqdadbadjuber.id/blog/anti-ai-slop.html): Why LLMs possess native bias toward generic styles and how deterministic rule systems eliminate visual hallucinations.
 - [Context Engineering vs Fine-Tuning](https://miqdadbadjuber.id/blog/context-engineering-vs-finetuning.html): How surgical context injection and AST symbol pruning outperform static weight retraining in production codebase refactors.
 - [Optimizing Canvas 3D ASCII Sphere Renders to a Rock-Solid 60 FPS](https://miqdadbadjuber.id/blog/optimizing-canvas-ascii-60fps.html): Eliminating garbage collection freezes in JavaScript point-cloud math through bitwise integer luminescence precomputation.
