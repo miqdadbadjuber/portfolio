@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Context Engineering vs Fine-Tuning | Miqdad Badjuber</title>
+    <title>How AntiSlop Hit 2,300 Stars and 7k Installs Since Launching Last Month | Miqdad Badjuber</title>
     <!-- Favicon -->
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="48x48" href="../assets/images/favicon-48x48.png">
@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Rubik:wght@700&family=Sora:wght@400;500;600;700;800&display=block">
-<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;700;900&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -26,7 +26,7 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ["'Helvetica Neue'", 'Helvetica', 'Arial', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                         sora: ['Sora', 'sans-serif'],
                         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
                     }
@@ -67,7 +67,7 @@
         }
 
         .font-sora { font-family: 'Sora', sans-serif; }
-        .font-display { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important; font-weight: 700 !important; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
         .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 
         .bg-grid {
@@ -80,39 +80,19 @@
 
         .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
 
-        .tag-tech {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 4px;
-        }
-
-        .code-box {
-            background-color: #07080c;
+        .stat-card {
+            background: #080605;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.5rem;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .stat-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            transform: translateY(-2px);
         }
 
-        .code-line {
-            display: flex;
-            line-height: 1.6;
-        }
-        .code-num {
-            width: 2.5rem;
-            text-align: right;
-            padding-right: 1rem;
-            color: rgba(255, 255, 255, 0.2);
-            user-select: none;
-        }
-
-                .btn-back {
+        .btn-back {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -123,7 +103,17 @@
             height: 1.5rem;
             color: #9ca3af;
             text-decoration: none;
+            position: relative;
             transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -8px;
+            transform: translateY(-50%);
+            width: calc(100% + 16px);
+            height: 44px;
         }
         .btn-back:hover {
             color: #ffffff;
@@ -157,6 +147,25 @@
             transform: translate(-3px, -1px);
         }
 
+        /* Header and Footer social link tap targets (44x44px) */
+        header .flex.items-center.gap-4.h-6 a,
+        footer .flex.items-center.gap-4 a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header .flex.items-center.gap-4.h-6 a::before,
+        footer .flex.items-center.gap-4 a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+        }
+
         /* Desktop Table of Contents */
         .toc-link {
             display: block;
@@ -180,6 +189,15 @@
             border-left-color: #00f0ff;
         }
 
+        /* Evidence Image Container */
+        .evidence-frame {
+            background: #080605;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
         /* Mobile */
         @media (max-width: 1023px) {
             header.w-full,
@@ -198,7 +216,7 @@
                 padding-bottom: 3.5rem !important;
             }
             h1 {
-                font-size: 1.65rem !important; /* ~26px */
+                font-size: 1.65rem !important;
                 line-height: 1.25 !important;
                 letter-spacing: -0.03em !important;
             }
@@ -221,12 +239,12 @@
                 margin-top: 1.35rem !important;
             }
             article > div.space-y-8 p {
-                font-size: 0.8125rem !important; /* 13px */
+                font-size: 0.8125rem !important;
                 line-height: 1.75 !important;
                 color: #d4d4d8 !important;
             }
             article h2 {
-                font-size: 1.15rem !important; /* ~18px */
+                font-size: 1.15rem !important;
                 line-height: 1.35 !important;
                 padding-top: 0.75rem !important;
                 margin-bottom: 0.5rem !important;
@@ -238,31 +256,7 @@
                 font-size: 0.875rem !important;
                 line-height: 1.65 !important;
             }
-                        .code-box {
-                margin-top: 1rem !important;
-                margin-bottom: 1rem !important;
-                padding: 0.75rem !important;
-                border-radius: 0.5rem !important;
-            }
-            .code-box > div:last-child {
-                overflow-x: auto !important;
-                scrollbar-width: none !important;
-                -ms-overflow-style: none !important;
-            }
-            .code-box > div:last-child::-webkit-scrollbar {
-                display: none !important;
-            }
-            .code-num {
-                width: 1.75rem !important;
-                padding-right: 0.5rem !important;
-                font-size: 0.75rem !important;
-                flex-shrink: 0 !important;
-            }
-            .code-line span:last-child {
-                font-size: 0.75rem !important;
-                white-space: pre !important;
-            }
-                        .pt-8 {
+            .pt-8 {
                 padding-top: 1.5rem !important;
             }
         }
@@ -271,12 +265,12 @@
 <body>
     <div class="bg-grid"></div>
 
-    <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
-    <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
+    <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block pointer-events-none"></div>
+    <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block pointer-events-none"></div>
 
     <!-- Header -->
     <header class="w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-8 md:pt-12 flex justify-between items-center relative z-20">
-        <a href="/blog/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
+        <a href="/blog/index.html" onclick="if(document.referrer && (document.referrer.includes(window.location.host) || document.referrer.includes(window.location.origin))){history.back();return false;}" class="btn-back">
             <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M13 8H3M7 12L3 8l4-4"/>
             </svg>
@@ -301,15 +295,15 @@
             <!-- Article Header -->
             <header class="space-y-4 pb-8 border-b border-white/[0.06]">
                 <h1 class="font-display text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
-                    Context Engineering vs Fine-Tuning: The Precision Key for AI Coding<span class="text-gray-600">.</span>
+                    How AntiSlop Hit 2,300 Stars and 7k Installs Since Launching Last Month<span class="text-gray-600">.</span>
                 </h1>
 
                 <div class="flex items-center gap-2 text-xs font-sans text-gray-400 pt-1">
                     <span class="text-gray-200">Miqdad Badjuber</span>
                     <span class="text-gray-600">•</span>
-                    <span class="text-gray-400">August 18, 2026</span>
+                    <span class="text-gray-400">September 13, 2026</span>
                     <span class="text-gray-600">•</span>
-                    <span class="text-gray-400">6 min read</span>
+                    <span class="text-gray-400">5 min read</span>
                 </div>
             </header>
 
@@ -320,79 +314,194 @@
                 <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
                 <div class="lg:col-span-8 space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans">
                 
-                <!-- Section 1: The Fine-Tuning Dilemma -->
+                <!-- Section 1: Introduction -->
                 <div id="intro" class="space-y-6 scroll-mt-16">
                     <p>
-                        When software teams set out to create coding assistants tailored to proprietary codebases, the default instinct is often to collect historical commits and fine-tune an open-weights model. In practical engineering workflows, fine-tuning introduces severe rigidity and rapid obsolescence.
+                        On August 7, 2026, I pushed the first public commit to <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="text-cyanGlow hover:underline font-medium">anti-slop</a>. It was not intended to be a venture-backed tool or a flashy viral project. It was born out of personal irritation.
                     </p>
 
-                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-base md:text-lg">
-                        "A frontier model equipped with surgical context injection and strict verification loops outperforms a static fine-tuned model in 9 out of 10 real-world codebase refactors."
-                    </blockquote>
-                </div>
-
-                <!-- Section 2: Costs of Static Weights -->
-                <div id="static-weights" class="space-y-4 scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        01. The Hidden Costs of Static Model Weights
-                    </h2>
-                    <p class="text-gray-400">
-                        Fine-tuned model weights freeze a snapshot of library dependencies at training time. The moment your team migrates to a newer framework version, the fine-tuned model generates deprecated patterns with high confidence. Furthermore, fine-tuning fails to prevent hallucinations across complex multi-file call graphs.
-                    </p>
-                </div>
-
-                <!-- Section 3: AST Symbol Pruning -->
-                <div id="ast-pruning" class="space-y-4 scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        02. Context Injection and AST Symbol Pruning
-                    </h2>
-                    <p class="text-gray-400">
-                        A much higher return on engineering investment comes from parsing Abstract Syntax Trees (ASTs). Rather than dumping entire source files into the prompt, we extract only type signatures, interface declarations, and functions invoked by the target module.
+                    <p>
+                        Every time I asked an AI coding agent to generate an interface or scaffold a component, the result came back contaminated with the same repetitive visual habits: glowing neon purple gradients, oversized pill tags, generic corporate marketing copy, and decorative elements that added zero functional value. In developer terminology, it was pure slop.
                     </p>
 
-                    <!-- Code block -->
-                    <div class="code-box p-4 my-6">
-                        <div class="flex justify-between items-center pb-3 mb-3 border-b border-white/[0.06]">
-                            <!-- macOS Window Controls -->
-                            <div class="flex items-center gap-1.5" aria-hidden="true">
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80"></div>
-                            </div>
-                            <button onclick="copyCode(this)" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/[0.06] flex items-center justify-center" title="Copy code" aria-label="Copy code">
-                                <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                                <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </button>
+                    <p>
+                        Since releasing the project last month, the repository crossed <strong>2,300 GitHub stars</strong>, logged over <strong>7k active installs</strong>, earned a 99 out of 100 Peak Pulse rating on developer tracking boards, and was shared and recommended by engineering leaders at Oracle. Here is the breakdown of what happened and why deterministic rules resonated so strongly with builders.
+                    </p>
+
+                    <!-- Key Milestone Cards Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+                        <div class="stat-card text-center">
+                            <div class="text-2xl sm:text-3xl font-bold font-display text-white">2.3K+</div>
+                            <div class="text-xs font-sans text-gray-400 mt-1">GitHub Stars</div>
                         </div>
-                        <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
-                            <div class="code-line"><span class="code-num">1</span><span><span class="text-purple-400">def</span> <span class="text-blue-400">extract_relevant_context</span>(target_file: <span class="text-cyan-300">str</span>, symbol_tree: <span class="text-cyan-300">dict</span>) -> <span class="text-cyan-300">str</span>:</span></div>
-                            <div class="code-line"><span class="code-num">2</span><span>    imports = parse_dependencies(target_file)</span></div>
-                            <div class="code-line"><span class="code-num">3</span><span>    lean_declarations = []</span></div>
-                            <div class="code-line"><span class="code-num">4</span><span>    <span class="text-purple-400">for</span> dep <span class="text-purple-400">in</span> imports:</span></div>
-                            <div class="code-line"><span class="code-num">5</span><span>        lean_declarations.append(symbol_tree.get_signatures(dep))</span></div>
-                            <div class="code-line"><span class="code-num">6</span><span>    <span class="text-purple-400">return</span> <span class="text-green-300">"\n"</span>.join(lean_declarations)</span></div>
+                        <div class="stat-card text-center">
+                            <div class="text-2xl sm:text-3xl font-bold font-display text-white">7K+</div>
+                            <div class="text-xs font-sans text-gray-400 mt-1">Skill Installs</div>
+                        </div>
+                        <div class="stat-card text-center">
+                            <div class="text-2xl sm:text-3xl font-bold font-display text-white">#55</div>
+                            <div class="text-xs font-sans text-gray-400 mt-1">Good AI List</div>
+                        </div>
+                        <div class="stat-card text-center">
+                            <div class="text-2xl sm:text-3xl font-bold font-display text-white">99/100</div>
+                            <div class="text-xs font-sans text-gray-400 mt-1">RepoPulse Score</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section 4: Token Savings -->
-                <div id="token-savings" class="space-y-4 scroll-mt-16">
+                <!-- Section 2: Oracle Leadership Endorsement (Enterprise Validation FIRST) -->
+                <div id="oracle-signal" class="space-y-4 scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        03. 70% Token Savings with Zero Accuracy Degradation
+                        An Enterprise Validation: Oracle Product Leadership Chimes In
                     </h2>
+
                     <p class="text-gray-400">
-                        By pruning irrelevant implementation bodies and passing only deterministic symbol contracts, token overhead drops by up to 70 percent. The assistant leverages frontier reasoning capabilities while maintaining exact architectural alignment with your repository.
+                        The earliest and most significant turning point arrived via LinkedIn. Matthew Kowalik, Principal Product Manager at Oracle with six years of experience leading database product management, discovered the repository and shared it with his technical network, noting:
+                    </p>
+
+                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-base md:text-lg">
+                        "This was pretty good too! https://github.com/miqdadbadjuber/anti-slop"
+                    </blockquote>
+
+                    <p class="text-gray-400">
+                        In response to Matthew's recommendation, Mark Stent, an AI Lead and Lead Data Scientist specializing in Generative AI, replied directly:
+                    </p>
+
+                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-base md:text-lg">
+                        "Very nice...this looks like it specialised in code...just what i needed!"
+                    </blockquote>
+
+                    <!-- Evidence: LinkedIn Thread -->
+                    <div class="my-6 space-y-2">
+                        <div class="evidence-frame">
+                            <img src="../assets/images/blog-1.webp" alt="LinkedIn endorsement discussion between Matthew Kowalik and Mark Stent" loading="lazy" decoding="async" class="w-full h-auto object-cover">
+                        </div>
+                        <p class="text-xs text-gray-500 font-sans text-center">
+                            Discussion on LinkedIn: Matthew Kowalik (Oracle) sharing the repository with Generative AI Lead Mark Stent.
+                        </p>
+                    </div>
+
+                    <!-- Side-by-side Oracle PM Profile & Experience -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                        <div class="space-y-2">
+                            <div class="evidence-frame">
+                                <img src="../assets/images/blog-2.webp" alt="Matthew Kowalik LinkedIn profile, Principal Product Manager at Oracle" loading="lazy" decoding="async" class="w-full h-auto object-cover">
+                            </div>
+                            <p class="text-xs text-gray-500 font-sans text-center">
+                                Matthew Kowalik, Principal Product Manager at Oracle.
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="evidence-frame">
+                                <img src="../assets/images/blog-3.webp" alt="Matthew Kowalik experience breakdown at Oracle" loading="lazy" decoding="async" class="w-full h-auto object-cover">
+                            </div>
+                            <p class="text-xs text-gray-500 font-sans text-center">
+                                Six years at Oracle, leading Database Outbound Product initiatives.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-400">
+                        Seeing engineers responsible for mission-critical enterprise systems find value in an open source coding agent ruleset was powerful confirmation. The frustration with AI-generated visual boilerplate is not limited to indie developers; it affects serious engineering teams building production software.
+                    </p>
+                </div>
+
+                <!-- Section 3: Global Rankings & Indexing -->
+                <div id="global-rankings" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        Ranked #55 in the Global AI Tools Directory
+                    </h2>
+
+                    <p class="text-gray-400">
+                        Following the initial organic discussions, independent curation platforms began indexing AntiSlop among the most impactful tools in the modern AI ecosystem. On Good AI List, AntiSlop ranked at <strong>#55 globally</strong>, situated directly between OpenAI Codex (#52) and Andrej Karpathy's Claude skills repository (#56).
+                    </p>
+
+                    <!-- Evidence: Good AI List -->
+                    <div class="my-6 space-y-2 max-w-lg mx-auto">
+                        <div class="evidence-frame">
+                            <img src="../assets/images/blog-5.webp" alt="Good AI List global rankings showing anti-slop at rank 55" loading="lazy" decoding="async" class="w-full h-auto object-cover">
+                        </div>
+                        <p class="text-xs text-gray-500 font-sans text-center">
+                            Good AI List: AntiSlop ranked #55 alongside OpenAI Codex (#52) and Andrej Karpathy skills (#56).
+                        </p>
+                    </div>
+
+                    <p class="text-gray-400">
+                        Standing in the same index alongside foundational developer tools from OpenAI and Andrej Karpathy demonstrated that deterministic styling rules had transitioned from a personal script into an essential utility for agentic workflows.
+                    </p>
+                </div>
+
+                <!-- Section 4: Statistical Momentum & Growth Analytics -->
+                <div id="growth-trajectory" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        Statistical Momentum: The Hockey Stick Growth Trajectory
+                    </h2>
+
+                    <p class="text-gray-400">
+                        Once enterprise practitioners and AI tool curators shared the project, the repository metrics moved into an exponential phase. Developer tracking systems logged a sharp acceleration starting in early September, pushing star velocity past +112 stars every 24 hours.
+                    </p>
+
+                    <!-- Evidence: GitStars Chart -->
+                    <div class="my-6 space-y-2">
+                        <div class="evidence-frame">
+                            <img src="../assets/images/blog-7.webp" alt="GitStars growth trajectory showing steep curve to 2,300 stars" loading="lazy" decoding="async" class="w-full h-auto object-cover">
+                        </div>
+                        <p class="text-xs text-gray-500 font-sans text-center">
+                            Trajectory tracked on GitStars: steep inflection point beginning early September, reaching 2,294 stars by September 12.
+                        </p>
+                    </div>
+
+                    <p class="text-gray-400">
+                        On RepoInsider, the project registered a Peak Pulse score of 99 out of 100, alongside a 5.7x daily spike in developer interest. This confirmed that developers were actively installing and integrating the rules rather than simply bookmarking the repository.
+                    </p>
+
+                    <!-- Evidence: RepoInsider Card -->
+                    <div class="my-6 space-y-2 max-w-md mx-auto">
+                        <div class="evidence-frame">
+                            <img src="../assets/images/blog-4.webp" alt="RepoInsider metric card showing 99 Peak Pulse and 5.7x daily spike" loading="lazy" decoding="async" class="w-full h-auto object-cover">
+                        </div>
+                        <p class="text-xs text-gray-500 font-sans text-center">
+                            RepoInsider analytics: 99 Peak Pulse score and 5.7x daily acceleration in attention.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Section 5: Featured Across Technology Websites as a Trending Asset -->
+                <div id="trending-asset" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
+                        Featured Across Technology Platforms as a Trending Asset
+                    </h2>
+
+                    <p class="text-gray-400">
+                        As word spread across developer hubs, multiple technology tracking websites and open-source directories featured AntiSlop as one of the week's fastest-trending technology assets.
+                    </p>
+
+                    <p class="text-gray-400">
+                        On GitGem, the project climbed to <strong>#69 trending overall</strong> (having reached a peak rank of #45 two weeks prior), recording +370 stars in a single monthly window, 152 forks, and climbing momentum on the global GitHub trending board.
+                    </p>
+
+                    <!-- Evidence: GitGem Card -->
+                    <div class="my-6 space-y-2">
+                        <div class="evidence-frame">
+                            <img src="../assets/images/blog-6.webp" alt="GitGem trending metrics showing rank 69 and climbing trajectory" loading="lazy" decoding="async" class="w-full h-auto object-cover">
+                        </div>
+                        <p class="text-xs text-gray-500 font-sans text-center">
+                            GitGem dashboard: climbing momentum, +132 stars in a single week, and 152 forks.
+                        </p>
+                    </div>
+
+                    <p class="text-gray-400">
+                        Technology aggregators highlighted the repository not just as another markdown configuration, but as a practical asset that engineering teams could immediately drop into Claude Code, Gemini CLI, Cursor, and Windsurf to guard against interface regressions.
+                    </p>
+
+                    <p class="text-gray-400 pt-4">
+                        To everyone who starred, forked, tested, and shared the project over the past month: thank you. Building an open source tool that resonated so quickly across the developer community has been an incredible experience, and keeping our code clean and intentional is work worth doing.
                     </p>
                 </div>
 
                 <!-- Bottom Back Navigation with Smooth Underline -->
                 <div class="pt-8 border-t border-white/[0.06] flex items-center">
-                    <a href="/blog/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
+                    <a href="/blog/index.html" onclick="if(document.referrer && (document.referrer.includes(window.location.host) || document.referrer.includes(window.location.origin))){history.back();return false;}" class="btn-back">
                         <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M13 8H3M7 12L3 8l4-4"/>
                         </svg>
@@ -411,10 +520,11 @@
                             Table of Contents
                         </div>
                         <nav class="space-y-0.5 border-l border-white/[0.06]" id="article-toc">
-                            <a href="#intro" class="toc-link active">The Fine-Tuning Dilemma</a>
-                            <a href="#static-weights" class="toc-link">Costs of Static Weights</a>
-                            <a href="#ast-pruning" class="toc-link">AST Context Injection</a>
-                            <a href="#token-savings" class="toc-link">Token Savings &amp; Results</a>
+                            <a href="#intro" class="toc-link active">Origin and Milestones</a>
+                            <a href="#oracle-signal" class="toc-link">Oracle Leadership Endorsement</a>
+                            <a href="#global-rankings" class="toc-link">Ranked #55 on Good AI List</a>
+                            <a href="#growth-trajectory" class="toc-link">Statistical Momentum</a>
+                            <a href="#trending-asset" class="toc-link">Featured as a Trending Asset</a>
                         </nav>
                     </div>
 
@@ -430,19 +540,23 @@
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Published</span>
-                                <span class="text-white font-semibold">August 18, 2026</span>
+                                <span class="text-white font-semibold">September 13, 2026</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Read Time</span>
-                                <span class="text-white font-semibold">6 min read</span>
+                                <span class="text-white font-semibold">5 min read</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Category</span>
-                                <span class="text-white font-semibold">Context Engineering</span>
+                                <span class="text-white font-semibold">Open Source &amp; Growth</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Repository</span>
+                                <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="text-cyanGlow font-semibold hover:underline">anti-slop</a>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Type</span>
-                                <span class="text-cyanGlow font-semibold">Deep Dive</span>
+                                <span class="text-cyanGlow font-semibold">Milestone Dispatch</span>
                             </div>
                         </div>
                     </div>
@@ -469,47 +583,29 @@
         </div>
     </footer>
 
+    <!-- File protocol path fix -->
     <script>
-        function copyCode(btn) {
-            const codeBox = btn.closest('.code-box');
-            if (!codeBox) return;
-            const lines = codeBox.querySelectorAll('.code-line > span:last-child');
-            const text = Array.from(lines).map(l => l.innerText).join('\n');
-            navigator.clipboard.writeText(text).then(() => {
-                const copyIcon = btn.querySelector('.copy-icon');
-                const checkIcon = btn.querySelector('.check-icon');
-                if (copyIcon && checkIcon) {
-                    copyIcon.classList.add('hidden');
-                    checkIcon.classList.remove('hidden');
-                    setTimeout(() => {
-                        copyIcon.classList.remove('hidden');
-                        checkIcon.classList.add('hidden');
-                    }, 2000);
-                }
-            });
-        }
+    if (window.location.protocol === 'file:') {
+        document.querySelectorAll('a[href^="/"]').forEach(function(el) {
+            var h = el.getAttribute('href');
+            var isSub = window.location.pathname.includes('/projects/') || window.location.pathname.includes('/blog/') || window.location.pathname.includes('/about/') || window.location.pathname.includes('/credentials/');
+            var prefix = isSub ? '../' : '';
+            if (h === '/' || h === '/index.html' || h === '/#home') {
+                el.setAttribute('href', prefix + 'index.html');
+            } else if (h.startsWith('/#')) {
+                el.setAttribute('href', prefix + 'index.html' + h.substring(1));
+            } else {
+                el.setAttribute('href', prefix + h.substring(1));
+            }
+        });
+    }
     </script>
-<script>
-if (window.location.protocol === 'file:') {
-    document.querySelectorAll('a[href^="/"]').forEach(function(el) {
-        var h = el.getAttribute('href');
-        var isSub = window.location.pathname.includes('/projects/') || window.location.pathname.includes('/blog/') || window.location.pathname.includes('/about/') || window.location.pathname.includes('/credentials/');
-        var prefix = isSub ? '../' : '';
-        if (h === '/' || h === '/index.html' || h === '/#home') {
-            el.setAttribute('href', prefix + 'index.html');
-        } else if (h.startsWith('/#')) {
-            el.setAttribute('href', prefix + 'index.html' + h.substring(1));
-        } else {
-            el.setAttribute('href', prefix + h.substring(1));
-        }
-    });
-}
-</script>
+
     <!-- Table of Contents Active Tracking -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tocLinks = document.querySelectorAll('.toc-link');
-            const sectionIds = ['intro', 'static-weights', 'ast-pruning', 'token-savings'];
+            const sectionIds = ['intro', 'oracle-signal', 'global-rankings', 'growth-trajectory', 'trending-asset'];
             const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
             if (tocLinks.length > 0 && sections.length > 0) {

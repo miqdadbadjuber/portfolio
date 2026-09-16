@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Context Engineering vs Fine-Tuning | Miqdad Badjuber</title>
+    <title>AntiSlop: Stopping Coding Agents from Generating Generic UI | Miqdad Badjuber</title>
     <!-- Favicon -->
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="48x48" href="../assets/images/favicon-48x48.png">
@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Rubik:wght@700&family=Sora:wght@400;500;600;700;800&display=block">
-<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;700;900&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -26,7 +26,7 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ["'Helvetica Neue'", 'Helvetica', 'Arial', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                         sora: ['Sora', 'sans-serif'],
                         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
                     }
@@ -67,7 +67,7 @@
         }
 
         .font-sora { font-family: 'Sora', sans-serif; }
-        .font-display { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important; font-weight: 700 !important; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
         .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 
         .bg-grid {
@@ -83,9 +83,9 @@
         .tag-tech {
             display: inline-block;
             padding: 0.2rem 0.5rem;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 10px;
-            font-weight: 700;
+            font-weight: 500;
             letter-spacing: 0.05em;
             color: rgba(255, 255, 255, 0.4);
             background: rgba(255, 255, 255, 0.06);
@@ -301,15 +301,15 @@
             <!-- Article Header -->
             <header class="space-y-4 pb-8 border-b border-white/[0.06]">
                 <h1 class="font-display text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
-                    Context Engineering vs Fine-Tuning: The Precision Key for AI Coding<span class="text-gray-600">.</span>
+                    AntiSlop: Stopping Coding Agents from Generating Generic UI<span class="text-gray-600">.</span>
                 </h1>
 
                 <div class="flex items-center gap-2 text-xs font-sans text-gray-400 pt-1">
                     <span class="text-gray-200">Miqdad Badjuber</span>
                     <span class="text-gray-600">•</span>
-                    <span class="text-gray-400">August 18, 2026</span>
+                    <span class="text-gray-400">August 23, 2026</span>
                     <span class="text-gray-600">•</span>
-                    <span class="text-gray-400">6 min read</span>
+                    <span class="text-gray-400">5 min read</span>
                 </div>
             </header>
 
@@ -320,34 +320,28 @@
                 <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
                 <div class="lg:col-span-8 space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans">
                 
-                <!-- Section 1: The Fine-Tuning Dilemma -->
+                <!-- Section 1: Introduction -->
                 <div id="intro" class="space-y-6 scroll-mt-16">
                     <p>
-                        When software teams set out to create coding assistants tailored to proprietary codebases, the default instinct is often to collect historical commits and fine-tune an open-weights model. In practical engineering workflows, fine-tuning introduces severe rigidity and rapid obsolescence.
+                        If you have used modern LLM coding assistants like Claude, Gemini, or ChatGPT to generate front-end interfaces, you have almost certainly encountered the exact same aesthetic signature: saturated purple-to-blue gradients, oversized rounded pill buttons, generic cards with glowing borders, and marketing hero copy that sounds suspiciously uniform.
                     </p>
 
-                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-base md:text-lg">
-                        "A frontier model equipped with surgical context injection and strict verification loops outperforms a static fine-tuned model in 9 out of 10 real-world codebase refactors."
+                    <p>
+                        In the developer community, this phenomenon is widely recognized as <strong>"AI Slop"</strong>. It is not necessarily broken code, but rather a lack of design intent and intentional taste.
+                    </p>
+
+                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-lg">
+                        "AI models default to the mathematical average of the Internet. Without explicit architectural rules, your user interface is mathematically doomed to look generic."
                     </blockquote>
                 </div>
 
-                <!-- Section 2: Costs of Static Weights -->
-                <div id="static-weights" class="space-y-4 scroll-mt-16">
+                <!-- Section 2: Probabilistic Trap -->
+                <div id="probabilistic-trap" class="space-y-4 scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        01. The Hidden Costs of Static Model Weights
+                        01. The Probabilistic Trap of Generic Design
                     </h2>
                     <p class="text-gray-400">
-                        Fine-tuned model weights freeze a snapshot of library dependencies at training time. The moment your team migrates to a newer framework version, the fine-tuned model generates deprecated patterns with high confidence. Furthermore, fine-tuning fails to prevent hallucinations across complex multi-file call graphs.
-                    </p>
-                </div>
-
-                <!-- Section 3: AST Symbol Pruning -->
-                <div id="ast-pruning" class="space-y-4 scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        02. Context Injection and AST Symbol Pruning
-                    </h2>
-                    <p class="text-gray-400">
-                        A much higher return on engineering investment comes from parsing Abstract Syntax Trees (ASTs). Rather than dumping entire source files into the prompt, we extract only type signatures, interface declarations, and functions invoked by the target module.
+                        Why does every AI model choose purple buttons and generic floating cards? Because thousands of SaaS templates uploaded to GitHub between 2021 and 2025 used that exact pattern. When prompted with vague instructions like <em>"Build a modern dashboard landing page"</em>, the model selects the highest probability tokens in its vector weights.
                     </p>
 
                     <!-- Code block -->
@@ -370,23 +364,22 @@
                             </button>
                         </div>
                         <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
-                            <div class="code-line"><span class="code-num">1</span><span><span class="text-purple-400">def</span> <span class="text-blue-400">extract_relevant_context</span>(target_file: <span class="text-cyan-300">str</span>, symbol_tree: <span class="text-cyan-300">dict</span>) -> <span class="text-cyan-300">str</span>:</span></div>
-                            <div class="code-line"><span class="code-num">2</span><span>    imports = parse_dependencies(target_file)</span></div>
-                            <div class="code-line"><span class="code-num">3</span><span>    lean_declarations = []</span></div>
-                            <div class="code-line"><span class="code-num">4</span><span>    <span class="text-purple-400">for</span> dep <span class="text-purple-400">in</span> imports:</span></div>
-                            <div class="code-line"><span class="code-num">5</span><span>        lean_declarations.append(symbol_tree.get_signatures(dep))</span></div>
-                            <div class="code-line"><span class="code-num">6</span><span>    <span class="text-purple-400">return</span> <span class="text-green-300">"\n"</span>.join(lean_declarations)</span></div>
+                            <div class="code-line"><span class="code-num">1</span><span><span class="text-gray-500"># Rule: Prohibit Default AI Aesthetics</span></span></div>
+                            <div class="code-line"><span class="code-num">2</span><span>- DO NOT use generic purple/indigo linear gradients on CTA buttons.</span></div>
+                            <div class="code-line"><span class="code-num">3</span><span>- DO NOT use rounded-full pill buttons unless explicitly asked.</span></div>
+                            <div class="code-line"><span class="code-num">4</span><span>- USE high-contrast typography and precise geometric border tokens.</span></div>
+                            <div class="code-line"><span class="code-num">5</span><span>- PRESERVE void dark themes (#020202) over washed-out slate colors.</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section 4: Token Savings -->
-                <div id="token-savings" class="space-y-4 scroll-mt-16">
+                <!-- Section 3: Deterministic Defense -->
+                <div id="defense-system" class="space-y-4 scroll-mt-16">
                     <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        03. 70% Token Savings with Zero Accuracy Degradation
+                        02. The 3-File Deterministic Defense System
                     </h2>
                     <p class="text-gray-400">
-                        By pruning irrelevant implementation bodies and passing only deterministic symbol contracts, token overhead drops by up to 70 percent. The assistant leverages frontier reasoning capabilities while maintaining exact architectural alignment with your repository.
+                        To permanently eliminate AI slop, you need a deterministic rule system embedded within your workspace rather than hoping the model remembers your preferences in every prompt session.
                     </p>
                 </div>
 
@@ -411,10 +404,9 @@
                             Table of Contents
                         </div>
                         <nav class="space-y-0.5 border-l border-white/[0.06]" id="article-toc">
-                            <a href="#intro" class="toc-link active">The Fine-Tuning Dilemma</a>
-                            <a href="#static-weights" class="toc-link">Costs of Static Weights</a>
-                            <a href="#ast-pruning" class="toc-link">AST Context Injection</a>
-                            <a href="#token-savings" class="toc-link">Token Savings &amp; Results</a>
+                            <a href="#intro" class="toc-link active">The Problem with AI Slop</a>
+                            <a href="#probabilistic-trap" class="toc-link">The Probabilistic Trap</a>
+                            <a href="#defense-system" class="toc-link">Deterministic Defense</a>
                         </nav>
                     </div>
 
@@ -430,19 +422,19 @@
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Published</span>
-                                <span class="text-white font-semibold">August 18, 2026</span>
+                                <span class="text-white font-semibold">August 23, 2026</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Read Time</span>
-                                <span class="text-white font-semibold">6 min read</span>
+                                <span class="text-white font-semibold">5 min read</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Category</span>
-                                <span class="text-white font-semibold">Context Engineering</span>
+                                <span class="text-white font-semibold">AI Interface Design</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Type</span>
-                                <span class="text-cyanGlow font-semibold">Deep Dive</span>
+                                <span class="text-cyanGlow font-semibold">Technical Essay</span>
                             </div>
                         </div>
                     </div>
@@ -509,7 +501,7 @@ if (window.location.protocol === 'file:') {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tocLinks = document.querySelectorAll('.toc-link');
-            const sectionIds = ['intro', 'static-weights', 'ast-pruning', 'token-savings'];
+            const sectionIds = ['intro', 'probabilistic-trap', 'defense-system'];
             const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
             if (tocLinks.length > 0 && sections.length > 0) {

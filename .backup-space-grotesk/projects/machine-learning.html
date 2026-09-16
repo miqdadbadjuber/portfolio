@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContextForge | Projects | Miqdad Badjuber</title>
+    <title>Machine Learning Experiments | Projects | Miqdad Badjuber</title>
     <!-- Favicon -->
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="48x48" href="../assets/images/favicon-48x48.png">
@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Rubik:wght@700&family=Sora:wght@400;500;600;700;800&display=block">
-<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;700;900&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -26,7 +26,7 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ["'Helvetica Neue'", 'Helvetica', 'Arial', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                         sora: ['Sora', 'sans-serif'],
                         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
                     }
@@ -67,7 +67,7 @@
         }
 
         .font-sora { font-family: 'Sora', sans-serif; }
-        .font-display { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important; font-weight: 700 !important; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
         .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 
                 .bg-grid {
@@ -132,6 +132,92 @@
             border-radius: 8px;
             backdrop-filter: blur(8px);
         }
+        .code-line { display: flex; line-height: 1.7; }
+        .code-num { width: 2.2rem; shrink-0; color: #52525b; user-select: none; }
+
+        /* Action Buttons */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.25s var(--ease-out);
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #020202;
+            border: 1px solid #ffffff;
+        }
+        .btn-primary:hover {
+            background: #e4e4e7;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 240, 255, 0.4);
+        }
+
+        /* Repo Card */
+        .repo-card {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 8px;
+            transition: all 0.25s var(--ease-out);
+        }
+        .repo-card:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: #0e0b09;
+        }
+
+        /* Arrow Circle */
+        .repo-arrow-circle {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            background: transparent;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+        .repo-arrow-circle svg {
+            width: 13px;
+            height: 13px;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .repo-card:hover .repo-arrow-circle,
+        .group:hover .repo-arrow-circle {
+            background: #ffffff !important;
+            color: #020202 !important;
+            transform: scale(1.05);
+        }
+        .repo-card:hover .repo-arrow-circle svg,
+        .group:hover .repo-arrow-circle svg {
+            transform: translate(0.5px, -0.5px);
+        }
+
+        /* Code Box */
+        .code-box {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+        }
         .code-box div[class*="overflow-x-auto"],
         .code-box .overflow-x-auto {
             overflow-x: auto !important;
@@ -154,7 +240,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.6rem 1.2rem;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 0.875rem;
             font-weight: 600;
             border-radius: 6px;
@@ -374,28 +460,19 @@
             <!-- Project Header -->
             <header class="space-y-6 pb-8 border-b border-white/[0.06]">
                 <h1 class="font-display text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
-                    ContextForge<span class="text-gray-600">.</span>
+                    Machine Learning Experiments<span class="text-gray-600">.</span>
                 </h1>
 
                 <p class="text-gray-300 text-base md:text-lg leading-relaxed font-sans max-w-3xl">
-                    Open source CLI tool that scans your codebase, calculates relevance, and builds token-efficient context bundles for AI coding assistants. Runs 100% locally with zero external API keys.
+                    Comprehensive suite of practical machine learning implementations covering Deep Learning Computer Vision (CNNs), Natural Language Processing (BiLSTM Sentiment Analysis), and Unsupervised Anomaly Clustering (PCA &amp; K-Means).
                 </p>
 
-                <!-- Action Links: Open Source CTA (Single row on mobile) -->
+                <!-- Action Links: Jump to Open Source Repositories (Desktop & Mobile) -->
                 <div class="flex flex-wrap items-center gap-3 pt-2">
-                    <a href="https://github.com/MiqdadBadjuber/contextforge" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+                    <a href="#repositories" class="btn-action btn-primary">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                        <span class="sm:hidden">GitHub</span>
-                        <span class="hidden sm:inline">Open Source on GitHub</span>
-                    </a>
-                    <a href="https://miqdadbadjuber.github.io/contextforge/" target="_blank" rel="noopener noreferrer" class="btn-action btn-secondary">
-                        <span>Roadmap &amp; Docs</span>
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11L11 5M5 5h6v6"/></svg>
-                    </a>
-                    <a href="/blog/context-engineering-vs-finetuning.html" class="btn-action btn-secondary">
-                        <span class="sm:hidden">Essay</span>
-                        <span class="hidden sm:inline">Technical Essay</span>
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11L11 5M5 5h6v6"/></svg>
+                        <span class="sm:hidden">GitHub Repos</span>
+                        <span class="hidden sm:inline">Browse GitHub Repos (6)</span>
                     </a>
                 </div>
             </header>
@@ -405,137 +482,187 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
                 
                 <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
-                <div class="lg:col-span-8 space-y-10 text-gray-300 text-base md:text-lg leading-loose font-sans">
+                <div class="lg:col-span-8 space-y-12 text-gray-300 text-base md:text-lg leading-loose font-sans">
                 
-                <!-- Section 1: The Problem -->
-                <div id="problem" class="scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
-                        The Friction with LLM Context
+                <!-- Section 1: Computer Vision -->
+                <div id="vision" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight">
+                        Computer Vision <span class="hidden sm:inline">(Natural Scene Classification)</span>
                     </h2>
-                    <p class="text-gray-400 mb-4">
-                        Developers frequently struggle with three major inefficiencies during AI coding sessions:
+                    <p class="text-gray-400">
+                        An end-to-end Deep Learning pipeline for natural scene image classification across 6 categories (Buildings, Forest, Glacier, Mountain, Sea, Street) trained on the Intel Image Dataset.
                     </p>
-
-                    <!-- Mobile View: Left-Border Accent List (Clean & Compact) -->
-                    <div class="space-y-3.5 sm:hidden font-sans pt-1">
-                        <div class="border-l-2 border-white/20 pl-3">
-                            <div class="font-display text-xs font-bold text-white mb-0.5">Manual File Hunting</div>
-                            <p class="text-[11.5px] text-gray-400 leading-relaxed">
-                                Digging through hundreds of files, guessing relevance, and copy-pasting code manually into chat boxes.
-                            </p>
+                    
+                    <!-- Clean Stat Cards Row: 2x2 on mobile, 4 columns on desktop -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 text-center font-sans my-3">
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-base sm:text-xl font-bold text-white">88.00%</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Test Acc</div>
                         </div>
-                        <div class="border-l-2 border-white/20 pl-3">
-                            <div class="font-display text-xs font-bold text-white mb-0.5">Wasted Tokens</div>
-                            <p class="text-[11.5px] text-gray-400 leading-relaxed">
-                                Sending entire function bodies and boilerplate that blows token limits and causes prompt degradation.
-                            </p>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-base sm:text-xl font-bold text-white">0.3406</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Test Loss</div>
                         </div>
-                        <div class="border-l-2 border-white/20 pl-3">
-                            <div class="font-display text-xs font-bold text-white mb-0.5">Context Dilution</div>
-                            <p class="text-[11.5px] text-gray-400 leading-relaxed">
-                                Models hallucinating across multi-file boundaries due to unstructured context payloads.
-                            </p>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-base sm:text-xl font-bold text-white">4 Layers</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">CNN Block</div>
+                        </div>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-base sm:text-xl font-bold text-white">3 Exports</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">TF/Lite/JS</div>
                         </div>
                     </div>
 
-                    <!-- Desktop View: 3-Column Cards Grid (Untouched) -->
-                    <div class="hidden sm:grid sm:grid-cols-3 sm:gap-4 pt-2 font-sans">
-                        <div class="p-3 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg sm:rounded-xl">
-                            <div class="font-display text-xs sm:text-base font-bold text-white mb-1">Manual File Hunting</div>
-                            <p class="text-[11px] sm:text-xs text-gray-400 leading-relaxed">
-                                Digging through hundreds of files, guessing relevance, and copy-pasting code manually into chat boxes.
-                            </p>
-                        </div>
-                        <div class="p-3 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg sm:rounded-xl">
-                            <div class="font-display text-xs sm:text-base font-bold text-white mb-1">Wasted Tokens</div>
-                            <p class="text-[11px] sm:text-xs text-gray-400 leading-relaxed">
-                                Sending entire function bodies and boilerplate that blows token limits and causes prompt degradation.
-                            </p>
-                        </div>
-                        <div class="p-3 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg sm:rounded-xl">
-                            <div class="font-display text-xs sm:text-base font-bold text-white mb-1">Context Dilution</div>
-                            <p class="text-[11px] sm:text-xs text-gray-400 leading-relaxed">
-                                Models hallucinating across multi-file boundaries due to unstructured context payloads.
-                            </p>
-                        </div>
-                    </div>
+                    <p class="text-sm text-gray-300 leading-relaxed font-sans">
+                        <strong class="text-white">Architecture &amp; Deployment:</strong> 4 Convolutional blocks, ReLU activations, MaxPooling, Flatten, Dense layer (512 neurons), 0.3 Dropout regularization, and Softmax classification. Exported to TensorFlow SavedModel for production servers, TensorFlow Lite for mobile edge, and TensorFlow.js for in-browser client inference.
+                    </p>
                 </div>
 
-                <!-- Section 2: The Solution & Pipeline -->
-                <div id="pipeline" class="scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
-                        How ContextForge Works
+                <!-- Section 2: Natural Language Processing -->
+                <div id="nlp" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight">
+                        Natural Language Processing <span class="hidden sm:inline">(Gojek Review Sentiment)</span>
                     </h2>
-                    <p class="text-gray-400 mb-4">
-                        ContextForge executes an intelligent 5-step local pipeline in milliseconds:
+                    <p class="text-gray-400">
+                        Complete NLP workflow analyzing user sentiment on the Gojek application from Google Play Store reviews, classifying feedback into Positive, Neutral, and Negative categories.
                     </p>
-                    <ul class="space-y-2 text-sm md:text-base text-gray-300 list-disc pl-5">
-                        <li><strong class="text-white">Task Description:</strong> Parses your intent written in plain natural language.</li>
-                        <li><strong class="text-white">Repository Indexer:</strong> Scans the directory with strict <code>.gitignore</code> and lockfile exclusion.</li>
-                        <li><strong class="text-white">Relevance Scoring:</strong> Evaluates symbol graphs and keyword proximity across source files.</li>
-                        <li><strong class="text-white">AST-Aware Compression:</strong> Extracts type contracts and function signatures while pruning implementation bodies.</li>
-                        <li><strong class="text-white">Clipboard Output:</strong> Copies a token-budgeted prompt ready for pasting into any LLM.</li>
-                    </ul>
+
+                    <!-- Clean Stat Cards Row -->
+                    <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center font-sans my-3">
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">88.69%</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Test Accuracy</div>
+                        </div>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">BiLSTM</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Sequence Model</div>
+                        </div>
+                        <div class="p-2.5 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">EarlyStop</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Overfit Guard</div>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-300 leading-relaxed font-sans">
+                        <strong class="text-white">Pipeline:</strong> Custom review scraping, Indonesian text cleaning, tokenization, word embeddings, Bidirectional LSTM layers, Dense ReLU layers, and Softmax classification. Monitored with confusion matrices and classification reports.
+                    </p>
                 </div>
 
-                <!-- Section 3: Installation & Usage Guide -->
-                <div id="installation" class="scroll-mt-16">
-                    <div class="flex flex-wrap items-baseline gap-2 sm:gap-3 mb-2 sm:mb-3">
-                        <h2 class="font-display text-2xl font-bold text-white tracking-tight">
-                            Installation &amp; Usage
-                        </h2>
-                        <span class="text-[10px] sm:text-xs font-sans text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded whitespace-nowrap inline-block w-fit">Coming Soon <span class="hidden sm:inline">(Beta)</span></span>
-                    </div>
-                    <p class="text-gray-400 mb-4">
-                        Upcoming global CLI distribution for local workflow integration:
+                <!-- Section 3: Unsupervised Machine Learning -->
+                <div id="clustering" class="space-y-4 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight">
+                        Unsupervised Anomaly Detection <span class="hidden sm:inline">(Fraud Transaction Clustering)</span>
+                    </h2>
+                    <p class="text-gray-400">
+                        Unsupervised customer transaction anomaly detection grouping financial behaviors to isolate suspicious activities and potential fraudulent patterns without labeled training data.
                     </p>
 
-                    <!-- Code block with macOS dots and copy button -->
-                    <div class="code-box p-4 my-6">
-                        <div class="flex justify-between items-center pb-3 mb-3 border-b border-white/[0.06]">
-                            <div class="flex items-center gap-1.5" aria-hidden="true">
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80"></div>
+                    <!-- Clean Stat Cards Row -->
+                    <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center font-sans my-3">
+                        <div class="p-2 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">0.572</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Silhouette</div>
+                        </div>
+                        <div class="p-2 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">2 Clusters</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Separation</div>
+                        </div>
+                        <div class="p-2 sm:p-4 border border-white/[0.08] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-sm sm:text-xl font-bold text-white">PCA</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 font-sans mt-0.5 sm:mt-1 leading-tight">Dim Reduction</div>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-300 leading-relaxed font-sans">
+                        <strong class="text-white">Methodology:</strong> Multi-feature scaling (Transaction Amount, Age, Duration, Login Attempts, Balance), correlation matrix analysis, Principal Component Analysis for dimensionality reduction, and K-Means clustering.
+                    </p>
+                </div>
+
+                <!-- Open Source Repositories Section -->
+                <div id="repositories" class="pt-6 scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-4">
+                        Open Source Training Repositories
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans">
+                        
+                        <!-- Repo 1 -->
+                        <a href="https://github.com/miqdadbadjuber/image-classification-tensorflow" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">image-classification-tensorflow</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
                             </div>
-                            <button onclick="copyCode(this)" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/[0.06] flex items-center justify-center" title="Copy code" aria-label="Copy code">
-                                <svg class="copy-icon w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                                <svg class="check-icon w-3.5 h-3.5 text-cyanGlow hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
-                            <div class="code-line"><span class="code-num">1</span><span class="font-sans italic text-gray-500"># Install globally via npm (package release in progress)</span></div>
-                            <div class="code-line"><span class="code-num">2</span><span>npm install -g contextforge@beta</span></div>
-                            <div class="code-line"><span class="code-num">3</span><span></span></div>
-                            <div class="code-line"><span class="code-num">4</span><span class="font-sans italic text-gray-500"># Build context for a specific task</span></div>
-                            <div class="code-line"><span class="code-num">5</span><span>contextforge "refactor JWT auth middleware and token validation"</span></div>
-                        </div>
-                    </div>
-                </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                CNN natural scene classifier with 88% accuracy, SavedModel, TFLite, and TF.js exports.
+                            </p>
+                        </a>
 
-                <!-- Section 4: Performance & Benchmarks -->
-                <div id="benchmarks" class="scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
-                        Key Metrics &amp; Token Savings
-                    </h2>
-                    <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-2 font-sans text-center">
-                        <div class="p-2.5 sm:p-4 border border-white/[0.06] bg-white/[0.015] rounded-lg">
-                            <div class="font-display text-base sm:text-2xl font-bold text-white mb-0.5 sm:mb-1">83%</div>
-                            <div class="text-[10px] sm:text-xs text-gray-400 leading-tight">Token Reduction</div>
-                        </div>
-                        <div class="p-2.5 sm:p-4 border border-white/[0.06] bg-white/[0.015] rounded-lg">
-                            <div class="font-display text-base sm:text-2xl font-bold text-white mb-0.5 sm:mb-1">0 ms</div>
-                            <div class="text-[10px] sm:text-xs text-gray-400 leading-tight">100% Local Latency</div>
-                        </div>
-                        <div class="p-2.5 sm:p-4 border border-white/[0.06] bg-white/[0.015] rounded-lg">
-                            <div class="font-display text-base sm:text-2xl font-bold text-white mb-0.5 sm:mb-1">AST</div>
-                            <div class="text-[10px] sm:text-xs text-gray-400 leading-tight">Symbol Pruning</div>
-                        </div>
+                        <!-- Repo 2 -->
+                        <a href="https://github.com/miqdadbadjuber/sentiment-analysis-gojek" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">sentiment-analysis-gojek</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Indonesian review sentiment classifier with Bidirectional LSTM and 88.69% accuracy.
+                            </p>
+                        </a>
+
+                        <!-- Repo 3 -->
+                        <a href="https://github.com/miqdadbadjuber/fraud_detection_clustering" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">fraud_detection_clustering</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Unsupervised customer transaction clustering with K-Means and PCA visualization.
+                            </p>
+                        </a>
+
+                        <!-- Repo 4 -->
+                        <a href="https://github.com/miqdadbadjuber/fraud-detection-classification" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">fraud-detection-classification</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Supervised classification models for predicting high-risk transaction patterns.
+                            </p>
+                        </a>
+
+                        <!-- Repo 5 -->
+                        <a href="https://github.com/miqdadbadjuber/Eksperimen_SML_Miqdad" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">Eksperimen_SML_Miqdad</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Supervised machine learning benchmarking suite across tabular prediction datasets.
+                            </p>
+                        </a>
+
+                        <!-- Repo 6 -->
+                        <a href="https://github.com/miqdadbadjuber/Workflow-CI" target="_blank" rel="noopener noreferrer" class="repo-card p-5 block group">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-white group-hover:text-cyanGlow transition-colors">Workflow-CI</h3>
+                                <div class="repo-arrow-circle" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Continuous integration pipeline automating model training checks and deployment tests.
+                            </p>
+                        </a>
+
                     </div>
                 </div>
 
@@ -560,10 +687,10 @@
                             Table of Contents
                         </div>
                         <nav class="space-y-0.5 border-l border-white/[0.06]" id="project-toc">
-                            <a href="#problem" class="toc-link active">Friction &amp; Problem</a>
-                            <a href="#pipeline" class="toc-link">How It Works</a>
-                            <a href="#installation" class="toc-link">Installation &amp; Usage</a>
-                            <a href="#benchmarks" class="toc-link">Performance &amp; Metrics</a>
+                            <a href="#vision" class="toc-link active">Computer Vision (CNN)</a>
+                            <a href="#nlp" class="toc-link">NLP Sentiment (BiLSTM)</a>
+                            <a href="#clustering" class="toc-link">Anomaly Clustering (PCA)</a>
+                            <a href="#repositories" class="toc-link">Open Source Repos</a>
                         </nav>
                     </div>
 
@@ -575,23 +702,23 @@
                         <div class="space-y-2 text-xs text-gray-400">
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Type</span>
-                                <span class="text-white font-semibold">Developer Tool / CLI</span>
+                                <span class="text-white font-semibold">ML &amp; Deep Learning Suite</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                                <span class="text-gray-500 font-medium">Architecture</span>
-                                <span class="text-white font-semibold">AST &amp; Relevance Graph</span>
+                                <span class="text-gray-500 font-medium">Domains</span>
+                                <span class="text-white font-semibold">Vision, NLP, Clustering</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                                <span class="text-gray-500 font-medium">Execution</span>
-                                <span class="text-white font-semibold">100% Local (0ms API)</span>
+                                <span class="text-gray-500 font-medium">Frameworks</span>
+                                <span class="text-white font-semibold">TensorFlow, Scikit-Learn</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                                <span class="text-gray-500 font-medium">License</span>
-                                <span class="text-white font-semibold">MIT Open Source</span>
+                                <span class="text-gray-500 font-medium">Exports</span>
+                                <span class="text-white font-semibold">SavedModel, TFLite, TF.js</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                                <span class="text-gray-500 font-medium">Version</span>
-                                <span class="text-cyanGlow font-semibold">v0.8.0-beta</span>
+                                <span class="text-gray-500 font-medium">Repositories</span>
+                                <span class="text-cyanGlow font-semibold">6 Open Source Projects</span>
                             </div>
                         </div>
                     </div>
@@ -617,28 +744,6 @@
             </a>
         </div>
     </footer>
-
-    <!-- Copy Code Helper -->
-    <script>
-        function copyCode(btn) {
-            const codeBox = btn.closest('.code-box');
-            if (!codeBox) return;
-            const lines = codeBox.querySelectorAll('.code-line > span:last-child');
-            const text = Array.from(lines).map(l => l.innerText).join('\n');
-            navigator.clipboard.writeText(text).then(() => {
-                const copyIcon = btn.querySelector('.copy-icon');
-                const checkIcon = btn.querySelector('.check-icon');
-                if (copyIcon && checkIcon) {
-                    copyIcon.classList.add('hidden');
-                    checkIcon.classList.remove('hidden');
-                    setTimeout(() => {
-                        copyIcon.classList.remove('hidden');
-                        checkIcon.classList.add('hidden');
-                    }, 2000);
-                }
-            });
-        }
-    </script>
 <script>
 if (window.location.protocol === 'file:') {
     document.querySelectorAll('a[href^="/"]').forEach(function(el) {
@@ -659,14 +764,14 @@ if (window.location.protocol === 'file:') {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tocLinks = document.querySelectorAll('.toc-link');
-            const sectionIds = ['problem', 'pipeline', 'installation', 'benchmarks'];
+            const sectionIds = ['vision', 'nlp', 'clustering', 'repositories'];
             const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
             if (tocLinks.length > 0 && sections.length > 0) {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                             const id = entry.target.getAttribute('id');
+                            const id = entry.target.getAttribute('id');
                             tocLinks.forEach((link) => {
                                 if (link.getAttribute('href') === '#' + id) {
                                     link.classList.add('active');

@@ -11,7 +11,7 @@ Live Website: [https://miqdadbadjuber.id](https://miqdadbadjuber.id)
 - **Custom ASCII 3D Earth Canvas:** Procedural WebGL scene built with Three.js, rendering dynamic text-shaded planet geometry at 60 FPS with automatic GPU throttling when scrolled out of view.
 - **Zero-Layout-Shift Architecture:** Pixel-locked subpage layout across desktop and mobile, stabilized scrollbar gutters, and instant native browser history back navigation.
 - **Generative Engine Optimization (GEO):** Structured JSON-LD Schema.org metadata and `llms.txt` integration for automated indexing by AI search engines and LLM crawlers (Perplexity, ChatGPT, Claude).
-- **Stealth Minimalist Interface:** Dark theme built with Space Grotesk and Inter typography, subtle HUD line accents, magnetic cursor interactions, and Lenis smooth scrolling.
+- **Stealth Minimalist Interface:** Dark theme built with Helvetica Neue, Rubik, and Inter typography, subtle HUD line accents, magnetic cursor interactions, and Lenis smooth scrolling.
 
 ---
 

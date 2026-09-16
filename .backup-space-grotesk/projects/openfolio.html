@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Context Engineering vs Fine-Tuning | Miqdad Badjuber</title>
+    <title>OpenFolio AI | Projects | Miqdad Badjuber</title>
     <!-- Favicon -->
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="48x48" href="../assets/images/favicon-48x48.png">
@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Rubik:wght@700&family=Sora:wght@400;500;600;700;800&display=block">
-<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;700;900&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -26,7 +26,7 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ["'Helvetica Neue'", 'Helvetica', 'Arial', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                         sora: ['Sora', 'sans-serif'],
                         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
                     }
@@ -53,7 +53,7 @@
 
         @media (min-width: 1024px) {
             html {
-                font-size: 80% !important; 
+                font-size: 80% !important;
             }
         }
 
@@ -67,10 +67,10 @@
         }
 
         .font-sora { font-family: 'Sora', sans-serif; }
-        .font-display { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important; font-weight: 700 !important; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
         .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 
-        .bg-grid {
+                .bg-grid {
             position: fixed;
             inset: 0;
             z-index: -2;
@@ -78,39 +78,7 @@
             background: #000000;
         }
 
-        .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
-
-        .tag-tech {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 4px;
-        }
-
-        .code-box {
-            background-color: #07080c;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.5rem;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        }
-
-        .code-line {
-            display: flex;
-            line-height: 1.6;
-        }
-        .code-num {
-            width: 2.5rem;
-            text-align: right;
-            padding-right: 1rem;
-            color: rgba(255, 255, 255, 0.2);
-            user-select: none;
-        }
+                .hud-line { width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.4), transparent); }
 
                 .btn-back {
             display: inline-flex;
@@ -157,6 +125,61 @@
             transform: translate(-3px, -1px);
         }
 
+        /* Code Box */
+        .code-box {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+        }
+        .code-box div[class*="overflow-x-auto"],
+        .code-box .overflow-x-auto {
+            overflow-x: auto !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .code-box div[class*="overflow-x-auto"]::-webkit-scrollbar,
+        .code-box .overflow-x-auto::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .code-line { display: flex; line-height: 1.7; align-items: baseline; }
+        .code-num { width: 2.2rem; flex-shrink: 0; color: #52525b; user-select: none; }
+
+        /* Action Buttons */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.25s var(--ease-out);
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #020202;
+            border: 1px solid #ffffff;
+        }
+        .btn-primary:hover {
+            background: #e4e4e7;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 240, 255, 0.4);
+        }
+
         /* Desktop Table of Contents */
         .toc-link {
             display: block;
@@ -197,73 +220,122 @@
                 padding-top: 1.75rem !important;
                 padding-bottom: 3.5rem !important;
             }
-            h1 {
-                font-size: 1.65rem !important; /* ~26px */
-                line-height: 1.25 !important;
-                letter-spacing: -0.03em !important;
-            }
             article.space-y-12 {
-                gap: 1.75rem !important;
+                gap: 2.25rem !important;
             }
             article.space-y-12 > * + * {
-                margin-top: 1.75rem !important;
+                margin-top: 2.25rem !important;
             }
             article > header {
                 padding-left: 0 !important;
                 padding-right: 0 !important;
-                padding-top: 0 !important;
-                padding-bottom: 1.25rem !important;
+                padding-bottom: 1.75rem !important;
+                gap: 0.85rem !important;
             }
-            article > div.space-y-8 {
-                gap: 1.35rem !important;
+            article > header > * + * {
+                margin-top: 0.85rem !important;
             }
-            article > div.space-y-8 > * + * {
-                margin-top: 1.35rem !important;
+            h1 {
+                font-size: 1.5rem !important; /* 24px */
+                line-height: 1.25 !important;
+                font-weight: 800 !important;
             }
-            article > div.space-y-8 p {
+            article > header p,
+            header p {
                 font-size: 0.8125rem !important; /* 13px */
-                line-height: 1.75 !important;
+                line-height: 1.65 !important;
                 color: #d4d4d8 !important;
             }
-            article h2 {
-                font-size: 1.15rem !important; /* ~18px */
-                line-height: 1.35 !important;
-                padding-top: 0.75rem !important;
-                margin-bottom: 0.5rem !important;
-            }
-            blockquote {
-                padding-left: 1rem !important;
-                padding-top: 0.5rem !important;
-                padding-bottom: 0.5rem !important;
-                font-size: 0.875rem !important;
-                line-height: 1.65 !important;
-            }
-                        .code-box {
-                margin-top: 1rem !important;
-                margin-bottom: 1rem !important;
-                padding: 0.75rem !important;
-                border-radius: 0.5rem !important;
-            }
-            .code-box > div:last-child {
+            /* Action buttons: single row horizontal flex */
+            article > header .flex.flex-wrap {
+                display: flex !important;
+                flex-wrap: nowrap !important;
                 overflow-x: auto !important;
+                gap: 0.45rem !important;
+                padding-top: 0.4rem !important;
                 scrollbar-width: none !important;
-                -ms-overflow-style: none !important;
+                -webkit-overflow-scrolling: touch !important;
             }
-            .code-box > div:last-child::-webkit-scrollbar {
+            article > header .flex.flex-wrap::-webkit-scrollbar {
                 display: none !important;
+            }
+            .btn-action {
+                font-size: 0.72rem !important; /* 11.5px */
+                padding: 0.35rem 0.65rem !important;
+                width: auto !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 0.35rem !important;
+                border-radius: 0.4rem !important;
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+            }
+            .btn-action svg {
+                width: 12px !important;
+                height: 12px !important;
+            }
+            /* Section Hierarchy & Breathing Room */
+            .space-y-10,
+            .space-y-12 {
+                gap: 2.25rem !important;
+            }
+            .space-y-10 > * + *,
+            .space-y-12 > * + * {
+                margin-top: 2.25rem !important;
+            }
+            h2 {
+                font-size: 1.2rem !important; /* ~19px, bold and distinct */
+                line-height: 1.3 !important;
+                margin-bottom: 0.65rem !important;
+                font-weight: 700 !important;
+                color: #ffffff !important;
+                letter-spacing: -0.015em !important;
+            }
+            .space-y-10 p,
+            .space-y-12 p,
+            article p {
+                font-size: 0.8125rem !important; /* 13px */
+                line-height: 1.65 !important;
+                color: #d4d4d8 !important;
+            }
+            ul {
+                padding-left: 1.25rem !important;
+                gap: 0.5rem !important;
+                margin-top: 0.65rem !important;
+                margin-bottom: 0.65rem !important;
+            }
+            ul li {
+                font-size: 0.8125rem !important;
+                line-height: 1.6 !important;
+                color: #d4d4d8 !important;
+            }
+            /* Clean, Non-colliding Code Box without ugly scrollbars */
+            .code-box {
+                padding: 0.85rem 1rem !important;
+                margin-top: 1rem !important;
+                margin-bottom: 1.25rem !important;
+                border-radius: 0.625rem !important;
+                background: rgba(10, 10, 10, 0.95) !important;
+            }
+            .code-line {
+                font-size: 0.7rem !important;
+                line-height: 1.65 !important;
+                white-space: nowrap !important;
+                display: flex !important;
+                align-items: baseline !important;
             }
             .code-num {
                 width: 1.75rem !important;
-                padding-right: 0.5rem !important;
-                font-size: 0.75rem !important;
                 flex-shrink: 0 !important;
+                color: #52525b !important;
+                user-select: none !important;
+                display: inline-block !important;
             }
-            .code-line span:last-child {
-                font-size: 0.75rem !important;
-                white-space: pre !important;
-            }
-                        .pt-8 {
-                padding-top: 1.5rem !important;
+            .space-y-10 .grid > div,
+            .space-y-12 .grid > div,
+            article .grid > div,
+            .repo-card {
+                padding: 0.85rem 1rem !important;
             }
         }
     </style>
@@ -271,16 +343,17 @@
 <body>
     <div class="bg-grid"></div>
 
+    <!-- HUD Overlay -->
     <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
     <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block"></div>
 
     <!-- Header -->
     <header class="w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-8 md:pt-12 flex justify-between items-center relative z-20">
-        <a href="/blog/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
+        <a href="/projects/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
             <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M13 8H3M7 12L3 8l4-4"/>
             </svg>
-            <span class="btn-back-text">Back to all articles</span>
+            <span class="btn-back-text">Back to all projects</span>
         </a>
 
         <div class="flex items-center gap-4 h-6">
@@ -297,63 +370,78 @@
     <main class="relative z-10 w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-10 pb-16 md:pt-14 md:pb-24">
         
         <article class="space-y-12">
-
-            <!-- Article Header -->
-            <header class="space-y-4 pb-8 border-b border-white/[0.06]">
+            
+            <!-- Project Header -->
+            <header class="space-y-6 pb-8 border-b border-white/[0.06]">
                 <h1 class="font-display text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
-                    Context Engineering vs Fine-Tuning: The Precision Key for AI Coding<span class="text-gray-600">.</span>
+                    OpenFolio AI<span class="text-gray-600">.</span>
                 </h1>
 
-                <div class="flex items-center gap-2 text-xs font-sans text-gray-400 pt-1">
-                    <span class="text-gray-200">Miqdad Badjuber</span>
-                    <span class="text-gray-600">•</span>
-                    <span class="text-gray-400">August 18, 2026</span>
-                    <span class="text-gray-600">•</span>
-                    <span class="text-gray-400">6 min read</span>
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed font-sans max-w-3xl">
+                    An AI-powered portfolio generator and guest-only studio that interviews users and builds premium, personalized developer portfolio websites with live editing and instant hosting.
+                </p>
+
+                <!-- Action Links: Open Source CTA (Single row on mobile) -->
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <a href="https://github.com/miqdadbadjuber/OpenFolio-AI" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        <span class="sm:hidden">GitHub</span>
+                        <span class="hidden sm:inline">Open Source on GitHub</span>
+                    </a>
+                    <a href="https://openfolio.my.id/" target="_blank" rel="noopener noreferrer" class="btn-action btn-secondary">
+                        <span class="sm:hidden">Live Studio</span>
+                        <span class="hidden sm:inline">Launch Studio App</span>
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11L11 5M5 5h6v6"/></svg>
+                    </a>
                 </div>
             </header>
 
-            <!-- Reading Body -->
+            <!-- Project Details Body -->
             <!-- Two Column Layout: Main Content (8 cols) + Sticky Desktop Sidebar (4 cols) -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
                 
                 <!-- Left Column: Content (8 cols on desktop, full width on mobile) -->
-                <div class="lg:col-span-8 space-y-8 text-gray-300 text-base md:text-lg leading-loose font-sans">
+                <div class="lg:col-span-8 space-y-10 text-gray-300 text-base md:text-lg leading-loose font-sans">
                 
-                <!-- Section 1: The Fine-Tuning Dilemma -->
-                <div id="intro" class="space-y-6 scroll-mt-16">
-                    <p>
-                        When software teams set out to create coding assistants tailored to proprietary codebases, the default instinct is often to collect historical commits and fine-tune an open-weights model. In practical engineering workflows, fine-tuning introduces severe rigidity and rapid obsolescence.
-                    </p>
-
-                    <blockquote class="border-l-2 border-cyanGlow pl-6 py-2 text-white italic font-normal text-base md:text-lg">
-                        "A frontier model equipped with surgical context injection and strict verification loops outperforms a static fine-tuned model in 9 out of 10 real-world codebase refactors."
-                    </blockquote>
-                </div>
-
-                <!-- Section 2: Costs of Static Weights -->
-                <div id="static-weights" class="space-y-4 scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        01. The Hidden Costs of Static Model Weights
+                <!-- Section 1: Overview & Vision -->
+                <div id="overview" class="scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
+                        Overview &amp; Guest Experience
                     </h2>
                     <p class="text-gray-400">
-                        Fine-tuned model weights freeze a snapshot of library dependencies at training time. The moment your team migrates to a newer framework version, the fine-tuned model generates deprecated patterns with high confidence. Furthermore, fine-tuning fails to prevent hallucinations across complex multi-file call graphs.
+                        Traditional website builders require long sign-up forms and complex layout customization. OpenFolio AI eliminates onboarding friction by offering silent anonymous guest sessions powered by Firebase Anonymous Auth. Visitors start building immediately through an interactive conversational interview with Gemini 2.0 Flash.
                     </p>
                 </div>
 
-                <!-- Section 3: AST Symbol Pruning -->
-                <div id="ast-pruning" class="space-y-4 scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        02. Context Injection and AST Symbol Pruning
+                <!-- Section 2: Technical Architecture -->
+                <div id="architecture" class="scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
+                        System Architecture
                     </h2>
-                    <p class="text-gray-400">
-                        A much higher return on engineering investment comes from parsing Abstract Syntax Trees (ASTs). Rather than dumping entire source files into the prompt, we extract only type signatures, interface declarations, and functions invoked by the target module.
+                    <p class="text-gray-400 mb-4">
+                        A robust serverless full-stack architecture designed for high scalability and zero infrastructure maintenance:
+                    </p>
+                    <ul class="space-y-2 text-sm md:text-base text-gray-300 list-disc pl-5">
+                        <li><strong class="text-white">Client SPA:</strong> React 19, React Router 8, and Vite 6 delivering a fast responsive studio workspace.</li>
+                        <li><strong class="text-white">Serverless API:</strong> Express bundled as a Vercel Serverless Function (<code>api/index.ts</code>) verifying Firebase ID tokens, enforcing rate limits, and proxying Gemini endpoints.</li>
+                        <li><strong class="text-white">Intelligence Pipeline:</strong> Official Google Gen AI SDK integration for structured JSON generation and conversational revisions.</li>
+                        <li><strong class="text-white">Live Sandboxed Preview:</strong> Cockpit preview rendering generated HTML dynamically inside an isolated iframe with real-time viewport toggles.</li>
+                        <li><strong class="text-white">Hosting &amp; Sharing:</strong> Firestore database hosting public portfolio routes (<code>/p/{slug}</code>) with zero build steps.</li>
+                    </ul>
+                </div>
+
+                <!-- Section 3: Installation & Running Locally -->
+                <div id="setup" class="scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
+                        Local Setup &amp; Installation
+                    </h2>
+                    <p class="text-gray-400 mb-4">
+                        Clone the repository, configure your environment variables, and run the development server:
                     </p>
 
-                    <!-- Code block -->
+                    <!-- Code block with macOS dots and copy button -->
                     <div class="code-box p-4 my-6">
                         <div class="flex justify-between items-center pb-3 mb-3 border-b border-white/[0.06]">
-                            <!-- macOS Window Controls -->
                             <div class="flex items-center gap-1.5" aria-hidden="true">
                                 <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></div>
                                 <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80"></div>
@@ -370,39 +458,76 @@
                             </button>
                         </div>
                         <div class="text-xs md:text-sm font-mono text-gray-300 overflow-x-auto">
-                            <div class="code-line"><span class="code-num">1</span><span><span class="text-purple-400">def</span> <span class="text-blue-400">extract_relevant_context</span>(target_file: <span class="text-cyan-300">str</span>, symbol_tree: <span class="text-cyan-300">dict</span>) -> <span class="text-cyan-300">str</span>:</span></div>
-                            <div class="code-line"><span class="code-num">2</span><span>    imports = parse_dependencies(target_file)</span></div>
-                            <div class="code-line"><span class="code-num">3</span><span>    lean_declarations = []</span></div>
-                            <div class="code-line"><span class="code-num">4</span><span>    <span class="text-purple-400">for</span> dep <span class="text-purple-400">in</span> imports:</span></div>
-                            <div class="code-line"><span class="code-num">5</span><span>        lean_declarations.append(symbol_tree.get_signatures(dep))</span></div>
-                            <div class="code-line"><span class="code-num">6</span><span>    <span class="text-purple-400">return</span> <span class="text-green-300">"\n"</span>.join(lean_declarations)</span></div>
+                            <div class="code-line"><span class="code-num">1</span><span class="font-sans italic text-gray-500"># 1. Install dependencies</span></div>
+                            <div class="code-line"><span class="code-num">2</span><span>npm install</span></div>
+                            <div class="code-line"><span class="code-num">3</span><span></span></div>
+                            <div class="code-line"><span class="code-num">4</span><span class="font-sans italic text-gray-500"># 2. Configure environment variables</span></div>
+                            <div class="code-line"><span class="code-num">5</span><span>cp .env.example .env.local</span></div>
+                            <div class="code-line"><span class="code-num">6</span><span></span></div>
+                            <div class="code-line"><span class="code-num">7</span><span class="font-sans italic text-gray-500"># 3. Start local development server (Express + Vite)</span></div>
+                            <div class="code-line"><span class="code-num">8</span><span>npm run dev</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section 4: Token Savings -->
-                <div id="token-savings" class="space-y-4 scroll-mt-16">
-                    <h2 class="font-display text-2xl font-bold text-white tracking-tight pt-2">
-                        03. 70% Token Savings with Zero Accuracy Degradation
+                <!-- Section 4: Production Capabilities -->
+                <div id="features" class="scroll-mt-16">
+                    <h2 class="font-display text-2xl font-bold text-white tracking-tight mb-3">
+                        Key Features
                     </h2>
-                    <p class="text-gray-400">
-                        By pruning irrelevant implementation bodies and passing only deterministic symbol contracts, token overhead drops by up to 70 percent. The assistant leverages frontier reasoning capabilities while maintaining exact architectural alignment with your repository.
-                    </p>
+
+                    <!-- Mobile View: Left-Border Accent List (Clean & Compact) -->
+                    <div class="space-y-3.5 sm:hidden font-sans pt-1">
+                        <div class="border-l-2 border-white/20 pl-3">
+                            <div class="font-sans text-xs font-bold text-white mb-0.5">Zero Friction Auth</div>
+                            <p class="text-[11.5px] text-gray-400 leading-relaxed">
+                                Silent guest sessions with automated daily quotas
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-white/20 pl-3">
+                            <div class="font-sans text-xs font-bold text-white mb-0.5">Natural Language Edits</div>
+                            <p class="text-[11.5px] text-gray-400 leading-relaxed">
+                                Conversational AI revisions merged cleanly into portfolio state
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-white/20 pl-3">
+                            <div class="font-sans text-xs font-bold text-white mb-0.5">Clean HTML Export</div>
+                            <p class="text-[11.5px] text-gray-400 leading-relaxed">
+                                Instant standalone HTML and Tailwind CSS download
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Desktop View: 3-Column Cards Grid (Untouched) -->
+                    <div class="hidden sm:grid sm:grid-cols-3 sm:gap-4 pt-2 font-sans">
+                        <div class="p-4 border border-white/[0.06] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-lg font-bold text-white mb-1">Zero Friction Auth</div>
+                            <div class="text-xs text-gray-400">Silent guest sessions with automated daily quotas</div>
+                        </div>
+                        <div class="p-4 border border-white/[0.06] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-lg font-bold text-white mb-1">Natural Language Edits</div>
+                            <div class="text-xs text-gray-400">Conversational AI revisions merged cleanly into portfolio state</div>
+                        </div>
+                        <div class="p-4 border border-white/[0.06] bg-white/[0.015] rounded-lg">
+                            <div class="font-display text-lg font-bold text-white mb-1">Clean HTML Export</div>
+                            <div class="text-xs text-gray-400">Instant standalone HTML and Tailwind CSS download</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Bottom Back Navigation with Smooth Underline -->
+                <!-- Bottom Back Navigation -->
                 <div class="pt-8 border-t border-white/[0.06] flex items-center">
-                    <a href="/blog/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
+                    <a href="/projects/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
                         <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M13 8H3M7 12L3 8l4-4"/>
                         </svg>
-                        <span class="btn-back-text">Back to all articles</span>
+                        <span class="btn-back-text">Back to all projects</span>
                     </a>
                 </div>
 
                 </div>
 
-                <!-- Right Column: Desktop Table of Contents & Article Info (4 cols, hidden on mobile) -->
+                <!-- Right Column: Desktop Table of Contents & Quick Metadata (4 cols, hidden on mobile) -->
                 <aside class="hidden lg:block lg:col-span-4 space-y-6 lg:border-l lg:border-white/[0.08] lg:pl-8 font-sans sticky top-12">
                     
                     <!-- Table of Contents -->
@@ -410,39 +535,39 @@
                         <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
                             Table of Contents
                         </div>
-                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="article-toc">
-                            <a href="#intro" class="toc-link active">The Fine-Tuning Dilemma</a>
-                            <a href="#static-weights" class="toc-link">Costs of Static Weights</a>
-                            <a href="#ast-pruning" class="toc-link">AST Context Injection</a>
-                            <a href="#token-savings" class="toc-link">Token Savings &amp; Results</a>
+                        <nav class="space-y-0.5 border-l border-white/[0.06]" id="project-toc">
+                            <a href="#overview" class="toc-link active">Overview &amp; Experience</a>
+                            <a href="#architecture" class="toc-link">System Architecture</a>
+                            <a href="#setup" class="toc-link">Local Setup &amp; Install</a>
+                            <a href="#features" class="toc-link">Key Capabilities</a>
                         </nav>
                     </div>
 
-                    <!-- Article Info / Metadata -->
+                    <!-- Project Specs / Quick Info -->
                     <div class="pt-5 border-t border-white/[0.08]">
                         <div class="font-sans font-semibold text-white text-sm tracking-tight mb-2.5">
-                            Article Info
+                            Project Info
                         </div>
                         <div class="space-y-2 text-xs text-gray-400">
                             <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                                <span class="text-gray-500 font-medium">Author</span>
-                                <span class="text-white font-semibold">Miqdad Badjuber</span>
-                            </div>
-                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                                <span class="text-gray-500 font-medium">Published</span>
-                                <span class="text-white font-semibold">August 18, 2026</span>
-                            </div>
-                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                                <span class="text-gray-500 font-medium">Read Time</span>
-                                <span class="text-white font-semibold">6 min read</span>
-                            </div>
-                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                                <span class="text-gray-500 font-medium">Category</span>
-                                <span class="text-white font-semibold">Context Engineering</span>
-                            </div>
-                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
                                 <span class="text-gray-500 font-medium">Type</span>
-                                <span class="text-cyanGlow font-semibold">Deep Dive</span>
+                                <span class="text-white font-semibold">AI Portfolio Studio</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Auth</span>
+                                <span class="text-white font-semibold">Firebase Anonymous Auth</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Model</span>
+                                <span class="text-white font-semibold">Gemini 2.0 Flash</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">License</span>
+                                <span class="text-white font-semibold">MIT Open Source</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-white/[0.04]">
+                                <span class="text-gray-500 font-medium">Version</span>
+                                <span class="text-cyanGlow font-semibold">v1.1.0</span>
                             </div>
                         </div>
                     </div>
@@ -469,6 +594,7 @@
         </div>
     </footer>
 
+    <!-- Copy Code Helper -->
     <script>
         function copyCode(btn) {
             const codeBox = btn.closest('.code-box');
@@ -509,7 +635,7 @@ if (window.location.protocol === 'file:') {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tocLinks = document.querySelectorAll('.toc-link');
-            const sectionIds = ['intro', 'static-weights', 'ast-pruning', 'token-savings'];
+            const sectionIds = ['overview', 'architecture', 'setup', 'features'];
             const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
             if (tocLinks.length > 0 && sections.length > 0) {

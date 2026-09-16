@@ -41,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Rubik:wght@700&family=Sora:wght@400;500;600;700;800&display=block"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;700;900&display=block"
         rel="stylesheet">
 
     <!-- Tailwind CSS (precompiled static build, not CDN runtime) -->
@@ -89,36 +89,6 @@
     </script>
 
     <style>
-        /* Local Fonts */
-        @font-face {
-            font-family: 'Helvetica Neue';
-            src: url('assets/fonts/HelveticaNeue-Bold.woff') format('woff');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Helvetica Neue';
-            src: url('assets/fonts/HelveticaNeue-Medium.woff') format('woff');
-            font-weight: 500;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Helvetica Neue';
-            src: url('assets/fonts/HelveticaNeue-Roman.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Rubik';
-            src: url('assets/fonts/Rubik-Bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
         /* Design Tokens */
         :root {
             --color-void: #020202;
@@ -209,7 +179,7 @@
             padding: 0.75rem 1.5rem;
             background: var(--color-cyan);
             color: var(--color-void);
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
@@ -274,17 +244,6 @@
         }
 
         /* Typography */
-        .font-display {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            font-weight: 700 !important;
-        }
-
-        /* Hero Name (Bold 700 khusus nama di hero) */
-        #home h1 {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            font-weight: 700 !important;
-        }
-
         .font-sora {
             font-family: 'Sora', sans-serif;
         }
@@ -296,7 +255,7 @@
         }
 
         .hero-role-title {
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Sora', sans-serif;
             font-weight: 700;
             font-size: 1.85rem;
             letter-spacing: 0.14em;
@@ -337,7 +296,7 @@
             border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 0.625rem;
             color: rgba(255, 255, 255, 0.85);
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 0.8125rem;
             font-weight: 600;
             letter-spacing: 0.06em;
@@ -533,7 +492,7 @@
         .tag-tech {
             display: inline-block;
             padding: 0.2rem 0.5rem;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 10px;
             font-weight: 500;
             letter-spacing: 0.05em;
@@ -547,9 +506,9 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 0.95rem;
-            font-weight: 700;
+            font-weight: 600;
             color: #d1d5db;
             text-decoration: none;
             transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -598,261 +557,6 @@
 
         .btn-view-all-projects:hover .btn-view-all-arrow {
             transform: translateX(4px);
-        }
-
-        /* =========================================================================
-           BUTTON CREATIVE RIGHT (Sleek & Slim 36px with Origin Dot)
-           ========================================================================= */
-        .btn-creative {
-            position: relative;
-            cursor: pointer;
-            padding: 0.42rem 1.25rem;
-            min-width: 7.75rem;
-            min-height: 36px;
-            border-radius: 9999px;
-            overflow: hidden;
-            text-align: center;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            user-select: none;
-            text-decoration: none;
-            transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                        box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .btn-creative-white {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-        }
-
-        .btn-creative-white:hover,
-        .btn-creative-white:focus-visible {
-            border-color: #ffffff;
-            outline: none;
-        }
-
-        .btn-creative-text-initial {
-            display: inline-block;
-            transform: translateX(4px);
-            opacity: 1;
-            color: #ffffff;
-            font-weight: 500;
-            transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform, opacity;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        .btn-creative:hover .btn-creative-text-initial,
-        .btn-creative:active .btn-creative-text-initial {
-            transform: translateX(38px);
-            opacity: 0;
-        }
-
-        .btn-creative-text-hover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.375rem;
-            transform: translateX(38px);
-            opacity: 0;
-            color: #020202 !important;
-            font-weight: 600;
-            transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform, opacity;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .btn-creative:hover .btn-creative-text-hover,
-        .btn-creative:active .btn-creative-text-hover {
-            transform: translateX(-3px);
-            opacity: 1;
-        }
-
-        .btn-creative-bubble {
-            position: absolute;
-            top: calc(50% - 3.5px);
-            left: 17px;
-            width: 7px;
-            height: 7px;
-            border-radius: 9999px;
-            background: #ffffff;
-            opacity: 1;
-            transform: scale(1);
-            transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: top, left, width, height, transform;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .btn-creative:hover .btn-creative-bubble,
-        .btn-creative:active .btn-creative-bubble {
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            transform: scale(1.8);
-            border-radius: 9999px;
-        }
-
-        /* Extended width for longer labels (View All Projects & View All Credentials) */
-        .btn-creative-wide {
-            min-width: 12.25rem;
-            padding: 0.42rem 1.45rem;
-        }
-
-        .btn-creative-credentials {
-            min-width: 13.5rem;
-            padding: 0.42rem 1.45rem;
-        }
-
-        .btn-creative-wide .btn-creative-text-initial,
-        .btn-creative-credentials .btn-creative-text-initial {
-            transform: translateX(5px);
-        }
-
-        .btn-creative-wide:hover .btn-creative-text-initial,
-        .btn-creative-wide:active .btn-creative-text-initial,
-        .btn-creative-credentials:hover .btn-creative-text-initial,
-        .btn-creative-credentials:active .btn-creative-text-initial {
-            transform: translateX(44px);
-            opacity: 0;
-        }
-
-        .btn-creative-wide .btn-creative-text-hover,
-        .btn-creative-credentials .btn-creative-text-hover {
-            transform: translateX(44px);
-            gap: 0.45rem;
-        }
-
-        .btn-creative-wide:hover .btn-creative-text-hover,
-        .btn-creative-wide:active .btn-creative-text-hover,
-        .btn-creative-credentials:hover .btn-creative-text-hover,
-        .btn-creative-credentials:active .btn-creative-text-hover {
-            transform: translateX(-3px);
-            opacity: 1;
-        }
-
-        .btn-creative-wide:hover .btn-creative-bubble,
-        .btn-creative-wide:active .btn-creative-bubble,
-        .btn-creative-credentials:hover .btn-creative-bubble,
-        .btn-creative-credentials:active .btn-creative-bubble {
-            transform: scale(2.0);
-        }
-
-        /* Extended variant for GitHub Profile (Fixed Left Pin Logo, Zero Dot at Rest) */
-        .btn-creative-github {
-            min-width: 14.5rem;
-            padding: 0.42rem 1.45rem;
-        }
-
-        .btn-creative-github .btn-github-pin {
-            position: absolute;
-            top: calc(50% - 7px);
-            left: 17px;
-            width: 14px;
-            height: 14px;
-            color: #ffffff;
-            transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform, opacity;
-            z-index: 5;
-        }
-
-        .btn-creative-github:hover .btn-github-pin,
-        .btn-creative-github:active .btn-github-pin {
-            transform: translateX(46px);
-            opacity: 0;
-        }
-
-        .btn-creative-github .btn-creative-text-initial {
-            transform: translateX(6px);
-        }
-
-        .btn-creative-github:hover .btn-creative-text-initial,
-        .btn-creative-github:active .btn-creative-text-initial {
-            transform: translateX(46px);
-            opacity: 0;
-        }
-
-        .btn-creative-github .btn-creative-text-hover {
-            transform: translateX(46px);
-            gap: 0.45rem;
-        }
-
-        .btn-creative-github:hover .btn-creative-text-hover,
-        .btn-creative-github:active .btn-creative-text-hover {
-            transform: translateX(-2px);
-            opacity: 1;
-        }
-
-        .btn-creative-github .btn-creative-bubble {
-            top: calc(50% - 10px);
-            left: 17px;
-            width: 20px;
-            height: 20px;
-            opacity: 0;
-            transform: scale(0.2);
-            transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: top, left, width, height, transform, opacity;
-        }
-
-        .btn-creative-github:hover .btn-creative-bubble,
-        .btn-creative-github:active .btn-creative-bubble {
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            opacity: 1;
-            transform: scale(2.0);
-        }
-
-        /* Extended variant for Contact Form Submit (Full Width Capsule) */
-        .btn-creative-submit {
-            width: 100%;
-            min-height: 40px;
-            padding: 0.55rem 1.5rem;
-        }
-
-        .btn-creative-submit .btn-creative-text-initial {
-            transform: translateX(4px);
-        }
-
-        .btn-creative-submit:hover .btn-creative-text-initial,
-        .btn-creative-submit:active .btn-creative-text-initial {
-            transform: translateX(48px);
-            opacity: 0;
-        }
-
-        .btn-creative-submit .btn-creative-text-hover {
-            transform: translateX(48px);
-            gap: 0.45rem;
-        }
-
-        .btn-creative-submit:hover .btn-creative-text-hover,
-        .btn-creative-submit:active .btn-creative-text-hover {
-            transform: translateX(-2px);
-            opacity: 1;
-        }
-
-        .btn-creative-submit .btn-creative-bubble {
-            left: 20px;
-        }
-
-        .btn-creative-submit:hover .btn-creative-bubble,
-        .btn-creative-submit:active .btn-creative-bubble {
-            transform: scale(2.0);
         }
 
 
@@ -1088,46 +792,6 @@
             transform: translate(0.5px, -0.5px);
         }
 
-        /* Google credential badge pill hover effect */
-        .google-credential-badge {
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .glass-card:hover .google-credential-badge,
-        .group:hover .google-credential-badge,
-        .google-credential-badge:hover {
-            background: #ffffff !important;
-            color: #020202 !important;
-            border-color: #ffffff !important;
-        }
-
-        /* Google credential items & visible dots */
-        .google-credential-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 1.75rem;
-            width: 100%;
-            align-items: flex-start !important;
-            text-align: left !important;
-        }
-
-        .google-credential-item {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-            text-align: left !important;
-        }
-
-        .google-credential-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 9999px;
-            background: #9ca3af;
-            flex-shrink: 0;
-            display: inline-block;
-        }
-
         /* Certificate arrow */
         .cert-arrow-circle {
             width: 1.375rem;
@@ -1276,7 +940,7 @@
         .tag-tech {
             display: inline-block;
             padding: 0.25rem 0.625rem;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 10px;
             font-weight: 500;
             letter-spacing: 0.05em;
@@ -1312,89 +976,53 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        /* =========================================================================
-           CREDENTIALS SEGMENTED TOGGLE (Uiverse Style by _7948)
-           ========================================================================= */
-        .di-radio-wrap {
+        /* Credentials tab switcher */
+        .tab-box-track {
             display: inline-flex;
+            gap: 0.375rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
-            user-select: none;
+            padding-bottom: 0.35rem;
+            white-space: nowrap;
             flex-shrink: 0;
         }
 
-        .di-radio-input {
+        .tab-box-line {
             position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
+            bottom: -1px;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 9999px;
+            transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
         }
 
-        .di-radio-island {
-            background: #000000;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 9999px;
-            padding: 4px;
-            display: flex;
-            position: relative;
-            gap: 4px;
-        }
-
-        .di-radio-btn {
-            color: #aaaaaa;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.775rem;
-            font-weight: 500;
-            padding: 5.5px 16px;
-            min-width: 112px;
-            text-align: center;
-            border-radius: 9999px;
-            cursor: pointer;
-            position: relative;
-            z-index: 2;
-            transition: color 0.3s ease, transform 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .di-radio-btn:hover {
-            color: #dddddd;
-        }
-
-        .di-radio-btn:active {
-            transform: scale(0.95);
-        }
-
-        .di-radio-indicator {
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: calc((100% - 8px - 4px) / 2);
-            height: calc(100% - 8px);
-            background: #222222;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 9999px;
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        #tab-radio-github:checked ~ .di-radio-island .di-radio-indicator {
-            transform: translateX(0);
-        }
-
-        #tab-radio-certs:checked ~ .di-radio-island .di-radio-indicator {
-            transform: translateX(calc(100% + 4px));
-        }
-
-        #tab-radio-github:checked ~ .di-radio-island label[for="tab-radio-github"],
-        #tab-radio-certs:checked ~ .di-radio-island label[for="tab-radio-certs"] {
-            color: #ffffff;
+        .tab-box-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8125rem;
             font-weight: 600;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.45rem 0.95rem;
+            border-radius: 0.5rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+
+        .tab-box-btn.active {
+            color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-box-btn.inactive {
+            color: #71717a !important;
+        }
+
+        .tab-box-btn.inactive:hover {
+            color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.04);
         }
 
         /* Navbar active indicator */
@@ -1904,20 +1532,7 @@
                 justify-content: center;
             }
 
-            /* About mobile spacing tightening */
-            #about {
-                padding-top: 3.5rem !important;
-                padding-bottom: 3.5rem !important;
-            }
-
-            #about h2 {
-                margin-bottom: 1.25rem !important;
-            }
-
-            #about .grid {
-                gap: 1.5rem !important;
-            }
-
+            /* About mobile */
             #about .desktop-about-text {
                 display: none !important;
             }
@@ -1928,40 +1543,11 @@
 
             #about .mobile-about-text {
                 display: block !important;
-                margin-bottom: 0 !important;
-                font-size: 0.9375rem !important;
-                line-height: 1.6 !important;
-                color: #d1d5db !important;
             }
 
-            #about .border-l {
-                padding-left: 1rem !important;
-                border-color: rgba(255, 255, 255, 0.08) !important;
-            }
-
-            #about h3 {
-                margin-bottom: 0.75rem !important;
-                font-size: 0.75rem !important;
-                letter-spacing: 0.05em !important;
-                color: #9ca3af !important;
-            }
-
-            #about .space-y-4 {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 0.75rem !important;
-            }
-
-            #about .space-y-4 > div {
-                margin-top: 0 !important;
-            }
 
             #about .space-y-4 p {
-                display: none !important;
-            }
-
-            #about .mobile-about-btn {
-                margin-top: 0.5rem !important;
+                display: none;
             }
 
 
@@ -1970,21 +1556,17 @@
                 display: none !important;
             }
 
-            /* Credentials mobile segmented toggle */
-            .di-radio-wrap {
+            /* Credentials mobile */
+            .tab-box-track {
+                display: flex !important;
                 width: 100% !important;
             }
 
-            .di-radio-island {
-                width: 100% !important;
-            }
-
-            .di-radio-btn {
+            .tab-box-btn {
                 flex: 1 !important;
-                min-width: 0 !important;
-                padding: 6px 10px !important;
                 text-align: center !important;
                 justify-content: center !important;
+                padding: 0.5rem 0.5rem !important;
             }
 
             #credentials .border.rounded-xl {
@@ -1997,11 +1579,6 @@
 
             #credentials .p-5 {
                 padding: 0.6rem !important;
-            }
-
-            /* Limit mobile certifications to 4 */
-            #content-certs .cert-card:nth-child(n+5) {
-                display: none !important;
             }
 
             /* Google credentials mobile */
@@ -2028,13 +1605,13 @@
 
             #google-developer h3 {
                 font-size: 0.95rem !important;
-                margin-bottom: 0.35rem !important;
+                margin-bottom: 0.15rem !important;
             }
 
-            #google-developer .google-credential-role,
             #google-developer span[class*="tracking-"] {
-                font-size: 0.75rem !important;
-                margin-bottom: 0.35rem !important;
+                font-size: 8px !important;
+                letter-spacing: 0.1em !important;
+                margin-bottom: 0.4rem !important;
             }
 
             #google-developer .repo-arrow-circle {
@@ -2062,16 +1639,6 @@
                 transform: scale(1.05) !important;
             }
 
-            #google-developer a.glass-card:hover .google-credential-badge,
-            #google-developer a.glass-card:focus .google-credential-badge,
-            #google-developer a.glass-card:focus-visible .google-credential-badge,
-            #google-developer a.glass-card:active .google-credential-badge {
-                background: #ffffff !important;
-                color: #020202 !important;
-                border-color: #ffffff !important;
-            }
-
-            #google-developer .google-credential-list,
             #google-developer .flex.flex-col.gap-2\.5,
             #google-developer .grid.grid-cols-3 {
                 display: none !important;
@@ -2340,7 +1907,7 @@
 
         /* Index pill (01, 02, etc.) */
         .bld-index {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important; font-weight: 500 !important;
+            font-family: 'Space Grotesk', sans-serif !important;
             font-size: 0.75rem !important;
             font-weight: 700 !important;
             letter-spacing: 0.05em !important;
@@ -2379,189 +1946,6 @@
             }
         }
 
-
-        /* Production Site Footer Layout (Desktop 4-Column Layout & Mobile Adaptive) */
-        .site-footer {
-            position: relative;
-            background-color: #020202;
-            color: #ffffff;
-            padding-top: 3.5rem;
-            padding-bottom: 3.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .site-footer-inner {
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .site-footer-inner {
-                padding-left: 3rem;
-                padding-right: 3rem;
-            }
-        }
-
-        .site-footer-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-            align-items: flex-start;
-        }
-
-        .site-footer-brand {
-            width: 100%;
-        }
-
-        .site-footer-brand-title {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 1.35rem;
-            line-height: 1.25;
-            color: #ffffff;
-            letter-spacing: -0.025em;
-            margin: 0;
-        }
-
-        .site-footer-brand-sub {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            color: #9ca3af;
-            margin-top: 0.35rem;
-            margin-bottom: 0;
-        }
-
-        .site-footer-copyright {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            color: #6b7280;
-            padding-top: 0.5rem;
-        }
-
-        .site-footer-links-wrap {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .site-footer-col {
-            width: 100%;
-        }
-
-        .site-footer-col-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin: 0 0 1rem 0;
-            letter-spacing: -0.01em;
-        }
-
-        .site-footer-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.65rem;
-        }
-
-        .site-footer-list li {
-            margin: 0;
-            padding: 0;
-        }
-
-        .site-footer-list a {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8125rem;
-            color: #9ca3af;
-            text-decoration: none;
-            transition: color 0.2s ease;
-            display: inline-block;
-        }
-
-        .site-footer-list a:hover {
-            color: #00f0ff;
-        }
-
-        /* Mobile Viewport (< 1024px): Minimal Footprint (Small Name and Copyright Only) */
-        @media (max-width: 1023px) {
-            .site-footer {
-                padding-top: 1.5rem !important;
-                padding-bottom: 5.25rem !important; /* Safe room for bottom-right speed dial button */
-                border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
-            }
-
-            .site-footer-grid {
-                gap: 0.25rem !important;
-                flex-direction: column !important;
-                align-items: flex-start !important;
-            }
-
-            .site-footer-brand {
-                width: 100% !important;
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 0.25rem !important;
-            }
-
-            .site-footer-brand-title {
-                font-family: 'Inter', sans-serif !important;
-                font-size: 0.875rem !important;
-                font-weight: 600 !important;
-                color: #e5e7eb !important;
-                letter-spacing: -0.01em !important;
-                line-height: 1.3 !important;
-                margin: 0 !important;
-            }
-
-            .site-footer-brand-sub {
-                display: none !important;
-            }
-
-            .site-footer-copyright {
-                font-family: 'Inter', sans-serif !important;
-                font-size: 0.75rem !important;
-                color: #6b7280 !important;
-                padding-top: 0.15rem !important;
-                line-height: 1.4 !important;
-            }
-
-            .site-footer-links-wrap {
-                display: none !important;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .site-footer-grid {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: flex-start;
-                gap: 3.5rem;
-            }
-
-            .site-footer-brand {
-                width: 28%;
-                max-width: 320px;
-                flex-shrink: 0;
-            }
-
-            .site-footer-brand-title {
-                font-size: 1.5rem;
-            }
-
-            .site-footer-links-wrap {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 2.5rem;
-                flex: 1 1 0%;
-            }
-        }
 
         /* Suppress external watermarks */
         a[data-n],
@@ -2645,8 +2029,8 @@
     <div id="mobile-liquid-backdrop" aria-hidden="true"></div>
     <div id="mobile-social-backdrop" aria-hidden="true"></div>
 
-    <!-- Liquid Social Speed Dial (Fixed Bottom Right, Desktop & Mobile) -->
-    <div id="mobile-social-dial" aria-label="Social Media Speed Dial">
+    <!-- Mobile Liquid Social Speed Dial (Fixed Bottom Right, Mobile Only) -->
+    <div id="mobile-social-dial" class="mobile-only" aria-label="Mobile Social Media Speed Dial">
         <!-- SVG Gooey Filter -->
         <svg class="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
             <defs>
@@ -2902,7 +2286,7 @@
                             centers on training machine learning models and developing specialized agentic coding
                             skills.
                         </p>
-                        <p class="text-gray-300 text-base md:text-lg leading-loose mb-6">
+                        <p class="text-gray-400 text-base leading-loose mb-6">
                             Alongside model training, I actively experiment with full-stack web applications and AI
                             agent CLI tools, built both independently and for practical technical project submissions.
                         </p>
@@ -2915,16 +2299,12 @@
 
                     <!-- Link to full About page (Desktop) -->
                     <div class="desktop-about-btn mt-8" style="margin-top: 2rem;">
-                        <a href="/about/index.html" class="btn-creative btn-creative-white group" data-cursor-hover aria-label="Read All">
-                            <span class="btn-creative-text-initial">Read All</span>
-                            <div class="btn-creative-text-hover">
-                                <span>Read All</span>
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </div>
-                            <div class="btn-creative-bubble" aria-hidden="true"></div>
+                        <a href="/about/index.html" class="btn-view-all group" data-cursor-hover>
+                            <span class="btn-view-all-text">Read Full Story &amp; Background</span>
+                            <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none"
+                                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 8h10M9 4l4 4-4 4" />
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -2938,30 +2318,30 @@
                             <div class="flex items-center gap-3 mb-1">
                                 <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true">
                                 </div>
-                                <span class="font-display text-sm font-bold text-white">Applied ML &amp; AI
+                                <span class="font-display text-sm font-medium text-white">Applied ML &amp; AI
                                     Engineering</span>
                             </div>
-                            <p class="text-gray-400 text-sm pl-[18px]">Training predictive models and building AI agent
+                            <p class="text-gray-500 text-sm pl-[18px]">Training predictive models and building AI agent
                                 CLI tools.</p>
                         </div>
                         <div>
                             <div class="flex items-center gap-3 mb-1">
                                 <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true">
                                 </div>
-                                <span class="font-display text-sm font-bold text-white">Full-Stack SaaS
+                                <span class="font-display text-sm font-medium text-white">Full-Stack SaaS
                                     Development</span>
                             </div>
-                            <p class="text-gray-400 text-sm pl-[18px]">Building scalable web applications from database
+                            <p class="text-gray-500 text-sm pl-[18px]">Building scalable web applications from database
                                 to deployment.</p>
                         </div>
                         <div>
                             <div class="flex items-center gap-3 mb-1">
                                 <div class="w-1.5 h-1.5 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true">
                                 </div>
-                                <span class="font-display text-sm font-bold text-white">Workflow Automation &amp;
+                                <span class="font-display text-sm font-medium text-white">Workflow Automation &amp;
                                     Bots</span>
                             </div>
-                            <p class="text-gray-400 text-sm pl-[18px]">Orchestrating n8n pipelines, Workspace scripts,
+                            <p class="text-gray-500 text-sm pl-[18px]">Orchestrating n8n pipelines, Workspace scripts,
                                 and community bots.</p>
                         </div>
                     </div>
@@ -2969,16 +2349,12 @@
 
                 <!-- Link to full About page (Mobile: Positioned at bottom of entire section) -->
                 <div class="mobile-about-btn -mt-4">
-                    <a href="/about/index.html" class="btn-creative btn-creative-white group" data-cursor-hover aria-label="Read All">
-                        <span class="btn-creative-text-initial">Read All</span>
-                        <div class="btn-creative-text-hover">
-                            <span>Read All</span>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </div>
-                        <div class="btn-creative-bubble" aria-hidden="true"></div>
+                    <a href="/about/index.html" class="btn-view-all group" data-cursor-hover>
+                        <span class="btn-view-all-text">Read Full Story &amp; Background</span>
+                        <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none"
+                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -3005,8 +2381,7 @@
                         margin-right: -1.5rem !important;
                         width: calc(100% + 3rem) !important;
                         overflow: hidden;
-                        margin-top: 1rem !important;
-                        margin-bottom: 1.5rem !important;
+                        margin-top: 0.75rem !important;
                     }
 
                     .mobile-carousel-track {
@@ -3015,9 +2390,8 @@
                         scroll-snap-type: none !important;
                         -webkit-overflow-scrolling: touch;
                         scroll-behavior: auto;
-                        gap: 1.25rem;
-                        padding-top: 0.75rem;
-                        padding-bottom: 0.75rem;
+                        gap: 1rem;
+                        padding: 0.75rem 1.25rem 1.25rem 1.25rem;
                         scrollbar-width: none;
                         -ms-overflow-style: none;
                         cursor: grab;
@@ -3034,219 +2408,169 @@
                         display: none;
                     }
 
-                    /* ScaleSlider Slide */
                     .mobile-carousel-slide {
-                        flex: 0 0 85vw;
-                        max-width: 330px;
+                        flex: 0 0 68vw;
+                        max-width: 255px;
+                        scroll-snap-align: none !important;
+                        scroll-snap-stop: normal !important;
                         display: flex;
                         flex-direction: column;
-                        transform-origin: center center;
-                        transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.35s ease;
-                        will-change: transform, opacity;
                     }
 
-                    /* Project Card Styling (Pure Neutral Dark Glassmorphism Layout) */
+                    /* Project Card Styling (100% matching projects/index.html mobile) */
                     .mobile-carousel-slide .mobile-project-card {
-                        position: relative;
-                        width: 100%;
-                        border-radius: 20px !important;
+                        background-color: #080605 !important;
+                        background: #080605 !important;
+                        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                        border-radius: 1.15rem !important;
                         overflow: hidden;
-                        background: rgba(10, 10, 10, 0.55) !important;
-                        backdrop-filter: blur(20px) !important;
-                        -webkit-backdrop-filter: blur(20px) !important;
-                        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-                        box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 16px rgba(255, 255, 255, 0.02) !important;
+                        box-shadow: none !important;
+                        filter: none !important;
                         display: flex;
                         flex-direction: column;
-                    }
-
-                    /* Image Header Container (Exact 16:9 Aspect Ratio matching banner dimensions, 0% Cutoff) */
-                    .mobile-carousel-slide .mobile-card-img-link {
-                        position: relative;
-                        width: 100%;
-                        aspect-ratio: 16 / 9;
-                        z-index: 1;
-                        display: block;
-                        overflow: hidden;
-                        background-color: rgba(0, 0, 0, 0.45) !important;
-                        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-                    }
-
-                    .mobile-carousel-slide .mobile-card-img {
-                        width: 100%;
                         height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                        width: 100%;
+                        transition: border-color 0.25s ease;
                     }
 
-                    .mobile-carousel-slide:hover .mobile-card-img {
-                        transform: scale(1.03);
+                    .mobile-carousel-slide .mobile-project-card-body {
+                        padding: 0.95rem 1rem 1.1rem 1rem !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        flex: 1 1 0% !important;
+                        width: 100% !important;
                     }
 
-                    /* Card Body Content Area (Transparent Glass) */
-                    .mobile-carousel-slide .mobile-card-content {
-                        padding: 1.15rem 1.15rem 1.25rem 1.15rem;
-                        display: flex;
-                        flex-direction: column;
-                        background: transparent !important;
-                        flex-grow: 1;
-                    }
-
-                    .mobile-carousel-slide .mobile-card-title {
+                    .mobile-carousel-slide .mobile-project-tag {
                         font-family: 'Inter', sans-serif !important;
-                        font-size: 1.125rem !important;
-                        font-weight: 700 !important;
-                        line-height: 1.25 !important;
-                        color: #ffffff !important;
-                        letter-spacing: -0.015em !important;
-                        margin: 0 0 0.45rem 0 !important;
+                        font-size: 0.7rem !important;
+                        font-weight: 500 !important;
+                        color: #9ca3af !important;
+                        margin-bottom: 0.25rem !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        gap: 0.35rem !important;
                     }
 
-                    .mobile-carousel-slide .mobile-card-title a {
+                    .mobile-carousel-slide .mobile-project-title {
+                        font-family: 'Space Grotesk', sans-serif !important;
+                        font-size: 0.95rem !important;
+                        font-weight: 700 !important;
+                        line-height: 1.3 !important;
+                        color: #ffffff !important;
+                        margin-bottom: 0.25rem !important;
+                        letter-spacing: -0.01em !important;
+                    }
+
+                    .mobile-carousel-slide .mobile-project-title a {
                         color: #ffffff !important;
                         text-decoration: none !important;
                         transition: color 0.2s ease;
                     }
 
-                    .mobile-carousel-slide .mobile-card-title a:hover {
-                        color: #ffffff !important;
+                    .mobile-carousel-slide .mobile-project-title a:hover {
+                        color: #00f0ff !important;
                     }
 
-                    /* Description (Clean 3 lines clamp) */
-                    .mobile-carousel-slide .mobile-card-desc {
+                    .mobile-carousel-slide .mobile-project-desc {
                         font-family: 'Inter', sans-serif !important;
-                        font-size: 0.8rem !important;
-                        line-height: 1.5 !important;
-                        color: #a1a1aa !important;
-                        margin-bottom: 1rem !important;
+                        font-size: 0.725rem !important;
+                        line-height: 1.48 !important;
+                        color: #9ca3af !important;
+                        margin-bottom: 0.75rem !important;
                         display: -webkit-box;
-                        -webkit-line-clamp: 3;
+                        -webkit-line-clamp: 2;
                         -webkit-box-orient: vertical;
                         overflow: hidden;
                     }
 
-                    /* Bottom Action Row */
-                    .mobile-carousel-slide .mobile-card-action-row {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        gap: 0.6rem;
-                        width: 100%;
-                        padding-top: 0.75rem;
-                        border-top: 1px solid rgba(255, 255, 255, 0.08);
-                        margin-top: auto;
+                    .mobile-carousel-slide .project-action-row {
+                        display: flex !important;
+                        flex-direction: row !important;
+                        flex-wrap: nowrap !important;
+                        align-items: center !important;
+                        justify-content: space-between !important;
+                        width: 100% !important;
+                        padding-top: 0.65rem !important;
+                        margin-top: auto !important;
+                        border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+                        gap: 0.4rem !important;
                     }
 
-                    .mobile-carousel-slide .mobile-card-github-btn {
+                    .mobile-carousel-slide .project-cta-link {
                         display: inline-flex !important;
                         align-items: center !important;
-                        gap: 0.35rem !important;
-                        padding: 0.45rem 0.85rem !important;
-                        border-radius: 9999px !important;
-                        background: rgba(255, 255, 255, 0.08) !important;
-                        border: 1px solid rgba(255, 255, 255, 0.14) !important;
-                        color: #e4e4e7 !important;
-                        font-family: 'Inter', sans-serif !important;
-                        font-size: 0.75rem !important;
-                        font-weight: 500 !important;
-                        text-decoration: none !important;
-                        white-space: nowrap !important;
-                        flex-shrink: 0 !important;
-                        transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
-                        min-height: 36px !important;
-                    }
-
-                    .mobile-carousel-slide .mobile-card-github-btn:hover,
-                    .mobile-carousel-slide .mobile-card-github-btn:active {
-                        background: rgba(255, 255, 255, 0.2) !important;
+                        gap: 0.4rem !important;
+                        font-family: 'Space Grotesk', sans-serif !important;
+                        font-size: 0.725rem !important;
+                        font-weight: 600 !important;
                         color: #ffffff !important;
-                        border-color: rgba(255, 255, 255, 0.28) !important;
+                        text-decoration: none !important;
+                        text-transform: none !important;
+                        letter-spacing: normal !important;
+                        white-space: nowrap !important;
                     }
 
-                    /* White Pill Button */
-                    .mobile-carousel-slide .mobile-card-pill-btn {
+                    .mobile-carousel-slide .project-cta-text {
+                        text-transform: none !important;
+                        letter-spacing: normal !important;
+                    }
+
+                    .mobile-carousel-slide .project-arrow-circle {
+                        width: 1.4rem !important;
+                        height: 1.4rem !important;
+                        border-radius: 9999px !important;
                         display: inline-flex !important;
                         align-items: center !important;
                         justify-content: center !important;
-                        padding: 0.45rem 1.15rem !important;
-                        border-radius: 9999px !important;
-                        background-color: #ffffff !important;
-                        color: #050505 !important;
-                        font-family: 'Inter', sans-serif !important;
-                        font-weight: 700 !important;
-                        font-size: 0.8125rem !important;
-                        text-decoration: none !important;
-                        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
-                        border: none !important;
-                        cursor: pointer !important;
+                        background: #ffffff !important;
+                        color: #020202 !important;
+                        opacity: 1 !important;
+                        transform: scale(1) translateX(0) !important;
+                        pointer-events: auto !important;
+                        flex-shrink: 0 !important;
+                        box-shadow: none !important;
+                        filter: none !important;
+                    }
+
+                    .mobile-carousel-slide .project-arrow-circle svg {
+                        width: 0.75rem !important;
+                        height: 0.75rem !important;
+                        color: #020202 !important;
+                        stroke: currentColor !important;
+                        stroke-width: 2.2 !important;
+                    }
+
+                    .mobile-carousel-slide .btn-github-source {
+                        display: inline-flex !important;
+                        align-items: center !important;
+                        gap: 0.3rem !important;
+                        padding: 0.3rem 0.55rem !important;
+                        font-size: 0.675rem !important;
+                        font-family: 'Space Grotesk', sans-serif !important;
+                        font-weight: 600 !important;
+                        background-color: rgba(255, 255, 255, 0.08) !important;
+                        color: #e4e4e7 !important;
+                        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                        border-radius: 0.45rem !important;
                         white-space: nowrap !important;
                         flex-shrink: 0 !important;
-                        min-height: 36px !important;
-                        transition: transform 0.15s ease, background-color 0.15s ease !important;
+                        text-decoration: none !important;
+                        transform: none !important;
+                        transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease !important;
                     }
 
-                    .mobile-carousel-slide .mobile-card-pill-btn:active {
-                        transform: scale(0.95) !important;
-                        background-color: #e4e4e7 !important;
+                    .mobile-carousel-slide .btn-github-source:hover,
+                    .mobile-carousel-slide .btn-github-source:active {
+                        background-color: #ffffff !important;
+                        color: #09090b !important;
+                        border-color: #ffffff !important;
                     }
 
-                    /* Controls Bar (Matching React/Embla Template) */
-                    .mobile-carousel-controls {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        width: 100%;
-                        padding: 0.85rem 1.75rem 0.25rem 1.75rem;
-                    }
-
-                    .mobile-carousel-dots {
-                        display: flex;
-                        align-items: center;
-                        gap: 6px;
-                    }
-
-                    .mobile-carousel-dots button {
-                        height: 5px;
-                        border-radius: 9999px;
-                        border: none;
-                        padding: 0;
-                        cursor: pointer;
-                        transition: width 0.3s cubic-bezier(0.2, 0.9, 0.3, 1), background-color 0.3s ease;
-                        -webkit-tap-highlight-color: transparent;
-                    }
-
-                    .mobile-carousel-arrows {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                    }
-
-                    .mobile-nav-arrow-btn {
-                        width: 42px;
-                        height: 42px;
-                        min-width: 42px;
-                        min-height: 42px;
-                        border-radius: 9999px;
-                        background: rgba(255, 255, 255, 0.08);
-                        border: 1px solid rgba(255, 255, 255, 0.14);
-                        backdrop-filter: blur(12px);
-                        -webkit-backdrop-filter: blur(12px);
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        color: #ffffff;
-                        cursor: pointer;
-                        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-                        outline: none;
-                        -webkit-tap-highlight-color: transparent;
-                        padding: 0;
-                    }
-
-                    .mobile-nav-arrow-btn:active {
-                        background: rgba(255, 255, 255, 0.22);
-                        transform: scale(0.92);
-                        border-color: rgba(255, 255, 255, 0.35);
+                    .mobile-carousel-slide .btn-github-source svg {
+                        width: 11px !important;
+                        height: 11px !important;
+                        flex-shrink: 0 !important;
                     }
 
                     /* Suppress external watermarks */
@@ -3265,196 +2589,225 @@
                     <!-- Slide 1: AntiSlop -->
                     <article class="mobile-carousel-slide">
                         <div class="mobile-project-card group">
-                            <a href="/projects/anti-ai-slop.html" class="mobile-card-img-link" aria-label="Open AntiSlop project">
-                                <img src="assets/images/antislop.webp" alt="AntiSlop banner" loading="lazy" decoding="async" class="mobile-card-img">
+                            <a href="/projects/anti-ai-slop.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/antislop.webp" alt="AntiSlop banner" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
                             </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Agent Skills Package</span>
+                                    <span class="text-gray-600">•</span>
+                                    <span>v3.1.3</span>
+                                </div>
+                                <h3 class="mobile-project-title">
                                     <a href="/projects/anti-ai-slop.html">AntiSlop</a>
                                 </h3>
-                                <p class="mobile-card-desc">
+                                <p class="mobile-project-desc">
                                     38 mandatory deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop and robotic copy without restricting genuine design creativity.
                                 </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                                <div class="project-action-row">
+                                    <a href="/projects/anti-ai-slop.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                         </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/anti-ai-slop.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
+                                        <span>Source Code</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </article>
-
                     <!-- Slide 2: ContextForge -->
                     <article class="mobile-carousel-slide">
                         <div class="mobile-project-card group">
-                            <a href="/projects/contextforge.html" class="mobile-card-img-link" aria-label="Open ContextForge project">
-                                <img src="assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" class="mobile-card-img">
+                            <a href="/projects/contextforge.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
                             </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Context Optimization CLI</span>
+                                    <span class="text-gray-600">•</span>
+                                    <span>Open Source</span>
+                                </div>
+                                <h3 class="mobile-project-title">
                                     <a href="/projects/contextforge.html">ContextForge</a>
                                 </h3>
-                                <p class="mobile-card-desc">
+                                <p class="mobile-project-desc">
                                     CLI tool that indexes codebases, scores file relevance, and uses AST symbol pruning to build token-efficient context bundles, cutting token consumption by up to 83%.
                                 </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/MiqdadBadjuber/contextforge" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                                <div class="project-action-row">
+                                    <a href="/projects/contextforge.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/MiqdadBadjuber/contextforge" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                         </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/contextforge.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
+                                        <span>Source Code</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </article>
-
                     <!-- Slide 3: DiagramPilot AI -->
                     <article class="mobile-carousel-slide">
                         <div class="mobile-project-card group">
-                            <a href="/projects/diagrampilot.html" class="mobile-card-img-link" aria-label="Open DiagramPilot AI project">
-                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="mobile-card-img">
+                            <a href="/projects/diagrampilot.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
                             </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Architecture Blueprint Generator</span>
+                                </div>
+                                <h3 class="mobile-project-title">
                                     <a href="/projects/diagrampilot.html">DiagramPilot AI</a>
                                 </h3>
-                                <p class="mobile-card-desc">
+                                <p class="mobile-project-desc">
                                     Full-stack Next.js and Mermaid.js system converting natural language conversations into interactive architecture diagrams with zoom, pan, and SVG export.
                                 </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber/DiagramPilot-AI" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                                <div class="project-action-row">
+                                    <a href="/projects/diagrampilot.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber/DiagramPilot-AI" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                         </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/diagrampilot.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
+                                        <span>Source Code</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </article>
-
                     <!-- Slide 4: OpenFolio AI -->
                     <article class="mobile-carousel-slide">
                         <div class="mobile-project-card group">
-                            <a href="/projects/openfolio.html" class="mobile-card-img-link" aria-label="Open OpenFolio AI project">
-                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="mobile-card-img">
+                            <a href="/projects/openfolio.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
                             </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>AI Portfolio Studio</span>
+                                </div>
+                                <h3 class="mobile-project-title">
                                     <a href="/projects/openfolio.html">OpenFolio AI</a>
                                 </h3>
-                                <p class="mobile-card-desc">
+                                <p class="mobile-project-desc">
                                     React 19 SPA and Express serverless studio that conducts guest-only interviews to build, revise, and deploy custom developer portfolios to live URLs.
                                 </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber/OpenFolio-AI" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                                <div class="project-action-row">
+                                    <a href="/projects/openfolio.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber/OpenFolio-AI" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                         </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/openfolio.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
+                                        <span>Source Code</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </article>
-
                     <!-- Slide 5: Machine Learning Experiments -->
                     <article class="mobile-carousel-slide">
                         <div class="mobile-project-card group">
-                            <a href="/projects/machine-learning.html" class="mobile-card-img-link" aria-label="Open Machine Learning Experiments project">
-                                <img src="assets/images/machine_learning.webp" alt="Machine Learning Systems" loading="lazy" decoding="async" class="mobile-card-img">
+                            <a href="/projects/machine-learning.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/machine_learning.webp" alt="Machine Learning Systems" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
                             </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Deep Learning &amp; Unsupervised ML</span>
+                                </div>
+                                <h3 class="mobile-project-title">
                                     <a href="/projects/machine-learning.html">Machine Learning Experiments</a>
                                 </h3>
-                                <p class="mobile-card-desc">
+                                <p class="mobile-project-desc">
                                     End-to-end model training suites covering CNN image classification (88% acc), Gojek review BiLSTM sentiment analysis (88.69% acc), and K-Means fraud transaction clustering with 6 GitHub repositories.
                                 </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                                <div class="project-action-row">
+                                    <a href="/projects/machine-learning.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                         </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/machine-learning.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
+                                        <span>Source Code</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </article>
-
                     <!-- Slide 6: Automation Workflow Engine -->
                     <article class="mobile-carousel-slide">
                         <div class="mobile-project-card group">
-                            <a href="/projects/automation-workflow.html" class="mobile-card-img-link" aria-label="Open Automation Workflow Engine project">
-                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="mobile-card-img">
+                            <a href="/projects/automation-workflow.html" class="aspect-video w-full overflow-hidden border-b border-white/[0.08] relative block shrink-0 bg-white/[0.02]">
+                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="w-full h-full object-cover object-center">
                             </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
+                            <div class="mobile-project-card-body">
+                                <div class="mobile-project-tag">
+                                    <span>Event Orchestration Pipeline</span>
+                                </div>
+                                <h3 class="mobile-project-title">
                                     <a href="/projects/automation-workflow.html">Automation Workflow Engine</a>
                                 </h3>
-                                <p class="mobile-card-desc">
+                                <p class="mobile-project-desc">
                                     Event-driven workflow architectures connecting Discord and Telegram chat triggers with self-hosted n8n orchestrators, Google Apps Script backends, and automated PDF reporting.
                                 </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                                <div class="project-action-row">
+                                    <a href="/projects/automation-workflow.html" class="project-cta-link">
+                                        <span class="project-cta-text">View Details</span>
+                                        <span class="project-arrow-circle" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="btn-github-source">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                         </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/automation-workflow.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
+                                        <span>Source Code</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </article>
                 </div>
-                <!-- Controls Bar (Matching ScaleSlider Template: Dots on left, Prev/Next on right) -->
-                <div class="mobile-carousel-controls">
-                    <!-- Slider Dot Button -->
-                    <div id="carousel-dots" class="mobile-carousel-dots" aria-label="Project pagination"></div>
-
-                    <!-- Slider Prev & Next Buttons -->
-                    <div class="mobile-carousel-arrows">
-                        <button id="carousel-prev-btn" type="button" aria-label="Previous project" class="mobile-nav-arrow-btn">
-                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button id="carousel-next-btn" type="button" aria-label="Next project" class="mobile-nav-arrow-btn">
-                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+                <!-- Interactive Dots Indicator -->
+                <div id="carousel-dots" class="flex justify-center items-center gap-2 mt-2.5"
+                    aria-label="Carousel navigation"></div>
                 <script>
                     (function () {
                         var track = document.getElementById('mobile-carousel-track');
                         var dotsContainer = document.getElementById('carousel-dots');
-                        var prevBtn = document.getElementById('carousel-prev-btn');
-                        var nextBtn = document.getElementById('carousel-next-btn');
                         if (!track || !dotsContainer) return;
 
                         var slides = Array.from(track.querySelectorAll('.mobile-carousel-slide'));
@@ -3472,17 +2825,6 @@
                             }
                         }
 
-                        // Centering padding for first and last slides
-                        function adjustTrackPadding() {
-                            if (!track || !slides[0]) return;
-                            var slideW = slides[0].offsetWidth;
-                            if (!slideW) return;
-                            var pad = Math.max(16, (track.clientWidth - slideW) / 2);
-                            track.style.paddingLeft = pad + 'px';
-                            track.style.paddingRight = pad + 'px';
-                            updateSlideScales();
-                        }
-
                         function smoothScrollTo(targetLeft, duration) {
                             stopMomentum();
                             var start = track.scrollLeft;
@@ -3494,24 +2836,13 @@
                                 var progress = Math.min(elapsed / duration, 1);
                                 var ease = 1 - Math.pow(1 - progress, 3);
                                 track.scrollLeft = start + change * ease;
-                                updateSlideScales();
                                 if (progress < 1) {
                                     momentumRafId = requestAnimationFrame(step);
                                 } else {
                                     momentumRafId = null;
-                                    updateSlideScales();
                                 }
                             }
                             momentumRafId = requestAnimationFrame(step);
-                        }
-
-                        function goToSlide(index, duration) {
-                            stopMomentum();
-                            index = ((index % total) + total) % total;
-                            var s = slides[index];
-                            if (!s) return;
-                            var target = s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
-                            smoothScrollTo(target, duration || 360);
                         }
 
                         // Generate dots
@@ -3520,9 +2851,12 @@
                             var dot = document.createElement('button');
                             dot.type = 'button';
                             dot.setAttribute('aria-label', 'Go to project ' + (i + 1));
-                            dot.style.cssText = 'height: 5px; border-radius: 9999px; transition: width 0.3s cubic-bezier(0.2, 0.9, 0.3, 1), background-color 0.3s ease; border: none; padding: 0; cursor: pointer; ' + (i === 0 ? 'width: 22px; background: #ffffff;' : 'width: 6px; background: rgba(255, 255, 255, 0.25);');
+                            dot.style.cssText = 'height: 4px; border-radius: 9999px; transition: width 0.3s cubic-bezier(0.2, 0.9, 0.3, 1), background-color 0.3s ease; border: none; padding: 0; cursor: pointer; ' + (i === 0 ? 'width: 24px; background: rgba(0, 240, 255, 0.85);' : 'width: 6px; background: rgba(255, 255, 255, 0.2);');
                             dot.addEventListener('click', function () {
-                                goToSlide(i, 360);
+                                var s = slides[i];
+                                if (s) {
+                                    smoothScrollTo(s.offsetLeft - 20, 380);
+                                }
                             });
                             dotsContainer.appendChild(dot);
                             dots.push(dot);
@@ -3531,68 +2865,42 @@
                         function updateDots(idx) {
                             dots.forEach(function (dot, i) {
                                 if (i === idx) {
-                                    dot.style.width = '22px';
-                                    dot.style.background = '#ffffff';
+                                    dot.style.width = '24px';
+                                    dot.style.background = 'rgba(0, 240, 255, 0.85)';
                                 } else {
                                     dot.style.width = '6px';
-                                    dot.style.background = 'rgba(255, 255, 255, 0.25)';
+                                    dot.style.background = 'rgba(255, 255, 255, 0.2)';
                                 }
                             });
                         }
 
-                        // Real-time ScaleSlider scaling calculation (isScale: true)
-                        function updateSlideScales() {
-                            var trackCenter = track.scrollLeft + (track.clientWidth / 2);
-                            var closestIdx = 0;
-                            var minDiff = Infinity;
-
-                            slides.forEach(function (slide, i) {
-                                var slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
-                                var diff = Math.abs(slideCenter - trackCenter);
-                                if (diff < minDiff) {
-                                    minDiff = diff;
-                                    closestIdx = i;
-                                }
-                                var maxRange = (slide.offsetWidth || 300) * 1.15;
-                                var norm = Math.min(diff / maxRange, 1);
-                                var scale = 1 - (norm * 0.08); // 1.0 down to 0.92
-                                var opacity = 1 - (norm * 0.35); // 1.0 down to 0.65
-                                slide.style.transform = 'scale(' + scale.toFixed(3) + ')';
-                                slide.style.opacity = opacity.toFixed(3);
-                            });
-
-                            if (closestIdx !== activeIdx) {
-                                activeIdx = closestIdx;
-                                updateDots(activeIdx);
-                            }
-                        }
-
-                        // Prev & Next Buttons with loop
-                        if (prevBtn) {
-                            prevBtn.addEventListener('click', function () {
-                                goToSlide(activeIdx - 1, 360);
-                            });
-                        }
-
-                        if (nextBtn) {
-                            nextBtn.addEventListener('click', function () {
-                                goToSlide(activeIdx + 1, 360);
-                            });
-                        }
-
-                        // Passive scroll listener for scale effect
+                        // Passive dot tracker
                         var isTicking = false;
                         track.addEventListener('scroll', function () {
                             if (!isTicking) {
                                 window.requestAnimationFrame(function () {
-                                    updateSlideScales();
+                                    var center = track.scrollLeft + (track.clientWidth / 2);
+                                    var closestIdx = 0;
+                                    var minDiff = Infinity;
+                                    slides.forEach(function (slide, i) {
+                                        var slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+                                        var diff = Math.abs(slideCenter - center);
+                                        if (diff < minDiff) {
+                                            minDiff = diff;
+                                            closestIdx = i;
+                                        }
+                                    });
+                                    if (closestIdx !== activeIdx) {
+                                        activeIdx = closestIdx;
+                                        updateDots(activeIdx);
+                                    }
                                     isTicking = false;
                                 });
                                 isTicking = true;
                             }
                         }, { passive: true });
 
-                        // Pointer Drag & Smooth Swipe Engine
+                        // === ULTRA-SMOOTH MOMENTUM INERTIA ENGINE (NO REM / AYUNAN SAMPE ABIS) ===
                         var isPointerDown = false;
                         var startX = 0;
                         var startY = 0;
@@ -3625,6 +2933,7 @@
                             var deltaX = currentX - startX;
                             var deltaY = currentY - startY;
 
+                            // Disambiguate horizontal swipe vs vertical page scroll
                             if (isVerticalScroll === null) {
                                 if (Math.abs(deltaY) > 6 && Math.abs(deltaY) > Math.abs(deltaX)) {
                                     isVerticalScroll = true;
@@ -3641,7 +2950,6 @@
                             }
 
                             track.scrollLeft = startScrollLeft - deltaX;
-                            updateSlideScales();
 
                             var dt = currentTime - lastTime;
                             if (dt > 8) {
@@ -3661,18 +2969,32 @@
                                 velocityX = 0;
                             }
 
-                            if (Math.abs(velocityX) > 0.12) {
-                                var targetIdx = velocityX > 0 ? activeIdx + 1 : activeIdx - 1;
-                                goToSlide(targetIdx, 320);
-                            } else {
-                                goToSlide(activeIdx, 260);
+                            // Inertial momentum fling (Ayunan lembut tanpa rem)
+                            if (Math.abs(velocityX) > 0.08) {
+                                var currentVelocity = velocityX * 15;
+                                if (currentVelocity > 45) currentVelocity = 45;
+                                if (currentVelocity < -45) currentVelocity = -45;
+
+                                var friction = 0.948; // Smooth natural coasting decay
+
+                                function momentumStep() {
+                                    track.scrollLeft += currentVelocity;
+                                    currentVelocity *= friction;
+
+                                    if (Math.abs(currentVelocity) > 0.25) {
+                                        momentumRafId = requestAnimationFrame(momentumStep);
+                                    } else {
+                                        momentumRafId = null;
+                                    }
+                                }
+                                momentumRafId = requestAnimationFrame(momentumStep);
                             }
                         }
 
                         window.addEventListener('pointerup', handlePointerUp, { passive: true });
                         window.addEventListener('pointercancel', handlePointerUp, { passive: true });
 
-                        // Suppress accidental click when dragging
+                        // Suppress accidental clicks during drag
                         track.addEventListener('click', function (e) {
                             if (hasMoved) {
                                 e.preventDefault();
@@ -3681,11 +3003,7 @@
                             }
                         }, true);
 
-                        window.addEventListener('resize', adjustTrackPadding);
-                        window.addEventListener('load', adjustTrackPadding);
-                        setTimeout(adjustTrackPadding, 100);
-                        setTimeout(adjustTrackPadding, 500);
-
+                        // Compatibility no-op
                         window._setMobileCarouselActive = function () {};
                     })();
                 </script>
@@ -3693,16 +3011,12 @@
 
             <!-- View All Projects -->
             <div class="pt-12 md:pt-16 flex justify-center relative z-20 view-all-projects-wrap">
-                <a href="/projects/index.html" class="btn-creative btn-creative-white btn-creative-wide group" data-cursor-hover aria-label="View All Projects">
-                    <span class="btn-creative-text-initial">View All Projects</span>
-                    <div class="btn-creative-text-hover">
-                        <span>View All Projects</span>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
-                    <div class="btn-creative-bubble" aria-hidden="true"></div>
+                <a href="/projects/index.html" class="btn-view-all btn-view-all-projects group" data-cursor-hover>
+                    <span class="btn-view-all-text">View All Projects</span>
+                    <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none"
+                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 8h10M9 4l4 4-4 4" />
+                    </svg>
                 </a>
             </div>
         </section>
@@ -3716,20 +3030,14 @@
                     Credentials<br><span class="text-gray-600">&amp; Code.</span>
                 </h2>
 
-                <!-- Segmented Tab Controls (Uiverse Style by _7948) -->
-                <div class="gsap-fade di-radio-wrap" id="credentials-tab-track" role="tablist"
+                <!-- Tab Controls (ARIA Tabs) -->
+                <div class="gsap-fade tab-box-track" id="credentials-tab-track" role="tablist"
                     aria-label="Credentials tabs">
-                    <input type="radio" name="credentials-tab" id="tab-radio-github" class="di-radio-input" checked
-                        aria-controls="content-github">
-                    <input type="radio" name="credentials-tab" id="tab-radio-certs" class="di-radio-input"
-                        aria-controls="content-certs">
-                    <div class="di-radio-island">
-                        <label for="tab-radio-github" id="tab-btn-github" class="di-radio-btn" role="tab"
-                            aria-selected="true" tabindex="0">Open Source</label>
-                        <label for="tab-radio-certs" id="tab-btn-certs" class="di-radio-btn" role="tab"
-                            aria-selected="false" tabindex="0">Certifications</label>
-                        <div class="di-radio-indicator" aria-hidden="true"></div>
-                    </div>
+                    <button id="tab-btn-github" role="tab" aria-selected="true" aria-controls="content-github"
+                        class="tab-box-btn active">Open Source</button>
+                    <button id="tab-btn-certs" role="tab" aria-selected="false" aria-controls="content-certs"
+                        class="tab-box-btn inactive">Certifications</button>
+                    <div id="tab-sliding-line" class="tab-box-line"></div>
                 </div>
             </div>
 
@@ -3834,21 +3142,17 @@
                 </div>
                 <div class="flex justify-center mt-8">
                     <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer"
-                        class="btn-creative btn-creative-white btn-creative-github group" data-cursor-hover
-                        aria-label="View Full GitHub Profile">
-                        <svg class="btn-github-pin shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        class="btn-view-all group" data-cursor-hover>
+                        <svg class="w-4 h-4 text-current shrink-0" width="16" height="16" viewBox="0 0 24 24"
+                            fill="currentColor" aria-hidden="true">
                             <path
                                 d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                         </svg>
-                        <span class="btn-creative-text-initial">View Full GitHub Profile</span>
-                        <div class="btn-creative-text-hover">
-                            <span>View Full GitHub Profile</span>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </div>
-                        <div class="btn-creative-bubble" aria-hidden="true"></div>
+                        <span class="btn-view-all-text">View Full GitHub Profile</span>
+                        <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none"
+                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -4079,75 +3383,75 @@
 
                 <!-- View All Credentials -->
                 <div class="flex justify-center mt-8">
-                    <a href="/credentials/index.html"
-                        class="btn-creative btn-creative-white btn-creative-credentials group" data-cursor-hover
-                        aria-label="View All Credentials">
-                        <span class="btn-creative-text-initial">View All Credentials</span>
-                        <div class="btn-creative-text-hover">
-                            <span>View All Credentials</span>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </div>
-                        <div class="btn-creative-bubble" aria-hidden="true"></div>
+                    <a href="/credentials/index.html" class="btn-view-all group" data-cursor-hover>
+                        <span class="btn-view-all-text">View All Credentials</span>
+                        <svg class="btn-view-all-arrow text-current shrink-0" viewBox="0 0 16 16" fill="none"
+                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
                     </a>
                 </div>
             </div>
 
             <!-- Tab Switching Script -->
             <script>
+                function updateCredentialsLine(activeBtn) {
+                    const line = document.getElementById('tab-sliding-line');
+                    const track = document.getElementById('credentials-tab-track');
+                    if (!line || !track || !activeBtn) return;
+                    const trackRect = track.getBoundingClientRect();
+                    const btnRect = activeBtn.getBoundingClientRect();
+                    line.style.left = (btnRect.left - trackRect.left) + 'px';
+                    line.style.width = btnRect.width + 'px';
+                }
+
                 function switchTab(tabId) {
                     const btnGithub = document.getElementById('tab-btn-github');
                     const btnCerts = document.getElementById('tab-btn-certs');
-                    const radioGithub = document.getElementById('tab-radio-github');
-                    const radioCerts = document.getElementById('tab-radio-certs');
                     const contentGithub = document.getElementById('content-github');
                     const contentCerts = document.getElementById('content-certs');
 
                     if (tabId === 'github') {
-                        if (radioGithub) radioGithub.checked = true;
-                        if (btnGithub) btnGithub.setAttribute('aria-selected', 'true');
-                        if (btnCerts) btnCerts.setAttribute('aria-selected', 'false');
-                        if (contentGithub) {
-                            contentGithub.classList.remove('hidden');
-                            contentGithub.classList.add('block');
-                        }
-                        if (contentCerts) {
-                            contentCerts.classList.remove('block');
-                            contentCerts.classList.add('hidden');
-                        }
+                        btnGithub.className = 'tab-box-btn active';
+                        btnGithub.setAttribute('aria-selected', 'true');
+                        btnCerts.className = 'tab-box-btn inactive';
+                        btnCerts.setAttribute('aria-selected', 'false');
+                        updateCredentialsLine(btnGithub);
+                        contentGithub.classList.remove('hidden');
+                        contentGithub.classList.add('block');
+                        contentCerts.classList.remove('block');
+                        contentCerts.classList.add('hidden');
                     } else {
-                        if (radioCerts) radioCerts.checked = true;
-                        if (btnCerts) btnCerts.setAttribute('aria-selected', 'true');
-                        if (btnGithub) btnGithub.setAttribute('aria-selected', 'false');
-                        if (contentCerts) {
-                            contentCerts.classList.remove('hidden');
-                            contentCerts.classList.add('block');
-                        }
-                        if (contentGithub) {
-                            contentGithub.classList.remove('block');
-                            contentGithub.classList.add('hidden');
-                        }
+                        btnCerts.className = 'tab-box-btn active';
+                        btnCerts.setAttribute('aria-selected', 'true');
+                        btnGithub.className = 'tab-box-btn inactive';
+                        btnGithub.setAttribute('aria-selected', 'false');
+                        updateCredentialsLine(btnCerts);
+                        contentCerts.classList.remove('hidden');
+                        contentCerts.classList.add('block');
+                        contentGithub.classList.remove('block');
+                        contentGithub.classList.add('hidden');
                     }
                 }
 
-                // Radio & label change handlers
-                const radioGithub = document.getElementById('tab-radio-github');
-                const radioCerts = document.getElementById('tab-radio-certs');
-                const btnGithub = document.getElementById('tab-btn-github');
-                const btnCerts = document.getElementById('tab-btn-certs');
+                // Tab click handlers with keyboard support
+                document.getElementById('tab-btn-github').addEventListener('click', () => switchTab('github'));
+                document.getElementById('tab-btn-certs').addEventListener('click', () => switchTab('certs'));
 
-                if (radioGithub) radioGithub.addEventListener('change', () => switchTab('github'));
-                if (radioCerts) radioCerts.addEventListener('change', () => switchTab('certs'));
-                if (btnGithub) btnGithub.addEventListener('click', () => switchTab('github'));
-                if (btnCerts) btnCerts.addEventListener('click', () => switchTab('certs'));
+                // Initial positioning & resize
+                window.addEventListener('DOMContentLoaded', () => {
+                    const activeBtn = document.querySelector('#credentials-tab-track .tab-box-btn.active');
+                    if (activeBtn) updateCredentialsLine(activeBtn);
+                });
+                window.addEventListener('resize', () => {
+                    const activeBtn = document.querySelector('#credentials-tab-track .tab-box-btn.active');
+                    if (activeBtn) updateCredentialsLine(activeBtn);
+                });
 
                 // Arrow key navigation between tabs
-                document.querySelectorAll('#credentials-tab-track [role="tab"]').forEach(tab => {
+                document.querySelectorAll('[role="tab"]').forEach(tab => {
                     tab.addEventListener('keydown', (e) => {
-                        const tabs = Array.from(document.querySelectorAll('#credentials-tab-track [role="tab"]'));
+                        const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
                         const index = tabs.indexOf(e.target);
                         let newIndex;
 
@@ -4184,7 +3488,7 @@
 
                 <!-- Card 1: Google Developer -->
                 <a href="https://g.dev/miqdadbadjuber" target="_blank" rel="noopener noreferrer"
-                    class="glass-card relative flex flex-col sm:flex-row items-start gap-4 sm:gap-6 lg:gap-8 rounded-2xl p-6 lg:p-8 group"
+                    class="glass-card relative flex flex-col items-center sm:flex-row sm:items-start gap-4 sm:gap-6 lg:gap-8 rounded-2xl p-6 lg:p-8 group"
                     data-cursor-hover>
                     <div class="absolute top-6 right-6 lg:top-8 lg:right-8 repo-arrow-circle" aria-hidden="true">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -4201,37 +3505,40 @@
                     </div>
 
                     <div
-                        class="flex-1 flex flex-col items-start text-left w-full h-full justify-between">
-                        <div class="w-full text-left">
+                        class="flex-1 text-center sm:text-left flex flex-col items-center sm:items-start w-full h-full justify-between">
+                        <div>
                             <h3
-                                class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-3">
+                                class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-1">
                                 Miqdad Badjuber</h3>
                             <span
-                                class="google-credential-role text-xs text-gray-400 font-sans font-medium block mb-5">Google
+                                class="font-display text-[9px] tracking-[0.25em] text-cyanGlow/70 uppercase block font-bold mb-4">Google
                                 Developer Member</span>
 
                             <!-- Badges/Stats: 2 Poin -->
-                            <div class="google-credential-list">
-                                <div class="google-credential-item">
-                                    <span class="google-credential-dot" aria-hidden="true"></span>
-                                    <span class="font-sans text-xs text-gray-300 font-normal">8 Badges Earned</span>
+                            <div class="flex flex-col gap-2.5 mb-5 w-full items-center sm:items-start">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true">
+                                    </div>
+                                    <span class="font-display text-xs text-gray-400 font-medium">8 Badges Earned</span>
                                 </div>
-                                <div class="google-credential-item">
-                                    <span class="google-credential-dot" aria-hidden="true"></span>
-                                    <span class="font-sans text-xs text-gray-300 font-normal">Verified Developer Profile</span>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true">
+                                    </div>
+                                    <span class="font-display text-xs text-gray-400 font-medium">Verified Developer
+                                        Profile</span>
                                 </div>
                             </div>
                         </div>
 
                         <span
-                            class="google-credential-badge text-gray-500 text-[11px] font-sans font-medium bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.08]">g.dev/miqdadbadjuber</span>
+                            class="text-gray-500 text-[11px] font-medium bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.08]">g.dev/miqdadbadjuber</span>
                     </div>
                 </a>
 
                 <!-- Card 2: Google Skill Boost -->
                 <a href="https://www.skills.google/public_profiles/fe940841-9fbf-40f7-bdd5-a56317d5579c" target="_blank"
                     rel="noopener noreferrer"
-                    class="glass-card relative flex flex-col sm:flex-row items-start gap-4 sm:gap-6 lg:gap-8 rounded-2xl p-6 lg:p-8 group"
+                    class="glass-card relative flex flex-col items-center sm:flex-row sm:items-start gap-4 sm:gap-6 lg:gap-8 rounded-2xl p-6 lg:p-8 group"
                     data-cursor-hover>
                     <div class="absolute top-6 right-6 lg:top-8 lg:right-8 repo-arrow-circle" aria-hidden="true">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -4248,30 +3555,33 @@
                     </div>
 
                     <div
-                        class="flex-1 flex flex-col items-start text-left w-full h-full justify-between">
-                        <div class="w-full text-left">
+                        class="flex-1 text-center sm:text-left flex flex-col items-center sm:items-start w-full h-full justify-between">
+                        <div>
                             <h3
-                                class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-3">
+                                class="font-display text-xl font-bold text-white group-hover:text-cyanGlow transition-colors mb-1">
                                 Miqdad Badjuber</h3>
                             <span
-                                class="google-credential-role text-xs text-gray-400 font-sans font-medium block mb-5">Google
+                                class="font-display text-[9px] tracking-[0.25em] text-cyanGlow/70 uppercase block font-bold mb-4">Google
                                 Cloud Skill Member</span>
 
                             <!-- Badges/Stats: 2 Poin -->
-                            <div class="google-credential-list">
-                                <div class="google-credential-item">
-                                    <span class="google-credential-dot" aria-hidden="true"></span>
-                                    <span class="font-sans text-xs text-gray-300 font-normal">32 Badges Earned</span>
+                            <div class="flex flex-col gap-2.5 mb-5 w-full items-center sm:items-start">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true">
+                                    </div>
+                                    <span class="font-display text-xs text-gray-400 font-medium">32 Badges Earned</span>
                                 </div>
-                                <div class="google-credential-item">
-                                    <span class="google-credential-dot" aria-hidden="true"></span>
-                                    <span class="font-sans text-xs text-gray-300 font-normal">Verified with Credly</span>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-cyanGlow/60 rounded-full flex-shrink-0" aria-hidden="true">
+                                    </div>
+                                    <span class="font-display text-xs text-gray-400 font-medium">Verified with
+                                        Credly</span>
                                 </div>
                             </div>
                         </div>
 
                         <span
-                            class="google-credential-badge text-gray-500 text-[11px] font-sans font-medium bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.08]">skills.google/profile</span>
+                            class="text-gray-500 text-[11px] font-medium bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.08]">skills.google/profile</span>
                     </div>
                 </a>
 
@@ -4338,19 +3648,16 @@
                         <!-- Mobile-only Expand Contact Form Button -->
                         <div class="mobile-contact-toggle-wrap pt-4">
                             <button type="button" id="mobile-contact-toggle"
-                                class="btn-creative btn-creative-white btn-creative-submit group"
-                                data-cursor-hover aria-label="Toggle Contact Form">
-                                <span id="mobile-toggle-label" class="btn-creative-text-initial">Send Message</span>
-                                <div class="btn-creative-text-hover">
-                                    <span>Send Message</span>
-                                    <svg id="mobile-toggle-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                        stroke-linejoin="round" class="transition-transform duration-300">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="btn-creative-bubble" aria-hidden="true"></div>
+                                class="btn-matte-stealth w-full flex items-center justify-center gap-2"
+                                data-cursor-hover>
+                                <span id="mobile-toggle-label">Send Message</span>
+                                <svg id="mobile-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="btn-stealth-arrow transition-transform duration-300"
+                                    aria-hidden="true">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -4358,43 +3665,39 @@
                     <!-- Contact Form -->
                     <div id="mobile-contact-drawer" class="mobile-contact-drawer bg-transparent">
                         <div class="p-8 md:p-10">
-                            <form class="flex flex-col gap-5 h-full font-sans">
+                            <form class="flex flex-col gap-5 h-full font-display">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div class="space-y-2">
                                         <label for="contact-name"
-                                            class="text-xs sm:text-sm font-medium text-white block">Name</label>
+                                            class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Name</label>
                                         <input type="text" id="contact-name" name="name"
-                                            class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder:text-gray-500 placeholder:font-normal focus:outline-none focus:border-white/30 transition-colors"
+                                            class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 transition-colors"
                                             placeholder="Your Name">
                                     </div>
                                     <div class="space-y-2">
                                         <label for="contact-email"
-                                            class="text-xs sm:text-sm font-medium text-white block">Email</label>
+                                            class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Email</label>
                                         <input type="email" id="contact-email" name="email"
-                                            class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder:text-gray-500 placeholder:font-normal focus:outline-none focus:border-white/30 transition-colors"
+                                            class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 transition-colors"
                                             placeholder="email@example.com">
                                     </div>
                                 </div>
                                 <div class="space-y-2 flex-1 flex flex-col">
                                     <label for="contact-message"
-                                        class="text-xs sm:text-sm font-medium text-white block">Message</label>
+                                        class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Message</label>
                                     <textarea id="contact-message" name="message"
-                                        class="w-full flex-1 min-h-[120px] bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder:text-gray-500 placeholder:font-normal focus:outline-none focus:border-white/30 transition-colors resize-none"
+                                        class="w-full flex-1 min-h-[120px] bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 transition-colors resize-none"
                                         placeholder="Drop your message here..."></textarea>
                                 </div>
-                                <button type="button" onclick="sendContactForm()"
-                                    class="btn-creative btn-creative-white btn-creative-submit group" data-cursor-hover
-                                    aria-label="Send Message">
-                                    <span class="btn-creative-text-initial">Send Message</span>
-                                    <div class="btn-creative-text-hover">
-                                        <span>Send Message</span>
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            <polyline points="12 5 19 12 12 19"></polyline>
-                                        </svg>
-                                    </div>
-                                    <div class="btn-creative-bubble" aria-hidden="true"></div>
+                                <button type="button" onclick="sendContactForm()" class="btn-matte-stealth w-full"
+                                    data-cursor-hover>
+                                    <span>Send Message</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="btn-stealth-arrow" aria-hidden="true">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
                                 </button>
                                 <p id="contact-status" class="text-xs font-mono text-red-400 min-h-[1rem]"
                                     aria-live="polite"></p>
@@ -4408,88 +3711,49 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer" role="contentinfo">
-        <div class="site-footer-inner">
-            <div class="site-footer-grid">
-                
-                <!-- Sisi Kiri: Nama & Copyright -->
-                <div class="site-footer-brand">
-                    <div>
-                        <h2 class="site-footer-brand-title">
-                            Miqdad Badjuber
-                        </h2>
-                        <p class="site-footer-brand-sub">
-                            AI &amp; Machine Learning Engineer
-                        </p>
+    <footer class="relative bg-[#020202]/90 backdrop-blur-md py-6 border-t border-white/[0.06] mt-0" role="contentinfo">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+            <!-- Desktop View -->
+            <div class="hidden md:flex flex-row justify-between items-center gap-4">
+                <div class="flex flex-col items-start gap-1">
+                    <h2 class="font-sans font-bold text-white text-base tracking-tight">Miqdad Badjuber</h2>
+                    <div class="text-gray-600 font-sans text-[10px]">&copy; <span id="footer-year">2026</span> All
+                        Rights Reserved.</div>
+                </div>
+                <div class="flex flex-row items-center gap-5 font-sans text-xs text-gray-400">
+                    <div class="flex flex-row gap-5 items-center">
+                        <a href="#home" class="hover:text-cyanGlow transition-colors duration-300"
+                            data-cursor-hover>Home</a>
+                        <a href="#about" class="hover:text-cyanGlow transition-colors duration-300"
+                            data-cursor-hover>About</a>
+                        <a href="#projects" class="hover:text-cyanGlow transition-colors duration-300"
+                            data-cursor-hover>Projects</a>
                     </div>
-                    <div class="site-footer-copyright">
-                        &copy; <span id="footer-year">2026</span> Miqdad Badjuber. All rights reserved.
+                    <div class="w-px h-3 bg-white/[0.1] mx-1"></div>
+                    <div class="flex flex-row gap-5 items-center">
+                        <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>GitHub</a>
+                        <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>LinkedIn</a>
+                        <a href="mailto:miqdadbadzubair@gmail.com"
+                            class="hover:text-cyanGlow transition-colors duration-300" data-cursor-hover>Email</a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Sisi Kanan: 3 Kolom Navigasi (Navigation, Projects, Blog) -->
-                <div class="site-footer-links-wrap">
-                    
-                    <!-- Kolom 1: Navigation -->
-                    <div class="site-footer-col">
-                        <h3 class="site-footer-col-title">Navigation</h3>
-                        <ul class="site-footer-list">
-                            <li><a href="#home" data-cursor-hover>Home</a></li>
-                            <li><a href="about/index.html" data-cursor-hover>About Story</a></li>
-                            <li><a href="projects/index.html" data-cursor-hover>Selected Projects</a></li>
-                            <li><a href="blog/index.html" data-cursor-hover>Articles &amp; Writing</a></li>
-                            <li><a href="credentials/index.html" data-cursor-hover>Credentials</a></li>
-                            <li><a href="#contact" data-cursor-hover>Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Kolom 2: Projects -->
-                    <div class="site-footer-col">
-                        <h3 class="site-footer-col-title">Projects</h3>
-                        <ul class="site-footer-list">
-                            <li><a href="projects/anti-ai-slop.html" data-cursor-hover>AntiSlop</a></li>
-                            <li><a href="projects/contextforge.html" data-cursor-hover>ContextForge</a></li>
-                            <li><a href="projects/diagrampilot.html" data-cursor-hover>DiagramPilot AI</a></li>
-                            <li><a href="projects/openfolio.html" data-cursor-hover>OpenFolio AI</a></li>
-                            <li><a href="projects/automation-workflow.html" data-cursor-hover>Automation Engine</a></li>
-                            <li><a href="projects/machine-learning.html" data-cursor-hover>Machine Learning</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Kolom 3: Blog -->
-                    <div class="site-footer-col site-footer-col-blog">
-                        <h3 class="site-footer-col-title">Blog</h3>
-                        <ul class="site-footer-list">
-                            <li>
-                                <a href="blog/antislop-viral-milestone.html" data-cursor-hover>
-                                    AntiSlop Milestone
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog/mid-2026-china-wakes-up.html" data-cursor-hover>
-                                    Mid 2026: China Wakes Up
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog/anti-ai-slop.html" data-cursor-hover>
-                                    Anti-AI Slop Rules
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog/context-engineering-vs-finetuning.html" data-cursor-hover>
-                                    Context Engineering
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog/optimizing-canvas-ascii-60fps.html" data-cursor-hover>
-                                    60 FPS Canvas WebGL
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
+            <!-- Mobile View -->
+            <div class="flex md:hidden flex-row justify-between items-center w-full">
+                <div class="text-gray-600 font-sans text-[10px]">
+                    &copy; 2026 All Rights Reserved.
                 </div>
-
+                <div class="flex gap-4 font-sans text-[10px] text-gray-400">
+                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-cyanGlow transition-colors" data-cursor-hover>GitHub</a>
+                    <a href="https://www.linkedin.com/in/miqdad-badjuber" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-cyanGlow transition-colors" data-cursor-hover>LinkedIn</a>
+                    <a href="mailto:miqdadbadzubair@gmail.com" class="hover:text-cyanGlow transition-colors"
+                        data-cursor-hover>Email</a>
+                </div>
             </div>
         </div>
     </footer>
