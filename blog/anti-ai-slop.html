@@ -113,48 +113,64 @@
         }
 
                 .btn-back {
+            position: relative;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            width: 88px;
+            height: 34px;
+            border-radius: 8px;
+            background-color: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e5e7eb;
             font-family: 'Sora', sans-serif;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            line-height: 1;
-            height: 1.5rem;
-            color: #9ca3af;
+            font-size: 0.75rem;
+            font-weight: 500;
             text-decoration: none;
-            transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            cursor: pointer;
+            user-select: none;
+            transition: border-color 0.25s ease, color 0.25s ease;
+            z-index: 10;
         }
         .btn-back:hover {
+            border-color: rgba(255, 255, 255, 0.4);
             color: #ffffff;
         }
-        .btn-back-text {
-            position: relative;
-        }
-        .btn-back-text::after {
-            content: '';
+        .btn-back-slider {
             position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0%;
-            height: 1.5px;
-            background: linear-gradient(to right, #00f0ff, #ffffff);
-            border-radius: 9999px;
-            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+            left: 3px;
+            top: 3px;
+            bottom: 3px;
+            width: 26px;
+            border-radius: 6px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .btn-back:hover .btn-back-text::after {
-            width: 100%;
+        .btn-back:hover .btn-back-slider {
+            width: calc(100% - 6px);
         }
-        .btn-back-arrow {
-            width: 0.875rem;
-            height: 0.875rem;
+        .btn-back-icon {
+            width: 12px;
+            height: 12px;
+            fill: #000000;
             flex-shrink: 0;
-            transform: translateY(-1px);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.2s ease;
         }
-        .btn-back:hover .btn-back-arrow {
-            transform: translate(-3px, -1px);
+        .btn-back:hover .btn-back-icon {
+            transform: scale(1.1);
+        }
+        .btn-back-text {
+            transform: translateX(13px);
+            color: #e5e7eb;
+            transition: opacity 0.2s ease;
+        }
+        .btn-back:hover .btn-back-text {
+            opacity: 0;
         }
 
         /* Desktop Table of Contents */
@@ -276,11 +292,14 @@
 
     <!-- Header -->
     <header class="w-full max-w-[1000px] mx-auto px-6 md:px-12 pt-8 md:pt-12 flex justify-between items-center relative z-20">
-        <a href="/blog/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
-            <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M13 8H3M7 12L3 8l4-4"/>
-            </svg>
-            <span class="btn-back-text">Back to all articles</span>
+        <a href="/blog/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back" aria-label="Back">
+            <div class="btn-back-slider">
+                <svg class="btn-back-icon" viewBox="0 0 1024 1024">
+                    <path d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"/>
+                    <path d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"/>
+                </svg>
+            </div>
+            <span class="btn-back-text">Back</span>
         </a>
 
         <div class="flex items-center gap-4 h-6">
@@ -383,13 +402,16 @@
                     </p>
                 </div>
 
-                <!-- Bottom Back Navigation with Smooth Underline -->
+                <!-- Bottom Back Navigation -->
                 <div class="pt-8 border-t border-white/[0.06] flex items-center">
-                    <a href="/blog/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back">
-                        <svg class="btn-back-arrow w-3.5 h-3.5 text-current shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13 8H3M7 12L3 8l4-4"/>
-                        </svg>
-                        <span class="btn-back-text">Back to all articles</span>
+                    <a href="/blog/index.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)){history.back();return false;}" class="btn-back" aria-label="Back">
+                        <div class="btn-back-slider">
+                            <svg class="btn-back-icon" viewBox="0 0 1024 1024">
+                                <path d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"/>
+                                <path d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"/>
+                            </svg>
+                        </div>
+                        <span class="btn-back-text">Back</span>
                     </a>
                 </div>
 
