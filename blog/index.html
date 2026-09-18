@@ -244,25 +244,88 @@
                 margin-top: 0.5rem !important;
             }
 
-            /* Option 4.2: Mobile Deck Carousel Track (Clean alignment, no negative margin bleed) */
-            .mobile-carousel-track {
-                display: flex !important;
-                gap: 1rem !important;
-                overflow-x: auto !important;
-                scroll-snap-type: x mandatory !important;
-                -webkit-overflow-scrolling: touch !important;
-                scrollbar-width: none !important;
-                padding-bottom: 0.75rem !important;
-                padding-top: 0.25rem !important;
+            /* Magazine Editorial Stream Mobile Styles */
+            .magazine-hero-card {
+                background: #0a0a0a;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 18px;
+                overflow: hidden;
+                display: block;
+                text-decoration: none;
+                transition: border-color 0.2s ease;
             }
-            .mobile-carousel-track::-webkit-scrollbar {
-                display: none !important;
+
+            .magazine-hero-card:active {
+                border-color: rgba(255, 255, 255, 0.25);
             }
-            .mobile-carousel-card {
-                scroll-snap-align: start !important;
-                flex-shrink: 0 !important;
-                width: 82% !important;
-                max-width: 320px !important;
+
+            .magazine-topic-scroll {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                overflow-x: auto;
+                scrollbar-width: none;
+                padding: 4px 0 10px 0;
+                margin: 0 -4px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .magazine-topic-scroll::-webkit-scrollbar {
+                display: none;
+            }
+
+            .topic-pill {
+                display: inline-flex;
+                align-items: center;
+                padding: 6px 14px;
+                border-radius: 9999px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #a1a1aa;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                white-space: nowrap;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .topic-pill.active {
+                background: #ffffff;
+                color: #000000;
+                font-weight: 600;
+                border-color: #ffffff;
+            }
+
+            .magazine-item-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 14px;
+                padding: 14px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+                text-decoration: none;
+                transition: background-color 0.15s ease;
+            }
+
+            .magazine-item-row:last-child {
+                border-bottom: none;
+            }
+
+            .magazine-thumb {
+                width: 84px;
+                height: 74px;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                background: #000000;
+                flex-shrink: 0;
+            }
+
+            .magazine-thumb img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
             }
         }
 
@@ -500,196 +563,179 @@
 
         </div>
 
-        <!-- MOBILE BLOG DECK (Option 4.2: Open Source Hybrid Feed, Active on < 1024px) -->
-        <div class="mobile-blog-deck block lg:hidden space-y-8">
+        <!-- MOBILE BLOG DECK (Editorial Magazine Stream, Active on < 1024px) -->
+        <div class="mobile-blog-deck block lg:hidden space-y-6">
 
-            <!-- Section 1: Carousel Track of 3 Featured Articles -->
-            <div>
-                <div class="mb-3.5 pb-2 border-b border-white/[0.08]">
-                    <h2 class="text-sm font-bold font-display text-white">Featured Dispatches</h2>
-                </div>
-
-                <div class="mobile-carousel-track">
-                    <!-- Carousel Card 1: AntiSlop Viral Milestone (Lead Piece) -->
-                    <article class="mobile-carousel-card spotlight-card group cursor-pointer">
-                        <a href="/blog/antislop-viral-milestone.html" class="block">
-                            <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
-                                <img src="../assets/images/blog-7.webp" alt="AntiSlop Viral Growth Trajectory" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
-                            </div>
-                            <div class="p-4 sm:p-5 space-y-3">
-                                <div class="flex items-center justify-between text-xs font-sans font-medium text-zinc-400">
-                                    <span class="text-zinc-300 truncate mr-2">Open Source &amp; Growth</span>
-                                    <span class="text-zinc-500 shrink-0">Sep 13, 2026</span>
-                                </div>
-                                <h3 class="text-sm sm:text-base font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
-                                    How AntiSlop Hit 2,300 Stars and 7k Installs Since Launching Last Month
-                                </h3>
-                                <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-2">
-                                    From a personal set of rules against generic AI styling to +7k installs, 2.3k GitHub stars, and an unexpected endorsement from Oracle product leadership.
-                                </p>
-                                <div class="pt-2.5 flex items-center justify-between border-t border-white/[0.06]">
-                                    <span class="text-xs font-sans text-zinc-300 font-medium">Read article</span>
-                                    <div class="circle-action-btn">
-                                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- Carousel Card 2: Mid 2026 -->
-                    <article class="mobile-carousel-card spotlight-card group cursor-pointer">
-                        <a href="/blog/mid-2026-china-wakes-up.html" class="block">
-                            <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
-                                <img src="../assets/images/mid-2026.webp" alt="Global Compute Trajectory" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
-                            </div>
-                            <div class="p-4 sm:p-5 space-y-3">
-                                <div class="flex items-center justify-between text-xs font-sans font-medium text-zinc-400">
-                                    <span class="text-zinc-300 truncate mr-2">Geopolitics &amp; Compute</span>
-                                    <span class="text-zinc-500 shrink-0">Aug 28, 2026</span>
-                                </div>
-                                <h3 class="text-sm sm:text-base font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
-                                    Mid 2026: China Wakes Up and the Global AGI Race
-                                </h3>
-                                <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-2">
-                                    An analysis of the mid-2026 geopolitical AI scenario: hardware compute deficits, nuclear power centralization, and model weight intelligence dilemmas.
-                                </p>
-                                <div class="pt-2.5 flex items-center justify-between border-t border-white/[0.06]">
-                                    <span class="text-xs font-sans text-zinc-300 font-medium">Read article</span>
-                                    <div class="circle-action-btn">
-                                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- Carousel Card 2: AntiSlop -->
-                    <article class="mobile-carousel-card spotlight-card group cursor-pointer">
-                        <a href="/blog/anti-ai-slop.html" class="block">
-                            <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
-                                <img src="../assets/images/antislop.webp" alt="AntiSlop Architecture" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
-                            </div>
-                            <div class="p-4 sm:p-5 space-y-3">
-                                <div class="flex items-center justify-between text-xs font-sans font-medium text-zinc-400">
-                                    <span class="text-zinc-300 truncate mr-2">Agentic systems</span>
-                                    <span class="text-zinc-500 shrink-0">Aug 23, 2026</span>
-                                </div>
-                                <h3 class="text-sm sm:text-base font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
-                                    AntiSlop: Stopping Coding Agents from Generating Generic UI
-                                </h3>
-                                <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-2">
-                                    Why LLMs possess a native bias toward purple gradients and rounded pill badges, and how a deterministic rule system eliminates visual hallucinations.
-                                </p>
-                                <div class="pt-2.5 flex items-center justify-between border-t border-white/[0.06]">
-                                    <span class="text-xs font-sans text-zinc-300 font-medium">Read article</span>
-                                    <div class="circle-action-btn">
-                                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- Carousel Card 3: Context Engineering -->
-                    <article class="mobile-carousel-card spotlight-card group cursor-pointer">
-                        <a href="/blog/context-engineering-vs-finetuning.html" class="block">
-                            <div class="aspect-[16/10] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
-                                <img src="../assets/images/contextforge.webp" alt="Context Engineering" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#080605] via-transparent to-transparent opacity-60"></div>
-                            </div>
-                            <div class="p-4 sm:p-5 space-y-3">
-                                <div class="flex items-center justify-between text-xs font-sans font-medium text-zinc-400">
-                                    <span class="text-zinc-300 truncate mr-2">Context engineering</span>
-                                    <span class="text-zinc-500 shrink-0">Aug 18, 2026</span>
-                                </div>
-                                <h3 class="text-sm sm:text-base font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
-                                    Context Engineering vs Fine-Tuning: The Precision Key for AI Coding
-                                </h3>
-                                <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-2">
-                                    Why surgical context injection and AST symbol pruning outperform static model weight re-training while saving 70% in token overhead.
-                                </p>
-                                <div class="pt-2.5 flex items-center justify-between border-t border-white/[0.06]">
-                                    <span class="text-xs font-sans text-zinc-300 font-medium">Read article</span>
-                                    <div class="circle-action-btn">
-                                        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                </div>
+            <!-- Topic Filter Pills Bar -->
+            <div class="magazine-topic-scroll">
+                <button type="button" class="topic-pill active" onclick="filterMobileBlog('all', this)">All Topics</button>
+                <button type="button" class="topic-pill" onclick="filterMobileBlog('agentic', this)">AI Agents</button>
+                <button type="button" class="topic-pill" onclick="filterMobileBlog('open-source', this)">Open Source</button>
+                <button type="button" class="topic-pill" onclick="filterMobileBlog('geopolitics', this)">Geopolitics</button>
+                <button type="button" class="topic-pill" onclick="filterMobileBlog('graphics', this)">Graphics &amp; WebGL</button>
+                <button type="button" class="topic-pill" onclick="filterMobileBlog('workflow', this)">Workflow Automation</button>
             </div>
 
-            <!-- Section 2: Feed of Remaining Articles (Open Source Card Aesthetic) -->
-            <div>
-                <div class="mb-4 pb-2 border-b border-white/[0.08]">
-                    <h2 class="text-sm font-bold font-display text-white">More Dispatches</h2>
+            <!-- Hero Lead Article Container (Active on 'All Topics' for newest dispatch) -->
+            <div id="mobile-hero-container">
+                <a href="/blog/antislop-viral-milestone.html" class="magazine-hero-card group">
+                    <div class="aspect-[16/9] w-full overflow-hidden relative border-b border-white/[0.08] bg-[#080605]">
+                        <img src="../assets/images/blog-7.webp" alt="AntiSlop Viral Growth Trajectory" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <div class="flex items-center justify-between text-xs font-sans text-zinc-400">
+                            <span class="text-zinc-300 font-medium">Open Source &amp; Growth</span>
+                            <span class="text-zinc-500">4 min read</span>
+                        </div>
+                        <h2 class="font-display text-base font-bold text-white leading-snug group-hover:text-cyanGlow transition-colors">
+                            How AntiSlop Hit 2,300 Stars and 7k Installs Since Launching Last Month
+                        </h2>
+                        <p class="font-sans text-xs text-zinc-400 leading-relaxed line-clamp-2">
+                            From a personal set of rules against generic AI styling to +7k installs, 2.3k GitHub stars, and an unexpected endorsement from Oracle product leadership.
+                        </p>
+                        <div class="pt-2 text-[11px] text-zinc-500 font-sans">
+                            Published Sep 13, 2026
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Flowing Editorial Stream Container -->
+            <div class="pt-1 pb-4">
+                <div class="pb-2 border-b border-white/[0.08] flex items-center justify-between mb-2">
+                    <h2 id="mobile-stream-title" class="font-display text-sm font-semibold text-white">
+                        Latest Notes
+                    </h2>
+                    <span id="mobile-stream-count" class="font-sans text-[11px] text-zinc-500">5 pieces</span>
                 </div>
 
-                <div class="space-y-3.5">
-                    <!-- Feed Card 4: Canvas ASCII -->
-                    <article class="spotlight-card group cursor-pointer">
-                        <a href="/blog/optimizing-canvas-ascii-60fps.html" class="p-4 sm:p-4.5 flex items-center gap-4">
-                            <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-[#080605]">
-                                <img src="../assets/images/machine_learning.webp" alt="Canvas ASCII Math" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                            </div>
-                            <div class="flex-1 min-w-0 space-y-1">
-                                <div class="flex items-center justify-between text-[11px] font-sans text-zinc-400">
-                                    <span class="text-zinc-300 font-medium truncate mr-1">Graphics &amp; WebGL</span>
-                                    <span class="text-zinc-500 shrink-0">Aug 12, 2026</span>
-                                </div>
-                                <h3 class="text-xs sm:text-sm font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
-                                    Optimizing Canvas 3D ASCII Sphere Renders to a Rock-Solid 60 FPS
-                                </h3>
-                                <div class="flex items-center justify-between pt-1">
-                                    <span class="text-[11px] font-sans text-zinc-400">Read article</span>
-                                    <div class="circle-action-btn !w-7 !h-7 !min-w-[1.75rem] !min-h-[1.75rem]">
-                                        <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
+                <div id="mobile-articles-list" class="divide-y divide-white/[0.07]">
 
-                    <!-- Feed Card 5: AI Agents & n8n -->
-                    <article class="spotlight-card group cursor-pointer">
-                        <a href="/blog/ai-agents-n8n-workspace.html" class="p-4 sm:p-4.5 flex items-center gap-4">
-                            <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-[#080605]">
-                                <img src="../assets/images/automation_workflow.webp" alt="Automation Workflow" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    <!-- Lead Item as Row (Hidden on 'All Topics' to prevent duplicate, visible on 'open-source') -->
+                    <a href="/blog/antislop-viral-milestone.html" class="magazine-item-row group" data-topic="open-source" data-lead-item="true" style="display: none;">
+                        <div class="flex-1 min-w-0 space-y-1.5">
+                            <div class="flex items-center gap-2 text-[11px] font-sans text-zinc-400">
+                                <span class="text-zinc-300 font-medium">Open Source &amp; Growth</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-500">4 min read</span>
                             </div>
-                            <div class="flex-1 min-w-0 space-y-1">
-                                <div class="flex items-center justify-between text-[11px] font-sans text-zinc-400">
-                                    <span class="text-zinc-300 font-medium truncate mr-1">Workflow automation</span>
-                                    <span class="text-zinc-500 shrink-0">Jul 29, 2026</span>
-                                </div>
-                                <h3 class="text-xs sm:text-sm font-bold font-display text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
-                                    Building Resilient AI Bots with n8n and Google Workspace
-                                </h3>
-                                <div class="flex items-center justify-between pt-1">
-                                    <span class="text-[11px] font-sans text-zinc-400">Read article</span>
-                                    <div class="circle-action-btn !w-7 !h-7 !min-w-[1.75rem] !min-h-[1.75rem]">
-                                        <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M4 12L12 4M12 4H6M12 4V10"/>
-                                        </svg>
-                                    </div>
-                                </div>
+                            <h3 class="font-display text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                How AntiSlop Hit 2,300 Stars and 7k Installs Since Launching Last Month
+                            </h3>
+                            <div class="text-[11px] text-zinc-500 font-sans">
+                                Sep 13, 2026
                             </div>
-                        </a>
-                    </article>
+                        </div>
+                        <div class="magazine-thumb">
+                            <img src="../assets/images/blog-7.webp" alt="AntiSlop Viral Growth Trajectory" loading="lazy" decoding="async">
+                        </div>
+                    </a>
+
+                    <!-- Article 1: Mid 2026 -->
+                    <a href="/blog/mid-2026-china-wakes-up.html" class="magazine-item-row group" data-topic="geopolitics">
+                        <div class="flex-1 min-w-0 space-y-1.5">
+                            <div class="flex items-center gap-2 text-[11px] font-sans text-zinc-400">
+                                <span class="text-zinc-300 font-medium">Geopolitics &amp; Compute</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-500">4 min read</span>
+                            </div>
+                            <h3 class="font-display text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                Mid 2026: China Wakes Up and the Global AGI Race
+                            </h3>
+                            <div class="text-[11px] text-zinc-500 font-sans">
+                                Aug 28, 2026
+                            </div>
+                        </div>
+                        <div class="magazine-thumb">
+                            <img src="../assets/images/mid-2026.webp" alt="Global Compute Trajectory" loading="lazy" decoding="async">
+                        </div>
+                    </a>
+
+                    <!-- Article 2: AntiSlop Coding Agents -->
+                    <a href="/blog/anti-ai-slop.html" class="magazine-item-row group" data-topic="agentic">
+                        <div class="flex-1 min-w-0 space-y-1.5">
+                            <div class="flex items-center gap-2 text-[11px] font-sans text-zinc-400">
+                                <span class="text-zinc-300 font-medium">Agentic Systems</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-500">6 min read</span>
+                            </div>
+                            <h3 class="font-display text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                AntiSlop: Stopping Coding Agents from Generating Generic UI
+                            </h3>
+                            <div class="text-[11px] text-zinc-500 font-sans">
+                                Aug 23, 2026
+                            </div>
+                        </div>
+                        <div class="magazine-thumb">
+                            <img src="../assets/images/antislop.webp" alt="AntiSlop Architecture" loading="lazy" decoding="async">
+                        </div>
+                    </a>
+
+                    <!-- Article 3: Context Engineering -->
+                    <a href="/blog/context-engineering-vs-finetuning.html" class="magazine-item-row group" data-topic="agentic">
+                        <div class="flex-1 min-w-0 space-y-1.5">
+                            <div class="flex items-center gap-2 text-[11px] font-sans text-zinc-400">
+                                <span class="text-zinc-300 font-medium">Context Engineering</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-500">7 min read</span>
+                            </div>
+                            <h3 class="font-display text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                Context Engineering vs Fine-Tuning: The Precision Key for AI Coding
+                            </h3>
+                            <div class="text-[11px] text-zinc-500 font-sans">
+                                Aug 18, 2026
+                            </div>
+                        </div>
+                        <div class="magazine-thumb">
+                            <img src="../assets/images/contextforge.webp" alt="Context Engineering" loading="lazy" decoding="async">
+                        </div>
+                    </a>
+
+                    <!-- Article 4: Canvas ASCII -->
+                    <a href="/blog/optimizing-canvas-ascii-60fps.html" class="magazine-item-row group" data-topic="graphics">
+                        <div class="flex-1 min-w-0 space-y-1.5">
+                            <div class="flex items-center gap-2 text-[11px] font-sans text-zinc-400">
+                                <span class="text-zinc-300 font-medium">Graphics &amp; WebGL</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-500">5 min read</span>
+                            </div>
+                            <h3 class="font-display text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                Optimizing Canvas 3D ASCII Sphere Renders to a Rock-Solid 60 FPS
+                            </h3>
+                            <div class="text-[11px] text-zinc-500 font-sans">
+                                Aug 12, 2026
+                            </div>
+                        </div>
+                        <div class="magazine-thumb">
+                            <img src="../assets/images/machine_learning.webp" alt="Canvas ASCII Math" loading="lazy" decoding="async">
+                        </div>
+                    </a>
+
+                    <!-- Article 5: Workflow Automation -->
+                    <a href="/blog/ai-agents-n8n-workspace.html" class="magazine-item-row group" data-topic="workflow">
+                        <div class="flex-1 min-w-0 space-y-1.5">
+                            <div class="flex items-center gap-2 text-[11px] font-sans text-zinc-400">
+                                <span class="text-zinc-300 font-medium">Workflow Automation</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-500">5 min read</span>
+                            </div>
+                            <h3 class="font-display text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-cyanGlow transition-colors">
+                                Building Resilient AI Bots with n8n and Google Workspace
+                            </h3>
+                            <div class="text-[11px] text-zinc-500 font-sans">
+                                Jul 29, 2026
+                            </div>
+                        </div>
+                        <div class="magazine-thumb">
+                            <img src="../assets/images/automation_workflow.webp" alt="Automation Workflow" loading="lazy" decoding="async">
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Empty state fallback -->
+                <div id="mobile-empty-state" class="py-12 text-center text-zinc-500 text-xs font-sans hidden">
+                    Belum ada artikel dalam kategori ini.
                 </div>
             </div>
 
@@ -737,6 +783,65 @@ if (window.location.protocol === 'file:') {
             el.setAttribute('href', prefix + h.substring(1));
         }
     });
+}
+
+// Mobile Blog Topic Filtering Logic
+var mobileTopicLabels = {
+    'all': 'Latest Notes',
+    'agentic': 'AI Agents',
+    'open-source': 'Open Source',
+    'geopolitics': 'Geopolitics',
+    'graphics': 'Graphics & WebGL',
+    'workflow': 'Workflow Automation'
+};
+
+function filterMobileBlog(topic, btn) {
+    var pills = document.querySelectorAll('.topic-pill');
+    pills.forEach(function(p) { p.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+
+    var heroContainer = document.getElementById('mobile-hero-container');
+    var streamTitle = document.getElementById('mobile-stream-title');
+    var streamCount = document.getElementById('mobile-stream-count');
+    var emptyState = document.getElementById('mobile-empty-state');
+    var rows = document.querySelectorAll('#mobile-articles-list .magazine-item-row');
+
+    var isAll = topic === 'all';
+    if (heroContainer) {
+        heroContainer.style.display = isAll ? 'block' : 'none';
+    }
+    if (streamTitle) {
+        streamTitle.textContent = mobileTopicLabels[topic] || 'Articles';
+    }
+
+    var visibleCount = 0;
+    rows.forEach(function(row) {
+        var rowTopic = row.getAttribute('data-topic');
+        var isLead = row.getAttribute('data-lead-item') === 'true';
+
+        if (isAll) {
+            if (isLead) {
+                row.style.display = 'none';
+            } else {
+                row.style.display = 'flex';
+                visibleCount++;
+            }
+        } else {
+            if (rowTopic === topic) {
+                row.style.display = 'flex';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    });
+
+    if (streamCount) {
+        streamCount.textContent = visibleCount + (visibleCount === 1 ? ' piece' : ' pieces');
+    }
+    if (emptyState) {
+        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
 }
 </script>
 </body>
