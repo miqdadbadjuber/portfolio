@@ -3136,7 +3136,7 @@
                 <div id="blinds-container"></div>
             </div>
 
-            <!-- Mobile Carousel -->
+            <!-- Mobile Project Showcase (Feral Blinds Fold) -->
             <div class="mobile-project-carousel mb-8" style="display:none">
                 <style>
                     /* Mobile Carousel: Full Bleed Container without side clipping */
@@ -3145,121 +3145,147 @@
                         margin-right: -1.5rem !important;
                         width: calc(100% + 3rem) !important;
                         overflow: hidden;
-                        margin-top: 1rem !important;
-                        margin-bottom: 1.5rem !important;
+                        margin-top: 0.5rem !important;
+                        margin-bottom: 0.5rem !important;
                     }
 
-                    .mobile-carousel-track {
-                        display: flex;
-                        overflow-x: auto;
-                        scroll-snap-type: none !important;
-                        -webkit-overflow-scrolling: touch;
-                        scroll-behavior: auto;
-                        gap: 1.25rem;
-                        padding-top: 0.75rem;
-                        padding-bottom: 0.75rem;
-                        scrollbar-width: none;
-                        -ms-overflow-style: none;
-                        cursor: grab;
-                        touch-action: pan-y pinch-zoom;
-                        user-select: none;
-                        -webkit-user-select: none;
-                    }
-
-                    .mobile-carousel-track:active {
-                        cursor: grabbing;
-                    }
-
-                    .mobile-carousel-track::-webkit-scrollbar {
-                        display: none;
-                    }
-
-                    /* ScaleSlider Slide */
-                    .mobile-carousel-slide {
-                        flex: 0 0 85vw;
-                        max-width: 330px;
-                        display: flex;
-                        flex-direction: column;
-                        transform-origin: center center;
-                        transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.35s ease;
-                        will-change: transform, opacity;
-                    }
-
-                    /* Project Card Styling (Pure Neutral Dark Glassmorphism Layout) */
-                    .mobile-carousel-slide .mobile-project-card {
+                    .mobile-blinds-wrapper {
                         position: relative;
                         width: 100%;
-                        border-radius: 20px !important;
+                        height: 520px;
                         overflow: hidden;
-                        background: rgba(10, 10, 10, 0.55) !important;
-                        backdrop-filter: blur(20px) !important;
-                        -webkit-backdrop-filter: blur(20px) !important;
-                        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-                        box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 16px rgba(255, 255, 255, 0.02) !important;
-                        display: flex;
-                        flex-direction: column;
+                        margin: 0 auto;
                     }
 
-                    /* Image Header Container (Exact 16:9 Aspect Ratio matching banner dimensions, 0% Cutoff) */
-                    .mobile-carousel-slide .mobile-card-img-link {
+                    #mobile-blinds-container {
+                        width: 100%;
+                        height: 520px;
+                        position: relative;
+                    }
+
+                    /* Make Slat Transparent and Borderless so the inner Card dominates */
+                    .bld--fold .bld-slat,
+                    .bld--fold .bld-slat:hover,
+                    .bld--fold .bld-slat:focus,
+                    .bld--fold .bld-slat:focus-visible,
+                    .bld--fold .bld-slat:active {
+                        background: transparent !important;
+                        border: none !important;
+                        outline: none !important;
+                        box-shadow: none !important;
+                        overflow: visible !important;
+                        padding: 0 !important;
+                    }
+
+                    .bld--fold .bld-art {
+                        position: relative !important;
+                        inset: 0 !important;
+                        width: 100% !important;
+                        height: 100% !important;
+                        transform: none !important;
+                        background: none !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        pointer-events: auto !important;
+                    }
+
+                    .bld--fold .bld-art::after {
+                        display: none !important;
+                    }
+
+                    .bld--fold .bld-label,
+                    .bld--fold .bld-body,
+                    .bld--fold .bld-big {
+                        display: none !important;
+                    }
+
+                    /* Solid Opaque Black Mobile Project Card (Static border, zero hover glow) */
+                    .mobile-project-card {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 20px !important;
+                        overflow: hidden;
+                        background: #0a0a0a !important;
+                        backdrop-filter: none !important;
+                        -webkit-backdrop-filter: none !important;
+                        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                        box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.85) !important;
+                        display: flex;
+                        flex-direction: column;
+                        text-align: left;
+                        user-select: none;
+                        transition: none !important;
+                    }
+
+                    .bld-slat:hover .mobile-project-card,
+                    .bld-slat:focus .mobile-project-card,
+                    .bld-slat:focus-visible .mobile-project-card,
+                    .bld-slat:active .mobile-project-card,
+                    .mobile-project-card:hover,
+                    .mobile-project-card:focus,
+                    .mobile-project-card:active {
+                        border-color: rgba(255, 255, 255, 0.12) !important;
+                        box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.85) !important;
+                    }
+
+                    /* Image Header Container (16:9 Aspect Ratio) */
+                    .mobile-card-img-link {
                         position: relative;
                         width: 100%;
                         aspect-ratio: 16 / 9;
-                        z-index: 1;
-                        display: block;
                         overflow: hidden;
-                        background-color: rgba(0, 0, 0, 0.45) !important;
+                        background-color: #000000 !important;
                         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                        flex-shrink: 0;
+                        display: block;
                     }
 
-                    .mobile-carousel-slide .mobile-card-img {
+                    .mobile-card-img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         object-position: center;
+                        display: block;
+                        pointer-events: none;
                         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
                     }
 
-                    .mobile-carousel-slide:hover .mobile-card-img {
+                    .bld-slat:hover .mobile-card-img {
                         transform: scale(1.03);
                     }
 
-                    /* Card Body Content Area (Transparent Glass) */
-                    .mobile-carousel-slide .mobile-card-content {
-                        padding: 1.15rem 1.15rem 1.25rem 1.15rem;
+                    /* Card Body Content Area */
+                    .mobile-card-content {
+                        padding: 1rem 1.15rem 1.15rem 1.15rem;
                         display: flex;
                         flex-direction: column;
-                        background: transparent !important;
+                        background: #0a0a0a !important;
                         flex-grow: 1;
                     }
 
-                    .mobile-carousel-slide .mobile-card-title {
-                        font-family: 'Inter', sans-serif !important;
+                    .mobile-card-title {
+                        font-family: 'Space Grotesk', sans-serif !important;
                         font-size: 1.125rem !important;
                         font-weight: 700 !important;
                         line-height: 1.25 !important;
                         color: #ffffff !important;
                         letter-spacing: -0.015em !important;
-                        margin: 0 0 0.45rem 0 !important;
+                        margin: 0 0 0.35rem 0 !important;
                     }
 
-                    .mobile-carousel-slide .mobile-card-title a {
+                    .mobile-card-title a {
                         color: #ffffff !important;
                         text-decoration: none !important;
-                        transition: color 0.2s ease;
-                    }
-
-                    .mobile-carousel-slide .mobile-card-title a:hover {
-                        color: #ffffff !important;
                     }
 
                     /* Description (Clean 3 lines clamp) */
-                    .mobile-carousel-slide .mobile-card-desc {
+                    .mobile-card-desc {
                         font-family: 'Inter', sans-serif !important;
-                        font-size: 0.8rem !important;
-                        line-height: 1.5 !important;
+                        font-size: 0.8125rem !important;
+                        line-height: 1.45 !important;
                         color: #a1a1aa !important;
-                        margin-bottom: 1rem !important;
+                        margin-bottom: 0.75rem !important;
                         display: -webkit-box;
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
@@ -3267,18 +3293,18 @@
                     }
 
                     /* Bottom Action Row */
-                    .mobile-carousel-slide .mobile-card-action-row {
+                    .mobile-card-action-row {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
                         gap: 0.6rem;
                         width: 100%;
-                        padding-top: 0.75rem;
+                        padding-top: 0.7rem;
                         border-top: 1px solid rgba(255, 255, 255, 0.08);
                         margin-top: auto;
                     }
 
-                    .mobile-carousel-slide .mobile-card-github-btn {
+                    .mobile-card-github-btn {
                         display: inline-flex !important;
                         align-items: center !important;
                         gap: 0.35rem !important;
@@ -3295,17 +3321,19 @@
                         flex-shrink: 0 !important;
                         transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
                         min-height: 36px !important;
+                        cursor: pointer !important;
+                        pointer-events: auto !important;
                     }
 
-                    .mobile-carousel-slide .mobile-card-github-btn:hover,
-                    .mobile-carousel-slide .mobile-card-github-btn:active {
+                    .mobile-card-github-btn:hover,
+                    .mobile-card-github-btn:active {
                         background: rgba(255, 255, 255, 0.2) !important;
                         color: #ffffff !important;
                         border-color: rgba(255, 255, 255, 0.28) !important;
                     }
 
                     /* White Pill Button */
-                    .mobile-carousel-slide .mobile-card-pill-btn {
+                    .mobile-card-pill-btn {
                         display: inline-flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -3324,511 +3352,61 @@
                         flex-shrink: 0 !important;
                         min-height: 36px !important;
                         transition: transform 0.15s ease, background-color 0.15s ease !important;
+                        pointer-events: auto !important;
                     }
 
-                    .mobile-carousel-slide .mobile-card-pill-btn:active {
+                    .mobile-card-pill-btn:hover {
+                        background-color: #f4f4f5 !important;
+                    }
+
+                    .mobile-card-pill-btn:active {
                         transform: scale(0.95) !important;
                         background-color: #e4e4e7 !important;
                     }
 
-                    /* Controls Bar (Matching React/Embla Template) */
-                    .mobile-carousel-controls {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        width: 100%;
-                        padding: 0.85rem 1.75rem 0.25rem 1.75rem;
+                    /* Navigation Arrows */
+                    .bld--fold .bld-nav {
+                        background: #141414 !important;
+                        backdrop-filter: none !important;
+                        -webkit-backdrop-filter: none !important;
+                        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+                        color: #ffffff !important;
+                        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+                        z-index: 50 !important;
                     }
 
-                    .mobile-carousel-dots {
-                        display: flex;
-                        align-items: center;
-                        gap: 6px;
+                    .bld--fold .bld-nav:hover {
+                        border-color: rgba(255, 255, 255, 0.16) !important;
+                        color: #ffffff !important;
+                        background: #1f1f1f !important;
                     }
 
-                    .mobile-carousel-dots button {
-                        height: 5px;
-                        border-radius: 9999px;
-                        border: none;
-                        padding: 0;
-                        cursor: pointer;
-                        transition: width 0.3s cubic-bezier(0.2, 0.9, 0.3, 1), background-color 0.3s ease;
-                        -webkit-tap-highlight-color: transparent;
+                    /* Pagination Dots */
+                    .bld--fold .bld-dots {
+                        background: #121212 !important;
+                        backdrop-filter: none !important;
+                        -webkit-backdrop-filter: none !important;
+                        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                        bottom: 14px !important;
+                        z-index: 50 !important;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
                     }
 
-                    .mobile-carousel-arrows {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
+                    .bld--fold .bld-dot {
+                        background: rgba(255, 255, 255, 0.25) !important;
+                        box-shadow: none !important;
+                        transition: all 0.2s ease !important;
                     }
 
-                    .mobile-nav-arrow-btn {
-                        width: 42px;
-                        height: 42px;
-                        min-width: 42px;
-                        min-height: 42px;
-                        border-radius: 9999px;
-                        background: rgba(255, 255, 255, 0.08);
-                        border: 1px solid rgba(255, 255, 255, 0.14);
-                        backdrop-filter: blur(12px);
-                        -webkit-backdrop-filter: blur(12px);
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        color: #ffffff;
-                        cursor: pointer;
-                        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-                        outline: none;
-                        -webkit-tap-highlight-color: transparent;
-                        padding: 0;
-                    }
-
-                    .mobile-nav-arrow-btn:active {
-                        background: rgba(255, 255, 255, 0.22);
-                        transform: scale(0.92);
-                        border-color: rgba(255, 255, 255, 0.35);
-                    }
-
-                    /* Suppress external watermarks */
-                    a[data-n],
-                    a[href*="neat.firecms.co"],
-                    #neat-seo-schema {
-                        display: none !important;
-                        visibility: hidden !important;
-                        opacity: 0 !important;
-                        pointer-events: none !important;
-                        width: 0 !important;
-                        height: 0 !important;
+                    .bld--fold .bld-dot.is-on {
+                        background: #ffffff !important;
+                        box-shadow: none !important;
                     }
                 </style>
-                <div id="mobile-carousel-track" class="mobile-carousel-track">
-                    <!-- Slide 1: AntiSlop -->
-                    <article class="mobile-carousel-slide">
-                        <div class="mobile-project-card group">
-                            <a href="/projects/anti-ai-slop.html" class="mobile-card-img-link" aria-label="Open AntiSlop project">
-                                <img src="assets/images/antislop.webp" alt="AntiSlop banner" loading="lazy" decoding="async" class="mobile-card-img">
-                            </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
-                                    <a href="/projects/anti-ai-slop.html">AntiSlop</a>
-                                </h3>
-                                <p class="mobile-card-desc">
-                                    38 mandatory deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop and robotic copy without restricting genuine design creativity.
-                                </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber/anti-slop" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                        </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/anti-ai-slop.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
 
-                    <!-- Slide 2: ContextForge -->
-                    <article class="mobile-carousel-slide">
-                        <div class="mobile-project-card group">
-                            <a href="/projects/contextforge.html" class="mobile-card-img-link" aria-label="Open ContextForge project">
-                                <img src="assets/images/contextforge.webp" alt="ContextForge banner" loading="lazy" decoding="async" class="mobile-card-img">
-                            </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
-                                    <a href="/projects/contextforge.html">ContextForge</a>
-                                </h3>
-                                <p class="mobile-card-desc">
-                                    CLI tool that indexes codebases, scores file relevance, and uses AST symbol pruning to build token-efficient context bundles, cutting token consumption by up to 83%.
-                                </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/MiqdadBadjuber/contextforge" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                        </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/contextforge.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Slide 3: DiagramPilot AI -->
-                    <article class="mobile-carousel-slide">
-                        <div class="mobile-project-card group">
-                            <a href="/projects/diagrampilot.html" class="mobile-card-img-link" aria-label="Open DiagramPilot AI project">
-                                <img src="assets/images/diagrampilot.webp" alt="DiagramPilot AI" loading="lazy" decoding="async" class="mobile-card-img">
-                            </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
-                                    <a href="/projects/diagrampilot.html">DiagramPilot AI</a>
-                                </h3>
-                                <p class="mobile-card-desc">
-                                    Full-stack Next.js and Mermaid.js system converting natural language conversations into interactive architecture diagrams with zoom, pan, and SVG export.
-                                </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber/DiagramPilot-AI" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                        </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/diagrampilot.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Slide 4: OpenFolio AI -->
-                    <article class="mobile-carousel-slide">
-                        <div class="mobile-project-card group">
-                            <a href="/projects/openfolio.html" class="mobile-card-img-link" aria-label="Open OpenFolio AI project">
-                                <img src="assets/images/openfolio.webp" alt="OpenFolio AI" loading="lazy" decoding="async" class="mobile-card-img">
-                            </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
-                                    <a href="/projects/openfolio.html">OpenFolio AI</a>
-                                </h3>
-                                <p class="mobile-card-desc">
-                                    React 19 SPA and Express serverless studio that conducts guest-only interviews to build, revise, and deploy custom developer portfolios to live URLs.
-                                </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber/OpenFolio-AI" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                        </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/openfolio.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Slide 5: Machine Learning Experiments -->
-                    <article class="mobile-carousel-slide">
-                        <div class="mobile-project-card group">
-                            <a href="/projects/machine-learning.html" class="mobile-card-img-link" aria-label="Open Machine Learning Experiments project">
-                                <img src="assets/images/machine_learning.webp" alt="Machine Learning Systems" loading="lazy" decoding="async" class="mobile-card-img">
-                            </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
-                                    <a href="/projects/machine-learning.html">Machine Learning Experiments</a>
-                                </h3>
-                                <p class="mobile-card-desc">
-                                    End-to-end model training suites covering CNN image classification (88% acc), Gojek review BiLSTM sentiment analysis (88.69% acc), and K-Means fraud transaction clustering with 6 GitHub repositories.
-                                </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                        </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/machine-learning.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Slide 6: Automation Workflow Engine -->
-                    <article class="mobile-carousel-slide">
-                        <div class="mobile-project-card group">
-                            <a href="/projects/automation-workflow.html" class="mobile-card-img-link" aria-label="Open Automation Workflow Engine project">
-                                <img src="assets/images/automation_workflow.webp" alt="Automation Workflow Engine" loading="lazy" decoding="async" class="mobile-card-img">
-                            </a>
-                            <div class="mobile-card-content">
-                                <h3 class="mobile-card-title">
-                                    <a href="/projects/automation-workflow.html">Automation Workflow Engine</a>
-                                </h3>
-                                <p class="mobile-card-desc">
-                                    Event-driven workflow architectures connecting Discord and Telegram chat triggers with self-hosted n8n orchestrators, Google Apps Script backends, and automated PDF reporting.
-                                </p>
-                                <div class="mobile-card-action-row">
-                                    <a href="https://github.com/miqdadbadjuber" target="_blank" rel="noopener noreferrer" class="mobile-card-github-btn" aria-label="View Source on GitHub">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                        </svg>
-                                        <span>Code</span>
-                                    </a>
-                                    <a href="/projects/automation-workflow.html" class="mobile-card-pill-btn">
-                                        <span>View Details</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                <div class="mobile-blinds-wrapper" style="height: 520px;">
+                    <div id="mobile-blinds-container"></div>
                 </div>
-                <!-- Controls Bar (Matching ScaleSlider Template: Dots on left, Prev/Next on right) -->
-                <div class="mobile-carousel-controls">
-                    <!-- Slider Dot Button -->
-                    <div id="carousel-dots" class="mobile-carousel-dots" aria-label="Project pagination"></div>
-
-                    <!-- Slider Prev & Next Buttons -->
-                    <div class="mobile-carousel-arrows">
-                        <button id="carousel-prev-btn" type="button" aria-label="Previous project" class="mobile-nav-arrow-btn">
-                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button id="carousel-next-btn" type="button" aria-label="Next project" class="mobile-nav-arrow-btn">
-                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <script>
-                    (function () {
-                        var track = document.getElementById('mobile-carousel-track');
-                        var dotsContainer = document.getElementById('carousel-dots');
-                        var prevBtn = document.getElementById('carousel-prev-btn');
-                        var nextBtn = document.getElementById('carousel-next-btn');
-                        if (!track || !dotsContainer) return;
-
-                        var slides = Array.from(track.querySelectorAll('.mobile-carousel-slide'));
-                        var total = slides.length;
-                        if (!total) return;
-
-                        var dots = [];
-                        var activeIdx = 0;
-                        var momentumRafId = null;
-
-                        function stopMomentum() {
-                            if (momentumRafId) {
-                                cancelAnimationFrame(momentumRafId);
-                                momentumRafId = null;
-                            }
-                        }
-
-                        // Centering padding for first and last slides
-                        function adjustTrackPadding() {
-                            if (!track || !slides[0]) return;
-                            var slideW = slides[0].offsetWidth;
-                            if (!slideW) return;
-                            var pad = Math.max(16, (track.clientWidth - slideW) / 2);
-                            track.style.paddingLeft = pad + 'px';
-                            track.style.paddingRight = pad + 'px';
-                            updateSlideScales();
-                        }
-
-                        function smoothScrollTo(targetLeft, duration) {
-                            stopMomentum();
-                            var start = track.scrollLeft;
-                            var change = targetLeft - start;
-                            var startTime = performance.now();
-
-                            function step(currentTime) {
-                                var elapsed = currentTime - startTime;
-                                var progress = Math.min(elapsed / duration, 1);
-                                var ease = 1 - Math.pow(1 - progress, 3);
-                                track.scrollLeft = start + change * ease;
-                                updateSlideScales();
-                                if (progress < 1) {
-                                    momentumRafId = requestAnimationFrame(step);
-                                } else {
-                                    momentumRafId = null;
-                                    updateSlideScales();
-                                }
-                            }
-                            momentumRafId = requestAnimationFrame(step);
-                        }
-
-                        function goToSlide(index, duration) {
-                            stopMomentum();
-                            index = ((index % total) + total) % total;
-                            var s = slides[index];
-                            if (!s) return;
-                            var target = s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
-                            smoothScrollTo(target, duration || 360);
-                        }
-
-                        // Generate dots
-                        dotsContainer.innerHTML = '';
-                        slides.forEach(function (_, i) {
-                            var dot = document.createElement('button');
-                            dot.type = 'button';
-                            dot.setAttribute('aria-label', 'Go to project ' + (i + 1));
-                            dot.style.cssText = 'height: 5px; border-radius: 9999px; transition: width 0.3s cubic-bezier(0.2, 0.9, 0.3, 1), background-color 0.3s ease; border: none; padding: 0; cursor: pointer; ' + (i === 0 ? 'width: 22px; background: #ffffff;' : 'width: 6px; background: rgba(255, 255, 255, 0.25);');
-                            dot.addEventListener('click', function () {
-                                goToSlide(i, 360);
-                            });
-                            dotsContainer.appendChild(dot);
-                            dots.push(dot);
-                        });
-
-                        function updateDots(idx) {
-                            dots.forEach(function (dot, i) {
-                                if (i === idx) {
-                                    dot.style.width = '22px';
-                                    dot.style.background = '#ffffff';
-                                } else {
-                                    dot.style.width = '6px';
-                                    dot.style.background = 'rgba(255, 255, 255, 0.25)';
-                                }
-                            });
-                        }
-
-                        // Real-time ScaleSlider scaling calculation (isScale: true)
-                        function updateSlideScales() {
-                            var trackCenter = track.scrollLeft + (track.clientWidth / 2);
-                            var closestIdx = 0;
-                            var minDiff = Infinity;
-
-                            slides.forEach(function (slide, i) {
-                                var slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
-                                var diff = Math.abs(slideCenter - trackCenter);
-                                if (diff < minDiff) {
-                                    minDiff = diff;
-                                    closestIdx = i;
-                                }
-                                var maxRange = (slide.offsetWidth || 300) * 1.15;
-                                var norm = Math.min(diff / maxRange, 1);
-                                var scale = 1 - (norm * 0.08); // 1.0 down to 0.92
-                                var opacity = 1 - (norm * 0.35); // 1.0 down to 0.65
-                                slide.style.transform = 'scale(' + scale.toFixed(3) + ')';
-                                slide.style.opacity = opacity.toFixed(3);
-                            });
-
-                            if (closestIdx !== activeIdx) {
-                                activeIdx = closestIdx;
-                                updateDots(activeIdx);
-                            }
-                        }
-
-                        // Prev & Next Buttons with loop
-                        if (prevBtn) {
-                            prevBtn.addEventListener('click', function () {
-                                goToSlide(activeIdx - 1, 360);
-                            });
-                        }
-
-                        if (nextBtn) {
-                            nextBtn.addEventListener('click', function () {
-                                goToSlide(activeIdx + 1, 360);
-                            });
-                        }
-
-                        // Passive scroll listener for scale effect
-                        var isTicking = false;
-                        track.addEventListener('scroll', function () {
-                            if (!isTicking) {
-                                window.requestAnimationFrame(function () {
-                                    updateSlideScales();
-                                    isTicking = false;
-                                });
-                                isTicking = true;
-                            }
-                        }, { passive: true });
-
-                        // Pointer Drag & Smooth Swipe Engine
-                        var isPointerDown = false;
-                        var startX = 0;
-                        var startY = 0;
-                        var startScrollLeft = 0;
-                        var lastX = 0;
-                        var lastTime = 0;
-                        var velocityX = 0;
-                        var hasMoved = false;
-                        var isVerticalScroll = null;
-
-                        track.addEventListener('pointerdown', function (e) {
-                            if (e.button !== undefined && e.button !== 0) return;
-                            stopMomentum();
-                            isPointerDown = true;
-                            hasMoved = false;
-                            isVerticalScroll = null;
-                            startX = e.clientX;
-                            startY = e.clientY;
-                            lastX = e.clientX;
-                            startScrollLeft = track.scrollLeft;
-                            lastTime = performance.now();
-                            velocityX = 0;
-                        }, { passive: true });
-
-                        window.addEventListener('pointermove', function (e) {
-                            if (!isPointerDown) return;
-                            var currentX = e.clientX;
-                            var currentY = e.clientY;
-                            var currentTime = performance.now();
-                            var deltaX = currentX - startX;
-                            var deltaY = currentY - startY;
-
-                            if (isVerticalScroll === null) {
-                                if (Math.abs(deltaY) > 6 && Math.abs(deltaY) > Math.abs(deltaX)) {
-                                    isVerticalScroll = true;
-                                    isPointerDown = false;
-                                    return;
-                                } else if (Math.abs(deltaX) > 6) {
-                                    isVerticalScroll = false;
-                                }
-                            }
-                            if (isVerticalScroll) return;
-
-                            if (Math.abs(deltaX) > 4) {
-                                hasMoved = true;
-                            }
-
-                            track.scrollLeft = startScrollLeft - deltaX;
-                            updateSlideScales();
-
-                            var dt = currentTime - lastTime;
-                            if (dt > 8) {
-                                var instantVelocity = (lastX - currentX) / dt;
-                                velocityX = velocityX * 0.35 + instantVelocity * 0.65;
-                                lastX = currentX;
-                                lastTime = currentTime;
-                            }
-                        }, { passive: true });
-
-                        function handlePointerUp() {
-                            if (!isPointerDown) return;
-                            isPointerDown = false;
-
-                            var now = performance.now();
-                            if (now - lastTime > 70) {
-                                velocityX = 0;
-                            }
-
-                            if (Math.abs(velocityX) > 0.12) {
-                                var targetIdx = velocityX > 0 ? activeIdx + 1 : activeIdx - 1;
-                                goToSlide(targetIdx, 320);
-                            } else {
-                                goToSlide(activeIdx, 260);
-                            }
-                        }
-
-                        window.addEventListener('pointerup', handlePointerUp, { passive: true });
-                        window.addEventListener('pointercancel', handlePointerUp, { passive: true });
-
-                        // Suppress accidental click when dragging
-                        track.addEventListener('click', function (e) {
-                            if (hasMoved) {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                hasMoved = false;
-                            }
-                        }, true);
-
-                        window.addEventListener('resize', adjustTrackPadding);
-                        window.addEventListener('load', adjustTrackPadding);
-                        setTimeout(adjustTrackPadding, 100);
-                        setTimeout(adjustTrackPadding, 500);
-
-                        window._setMobileCarouselActive = function () {};
-                    })();
-                </script>
             </div>
 
             <!-- View All Projects -->
@@ -4498,7 +4076,7 @@
                     <!-- Contact Form -->
                     <div id="mobile-contact-drawer" class="mobile-contact-drawer bg-transparent">
                         <div class="p-8 md:p-10">
-                            <form class="flex flex-col gap-5 h-full font-sans">
+                            <form class="flex flex-col gap-5 h-full font-sans" onsubmit="sendContactForm(); return false;">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div class="space-y-2">
                                         <label for="contact-name"
@@ -5306,41 +4884,59 @@
                 {
                     name: "AntiSlop",
                     oneLiner: "38 deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop.",
+                    desc: "38 mandatory deterministic rules and liveliness dials preventing AI coding agents from generating generic UI slop and robotic copy without restricting genuine design creativity.",
                     cover: "assets/images/antislop.webp",
+                    github: "https://github.com/miqdadbadjuber/anti-slop",
                     href: prefix + "projects/anti-ai-slop.html"
                 },
                 {
                     name: "ContextForge",
                     oneLiner: "CLI tool indexing codebases and pruning AST symbol bundles, cutting AI token consumption by up to 83%.",
+                    desc: "CLI tool that indexes codebases, scores file relevance, and uses AST symbol pruning to build token-efficient context bundles, cutting token consumption by up to 83%.",
                     cover: "assets/images/contextforge.webp",
+                    github: "https://github.com/MiqdadBadjuber/contextforge",
                     href: prefix + "projects/contextforge.html"
                 },
                 {
                     name: "DiagramPilot AI",
                     oneLiner: "Full-stack tool converting natural language into interactive Mermaid architecture diagrams with SVG export.",
+                    desc: "Full-stack Next.js and Mermaid.js system converting natural language conversations into interactive architecture diagrams with zoom, pan, and SVG export.",
                     cover: "assets/images/diagrampilot.webp",
+                    github: "https://github.com/miqdadbadjuber/DiagramPilot-AI",
                     href: prefix + "projects/diagrampilot.html"
                 },
                 {
                     name: "OpenFolio AI",
                     oneLiner: "Generative studio conducting interview-driven workflows to build and deploy custom developer portfolios.",
+                    desc: "React 19 SPA and Express serverless studio that conducts guest-only interviews to build, revise, and deploy custom developer portfolios to live URLs.",
                     cover: "assets/images/openfolio.webp",
+                    github: "https://github.com/miqdadbadjuber/OpenFolio-AI",
                     href: prefix + "projects/openfolio.html"
                 },
                 {
                     name: "Automation Engine",
                     oneLiner: "Event-driven pipelines orchestrating Telegram bots, self-hosted n8n workflows, and cloud reporting scripts.",
+                    desc: "Event-driven workflow architectures connecting Discord and Telegram chat triggers with self-hosted n8n orchestrators, Google Apps Script backends, and automated PDF reporting.",
                     cover: "assets/images/automation_workflow.webp",
+                    github: "https://github.com/miqdadbadjuber",
                     href: prefix + "projects/automation-workflow.html"
                 },
                 {
                     name: "Machine Learning",
                     oneLiner: "Model training suites covering CNN vision (88%), BiLSTM sentiment analysis (88.69%), and K-Means clustering.",
+                    desc: "End-to-end model training suites covering CNN image classification (88% acc), Gojek review BiLSTM sentiment analysis (88.69% acc), and K-Means fraud transaction clustering with 6 GitHub repositories.",
                     cover: "assets/images/machine_learning.webp",
+                    github: "https://github.com/miqdadbadjuber",
                     href: prefix + "projects/machine-learning.html"
                 }
             ];
 
+            function navigate(url) {
+                if (!url) return;
+                window.location.href = url;
+            }
+
+            // Desktop items
             var items = projects.map(function (p) {
                 return {
                     title: p.name,
@@ -5350,13 +4946,78 @@
                 };
             });
 
-            function navigate(url) {
-                if (!url) return;
-                window.location.href = url;
+            // Mobile Card Component Helper
+            function createMobileProjectCard(p) {
+                var h = React.createElement;
+
+                var imgEl = h('img', {
+                    src: p.cover,
+                    alt: p.name + ' banner',
+                    className: 'mobile-card-img',
+                    draggable: false,
+                    loading: 'eager'
+                });
+                var imgWrap = h('a', {
+                    href: p.href,
+                    className: 'mobile-card-img-link',
+                    'aria-label': 'Open ' + p.name + ' project'
+                }, imgEl);
+
+                var titleLink = h('a', { href: p.href }, p.name);
+                var titleEl = h('h3', { className: 'mobile-card-title' }, titleLink);
+
+                var descEl = h('p', { className: 'mobile-card-desc' }, p.desc);
+
+                var githubSvg = h('svg', {
+                    width: 13,
+                    height: 13,
+                    viewBox: '0 0 24 24',
+                    fill: 'currentColor',
+                    'aria-hidden': 'true'
+                }, h('path', {
+                    d: 'M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'
+                }));
+
+                var codeBtn = h('a', {
+                    href: p.github,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    className: 'mobile-card-github-btn',
+                    'aria-label': 'View ' + p.name + ' Source on GitHub',
+                    onPointerDown: function (e) { e.stopPropagation(); },
+                    onClick: function (e) { e.stopPropagation(); }
+                }, githubSvg, h('span', null, 'Code'));
+
+                var detailsBtn = h('a', {
+                    href: p.href,
+                    className: 'mobile-card-pill-btn',
+                    'aria-label': 'View ' + p.name + ' Details',
+                    onPointerDown: function (e) { e.stopPropagation(); },
+                    onClick: function (e) {
+                        e.stopPropagation();
+                        navigate(p.href);
+                    }
+                }, h('span', null, 'View Details'));
+
+                var actionRow = h('div', { className: 'mobile-card-action-row' }, codeBtn, detailsBtn);
+                var contentEl = h('div', { className: 'mobile-card-content' }, titleEl, descEl, actionRow);
+
+                return h('div', { className: 'mobile-project-card' }, imgWrap, contentEl);
             }
 
+            // Mobile items
+            var mobileItems = projects.map(function (p) {
+                return {
+                    title: p.name,
+                    subtitle: p.desc,
+                    image: p.cover,
+                    href: p.href,
+                    render: createMobileProjectCard(p)
+                };
+            });
+
             var container = document.getElementById('blinds-container');
-            if (!container) return;
+            var mobileContainer = document.getElementById('mobile-blinds-container');
 
             var blindsConfig = {
                 items: items,
@@ -5378,6 +5039,26 @@
                 }
             };
 
+            var mobileBlindsConfig = {
+                items: mobileItems,
+                mode: 'fold',
+                labelStyle: 'steady',
+                labelPosition: 'bottom',
+                radius: 20,
+                gap: 12,
+                textSize: 1.05,
+                expandRatio: 1.35,
+                tuning: { k: 120, c: 18, lean: 0.3, squeeze: 1 },
+                autoPlay: 3200,
+                showIndex: false,
+                showBody: false,
+                onActivate: function (i) {
+                    if (mobileItems[i] && mobileItems[i].href) {
+                        navigate(mobileItems[i].href);
+                    }
+                }
+            };
+
             var blindsInitialized = false;
 
             function initBlinds() {
@@ -5385,23 +5066,52 @@
                     setTimeout(initBlinds, 50);
                     return;
                 }
-                if (window._getCurrentSection && window._getCurrentSection() === 'projects') {
-                    blindsConfig.autoPlay = 3400;
-                } else {
-                    blindsConfig.autoPlay = false;
+                // Desktop
+                if (container) {
+                    if (window._getCurrentSection && window._getCurrentSection() === 'projects') {
+                        blindsConfig.autoPlay = 3400;
+                    } else {
+                        blindsConfig.autoPlay = false;
+                    }
+                    window.renderBlinds(container, blindsConfig);
                 }
-                window.renderBlinds(container, blindsConfig);
+                // Mobile
+                if (mobileContainer) {
+                    window.renderBlinds(mobileContainer, mobileBlindsConfig);
+                }
                 blindsInitialized = true;
             }
 
             window._setBlindsActive = function (isActive) {
-                if (!blindsInitialized || !window.renderBlinds || !container) return;
-                var targetAutoPlay = isActive ? 3400 : false;
-                if (blindsConfig.autoPlay !== targetAutoPlay) {
-                    blindsConfig.autoPlay = targetAutoPlay;
-                    window.renderBlinds(container, blindsConfig);
+                if (!blindsInitialized || !window.renderBlinds) return;
+                if (container && window.innerWidth >= 1024) {
+                    var targetAutoPlay = isActive ? 3400 : false;
+                    if (blindsConfig.autoPlay !== targetAutoPlay) {
+                        blindsConfig.autoPlay = targetAutoPlay;
+                        window.renderBlinds(container, blindsConfig);
+                    }
+                }
+                if (mobileContainer && window.innerWidth < 1024) {
+                    var targetMobileAutoPlay = isActive ? 3200 : false;
+                    if (mobileBlindsConfig.autoPlay !== targetMobileAutoPlay) {
+                        mobileBlindsConfig.autoPlay = targetMobileAutoPlay;
+                        window.renderBlinds(mobileContainer, mobileBlindsConfig);
+                    }
                 }
             };
+
+            var resizeTimer = null;
+            window.addEventListener('resize', function () {
+                if (!blindsInitialized || !window.renderBlinds) return;
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    if (window.innerWidth < 1024 && mobileContainer) {
+                        window.renderBlinds(mobileContainer, mobileBlindsConfig);
+                    } else if (container) {
+                        window.renderBlinds(container, blindsConfig);
+                    }
+                }, 100);
+            });
 
             if (document.readyState === 'complete' || document.readyState === 'interactive') {
                 initBlinds();
