@@ -43,6 +43,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Rubik:wght@700&family=Sora:wght@400;500;600;700;800&display=block"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (precompiled static build, not CDN runtime) -->
     <link rel="stylesheet" href="assets/css/tailwind.css">
@@ -89,6 +90,8 @@
     </script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap');
+
         /* Local Fonts */
         @font-face {
             font-family: 'Helvetica Neue';
@@ -279,20 +282,39 @@
             font-weight: 700 !important;
         }
 
-        /* Hero Name (Bold 700 khusus nama di hero) */
-        #home h1 {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            font-weight: 700 !important;
+        /* Hero Name (Sora 800 ExtraBold khusus nama di hero) */
+        #home h1,
+        #home .hero-headline-name,
+        .hero-headline-name {
+            font-family: 'Sora', sans-serif !important;
+            font-weight: 800 !important;
+            line-height: 0.93 !important;
+            letter-spacing: -0.025em !important;
         }
 
         .font-sora {
-            font-family: 'Sora', sans-serif;
+            font-family: 'Sora', sans-serif !important;
         }
 
         .text-mega {
             font-size: clamp(2.3rem, 6vw, 6rem);
-            line-height: 1;
-            letter-spacing: -0.02em;
+            line-height: 0.93 !important;
+            letter-spacing: -0.025em !important;
+        }
+
+        .hero-name-stagger {
+            display: block !important;
+            margin-top: 2px !important;
+            transform: translateX(32px) !important;
+        }
+
+        .hero-name-role-divider {
+            width: 240px;
+            max-width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.16);
+            margin-top: 18px;
+            margin-bottom: 18px;
         }
 
         .hero-role-title {
@@ -307,8 +329,52 @@
         }
 
         @media (min-width: 768px) {
-            #home h1 {
+            #home h1,
+            #home .hero-headline-name,
+            .hero-headline-name {
+                font-family: 'Sora', sans-serif !important;
+                font-weight: 800 !important;
+                line-height: 0.93 !important;
+                letter-spacing: -0.025em !important;
+                text-align: left !important;
                 margin-left: -6px !important;
+                margin-bottom: 0 !important;
+            }
+
+            .hero-name-stagger {
+                display: block !important;
+                margin-top: 2px !important;
+                transform: translateX(32px) !important;
+                text-align: left !important;
+            }
+
+            .hero-name-role-divider {
+                width: 240px !important;
+                max-width: 100% !important;
+                height: 1px !important;
+                background-color: rgba(255, 255, 255, 0.16) !important;
+                margin-left: -6px !important;
+                margin-right: 0 !important;
+                margin-top: 18px !important;
+                margin-bottom: 18px !important;
+            }
+
+            .hero-role-clean-wrap {
+                width: auto !important;
+                display: block !important;
+                text-align: left !important;
+            }
+
+            .hero-role-title {
+                font-family: 'Rubik', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 1.85rem !important;
+                letter-spacing: 0.14em !important;
+                text-transform: uppercase !important;
+                color: #ffffff !important;
+                line-height: 1.2 !important;
+                text-align: left !important;
+                user-select: none !important;
             }
         }
 
@@ -1919,18 +1985,31 @@
                 padding-bottom: 0 !important;
             }
 
-            #home h1 {
-                font-size: clamp(2.6rem, 12vw, 4.2rem);
-                text-align: center;
-                line-height: 1.05;
+            #home h1,
+            #home .hero-headline-name,
+            .hero-headline-name {
+                font-family: 'Sora', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: clamp(2.3rem, 11vw, 3.5rem) !important;
+                line-height: 1.05 !important;
+                letter-spacing: -0.02em !important;
+                text-align: center !important;
                 margin-left: 0 !important;
                 margin-right: 0 !important;
-                margin-bottom: 1.25rem !important;
+                margin-bottom: 0 !important;
+            }
+
+            #home .hero-name-stagger,
+            .hero-name-stagger {
+                display: block !important;
+                margin-top: 4px !important;
+                transform: none !important;
+                text-align: center !important;
             }
 
             #home .gsap-hero {
                 width: 100%;
-                text-align: center;
+                text-align: center !important;
                 translate: none !important;
                 transform: none !important;
                 align-items: center;
@@ -1938,10 +2017,45 @@
                 flex-direction: column;
                 padding-top: 0 !important;
                 margin-top: -3.5rem !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
             }
 
             #home .gsap-hero>div {
                 justify-content: center;
+            }
+
+            #home .hero-name-role-divider,
+            .hero-name-role-divider {
+                width: 160px !important;
+                max-width: 60% !important;
+                height: 1px !important;
+                background-color: rgba(255, 255, 255, 0.16) !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                margin-top: 14px !important;
+                margin-bottom: 14px !important;
+            }
+
+            .hero-role-clean-wrap {
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+                margin: 0 !important;
+            }
+
+            .hero-role-title {
+                font-family: 'Rubik', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: clamp(1.15rem, 4.8vw, 1.4rem) !important;
+                letter-spacing: 0.12em !important;
+                line-height: 1.2 !important;
+                text-transform: uppercase !important;
+                color: #ffffff !important;
+                text-align: center !important;
+                margin: 0 !important;
             }
 
             /* About mobile spacing tightening */
@@ -2199,12 +2313,6 @@
                 font-size: 0.7rem;
             }
 
-            /* Hero Role Mobile (Strictly Isolated) */
-            .hero-role-title {
-                font-size: 1.75rem !important;
-                letter-spacing: 0.1em !important;
-                line-height: 1.2 !important;
-            }
         }
 
         /* Mobile Contact Drawer */
@@ -2998,11 +3106,13 @@
         </div>
     </nav>
 
-    <!-- HUD Overlay -->
+    <!-- HUD Overlay (Left & Right lines temporarily disabled for trial) -->
+    <!--
     <div class="fixed left-6 md:left-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block" aria-hidden="true">
     </div>
     <div class="fixed right-6 md:right-12 top-0 bottom-0 hud-line opacity-30 z-0 hidden sm:block" aria-hidden="true">
     </div>
+    -->
 
     <main class="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-20" id="main-content">
 
@@ -3010,11 +3120,14 @@
 
         <section id="home" class="flex flex-col justify-center relative min-h-[100vh]" aria-label="Introduction">
             <div class="gsap-hero relative z-10 w-full lg:w-3/5 text-left pt-12 md:pt-0 md:translate-x-[48px]">
-                <!-- Main Headline -->
-                <h1
-                    class="font-display font-black text-mega text-white mb-6 break-words leading-[1.02] md:leading-[0.96] tracking-tight">
-                    Miqdad<br>Badjuber
+                <!-- Main Headline (Sora 800 with Stagger Alignment) -->
+                <h1 class="hero-headline-name font-sora font-extrabold text-mega text-white mb-0 break-words">
+                    <span class="block">Miqdad</span>
+                    <span class="hero-name-stagger block">Badjuber</span>
                 </h1>
+
+                <!-- Architectural Divider (Gaya 1: Hairline Solid White 240px) -->
+                <div class="hero-name-role-divider" aria-hidden="true"></div>
 
                 <!-- Subtitle (Static Clean AI Engineer Role) -->
                 <div class="hero-role-clean-wrap">
